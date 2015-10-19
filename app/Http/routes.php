@@ -48,17 +48,6 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_moreAdmin","Admin\PowerController@moreAdmin");//查看一个管理员用户的详情
     Route::post("/admin_uAdmin","Admin\PowerController@uAdmin");//修改某个管理员用户
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /*
     /*
      * 用户级权限组管理功能
