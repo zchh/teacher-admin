@@ -17,6 +17,7 @@ class BaseController extends Controller {
         $userData = $baseFunc->loginAdminCheck($inputData["admin_username"],$inputData["admin_password"]);
         if($userData != false)
         {
+            $sessionInitData["admin_status"] = true;
             $sessionInitData["admin_id"] = $userData->admin_id;
             $sessionInitData["admin_nickname"] = $userData->admin_nickname;
             $sessionInitData["admin_group"] = $userData->admin_group;
