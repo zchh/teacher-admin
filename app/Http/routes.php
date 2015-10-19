@@ -71,6 +71,7 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::post("/admin_uUser","Admin\PowerController@uUser");//修改某个用户
 
     
+    
     //
     /*
      * 文章管理组
