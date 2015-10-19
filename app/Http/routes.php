@@ -70,11 +70,8 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_moreUser","Admin\PowerController@moreUser");//查看一个用户的详情
     Route::post("/admin_uUser","Admin\PowerController@uUser");//修改某个用户
 
-
     
-    
-
-
+    //
     /*
      * 文章管理组
      * 说明：对用户的文章进行管理
