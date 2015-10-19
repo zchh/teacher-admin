@@ -15,6 +15,8 @@
 Route::get("/test","TestController@test");
 
 
+
+
 Route::get("/admin_login","Admin\BaseController@login");
 
 Route::post("/_admin_login","Admin\BaseController@_login");
