@@ -149,7 +149,7 @@ return [
                 
                  *
                  * private service provider                  */
-                 'GirdPlugins\Ajax\AjaxServiceProvider'
+                 'GirdPlugins\Base\BaseServiceProvider'
 	],
 
 	/*

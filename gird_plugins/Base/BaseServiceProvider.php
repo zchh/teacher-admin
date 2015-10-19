@@ -1,8 +1,8 @@
-<?php namespace GirdPlugins\Ajax;
+<?php namespace GirdPlugins\Base;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
-class AjaxServiceProvider extends ServiceProvider {
+class BaseServiceProvider extends ServiceProvider {
     
     
 
@@ -13,11 +13,12 @@ class AjaxServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__."/views" , 'Ajax');
+        $this->loadViewsFrom(__DIR__."/views" , 'Base');
         //require __DIR__ . '/../vendor/autoload.php';
         //include __DIR__."router.php";
         //Route::get("/test_1",  "App\Http\Controllers\TestController@test");
         include __DIR__.'\class\BaseFunc.php';
+        include __DIR__.'\class\PowerFunc.php';
         
     }
     
@@ -29,7 +30,7 @@ class AjaxServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind("Ajax",function(){
+        $this->app->bind("Base",function(){
             return new test();
         });
     }

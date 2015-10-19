@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use GirdPlugins\Ajax\BaseFunc;
+use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -13,11 +13,9 @@ class BaseController extends Controller {
     public function _login(BaseFunc $baseFunc)
     {
         $inputData = Request::only("admin_username","admin_password");
-        $userData = DB::table("base_admin")
-                ->where("admin_username","=",$inputData["admin_username"])
-                ->where("admin_password","=",md5($inputData["admin_password"]))
-                ->first();
-        if($userData != NULL)
+        
+        $userData = $baseFunc->loginAdminCheck($inputData["admin_username"],$inputData["admin_password"]);
+        if($userData != false)
         {
             $sessionInitData["admin_id"] = $userData->admin_id;
             $sessionInitData["admin_nickname"] = $userData->admin_nickname;
@@ -34,7 +32,7 @@ class BaseController extends Controller {
     public function index()
     {
         return view("admin.index");
-        dump(session("admin.admin_id"));
+        
     }
     public function logout(BaseFunc $baseFunc)
     {
