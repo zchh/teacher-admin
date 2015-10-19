@@ -30,22 +30,22 @@ returnData = [];
 Router::get("/admin_sUserPowerGroup","Admin\PowerController@sUserPowerGroup");
 Router::get("/模块_函数名","模块\控制器@函数名");
 
-    在访问路径中使用驼峰命名，如admin只需要admin_函数名，若模块叫normal user 那么就为normalUser_函数名 
+在访问路径中使用驼峰命名，如admin只需要admin_函数名，若模块叫normal user 那么就为normalUser_函数名 
 
-    其中约定几个简写select(s),update(u),delete(d),add(a)来标识一些常用操作
+其中约定几个简写select(s),update(u),delete(d),add(a)来标识一些常用操作
 
-    如果要访问一个路由，请使用/xxxxx的绝对路径，避免路由带来的调试测试困难
+如果要访问一个路由，请使用/xxxxx的绝对路径，避免路由带来的调试测试困难
 
-    请尽量详细描述该路由的功能，即使它很长
+请尽量详细描述该路由的功能，即使它很长
 
-    一个页面应该隔开一行，一组功能应该靠近，如：
-        Route::get("/admin_sUser","Admin\PowerController@sUser");//查看所有的用户
-        Route::post("/admin_aUser","Admin\PowerController@aUser");//添加一个用户
-        Route::post("/admin_dUser","Admin\PowerController@dUser");//删除某个用户
-    因为上面的页面可以进行两个操作：添加，删除，这两个功能只是在服务器处理并不需要页面，所以归为一组，不用空行断开
+一个页面应该隔开一行，一组功能应该靠近，如：
+    Route::get("/admin_sUser","Admin\PowerController@sUser");//查看所有的用户
+    Route::post("/admin_aUser","Admin\PowerController@aUser");//添加一个用户
+    Route::post("/admin_dUser","Admin\PowerController@dUser");//删除某个用户
+因为上面的页面可以进行两个操作：添加，删除，这两个功能只是在服务器处理并不需要页面，所以归为一组，不用空行断开
 
 ##扩展包开发说明
-我们把所有主要的自写函数库类库全部放在/gird_pluginse中，目前主要开发Base包
+我们把所有主要的自写函数库类库全部放在/gird_pluginse中，目前主要开发Base包<br/>
 1.所有和数据库相关的逻辑，比如增删改查，请写到扩展包里面
 2.比较复杂的操作逻辑，也写到扩展包里面
 在扩展包中，./class中是类库，请按照给出的几个类库而定例子来写。
