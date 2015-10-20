@@ -87,9 +87,9 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
      * 说明：对用户的文章进行管理
      * 控制器：ArticleController
      *  */
-    Route::get("/admin_sArticle","Admin\ArticleController@sArticle");   //查找文章
+    Route::get("/admin_sArticle","Admin\ArticleController@sArticle");   //查看文章
     Route::get("/admin_aArticle","Admin\ArticleController@aArticle");   //添加文章
-    Route::post("/_admin_aArticle","Admin\ArticleController@_aArticle");   //添加文章
+    //Route::post("/_admin_aArticle","Admin\ArticleController@_aArticle");   //添加文章
     Route::get("/admin_dArticle/{article_id}","Admin\ArticleController@dArticle");   //删除文章
 
     Route::get("/admin_moreArticle","Admin\ArticleController@moreArticle");     //文章详情
@@ -113,5 +113,6 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_AddArticleToSubject","Admin\ArticleController@AddArticleToSubject");           //添加一篇文章到专题
     Route::get("/admin_RemoveArticleToSubject","Admin\ArticleController@RemoveArticleToSubject");             //从专题移出一篇文章
 
-
+    Route::get("/admin_te","Admin\ArticleController@te");   
+    Route::post("/_admin_te","Admin\ArticleController@_te");   
 });
