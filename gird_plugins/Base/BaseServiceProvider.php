@@ -19,6 +19,9 @@ class BaseServiceProvider extends ServiceProvider {
         //Route::get("/test_1",  "App\Http\Controllers\TestController@test");
         include __DIR__.'\class\BaseFunc.php';
         include __DIR__.'\class\PowerFunc.php';
+        include __DIR__.'\class\LogFunc.php';
+        include __DIR__.'\class\ArticleFunc.php';
+        include __DIR__.'\class\ImageFunc.php';
         
     }
     
