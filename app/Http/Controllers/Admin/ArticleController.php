@@ -19,4 +19,8 @@ class ArticleController extends Controller {
         return $data;
         
     }
+    public function sArticle()
+    {
+        
+    }
 }
