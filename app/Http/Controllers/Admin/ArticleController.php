@@ -45,7 +45,7 @@ class ArticleController extends Controller {
         $sunject_update_data = Request::all();
         $res = DB::table("base_article_subject")->
                 where("subject_id","=",$sunject_update_data["subject_id"])->
-                where()           //验证是否是当前用户操作专题  
+                where("subject_user","=",  session("username"))           //验证是否是当前用户操作专题  
                 ->update($sunject_update_data);
         dump($sunject_update_data);
     }
