@@ -43,7 +43,10 @@ class ArticleController extends Controller {
     public function _uSubject(BaseFunc $base)
     {
         $sunject_update_data = Request::all();
-        if()
+        $res = DB::table("base_article_subject")->
+                where("subject_id","=",$sunject_update_data["subject_id"])->
+                where()           //验证是否是当前用户操作专题  
+                ->update($sunject_update_data);
         dump($sunject_update_data);
     }
     //根据$subject_id删除指定专题

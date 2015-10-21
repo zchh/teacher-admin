@@ -105,11 +105,14 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_uLabel","Admin\ArticleController@uLebel");             //修改标签
 
     Route::get("/admin_sSubject","Admin\ArticleController@sSubject");         //查看所有的专题
-    Route::post("/admin_aSubject","Admin\ArticleController@aSubject");           //添加专题
+    Route::get("/admin_aSubject","Admin\ArticleController@aSubject");           //添加专题
+    Route::post("/_admin_aSubject","Admin\ArticleController@_aSubject");           //处理添加专题传过来的信息并进行添加
     Route::get("/admin_sSubject/{subject_id}","Admin\ArticleController@dSubject");          //删除专题
 
     Route::get("/admin_moreSubject","Admin\ArticleController@moreSubject");           //专题详情
-    Route::post("/admin_uSubject","Admin\ArticleController@uSubject");           //修改专题信息
+    Route::get("/admin_uSubject/{subject_id}","Admin\ArticleController@uSubject");           //修改专题信息
+    //Route::post("/admin_uSubject","Admin\ArticleController@_uSubject"); 
+    Route::post("/_admin_uSubject","Admin\ArticleController@_uSubject");        //接受ajax返回的数据
     Route::get("/admin_AddArticleToSubject","Admin\ArticleController@AddArticleToSubject");           //添加一篇文章到专题
     Route::get("/admin_RemoveArticleToSubject","Admin\ArticleController@RemoveArticleToSubject");             //从专题移出一篇文章
 
