@@ -27,4 +27,5 @@ class PowerController extends Controller {
         $data = DB::table("base_admin")->insert($input);
         return redirect("Admin.Power.sAdmin");
     }
+    
 }
