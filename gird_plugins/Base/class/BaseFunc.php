@@ -143,6 +143,23 @@ class BaseFunc
         }
         
     }
+    public function loginUserCheck($user_name,$password)
+    {
+         $userData = DB::table("base_user")
+                ->where("user_username","=",$user_name)
+                ->where("user_password","=",md5($password))
+                ->first();
+        if($userData!=NULL)
+        {
+            return $userData;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    
  
       
 }
