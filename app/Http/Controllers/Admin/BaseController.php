@@ -5,12 +5,14 @@ use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use GirdPlugins\Base\AdminPowerFunc;
+
 class BaseController extends Controller {
     public function login()
     {
         return view("Admin.login");
     }
-    public function _login(BaseFunc $baseFunc)
+    public function _login(BaseFunc $baseFunc, AdminPowerFunc $powerFunc )
     {
         $inputData = Request::only("admin_username","admin_password");
         
@@ -21,6 +23,8 @@ class BaseController extends Controller {
             $sessionInitData["admin_id"] = $userData->admin_id;
             $sessionInitData["admin_nickname"] = $userData->admin_nickname;
             $sessionInitData["admin_group"] = $userData->admin_group;
+            $sessionInitData["admin_power"] = $powerFunc->getAdminPower($userData->admin_id);
+            
             session(["admin"=>$sessionInitData]);//session结构请见ReadMe文档
             $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/admin_index");
         }

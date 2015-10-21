@@ -7,3 +7,11 @@ admin
 |--admin_power
 	|--各个权限位
 	|--...
+user
+|--user_status
+|--user_id
+|--user_nickname
+|--user_group
+|--user_power
+	|--各个权限位
+	|--...

@@ -18,10 +18,12 @@ class BaseServiceProvider extends ServiceProvider {
         //include __DIR__."router.php";
         //Route::get("/test_1",  "App\Http\Controllers\TestController@test");
         include __DIR__.'\class\BaseFunc.php';
-        include __DIR__.'\class\PowerFunc.php';
         include __DIR__.'\class\LogFunc.php';
         include __DIR__.'\class\ArticleFunc.php';
         include __DIR__.'\class\ImageFunc.php';
+        include __DIR__.'\class\AdminPowerFunc.php';
+        include __DIR__.'\class\UserPowerFunc.php';
+        
         
     }
     
