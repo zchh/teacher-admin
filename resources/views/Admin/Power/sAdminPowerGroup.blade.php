@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-sm-3 ">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="admin_sAdminPowerGroup">查看权限 <span class="sr-only">(current)</span></a></li>
+            <li><a href="admin_sAdminPowerGroup">查看权限</a></li>
             <li><a href="admin_sAdmin">查看管理员用户</a></li>
             <li><a href="#"></a></li>
             <li><a href="#"></a></li>

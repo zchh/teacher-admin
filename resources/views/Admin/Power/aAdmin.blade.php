@@ -43,46 +43,31 @@
       <div class="row">
         <div class="col-sm-3 ">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="admin_sAdminPowerGroup">查看权限 <span class="sr-only">(current)</span></a></li>
+            <li><a href="admin_sAdminPowerGroup">查看权限 </a></li>
             <li><a href="admin_sAdmin">查看管理员用户</a></li>
             <li><a href="#"></a></li>
             <li><a href="#"></a></li>
           </ul>
-         
         </div>
+     
+          
+        <h2 class="sub-header">添加管理员用户</h2>
+        <hr>
+        <div class="col-sm-6 ">
+        <form action="/handle_aAdmin" method="post">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         
-
-          <h2 class="sub-header">管理员用户</h2>
-          <div class="table-responsive">
-            <table class="table table-striped" class="table table-hover">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>用户名</th>
-                  <th>昵称</th>
-                  <th>管理员组</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                 <?php
-       foreach($PowerData as $data)
-		{
-			?>
-			<tr>
-				<td>{{$data->admin_id}}</a></td>
-				<td>{{$data->admin_username}}</td>
-                                <td>{{$data->admin_nickname}}</td>
-                                <td>{{$data->admin_group}}</td>
-			</tr>
-			<?php
-		}
-       ?>
-                </tr>
-               
-              </tbody>
-            </table>
-          </div>
+        <h4>管理员用户名</h4>
+        <input type="text " id="inputText" class="form-control" placeholder="Admin Username" required autofocus>
+        
+        <h4>管理员昵称</h4>
+        <input type="text" id="inputText" class="form-control" placeholder="Admin Nickname" required autofocus>
+        
+        <h4>密码</h4>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Admin Password" required>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+        </br>
+        </form>
         </div>
-      </div>
-    </div>
+        </div>

@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     
-                    <li><a href="#">管理员权限</a></li>
+                    <li><a href="admin_sAdminPowerGroup">管理员权限</a></li>
                     <li><a href="#">用户权限</a></li>
                     <li><a href="#">文章</a></li>
                     <li><a href="#">图片库</a></li>

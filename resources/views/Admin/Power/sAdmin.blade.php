@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-sm-3 ">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="admin_sAdminPowerGroup">查看权限 <span class="sr-only">(current)</span></a></li>
+            <li><a href="admin_sAdminPowerGroup">查看权限</a></li>
             <li><a href="admin_sAdmin">查看管理员用户</a></li>
             <li><a href="#"></a></li>
             <li><a href="#"></a></li>
@@ -52,7 +52,7 @@
         </div>
         
 
-          <h2 class="sub-header">管理员用户</h2>
+          <h2 class="sub-header">管理员用户 | <a href="admin_aAdmin"><button class="btn btn-lg btn-primary btn-lg " type="submit">添加管理员</button></a></h2>
           <div class="table-responsive">
             <table class="table table-striped" class="table table-hover">
               <thead>

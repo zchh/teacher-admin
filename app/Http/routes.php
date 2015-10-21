@@ -42,7 +42,8 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::post("/admin_removePowerToAdminPowerGroup","Admin\PowerController@removePowerToAdminPowerGroup");     //从一个权限组移出权限，在详情页操作
 
     Route::get("/admin_sAdmin","Admin\PowerController@sAdmin");//查看所有的管理员用户
-    Route::post("/admin_aAdmin","Admin\PowerController@aAdmin");//添加一个管理员用户
+    Route::get("/admin_aAdmin","Admin\PowerController@aAdmin");//添加一个管理员用户
+    Route::post("/admin_aAdmin","Admin\PowerController@Handle_aAdmin");//执行添加一个管理员用户
     Route::post("/admin_dAdmin","Admin\PowerController@dAdmin");//删除某个管理员用户
 
     Route::get("/admin_moreAdmin","Admin\PowerController@moreAdmin");//查看一个管理员用户的详情
