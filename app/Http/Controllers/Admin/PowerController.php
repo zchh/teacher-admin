@@ -10,4 +10,8 @@ class PowerController extends Controller {
     {
         return view("Admin.Power.sAdminPowerGroup");
     }
+    public function sAdmin()
+    {
+        
+    }
 }
