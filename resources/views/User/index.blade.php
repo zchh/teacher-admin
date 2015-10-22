@@ -1,6 +1,2 @@
-@extends("base")
-
-@section("body")
-    
-@stop
+@extends("User.base")
 

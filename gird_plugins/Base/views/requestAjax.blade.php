@@ -48,6 +48,10 @@ $(document).ready(function(){
                     });
                     send_data[tmp] = checkbox_array;
               }
+              else if(tmp == "ue")
+              {
+                  send_data["{{$data}}"] = ue.getContent();
+              }
               else
               {
                   //一般的text password 直接使用value

@@ -4,9 +4,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/gird_plugins/Base/class/UserPowerFunc.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/Admin/BaseController.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/User/ArticleController.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/routes.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/User/Article/sArticle.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/gird_plugins/Base/class/ArticleFunc.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/gird_plugins/Base/views/requestAjax.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/User/Article/article_nav.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/User/BaseController.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/User/Article/aArticle.blade.php</file>
         </group>
     </open-files>
 </project-private>

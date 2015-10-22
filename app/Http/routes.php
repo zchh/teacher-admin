@@ -125,7 +125,7 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_dArticle\{article_id}","User\ArticleController@dArticle");
     
     Route::get("/user_aArticle","User\ArticleController@aArticle");
-    Route::post("/_user_sArticle","User\ArticleController@_aArticle");
+    Route::post("/_user_aArticle","User\ArticleController@_aArticle");
     
     Route::get("/user_uArticle","User\ArticleController@uArticle");
     Route::post("/user_ajax_getNowArticleDetail","User\ArticleController@user_ajax_getNowArticleDetail");
