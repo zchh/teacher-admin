@@ -131,11 +131,11 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::post("/user_ajax_getNowArticleDetail","User\ArticleController@user_ajax_getNowArticleDetail");
     Route::post("/_user_uArticle","User\ArticleController@_uArticle");
     
-    //文章访问
+    //文章访问===============================
     Route::get("/user_readAllArticle","User\ArticleController@readAllArticle");//读取所有文章
     Route::get("/user_readSingleArticle/{article_id}","User\ArticleController@readSingleArticle");//读取单一文章
     Route::get("/user_publishReply","User\ReplyController@publishReply");
-    
+    //=======
     //文章的评论管理
     Route::get("/user_sReply","User\ReplyController@sReply");       //查看评论
     Route::get("/user_moreReply","User\ReplyController@moreReply");       //评论详情

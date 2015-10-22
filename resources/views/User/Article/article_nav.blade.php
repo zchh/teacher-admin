@@ -11,6 +11,11 @@
       <li><a href="">查看标签</a></li>
       
     </ul>
+    <ul class="nav nav-sidebar">
+      <li><a href="/user_readAllArticle">查看所有用户文章</a></li>
+    
+      
+    </ul>
     
 </div>
 <style>

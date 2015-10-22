@@ -26,6 +26,13 @@ class ArticleController extends Controller
         $atcFunc->addArticle($articleData);
         
     }
+    
+    
+    public function readAllArticle()
+    {
+        
+        return view("User.Article.readAllArticle");
+    }
 }
 
 
