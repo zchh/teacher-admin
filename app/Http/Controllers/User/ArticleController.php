@@ -30,8 +30,17 @@ class ArticleController extends Controller
     
     public function readAllArticle()
     {
-        
-        return view("User.Article.readAllArticle");
+        //获得用户id
+         $baseArticle = DB::table('base_article')->get();  //返回值为数组
+         $inputData["articleData"] = $baseArticle;
+         return view("User.Article.readAllArticle",$inputData);
+    }
+    public function readSingleArticle()
+    {
+        //获取文章id，在页面输出这个id对应的各种内容
+         $baseArticle = DB::table('base_article')->get();  //返回值为数组，数组中包含多个类对象，一个对象为一个记录
+         $inputData["articleData"] = $baseArticle;
+         return view("User.Article.readSingleArticle");
     }
 }
 
