@@ -1,30 +1,42 @@
 @extends("User.base")
 @section("body")
-  <div class="row">
+
 @foreach($articleData  as $data)
 @if($data -> article_id == $article_id)
-  <div class="col-md-12"><h1 align="center">{{$data -> article_title}}</h1></div>
-  <div class="col-md-12"><h2 align="center">{{$data -> article_update_date}}  by {{$data -> user_username }}</h2></div>
-  <div class="col-md-12"><h2><small><?php echo $data -> article_detail;?></small></h2></div>
-  <div class="col-md-12">
-      
-        <nav>
+ <div class="col-md-2"></div>
+ <div class="col-md-8">
+  <div class="panel panel-default">
+  <div class="panel-body">
+
+   <h1><p class="text-left">{{$data -> article_title}}</p></h1>
+   <h2><small><p class="text-left">{{$data -> article_update_date}}  by {{$data -> user_username }}</p></small></h2>
+   <h2><small><p class="text-left"><?php echo $data -> article_detail;?></p></small></h2>
+     
+        <nav class="pull-left">
           <ul class="pager">
               @if($previousArticle!=-1)
                    <li><a href="/user_readSingleArticle/{{$previousArticle}}">《 前一页 </a></li>
               @endif
               @if($nextArticle!=-1 )
                 <li><a href="/user_readSingleArticle/{{$nextArticle}}">下一页 》</a></li>
-               @endif
-            
+               @endif           
           </ul>
         </nav>
-     
-      
   </div>
+  </div> 
+ </div>
+ <div class="col-md-2"></div>
  @endif
  @endforeach
-</div>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
         
 @stop

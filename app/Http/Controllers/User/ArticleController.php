@@ -57,12 +57,12 @@ class ArticleController extends Controller
               break;
             }
         }
-        $record = count($combine);   //记录条数
+        $record = count($combine["articleData"]);   //记录条数
        
-        $i==$record-1? $combine["nextArticle"]=-1 :$combine["nextArticle"]=$combine["articleData"][$i+1]->article_id;//
+        $i==$record-1? $combine["nextArticle"]=-1 :$combine["nextArticle"]=$combine["articleData"][$i+1]->article_id;//为-1,相当于为空
         $i==0? $combine["previousArticle"]=-1 :$combine["previousArticle"]=$combine["articleData"][$i-1]->article_id;
         $combine["record"] = $record;
-       
+        
          return view("User.Article.readSingleArticle",$combine);    
          
          
