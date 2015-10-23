@@ -23,7 +23,7 @@
         <li><a href="">待续.....</a></li>
     </ul>
 </div>
-<h2 class="sub-header">Article List</h2>
+<h2 class="sub-header">Article List By Condition</h2>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -31,19 +31,19 @@
                 <th>文章ID</th>
                 <th>文章主题</th>
                 <th>创建日期</th>
+                <th>更新日期</th>
                 <th>文章介绍</th>
-                <th>所属专题</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($article_data as $key => $data)
+            @foreach($data_by_condition as $key => $data)
             <tr>
                 <td>{{ $data->article_id }}</td>
                 <td>{{ $data->article_title }}</td>
                 <td>{{ $data->article_create_date }}</td>
+                <td>{{ $data->article_update_date }}</td>
                 <td>{{ $data->article_intro }}</td>
-                <td>{{ $data->subject_name }}</td>
 
                 <td>
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{$data->article_id}}">

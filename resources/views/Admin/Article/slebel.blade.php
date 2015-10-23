@@ -17,36 +17,34 @@
         <li><a href="">待续.....</a></li>
     </ul>
 </div>
-<h2 class="sub-header">文章专题列表</h2>
+<h2 class="sub-header">文章标签列表</h2>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>序号</th>
-                <th>类别名字</th>
-                <th>此类文章作者</th>
+                <th>标签名</th>
                 <th>创建日期</th>
+                <th>更新日期</th>
                 <th colspan="3">操作</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($subject_data as $key => $data)
+            @foreach($label_data as $key => $data)
             <tr>
-                <td>{{ $data->subject_id }}</td>
-                <td>{{ $data->subject_name }}</td>
-                <td>{{ $data->subject_intro }}</td>
-                <td>{{ $data->subject_create_date }}</td>
-                <td colspan="3"><a class="btn btn-default" href="/admin_uSubject/{{ $data->subject_id  }}">Edit</a>
-                    <a class="btn btn-primary" href="/admin_sSubject/{{ $data->subject_id  }}">Delete</a>
-                    <a class="btn btn-info" href="/admin_moreSubject/{{ $data->subject_id }}">详情页</a>
+                <td>{{ $key+1 }}</td>
+                <td>{{ $data->label_name }}</td>
+                <td>{{ $data->label_create_date }}</td>
+                <td>{{ $data->label_update_date }}</td>
+                <td colspan="3"><a class="btn btn-default" href="/admin_uLabel/{{$data->label_id}}">Edit</a>
+                    <a class="btn btn-primary" href="/admin_dLebel/{{$data->label_id}}">Delete</a>
+                    <a class="btn btn-info" href="">详情页</a>
                 </td>
-                <!--<td><a href="/admin_sSubject/{{ $data->subject_id  }}">Delete</a></td>
-                <td><a class="btn btn-info" href="/admin_moreSubject/{{ $data->subject_id }}">详情页</a></td>-->
             </tr>
             @endforeach
-            
         </tbody>
     </table>
+    <?php echo $label_data->render();?>
 </div>
 </div>
 </div>

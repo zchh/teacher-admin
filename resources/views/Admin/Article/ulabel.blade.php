@@ -16,35 +16,35 @@
 </div>
 <div class="col-md-1"></div>
 <div class="col-md-7">
-    <h2>文章专题信息</h2>
+    <h2>文章标签信息</h2>
     <form class="form-horizontal">
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label">专题ID</label>
+            <label for="" class="col-sm-2 control-label">标签ID</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="subject_id" value="{{ $subject_data[0]->subject_id }}">
+                <input type="text" class="form-control" id="label_id" value="{{ $labelData_by_labelId[0]->label_id }}">
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label">专题名</label>
+            <label for="" class="col-sm-2 control-label">标签名</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="subject_name" value="{{ $subject_data[0]->subject_name }}">
+                <input type="text" class="form-control" id="label_name" value="{{ $labelData_by_labelId[0]->label_name }}">
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label">专题创建日期</label>
+            <label for="" class="col-sm-2 control-label">标签创建日期</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="subject_create_date" value="{{ $subject_data[0]->subject_create_date }}">
+                <input type="text" class="form-control" id="label_create_date" value="{{ $labelData_by_labelId[0]->label_create_date }}">
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label">专题介绍</label>
+            <label for="" class="col-sm-2 control-label">标签更新日期</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="subject_intro" value="{{ $subject_data[0]->subject_intro }}">
+                <input type="text" class="form-control" id="label_update_date" value="{{ $labelData_by_labelId[0]->label_update_date }}">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" id="subject" class="btn btn-info">更新</button>
+                <button type="submit" id="label" class="btn btn-info">更新</button>
             </div>
         </div>
     </form>

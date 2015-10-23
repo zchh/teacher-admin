@@ -16,33 +16,28 @@
 </div>
 <div class="col-md-1"></div>
 <div class="col-md-7">
-    <h3>请在下面录入你要添加的专题信息</h3>
+    <h3>请在下面录入你要添加的标签信息</h3>
     <form class="form-horizontal">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
-            <label for="exampleInputName" class="col-sm-2 control-label">专题名</label>
+            <label for="" class="col-sm-2 control-label"><font color="red">标签名</font></label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="sunject_name" value="">
+                <input type="text" class="form-control" id="label_name" value="">
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-2 control-label">专题创建日期</label>
+            <label for="" class="col-sm-2 control-label"><font color="red">标签创建日期</font></label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="subject_create_date" value="">
+                <input type="text" class="form-control" id="label_create_date" value="">
             </div>
         </div>
-        <div class="form-group">
-            <label for="" class="col-sm-2 control-label">专题介绍</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="subject_intro" value="">
-            </div>
-        </div>
+
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" id="subject" class="btn btn-default">添加</button>
+                <button type="submit" id="label" class="btn btn-danger">添加</button>
             </div>
         </div>
-        <form>
-            </div>
-            <?php echo $ajax_request ?>
-            @stop
+    </form>
+</div>
+<?php echo $ajax_request ?>
+@stop
