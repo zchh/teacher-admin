@@ -35,16 +35,36 @@ class ArticleController extends Controller
          $inputData["articleData"] = $baseArticle;
          return view("User.Article.readAllArticle",$inputData);
     }
-    public function readSingleArticle()
+    public function readSingleArticle($article_id)
     {
+        
         //获取文章id，在页面输出这个id对应的各种内容
-         $baseArticle = DB::table('base_article')->get();  //返回值为数组，数组中包含多个类对象，一个对象为一个记录
-         $inputData["articleData"] = $baseArticle;
-         return view("User.Article.readSingleArticle");     
+        // $inputData["articleData"] = DB::table('base_article')->get();  //返回值为数组，数组中包含多个类对象，一个对象为一个记录
          
+         //$inputData["article_id"] = $article_id;
          
+          $combine["articleData"] = DB::table('base_article')    //为了获得作者，要合并两张表
+          ->join('base_user', 'base_article.article_user', '=', 'base_user.user_id')
+          ->get();
+
+          $combine["article_id"] = $article_id;    //获取路由上的article_id
+  
+        foreach ($combine["articleData"] as $key => $data)
+        {
+            if($data -> article_id == $article_id)
+            {
+              $i = $key;                       //获取是路由id的数组下标
+              break;
+            }
+        }
+        $record = count($combine);   //记录条数
+       
+        $i==$record-1? $combine["nextArticle"]=-1 :$combine["nextArticle"]=$combine["articleData"][$i+1]->article_id;//
+        $i==0? $combine["previousArticle"]=-1 :$combine["previousArticle"]=$combine["articleData"][$i-1]->article_id;
+        $combine["record"] = $record;
+       
+         return view("User.Article.readSingleArticle",$combine);     
     }
 }
-
 
 
