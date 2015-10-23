@@ -120,15 +120,15 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_logout","User\BaseController@logout");
     
     
-    //用户文章
+    //用户文章  完成
     Route::get("/user_sArticle","User\ArticleController@sArticle");
-    Route::get("/user_dArticle\{article_id}","User\ArticleController@dArticle");
+    Route::get("/user_dArticle/{article_id}","User\ArticleController@dArticle");
     
     Route::get("/user_aArticle","User\ArticleController@aArticle");
     Route::post("/_user_aArticle","User\ArticleController@_aArticle");
     
-    Route::get("/user_uArticle","User\ArticleController@uArticle");
-    Route::post("/user_ajax_getNowArticleDetail","User\ArticleController@user_ajax_getNowArticleDetail");
+    Route::get("/user_uArticle/{article_id}","User\ArticleController@uArticle");
+    Route::post("/user_ajax_getNowArticleDetail","User\ArticleController@ajax_getNowArticleDetail");
     Route::post("/_user_uArticle","User\ArticleController@_uArticle");
     
     //文章访问
@@ -163,6 +163,14 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::post("/user_aLabel","User\LabelController@aLabel");
     Route::post("/user_uLabel","User\LabelController@uLabel");
     Route::get("/user_dLabel/{label_id}","User\LabelController@dLabel");
+    
+    
+    
+    //图片管理
+    Route::get("/user_sImage","User\ImageController@sImage");
+    Route::post("/user_aImage","User\ImageController@aImage");
+    Route::get("/user_dImage/{image_id}","User\ImageController@dImage");
+    Route::get("/user_uImage","User\ImageController@");
     
     
     

@@ -34,7 +34,7 @@ class BaseController extends Controller {
   }
   public function index()
   {
-      return view("Admin.index");
+      return view("User.index");
   }
   
 }
