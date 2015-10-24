@@ -113,6 +113,7 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
 
 //用户前台相关页面
 Route::get("/user_login","User\BaseController@login");
+Route::get("/user_logout","User\BaseController@logout");
 Route::post("/_user_login","User\BaseController@_login");
 Route::group(['middleware' => ['LoginUserCheck']],function()
 {

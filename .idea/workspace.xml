@@ -2,297 +2,154 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1adc677a-9dc2-4adc-af64-f35011549c25" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade__dump.php" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\anchor\anchor.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\attachment.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\attachment.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\attachment.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_chm.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_default.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_doc.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_exe.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_jpg.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_mp3.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_mv.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_pdf.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_ppt.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_psd.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_rar.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_txt.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\fileTypeImages\icon_xls.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\alignicon.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\alignicon.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\file-icons.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\file-icons.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\icons.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\icons.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\image.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\progress.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\success.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\attachment\images\success.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\background\background.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\background\background.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\background\background.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\background\images\bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\background\images\success.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\chart.config.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\charts.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\charts.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\charts.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\images\charts0.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\images\charts1.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\images\charts2.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\images\charts3.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\images\charts4.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\charts\images\charts5.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\emotion.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\emotion.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\emotion.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\0.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\bface.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\cface.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\fface.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\jxface2.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\neweditor-tab-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\tface.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\wface.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\emotion\images\yface.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\gmap\gmap.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\help\help.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\help\help.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\help\help.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\image.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\image.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\image.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\images\alignicon.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\images\bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\images\icons.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\images\icons.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\images\image.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\images\progress.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\images\success.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\image\images\success.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\insertframe\insertframe.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\internal.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\link\link.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\map\map.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\map\show.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\music\music.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\music\music.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\music\music.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\preview\preview.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\addimg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\brush.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\delimg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\delimgH.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\empty.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\emptyH.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\eraser.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\redo.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\redoH.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\scale.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\scaleH.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\size.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\undo.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\images\undoH.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\scrawl.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\scrawl.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\scrawl\scrawl.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\searchreplace\searchreplace.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\searchreplace\searchreplace.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\snapscreen\snapscreen.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\spechars\spechars.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\spechars\spechars.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\table\dragicon.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\table\edittable.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\table\edittable.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\table\edittable.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\table\edittd.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\table\edittip.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\config.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\images\bg.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\images\pre0.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\images\pre1.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\images\pre2.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\images\pre3.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\images\pre4.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\template.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\template.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\template\template.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\center_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\file-icons.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\file-icons.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\icons.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\icons.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\image.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\left_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\none_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\progress.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\right_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\success.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\images\success.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\video.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\video.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\video\video.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\webapp\webapp.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\wordimage\fClipboard_ueditor.swf" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\wordimage\imageUploader.swf" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\wordimage\tangram.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\wordimage\wordimage.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\dialogs\wordimage\wordimage.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\index.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\en.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\addimage.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\alldeletebtnhoverskin.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\alldeletebtnupskin.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\background.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\button.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\copy.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\deletedisable.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\deleteenable.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\listbackground.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\localimage.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\music.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\rotateleftdisable.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\rotateleftenable.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\rotaterightdisable.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\rotaterightenable.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\en\images\upload.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\zh-cn\images\copy.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\zh-cn\images\localimage.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\zh-cn\images\music.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\zh-cn\images\upload.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\lang\zh-cn\zh-cn.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\php\Uploader.class.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\php\action_crawler.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\php\action_list.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\php\action_upload.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\php\config.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\php\controller.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\css\ueditor.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\css\ueditor.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\dialogbase.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\anchor.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\arrow_down.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\arrow_up.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\button-bg.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\cancelbutton.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\charts.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\cursor_h.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\cursor_h.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\cursor_v.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\cursor_v.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\dialog-title-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\filescan.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\highlighted.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\icons-all.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\icons.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\icons.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\loaderror.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\lock.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\neweditor-tab-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\pagebreak.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\scale.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\sortable.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\spacer.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\sparator_v.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\table-cell-align.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\tangram-colorpicker.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\toolbar_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\unhighlighted.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\upload.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\videologo.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\word.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\default\images\wordpaste.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\themes\iframe.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\SyntaxHighlighter\shCore.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\SyntaxHighlighter\shCoreDefault.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\codemirror\codemirror.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\codemirror\codemirror.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\adapters\mootools-adapter.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\adapters\mootools-adapter.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\adapters\prototype-adapter.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\adapters\prototype-adapter.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\adapters\standalone-framework.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\adapters\standalone-framework.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\highcharts-more.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\highcharts-more.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\highcharts.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\highcharts.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\annotations.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\annotations.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\canvas-tools.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\canvas-tools.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\data.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\data.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\drilldown.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\drilldown.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\exporting.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\exporting.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\funnel.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\funnel.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\heatmap.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\heatmap.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\map.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\map.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\no-data-to-display.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\modules\no-data-to-display.src.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\themes\dark-blue.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\themes\dark-green.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\themes\gray.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\themes\grid.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\highcharts\themes\skies.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\jquery-1.10.2.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\jquery-1.10.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\jquery-1.10.2.min.map" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\snapscreen\UEditorSnapscreen.exe" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\font\vjs.eot" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\font\vjs.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\font\vjs.ttf" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\font\vjs.woff" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\video-js.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\video-js.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\video-js.swf" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\video.dev.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\video-js\video.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\Uploader.swf" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.custom.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.flashonly.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.flashonly.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.html5only.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.html5only.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.withoutimage.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\webuploader\webuploader.withoutimage.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\zeroclipboard\ZeroClipboard.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\zeroclipboard\ZeroClipboard.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\third-party\zeroclipboard\ZeroClipboard.swf" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\ueditor.all.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\ueditor.all.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\ueditor.config.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\ueditor.parse.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Wnmp\PHP_Project\cms_base\public\source\ueditor\ueditor.parse.min.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/User/ArticleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/ArticleController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gird_plugins/Base/class/ArticleFunc.php" afterPath="$PROJECT_DIR$/gird_plugins/Base/class/ArticleFunc.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/User/BaseController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/BaseController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/User/ImageController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/ImageController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/Uploader.class.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/Uploader.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/zeroclipboard/ZeroClipboard.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/zeroclipboard/ZeroClipboard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/article_nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/article_nav.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade__dump.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade__dump.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/action_crawler.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/action_crawler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/action_list.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/action_list.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/action_upload.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/action_upload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/anchor/anchor.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/anchor/anchor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/annotations.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/annotations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/annotations.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/annotations.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/base.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/base.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/base.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/base.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/base.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/base.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Image/base.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Image/base.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/canvas-tools.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/canvas-tools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/canvas-tools.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/canvas-tools.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/chart.config.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/chart.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/codemirror/codemirror.css" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/codemirror/codemirror.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/codemirror/codemirror.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/codemirror/codemirror.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/config.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/config.json" afterPath="$PROJECT_DIR$/public/source/ueditor/php/config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/controller.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/dark-blue.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/dark-blue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/dark-green.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/dark-green.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/data.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/data.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/data.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/themes/default/dialogbase.css" afterPath="$PROJECT_DIR$/public/source/ueditor/themes/default/dialogbase.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/drilldown.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/drilldown.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/drilldown.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/drilldown.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittd.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittd.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittip.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittip.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/lang/en/en.js" afterPath="$PROJECT_DIR$/public/source/ueditor/lang/en/en.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/exporting.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/exporting.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/exporting.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/exporting.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/funnel.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/funnel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/funnel.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/funnel.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/gmap/gmap.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/gmap/gmap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/gray.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/gray.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/grid.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/grid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/heatmap.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/heatmap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/heatmap.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/heatmap.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts-more.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts-more.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts-more.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts-more.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/themes/iframe.css" afterPath="$PROJECT_DIR$/public/source/ueditor/themes/iframe.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/index.html" afterPath="$PROJECT_DIR$/public/source/ueditor/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Document/init.sql" afterPath="$PROJECT_DIR$/Document/init.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/insertframe/insertframe.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/insertframe/insertframe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/internal.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/internal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/jquery-1.10.2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/jquery-1.10.2.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/jquery-1.10.2.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/link/link.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/link/link.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/login.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/map/map.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/map/map.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/map.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/map.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/map.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/map.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/mootools-adapter.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/mootools-adapter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/mootools-adapter.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/mootools-adapter.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/no-data-to-display.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/no-data-to-display.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/no-data-to-display.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/no-data-to-display.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/bin/phpunit.bat" afterPath="$PROJECT_DIR$/vendor/bin/phpunit.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/preview/preview.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/preview/preview.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.xml" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/prototype-adapter.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/prototype-adapter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/prototype-adapter.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/prototype-adapter.src.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gird_plugins/Base/views/requestAjax.blade.php" afterPath="$PROJECT_DIR$/gird_plugins/Base/views/requestAjax.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/sArticle.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/sArticle.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Image/sImage.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Image/sImage.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/searchreplace/searchreplace.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/searchreplace/searchreplace.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/searchreplace/searchreplace.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/searchreplace/searchreplace.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/SyntaxHighlighter/shCore.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/SyntaxHighlighter/shCore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/map/show.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/map/show.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/skies.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/skies.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/snapscreen/snapscreen.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/snapscreen/snapscreen.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/spechars/spechars.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/spechars/spechars.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/spechars/spechars.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/spechars/spechars.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/standalone-framework.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/standalone-framework.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/standalone-framework.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/standalone-framework.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/tangram.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/tangram.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/uArticle.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/uArticle.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/ueditor.all.js" afterPath="$PROJECT_DIR$/public/source/ueditor/ueditor.all.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/ueditor.config.js" afterPath="$PROJECT_DIR$/public/source/ueditor/ueditor.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/themes/default/css/ueditor.css" afterPath="$PROJECT_DIR$/public/source/ueditor/themes/default/css/ueditor.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/themes/default/css/ueditor.min.css" afterPath="$PROJECT_DIR$/public/source/ueditor/themes/default/css/ueditor.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/ueditor.parse.js" afterPath="$PROJECT_DIR$/public/source/ueditor/ueditor.parse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video-js.css" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video-js.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video-js.min.css" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video-js.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video.dev.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video.dev.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/font/vjs.svg" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/font/vjs.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/webapp/webapp.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/webapp/webapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.css" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.custom.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.custom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.custom.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.custom.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.flashonly.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.flashonly.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.flashonly.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.flashonly.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.html5only.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.html5only.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.html5only.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.html5only.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.withoutimage.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.withoutimage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.withoutimage.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.withoutimage.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/wordimage.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/wordimage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/wordimage.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/wordimage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/lang/zh-cn/zh-cn.js" afterPath="$PROJECT_DIR$/public/source/ueditor/lang/zh-cn/zh-cn.js" />
     </list>
     <ignored path="cms_base.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -318,7 +175,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.49381188">
-              <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -328,6 +185,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
   <component name="JsGulpfileManager">
@@ -340,6 +204,9 @@
   </component>
   <component name="NamedScopeManager">
     <order />
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -432,6 +299,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -447,8 +315,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1090" y="44" width="1400" height="992" extended-state="1" />
-    <editor active="true" />
+    <frame x="1090" y="44" width="1400" height="992" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2496382" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -471,6 +339,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -490,7 +366,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49381188">
-          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
           <folding />
         </state>
       </provider>
