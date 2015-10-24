@@ -12,7 +12,9 @@
 */
 
 
-Route::get("/test","TestController@test");
+Route::get("/",function(){
+   return redirect("admin_login"); 
+});
 
 
 
