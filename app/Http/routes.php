@@ -148,12 +148,12 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_moreReply","User\ReplyController@moreReply");       //评论详情
     Route::get("/user_dReply/{reply}","User\ReplyController@dReply");//删除评论
     
-    //文章分类
-    Route::get("/user_sClass","User\ClassController@sClass");
-    Route::post("/user_aClass","User\ClassController@aClass");
-    Route::post("/user_aClass","User\ClassController@uClass");
-    Route::get("/user_aClass/{class_id}","User\ClassController@dClass");
-    
+    //文章分类==============================
+    Route::get("/user_sClass","User\ClassController@sClass");//查看，select
+    Route::post("/user_aClass","User\ClassController@aClass");//添加,add
+    Route::post("/user_uClass","User\ClassController@uClass");//更新,update
+    Route::get("/user_dClass/{class_id}","User\ClassController@dClass");//删除,delete
+    //===========================================
     //文章专题
     Route::get("/user_sSubject","User\SubjectController@sSubject");//查找专题
     Route::post("/user_aSubject","User\SubjectController@aSubject");//添加专题
