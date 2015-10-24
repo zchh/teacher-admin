@@ -113,6 +113,7 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
 
 //用户前台相关页面
 Route::get("/user_login","User\BaseController@login");
+Route::get("/user_logout","User\BaseController@logout");
 Route::post("/_user_login","User\BaseController@_login");
 Route::group(['middleware' => ['LoginUserCheck']],function()
 {
@@ -120,22 +121,28 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_logout","User\BaseController@logout");
     
     
-    //用户文章
+
+
+    //用户文章  完成
     Route::get("/user_sArticle","User\ArticleController@sArticle");
-    Route::get("/user_dArticle\{article_id}","User\ArticleController@dArticle");
+    Route::get("/user_dArticle/{article_id}","User\ArticleController@dArticle");
+
     
     Route::get("/user_aArticle","User\ArticleController@aArticle");
     Route::post("/_user_aArticle","User\ArticleController@_aArticle");
     
-    Route::get("/user_uArticle","User\ArticleController@uArticle");
-    Route::post("/user_ajax_getNowArticleDetail","User\ArticleController@user_ajax_getNowArticleDetail");
+
+
+    Route::get("/user_uArticle/{article_id}","User\ArticleController@uArticle");
+    Route::post("/user_ajax_getNowArticleDetail","User\ArticleController@ajax_getNowArticleDetail");
     Route::post("/_user_uArticle","User\ArticleController@_uArticle");
     
-    //文章访问===============================
+    //文章访问
     Route::get("/user_readAllArticle","User\ArticleController@readAllArticle");//读取所有文章
     Route::get("/user_readSingleArticle/{article_id}","User\ArticleController@readSingleArticle");//读取单一文章
     Route::get("/user_publishReply","User\ReplyController@publishReply");
-    //=======
+    
+
     //文章的评论管理
     Route::get("/user_sReply","User\ReplyController@sReply");       //查看评论
     Route::get("/user_moreReply","User\ReplyController@moreReply");       //评论详情
@@ -166,6 +173,15 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     
     
     
+
+    //图片管理
+    Route::get("/user_sImage","User\ImageController@sImage");
+    Route::post("/user_aImage","User\ImageController@aImage");
+    Route::get("/user_dImage/{image_id}","User\ImageController@dImage");
+    Route::get("/user_uImage","User\ImageController@");
+    
+    
+
 });
 
 

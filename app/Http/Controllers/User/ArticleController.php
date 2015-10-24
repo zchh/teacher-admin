@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use GirdPlugins\Base\ArticleFunc;
 class ArticleController extends Controller 
 {
+
     public function sArticle()
     {
         return view("User.Article.sArticle");
@@ -67,6 +68,18 @@ class ArticleController extends Controller
          
          
     }
+    
+    
+    
 }
+
+
+
+    
+
+    
+
+
+
 
 

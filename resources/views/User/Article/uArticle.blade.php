@@ -1,38 +1,32 @@
-
 @extends("User.Article.base")
-@section("body")
-    
-    @section("main")
-
+@section("main")
+  
         <div class="col-sm-8">
              <div class="panel panel-default">
              <div class="panel-body">
-                <h2>添加文章</h2>
-                 <hr/>
+          
                  <div class="col-sm-6 form-group">
                      <label >文章名</label>
-                     <input type="text" class="form-control" placeholder="" id="a_title">
+                     <input type="text" class="form-control" placeholder="" id="a_title" value="{{$articleDetail->article_title}}">
                  </div>
                   <div class="col-sm-6 form-group">
                      <label >文章分类</label>
-                     <select class="form-control" id="a_class">
-
+                     <select class="form-control" id="a_class" value="{{$articleDetail->article_class}}">
                                 
                                     @foreach($articleClass as $data)
                                     <option value="{{$data->class_id}}">{{$data->class_name}}</option>
                                    
                                     @endforeach
-
                     </select>
                  </div>
                   <div class="col-sm-6 form-group">
                      <label >文章简介</label>
-                     <input type="text" class="form-control" placeholder="" id="a_intro">
+                     <input type="text" class="form-control" placeholder="" id="a_intro" value="{{$articleDetail->article_intro}}">
                    
-                 </div>   
+                 </div>
                   <div class="col-sm-6 form-group">
                      <label >文章排序</label>
-                     <input type="text" class="form-control" placeholder="" id="a_sort">
+                     <input type="text" class="form-control" placeholder="" id="a_sort" value="{{$articleDetail->article_sort}}">
                    
                  </div>
 
@@ -41,7 +35,7 @@
                </div>
 
                  <div class="col-sm-12">
-                    
+
                     <script type="text/javascript" src="/source/ueditor/ueditor.config.js"></script>
                     <!-- 编辑器源码文件 -->
                     <script type="text/javascript" src="/source/ueditor/ueditor.all.js"></script>
@@ -53,13 +47,7 @@
                                 
                             
                         
-             </div>
-                        
-                             
-
-
-                               
-                   
+             </div>   
               </div>
         </div>
 
@@ -76,14 +64,14 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">添加结果</h4>
+            <h4 class="modal-title" id="myModalLabel">修改结果</h4>
           </div>
           <div class="modal-body">
-                <div class="alert alert-success " role="alert" id="inst">返回信息</div>
+                <div class="" id="return_message" role="alertreturn_data" >返回信息</div>
           </div>
           <div class="modal-footer">
             
-            <a type="button" class="btn btn-primary" href="/user_sArticle">立刻跳转</a>
+            
           </div>
         </div>
       </div>
@@ -95,27 +83,40 @@
      $('#show_message').hide();
     var ue = UE.getEditor('article_detail');
     ue.ready(function() {
-     ue.setContent("这里填写一些参数表格");
-    });   
-    
-    $("#submit").click(function(){
+     
+      $.ajax({
+            type:"post",
+            url:"/user_ajax_getNowArticleDetail",
+            success:function(data){
+                ue.execCommand("source");
+                ue.setContent(data);
+                ue.execCommand("source");
+             }, 
+             data:{ "article_id":"{{$articleDetail->article_id}}"}
+              }); 
+       
+
+    });    
+      $("#submit").click(function(){
         //alert($("#a_title").val());
         //alert("a");
         $.ajax({
          type:"post",
-         url:"/_user_aArticle",
+         url:"/_user_uArticle",
          success:function(data){
            
-           $("#inst").html(data);
+           //$("#inst").html(data);
             $('#show_message').trigger('click');  //模拟点开模态框
            if(data.status==true)
            {
-               $("#inst").html(data.message+ "  ，即将跳转");
+               //$("#return_message").addClass("alert-success");
+               $("#return_message").html(data.message);
                setTimeout('window.location = "/user_sArticle";', 1000);
            }
            else
            {
-               $("#inst").html(data.message);
+               //$("#return_message").addClass("alert-danger");
+               $("#return_message").html(data.message);
            }
            
           }, 
@@ -124,16 +125,22 @@
               "article_intro":$("#a_intro").val(),
               "article_class":$("#a_class").val(),
               "article_sort":$("#a_sort").val(),
-              
-              "article_details":ue.getContent()
+              "article_id":{{$articleDetail->article_id}},
+              "article_detail":ue.getContent()
               }
           });  
         
     });
+     
+    });   
+    
+   
     
     
         
-});
-</script>
 
+    
+    </script>             
+                     
 @stop
+   

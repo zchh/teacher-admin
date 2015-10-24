@@ -27,9 +27,17 @@ $(document).ready(function(){
     $("#{{$submit_id}}").click(function(){
         var send_data ={};
         var tmp;
+
+        var id_data = {};
         @foreach($data_id_array as $data)
               tmp = $("#{{$data}}").attr("type");
-              if(tmp == "radio")
+              id_data["{{$data}}"]=tmp;
+            
+              
+        @endforeach
+        for(tmp in id_data){
+             if(tmp == "radio")
+
               {
                   //对于单选框，只需要输入首行id,值提取value中的
                   tmp = $("#{{$data}}").attr("name");
@@ -57,9 +65,11 @@ $(document).ready(function(){
                   //一般的text password 直接使用value
                   send_data["{{$data}}"] = $("#{{$data}}").val();
                   
-              }
-              
-        @endforeach
+
+              };
+        }
+         //writeObj(id_data);
+
         //writeObj(send_data);
         $.ajax({
                 type:"post",
