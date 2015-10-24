@@ -41,17 +41,16 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 ">
+        <div class="col-sm-2 ">
             <ul class="nav nav-sidebar">
                 <li><a href="admin_sAdmin">查看管理员</a></li>
                 <li><a href="admin_sAdminPowerGroup">查看权限组</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
             </ul>
         </div>
 
-
-
+<div class="col-sm-10">
+<div class="panel panel-default">
+  <div class="panel-body">
         <h2 class="sub-header">所有权限组 | <button class="btn  btn-primary "  data-toggle="modal" data-target="#aAdminPowerGroup" type="button">添加权限组</button></h2>
         <div class="modal fade" id="aAdminPowerGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -73,48 +72,48 @@
                 </div>
             </div>
         </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped" class="table table-hover">
-                <thead>
+    </div>
+        <div class="table-responsive" >
+        <table  class="table table-striped" >
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>权限组</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php
+                    foreach ($GroupData as $data) {
+                        ?>
                     <tr>
-                        <th>ID</th>
-                        <th>权限组</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <?php
-                        foreach ($GroupData as $data) {
-                            ?>
-                        <tr>
-                            <td>{{$data->group_id}}</a></td>
-                            <td>{{$data->group_name}}</td>
-                            <td><!-- Button trigger modal -->
-                                <a href="/admin_moreAdminPowerGroup/{{$data->group_id}}" class="btn btn-info btn-sm">详情</a>
+                        <td>{{$data->group_id}}</a></td>
+                        <td>{{$data->group_name}}</td>
+                        <td><!-- Button trigger modal -->
+                            <a href="/admin_moreAdminPowerGroup/{{$data->group_id}}" class="btn btn-info btn-sm">详情</a>
 
 
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#upd_{{$data->group_id}}">修改</button>
-                                <div class="modal fade" id="upd_{{$data->group_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">请输入新的权限组名称</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="/admin_uAdminPowerGroup" method="post">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="hidden" name="group_id" value="{{$data->group_id}}">
-                                                    <input type="text " id="inputText" class="form-control" name="group_name" placeholder="Group name" value="{{$data->group_name}}" required autofocus>
-                                                
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button  class="btn btn-danger btn-sm" type="submit">提交</a>
-                                                    </form>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-                                            </div>
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#upd_{{$data->group_id}}">修改</button>
+                            <div class="modal fade" id="upd_{{$data->group_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">请输入新的权限组名称</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/admin_uAdminPowerGroup" method="post">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="hidden" name="group_id" value="{{$data->group_id}}">
+                                                <input type="text " id="inputText" class="form-control" name="group_name" placeholder="Group name" value="{{$data->group_name}}" required autofocus>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button  class="btn btn-warning btn-sm" type="submit">修改</a>
+                                                        </form>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -138,18 +137,18 @@
                                     </div>
                                 </div>
 
-                            </td>
+                        </td>
 
-                        </tr>
-                        <?php
-                    }
-                    ?>
                     </tr>
+                    <?php
+                }
+                ?>
+                </tr>
 
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
+</div>
 
 </div>
 @stop

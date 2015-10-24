@@ -41,17 +41,17 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 ">
+        <div class="col-sm-2 ">
             <ul class="nav nav-sidebar">
                 <li><a href="admin_sAdmin">查看管理员</a></li>
                 <li><a href="admin_sAdminPowerGroup">查看权限组</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
             </ul>
         </div>
 
 
-
+        <div class="col-sm-10">
+            <div class="panel panel-default">
+                <div class="panel-body">
         <h2 class="sub-header">管理员用户 | <button class="btn  btn-primary "  data-toggle="modal" data-target="#aAdmin" type="button">添加管理员</button></h2>
 
         <div class="modal fade" id="aAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -96,13 +96,13 @@
                 <tbody>
                     <tr>
                         <?php
-                        foreach ($AdminData as $data) {
+                        foreach ($articleData as $data) {
                             ?>
                         <tr>
                             <td>{{$data->admin_id}}</a></td>
                             <td>{{$data->admin_username}}</td>
                             <td>{{$data->admin_nickname}}</td>
-                            <td>{{$data->admin_group}}</td>
+                            <td>{{$data->admin_group}}:{{$data->group_name}}</td>
                             <td><!-- Button trigger modal -->
                                 
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#upd_{{$data->admin_id}}">修改</button>
@@ -117,11 +117,19 @@
                                                 <form action="/admin_uAdmin" method="post">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <h4>请输入新的管理员用户名</h4>
-                                                    <input type="hidden" name="admin_username" value="{{$data->admin_username}}">
+                                                    <input type="hidden" name="admin_id" value="{{$data->admin_id}}">
                                                     <input type="text " id="inputText" class="form-control" name="admin_username" placeholder="Admin username" value="{{$data->admin_username}}" required autofocus>
                                                     <h4>请输入新的管理员昵称</h4>
-                                                    <input type="hidden" name="admin_nickname" value="{{$data->admin_username}}">
+                                                    
                                                     <input type="text " id="inputText" class="form-control" name="admin_nickname" placeholder="Admin nickname" value="{{$data->admin_nickname}}" required autofocus>
+                                                    <h4>请选择新的权限组</h4>
+                                                    
+                                                    <select class="form-control" name="admin_group">
+                                                        @foreach($groupData as $value)
+                                                            <option type="select" value="{{$value->group_id}}" selected="selected">{{$value->group_id}}:{{$value->group_name}}</option>
+                                                        @endforeach
+                                                    </select>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button  class="btn btn-danger btn-sm" type="submit">提交</a>
