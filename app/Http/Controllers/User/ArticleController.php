@@ -128,7 +128,8 @@ class ArticleController extends Controller
         $i==0? $combine["previousArticle"]=-1 :$combine["previousArticle"]=$combine["articleData"][$i-1]->article_id;
         $combine["record"] = $record;
         
-         return view("User.Article.readSingleArticle",$combine);    
+         return view("User.Article.readSingleArticle",$combine);   
+         
          
          
     }
