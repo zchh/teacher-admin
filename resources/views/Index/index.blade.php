@@ -26,7 +26,7 @@
 
 @section("main")
      <div class="col-sm-10">
-        <div class="col-sm-12 " style="background-color:black;height:100px">
+        <div class="col-sm-12 " style="background-color:#58646F;height:100px">
             <div class="col-sm-12" style="height:10px"></div>
             <div class="col-sm-12">
                 <ul class="nav nav-pills" role="tablist">
