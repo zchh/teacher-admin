@@ -12,7 +12,7 @@
                 <div class="panel panel-default">
                      <div class="panel-body">
                             <h2 style="text-align:center">
-                                    登陆
+                                    管理员登陆
                             </h2>
                              <hr/>
                              <form action="/_admin_login" method="post">

@@ -12,9 +12,7 @@
 */
 
 
-Route::get("/",function(){
-   return redirect("admin_login"); 
-});
+Route::get("/","Index\BaseController@index");
 
 
 
