@@ -1,6 +1,5 @@
-@extends("base")
+@extends("User.base")
 
-@section("body")
+@section("main")
     
 @stop
-

@@ -12,7 +12,7 @@
                 <div class="panel panel-default">
                      <div class="panel-body">
                             <h2 style="text-align:center">
-                                    登陆
+                                    用户登陆
                             </h2>
                              <hr/>
                              <form action="/_user_login" method="post">
@@ -20,11 +20,11 @@
 
                                         <div class="form-group">
                                                 <label>登录名</label>
-                                                <input type="text" class="form-control" name="user_username" placeholder="管理员用户名">
+                                                <input type="text" class="form-control" name="user_username" placeholder="用户名 test">
                                         </div>
                                         <div class="form-group">
                                                 <label>密码</label>
-                                                <input type="password" class="form-control" name="user_password" placeholder="管理员密码">
+                                                <input type="password" class="form-control" name="user_password" placeholder="管用户密码 123">
                                         </div>
 
                                         <button type="submit" class="btn btn-default">提交</button>

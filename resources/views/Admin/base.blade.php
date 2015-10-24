@@ -1,5 +1,6 @@
 @extends("base")
 
+
 @section("body")
         
         <style>
@@ -83,4 +84,5 @@
 
 
 @append
+
 

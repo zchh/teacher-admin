@@ -149,7 +149,8 @@ return [
                 
                  *
                  * private service provider                  */
-                 'GirdPlugins\Base\BaseServiceProvider'
+                 'GirdPlugins\Base\BaseServiceProvider',
+            
 	],
 
 	/*

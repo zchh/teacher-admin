@@ -34,3 +34,7 @@ INSERT INTO `base_cms`.`base_user_power` (`power_name`) VALUES ('专题可写');
 INSERT INTO `base_cms`.`base_user_power` (`power_name`) VALUES ('图片可写');
 INSERT INTO `base_cms`.`base_user_power` (`power_name`) VALUES ('文件可写');
 INSERT INTO `base_cms`.`base_user_power` (`power_name`) VALUES ('消息可发');
+
+/*用户文章类别*/
+INSERT INTO `base_cms`.`base_article_class` (`class_user`, `class_create_date`, `class_update_date`, `class_name`) VALUES ('1', now(), now(), 'C++');
+INSERT INTO `base_cms`.`base_article_class` (`class_user`, `class_create_date`, `class_update_date`, `class_name`) VALUES ('1', now(), now(), 'Java');

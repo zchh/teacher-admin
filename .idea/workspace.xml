@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1adc677a-9dc2-4adc-af64-f35011549c25" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/User/ArticleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/ArticleController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gird_plugins/Base/class/ArticleFunc.php" afterPath="$PROJECT_DIR$/gird_plugins/Base/class/ArticleFunc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/User/BaseController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/BaseController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/User/ImageController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/ImageController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/Uploader.class.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/Uploader.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/zeroclipboard/ZeroClipboard.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/zeroclipboard/ZeroClipboard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade__dump.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/aArticle.blade__dump.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/action_crawler.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/action_crawler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/action_list.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/action_list.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/action_upload.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/action_upload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/anchor/anchor.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/anchor/anchor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/annotations.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/annotations.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/annotations.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/annotations.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/attachment/attachment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/background/background.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/base.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/base.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/base.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/base.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/base.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/base.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Image/base.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Image/base.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/canvas-tools.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/canvas-tools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/canvas-tools.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/canvas-tools.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/chart.config.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/chart.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/charts/charts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/codemirror/codemirror.css" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/codemirror/codemirror.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/codemirror/codemirror.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/codemirror/codemirror.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/config.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/config.json" afterPath="$PROJECT_DIR$/public/source/ueditor/php/config.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/php/controller.php" afterPath="$PROJECT_DIR$/public/source/ueditor/php/controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/dark-blue.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/dark-blue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/dark-green.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/dark-green.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/data.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/data.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/data.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/themes/default/dialogbase.css" afterPath="$PROJECT_DIR$/public/source/ueditor/themes/default/dialogbase.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/drilldown.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/drilldown.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/drilldown.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/drilldown.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittd.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittd.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittip.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/table/edittip.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/emotion/emotion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/lang/en/en.js" afterPath="$PROJECT_DIR$/public/source/ueditor/lang/en/en.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/exporting.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/exporting.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/exporting.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/exporting.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/funnel.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/funnel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/funnel.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/funnel.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/gmap/gmap.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/gmap/gmap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/gray.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/gray.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/grid.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/grid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/heatmap.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/heatmap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/heatmap.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/heatmap.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/help/help.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts-more.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts-more.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts-more.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts-more.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/highcharts.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/themes/iframe.css" afterPath="$PROJECT_DIR$/public/source/ueditor/themes/iframe.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/image/image.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/index.html" afterPath="$PROJECT_DIR$/public/source/ueditor/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Document/init.sql" afterPath="$PROJECT_DIR$/Document/init.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/insertframe/insertframe.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/insertframe/insertframe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/internal.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/internal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/jquery-1.10.2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/jquery-1.10.2.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/jquery-1.10.2.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/link/link.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/link/link.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/login.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/map/map.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/map/map.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/map.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/map.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/map.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/map.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/mootools-adapter.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/mootools-adapter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/mootools-adapter.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/mootools-adapter.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/music/music.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/no-data-to-display.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/no-data-to-display.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/no-data-to-display.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/modules/no-data-to-display.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/bin/phpunit.bat" afterPath="$PROJECT_DIR$/vendor/bin/phpunit.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/preview/preview.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/preview/preview.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.xml" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/prototype-adapter.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/prototype-adapter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/prototype-adapter.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/prototype-adapter.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gird_plugins/Base/views/requestAjax.blade.php" afterPath="$PROJECT_DIR$/gird_plugins/Base/views/requestAjax.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/sArticle.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/sArticle.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Image/sImage.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Image/sImage.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/scrawl/scrawl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/searchreplace/searchreplace.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/searchreplace/searchreplace.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/searchreplace/searchreplace.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/searchreplace/searchreplace.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/SyntaxHighlighter/shCore.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/SyntaxHighlighter/shCore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/map/show.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/map/show.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/skies.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/themes/skies.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/snapscreen/snapscreen.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/snapscreen/snapscreen.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/spechars/spechars.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/spechars/spechars.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/spechars/spechars.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/spechars/spechars.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/standalone-framework.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/standalone-framework.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/standalone-framework.src.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/highcharts/adapters/standalone-framework.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/tangram.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/tangram.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/template/template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/User/Article/uArticle.blade.php" afterPath="$PROJECT_DIR$/resources/views/User/Article/uArticle.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/ueditor.all.js" afterPath="$PROJECT_DIR$/public/source/ueditor/ueditor.all.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/ueditor.config.js" afterPath="$PROJECT_DIR$/public/source/ueditor/ueditor.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/themes/default/css/ueditor.css" afterPath="$PROJECT_DIR$/public/source/ueditor/themes/default/css/ueditor.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/themes/default/css/ueditor.min.css" afterPath="$PROJECT_DIR$/public/source/ueditor/themes/default/css/ueditor.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/ueditor.parse.js" afterPath="$PROJECT_DIR$/public/source/ueditor/ueditor.parse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video-js.css" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video-js.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video-js.min.css" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video-js.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.css" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video.dev.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video.dev.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/video/video.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/video.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/font/vjs.svg" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/video-js/font/vjs.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/webapp/webapp.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/webapp/webapp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.css" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.custom.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.custom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.custom.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.custom.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.flashonly.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.flashonly.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.flashonly.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.flashonly.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.html5only.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.html5only.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.html5only.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.html5only.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.withoutimage.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.withoutimage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.withoutimage.min.js" afterPath="$PROJECT_DIR$/public/source/ueditor/third-party/webuploader/webuploader.withoutimage.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/wordimage.html" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/wordimage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/wordimage.js" afterPath="$PROJECT_DIR$/public/source/ueditor/dialogs/wordimage/wordimage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/source/ueditor/lang/zh-cn/zh-cn.js" afterPath="$PROJECT_DIR$/public/source/ueditor/lang/zh-cn/zh-cn.js" />
+    </list>
+    <ignored path="cms_base.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="cms_base" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.49381188">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <gulpfiles>
+      <GulpfileState>
+        <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
+      </GulpfileState>
+    </gulpfiles>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1090" />
+    <option name="y" value="44" />
+    <option name="width" value="1400" />
+    <option name="height" value="992" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cms_base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cms_base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cms_base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cms_base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cms_base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cms_base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cms_base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="FullScreen" value="false" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1adc677a-9dc2-4adc-af64-f35011549c25" name="Default" comment="" />
+      <created>1445580548245</created>
+      <option name="number" value="Default" />
+      <updated>1445580548245</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1090" y="44" width="1400" height="992" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2496382" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49381188">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
