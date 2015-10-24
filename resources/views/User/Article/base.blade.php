@@ -14,7 +14,7 @@
                   <li><a href="">查看专题</a></li>
                   <li><a href="">查看类别</a></li>
                   <li><a href="">查看标签</a></li>
-
+                  <li class="<?php if(session("nowPage")=="/user_readAllArticle"){echo "active";}?>"><a href="/user_readAllArticle">查看其他用户文章</a></li>
                 </ul>
 
             </div>

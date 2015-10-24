@@ -1,9 +1,9 @@
-@extends("User.base")
-@section("body")
+@extends("User.Article.base")
+@section("main")
 
 @foreach($articleData  as $data)
 @if($data -> article_id == $article_id)
- <div class="col-md-2"></div>
+ 
  <div class="col-md-8">
   <div class="panel panel-default">
   <div class="panel-body">
