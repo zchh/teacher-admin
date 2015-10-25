@@ -34,7 +34,13 @@ class BaseController extends Controller {
   }
   public function index()
   {
-      return view("");
+      return view("User.index");
   }
+   public function logout(BaseFunc $baseFunc)
+   {
+       Session::flush();
+       $baseFunc->setRedirectMessage(true, "登出成功", NULL, "/admin_login");
+   }
+
   
 }

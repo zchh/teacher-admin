@@ -11,10 +11,15 @@
 |
 */
 
+
 /*plplpl*/
 Route::get("/test",function(){
     return view("Admin.Article.te");
 });
+
+
+Route::get("/","Index\BaseController@index");
+
 
 
 
@@ -33,27 +38,25 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
      * 控制器：PowerController
     */
     Route::get("/admin_sAdminPowerGroup","Admin\PowerController@sAdminPowerGroup");//查看所有的权限组
-    Route::post("/admin_aAdminPowerGroup","Admin\PowerController@aAdminPowerGroup");//添加权限组
-    Route::post("/admin_dAdminPowerGroup","Admin\PowerController@dAdminPowerGroup");//删除权限组
+    Route::get("/admin_aAdminPowerGroup","Admin\PowerController@aAdminPowerGroup");//添加权限组
+    Route::post("/_aAdminPowerGroup","Admin\PowerController@_aAdminPowerGroup");//执行添加权限组
+    Route::get("/admin_dAdminPowerGroup/{group_id}","Admin\PowerController@dAdminPowerGroup");//删除权限组
 
     Route::get("/admin_moreAdminPowerGroup/{group_id}","Admin\PowerController@moreAdminPowerGroup");           //查看一个权限组的详情
-    Route::post("/admin_uAdminPowerGroup","Admin\PowerController@uAdminPowerGroup");                            //修改权限组信息 (弹出框修改)
+    Route::post("/admin_uAdminPowerGroup","Admin\PowerController@uAdminPowerGroup");                 //修改权限组信息 (弹出框修改)
     Route::post("/admin_addAdminToAdminPowerGroup","Admin\PowerController@addAdminToAdminPowerGroup");           //添加用户到一个权限组,在详情页进行操作
     Route::post("/admin_removeAdminToAdminPowerGroup","Admin\PowerController@removeAdminToAdminPowerGroup");     //从一个权限组移出用户，在详情页操作
     Route::post("/admin_addPowerToAdminPowerGroup","Admin\PowerController@addPowerToAdminPowerGroup");         //添加权限到一个权限组,在详情页进行操作
-    Route::post("/admin_removePowerToAdminPowerGroup","Admin\PowerController@removePowerToAdminPowerGroup");     //从一个权限组移出权限，在详情页操作
+    Route::get("/admin_removePowerToAdminPowerGroup/{relation_power_id}","Admin\PowerController@removePowerToAdminPowerGroup");     //从一个权限组移出权限，在详情页操作
 
     Route::get("/admin_sAdmin","Admin\PowerController@sAdmin");//查看所有的管理员用户
-    Route::post("/admin_aAdmin","Admin\PowerController@aAdmin");//添加一个管理员用户
-    Route::post("/admin_dAdmin","Admin\PowerController@dAdmin");//删除某个管理员用户
+    Route::get("/admin_aAdmin","Admin\PowerController@aAdmin");//添加一个管理员用户
+    Route::post("/_aAdmin","Admin\PowerController@_aAdmin");//执行添加一个管理员用户
+    Route::get("/admin_dAdmin/{admin_id}","Admin\PowerController@dAdmin");//删除某个管理员用户
 
-    Route::get("/admin_moreAdmin","Admin\PowerController@moreAdmin");//查看一个管理员用户的详情
+    Route::get("/admin_moreAdmin/{admin_id}","Admin\PowerController@moreAdmin");//查看一个管理员用户的详情
     Route::post("/admin_uAdmin","Admin\PowerController@uAdmin");//修改某个管理员用户
 
-    
-    
-    
-    
     
     /*
     /*
@@ -65,7 +68,7 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::post("/admin_dUserPowerGroup","Admin\PowerController@dUserPowerGroup");//删除权限组
 
     Route::get("/admin_moreUserPowerGroup/{group_id}","Admin\PowerController@moreUserPowerGroup");           //查看一个权限组的详情
-    Route::post("/admin_uUserPowerGroup","Admin\PowerController@uUserPowerGroup");                            //修改权限组信息 (弹出框修改)
+    Route::post("/admin_uUserPowerGroup/{group_id}","Admin\PowerController@uUserPowerGroup");                            //修改权限组信息 (弹出框修改)
     Route::post("/admin_addUserToUserPowerGroup","Admin\PowerController@addUserToUserPowerGroup");           //添加用户到一个权限组,在详情页进行操作
     Route::post("/admin_removeUserToUserPowerGroup","Admin\PowerController@removeUserToUserPowerGroup");     //从一个权限组移出用户，在详情页操作
     Route::post("/admin_addPowerToUserPowerGroup","Admin\PowerController@addPowerToUserPowerGroup");         //添加权限到一个权限组,在详情页进行操作
@@ -78,12 +81,6 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_moreUser","Admin\PowerController@moreUser");//查看一个用户的详情
     Route::post("/admin_uUser","Admin\PowerController@uUser");//修改某个用户
 
-
-    
-    
-    
-    
-    //
     /*
      * 文章管理组
      * 说明：对用户的文章进行管理
@@ -131,8 +128,10 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
 
 
 
+
 //用户前台相关页面
 Route::get("/user_login","User\BaseController@login");
+Route::get("/user_logout","User\BaseController@logout");
 Route::post("/_user_login","User\BaseController@_login");
 Route::group(['middleware' => ['LoginUserCheck']],function()
 {
@@ -140,15 +139,20 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_logout","User\BaseController@logout");
     
     
-    //用户文章
+
+
+    //用户文章  完成
     Route::get("/user_sArticle","User\ArticleController@sArticle");
-    Route::get("/user_dArticle\{article_id}","User\ArticleController@dArticle");
+    Route::get("/user_dArticle/{article_id}","User\ArticleController@dArticle");
+
     
     Route::get("/user_aArticle","User\ArticleController@aArticle");
-    Route::post("/_user_sArticle","User\ArticleController@_aArticle");
+    Route::post("/_user_aArticle","User\ArticleController@_aArticle");
     
-    Route::get("/user_uArticle","User\ArticleController@uArticle");
-    Route::post("/user_ajax_getNowArticleDetail","User\ArticleController@user_ajax_getNowArticleDetail");
+
+
+    Route::get("/user_uArticle/{article_id}","User\ArticleController@uArticle");
+    Route::post("/user_ajax_getNowArticleDetail","User\ArticleController@ajax_getNowArticleDetail");
     Route::post("/_user_uArticle","User\ArticleController@_uArticle");
     
     //文章访问
@@ -156,6 +160,7 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_readSingleArticle/{article_id}","User\ArticleController@readSingleArticle");//读取单一文章
     Route::get("/user_publishReply","User\ReplyController@publishReply");
     
+
     //文章的评论管理
     Route::get("/user_sReply","User\ReplyController@sReply");       //查看评论
     Route::get("/user_moreReply","User\ReplyController@moreReply");       //评论详情
@@ -186,6 +191,15 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     
     
     
+
+    //图片管理
+    Route::get("/user_sImage","User\ImageController@sImage");
+    Route::post("/user_aImage","User\ImageController@aImage");
+    Route::get("/user_dImage/{image_id}","User\ImageController@dImage");
+    Route::get("/user_uImage","User\ImageController@");
+    
+    
+
 });
 
 
