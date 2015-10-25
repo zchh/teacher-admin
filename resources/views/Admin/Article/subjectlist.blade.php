@@ -1,4 +1,4 @@
-@extends("Admin.Article.te")
+@extends("Admin.Article.base")
 @section("main")
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

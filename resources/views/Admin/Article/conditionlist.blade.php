@@ -1,4 +1,4 @@
-@extends("Admin.Article.te")
+@extends("Admin.Article.base")
 @section("main")
 <form class="navbar-form navbar-right" action="/admin_sArticleByCondition" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">

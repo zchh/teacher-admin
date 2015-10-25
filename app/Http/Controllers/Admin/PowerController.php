@@ -24,7 +24,7 @@ class PowerController extends Controller {
 
     public function _aAdmin(BaseFunc $baseFunc) 
     {
-        $input = Request::only('admin_username', 'admin_nickname', 'admin_password');
+        $input = Request::only('admin_username', 'admin_nickname', 'admin_password','admin_group');
         $input["admin_password"] = md5('admin_password');
         DB::table("base_admin")->insert($input);
         $baseFunc->setRedirectMessage(true, "添加管理员用户成功！", NULL, "/admin_sAdmin");
@@ -60,7 +60,7 @@ class PowerController extends Controller {
 
     public function sAdminPowerGroup()
     {
-        $data["GroupData"] = DB::table("base_admin_group")->get();
+        $data["GroupData"] = DB::table("base_admin_group")->paginate(5);
         return view("Admin.Power.sAdminPowerGroup", $data);
     }
 
@@ -103,7 +103,7 @@ class PowerController extends Controller {
         $data["AdminPowerGroup"] = DB::table("base_admin_re_power")
                 ->leftJoin("base_admin_power", "power_id", "=", "relation_power_id")
                 ->where("relation_group_id", "=", $group_id)
-                ->get();
+                ->get(); 
         return view("Admin.Power.moreAdminPowerGroup", $data);
     }
 

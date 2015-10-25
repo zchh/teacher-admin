@@ -1,4 +1,4 @@
-@extends("Admin.Article.te")
+@extends("Admin.Article.base")
 @section("main")
 
 <div class="col-md-1"></div>
