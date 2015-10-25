@@ -30,10 +30,10 @@
                         <td>{{$articleClass -> class_name}}</td>
                         <td>
                          
-                            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#delete_{{$articleClass -> class_id}}">
+                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete_{{$articleClass -> class_id}}">
                                 删除
                             </button>
-                            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#update_{{$articleClass -> class_id}}">
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#update_{{$articleClass -> class_id}}">
                                 修改
                             </button>
 
@@ -53,7 +53,7 @@
                                             <h4 class="modal-title" id="myModalLabel">删除类别</h4>
                                         </div>
                                         <div class="modal-body">
-                                                      
+                                           确定要删除吗？               
                                         </div>
                                         <div class="modal-footer">
                                            <a href="/user_dClass/{{$articleClass -> class_id}}" class="btn btn-danger" name="delete">确定删除</a>
@@ -81,7 +81,7 @@
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <div class="form-group">
                                                     <label for="exampleInputFile">类名</label>
-                                                    <input type="text" class="form-control" id="exampleInputPassword1" name="class_name">
+                                                    <input type="text" class="form-control" id="exampleInputPassword1" name="class_name" value="{{$articleClass -> class_name}}">
                                                     <input type="hidden" value="{{$articleClass -> class_id}}" name="class_id">
                                                 </div>
                                         </div>
