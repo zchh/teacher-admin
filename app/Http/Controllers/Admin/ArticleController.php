@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 class ArticleController extends Controller { 
     /*public function te(BaseFunc $base)
-    {
+    {  
        
        $input_data["ajax_request"] = $base->requestAjax(["admin_username","admin_password"], "123", "/_admin_te");
        return view("Admin.Article.te",$input_data);
@@ -23,6 +23,7 @@ class ArticleController extends Controller {
     //查看所有文章
     public function sArticle()
     {
+        session(["now_address" => "/admin_sArticle"]);
         //查询所有的文章并分页显示
         $input_data['article_data'] = DB::table("base_article")
                 ->leftJoin("base_article_re_subject","article_id","=","relation_article")
@@ -113,37 +114,29 @@ class ArticleController extends Controller {
     //查看所有专题
     public function sSubject()
     {
+        session(["now_address" => "/admin_sSubject"]);
         //查找文章专题并分页显示
-        $input_data['subject_data'] = DB::table('base_article_subject')->paginate(3);
+        $input_data['subject_data'] = DB::table('base_article_subject')->get();
         return view("Admin.Article.subjectlist",$input_data);
     }
-    //修改专题信息
-    public function uSubject(BaseFunc $base,$subject_id)
+    //(进行更新)
+    public function uSubject(BaseFunc $base)
     {
-        $input_data['ajax_request'] = $base->requestAjax(["subject_id","sunject_name","subject_create_date","subject_update_date","subject_intro"], "subject", "/_admin_uSubject");
-        //根据subject_id获取此文章专题信息
-        $input_data['subject_data'] = DB::table("base_article_subject")->where("subject_id","=","$subject_id")->get();
-        //dump($input_data);
-        return view("Admin.Article.usubject",$input_data);
-    }
-    //返回的ajax数据(进行更新)
-    public function _uSubject(BaseFunc $base)
-    {
-        $sunject_update_data = Request::all();
-        $sunject_update_data['subject_update_date']=  date("Y-m-d H-i-s");
+        $sunject_update_data = Request::only("subject_id","subject_name","subject_intro");
+        $sunject_update_data['subject_update_date']=  date("Y-m-d H:i:s");
         if(DB::table("base_article_subject")->
                 where("subject_id","=",$sunject_update_data["subject_id"])
                 ->update($sunject_update_data))
         {
             //修改成功，提示跳转
-            $data = $base->responseAjax("更新成功", "更新成功", "<a href='/admin_uSubject/".$sunject_update_data['subject_id']."' class='btn btn-default'>点击返回</a>");
-            return $data;
+            $base->setRedirectMessage(true, "并入专题成功", null, null);
+            return redirect()->back();
         }
         else
         {
             //修改失败，提示跳转
-            $data = $base->responseAjax("更新失败", "更新成功", "<a href='/admin_uSubject/".$sunject_update_data['subject_id']."' class='btn btn-default'>点击返回</a>");
-            return $data;
+            $base->setRedirectMessage(false, "并入专题失败", null, null);
+            return redirect()->back();
         }
         //dump($sunject_update_data);
     }
@@ -164,26 +157,27 @@ class ArticleController extends Controller {
         }
     }
     //添加专题
-    public function aSubject(BaseFunc $base)
+    /*public function aSubject(BaseFunc $base)
     {
         $input_data['ajax_request'] = $base->requestAjax(["subject_id","sunject_name","subject_create_date","subject_update_date","subject_intro"], "subject", "/_admin_aSubject",true);
         return view("Admin.Article.asubject",$input_data);
-    }
+    }*/
     //返回的ajax数据(进行添加)
-    public function _aSubject(BaseFunc $base)
+    public function aSubject(BaseFunc $base)
     {
-        $subject_add_data = Request::all(); 
-        if(DB::table("base_article_subject")->add($subject_add_data))
+        $subject_add_data = Request::only("subject_name","subject_intro"); 
+        $subject_add_data['subject_create_date']=date("Y-m-d H:i:s");
+        if(DB::table("base_article_subject")->insert($subject_add_data))
         {
             //添加成功，提示跳转
-            $data = $base->responseAjax("添加成功", "添加成功", "<a href='/admin_aSubject' class='btn btn-default'>点击返回</a>");
-            return $data;
+            $base->setRedirectMessage(true, "添加专题成功", null, null);
+            return redirect()->back();
         }
         else
         {
             //添加失败，提示跳转
-            $data = $base->responseAjax("添加失败", "添加失败", "<a href='/admin_aSubject' class='btn btn-default'>点击返回</a>");
-            return $data;
+            $base->setRedirectMessage(false, "添加专题失败", null, null);
+            return redirect()->back();
         }
         //dump($subject_add_data);
     }
@@ -206,13 +200,15 @@ class ArticleController extends Controller {
                 ->update(["relation_subject"=>null]))
         {
             //移除成功，提示跳转
-            $data = $base->responseAjax("移除成功", "移除成功", "<a href='/admin_moreSubject/".$subject_id."' class='btn btn-default'>点击返回</a>");
+            $data=$base->setRedirectMessage(true, "移除成功", "返回", "/admin_moreSubject/".$subject_id."");
+            //$data = $base->responseAjax("移除成功", "移除成功", "<a href='/admin_moreSubject/".$subject_id."' class='btn btn-default'>点击返回</a>");
             return $data;
         }
         else
         {
             //移除失败，提示跳转
-            $data = $base->responseAjax("移除失败", "移除失败", "<a href='/admin_moreSubject/".$subject_id."' class='btn btn-default'>点击返回</a>");
+            $data=$base->setRedirectMessage(false, "移除失败", "返回", "/admin_moreSubject/".$subject_id."");
+            //$data = $base->responseAjax("移除失败", "移除失败", "<a href='/admin_moreSubject/".$subject_id."' class='btn btn-default'>点击返回</a>");
             return $data;
         }
     }
@@ -226,36 +222,35 @@ class ArticleController extends Controller {
     //查看所有标签
     public function sLebel()
     {
+        session(["now_address" => "/admin_sLebel"]);
         $input_data['label_data'] = DB::table("base_article_label")->paginate(3);
         //dump($label_data);
         return view("Admin.Article.slebel",$input_data);
     }
-    //修改标签(发出ajax请求)
-    public function uLebel(BaseFunc $base,$label_id)
+    /*public function uLebel($label_id)
     {
-        $input_data['ajax_request'] = $base->requestAjax(["label_id","label_name","label_create_date","label_update_date"], "label", "/_admin_uLabel");
         //根据传过来的标签id查询记录显示原有的该标签数据
         $input_data['labelData_by_labelId'] = DB::table("base_article_label")
                 ->where("label_id","=",$label_id)->get();
         return view("Admin.Article.ulabel",$input_data);
-    }
+    }*/
     public function _uLebel(BaseFunc $base)
     {
         $input_data = Request::only("label_id","label_name","label_create_date","label_update_date");
-        $input_data['label_update_date']= date("Y-m-d H-i-s");
+        $input_data['label_update_date']= date("Y-m-d H:i:s");
         if(DB::table("base_article_label")->where("label_id","=",$input_data['label_id'])
                 ->update($input_data)
                 )
         {
             //修改成功，提示跳转
-            $data = $base->responseAjax("标签修改成功", "标签修改成功", "<a href='/admin_sLebel' class='btn btn-default'>点击返回</a>");
-            return $data; 
+            $data = $base->setRedirectMessage(true, "标签修改成功",null,null);
+            return redirect()->back();
         }
         else
         {
             //修改失败，提示跳转
-            $data = $base->responseAjax("标签修改失败", "标签修改失败", "<a href='/admin_uLabel/".$input_data['label_id']."' class='btn btn-default'>点击返回</a>");
-            return $data; 
+           $data = $base->setRedirectMessage(false, "标签修改失败",null,null);
+            return redirect()->back();
         }
     }
     public function dLebel(BaseFunc $base,$label_id)
@@ -272,20 +267,20 @@ class ArticleController extends Controller {
         }
     }
     //添加标签
-    public function aLebel(BaseFunc $base)
+    /*public function aLebel(BaseFunc $base)
     {
         $input_data['ajax_request'] = $base->requestAjax(["label_name","label_create_date"], "label", "/_admin_aLebel",true);
         return view("Admin.Article.alebel",$input_data);
-    }
-    public function _aLebel(BaseFunc $base)
+    }*/
+    public function aLebel(BaseFunc $base)
     {
-        $input_data = Request::only("label_name","label_create_date");
-        if($input_data['label_name'] == "" || $input_data['label_create_date'] == "")
+        $input_data = Request::only("label_name");
+        if($input_data['label_name'] == "")
         {
             $data = $base->setRedirectMessage(false, "添加标签失败", "返回", "/admin_aLebel");
             return $data;
         }
-        $input_data['label_create_date']=date("Y-m-d H-i-s");
+        $input_data['label_create_date']=date("Y-m-d H:i:s");
         if(DB::table("base_article_label")->insert($input_data))
         {
             $data = $base->setRedirectMessage(true, "添加标签成功", "返回", "/admin_sLebel");
@@ -296,16 +291,6 @@ class ArticleController extends Controller {
             $data = $base->setRedirectMessage(false, "添加标签失败", "返回", "/admin_aLebel");
             return $data;
         }
-    }
-    //给文章添加标签
-    public function _aAticleLabel($article_id)
-    {
-        //查询所有的标签并显示在表单中
-        $input_data['label_data']=DB::table("base_article_label")->leftJoin("base_article_re_label","label_id","=","relation_label")->get();
-        $input_data['article']=$article_id;
-        //查找当前文章的标签
-        $input_data['label_by_article']=DB::table("")
-        return view("Admin.Article.aAticleLabel",$input_data);
     }
     public function aAticleLabel(BaseFunc $base)
     {

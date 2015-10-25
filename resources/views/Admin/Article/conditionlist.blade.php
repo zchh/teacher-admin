@@ -1,5 +1,5 @@
-@extends("Admin.base")
-@section("body")
+@extends("Admin.Article.te")
+@section("main")
 <form class="navbar-form navbar-right" action="/admin_sArticleByCondition" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <label class=""><font color="orange">查找条件</font></label>
@@ -9,20 +9,7 @@
     </select>
     <input type="text" class="form-control" name="search" placeholder="Search...">
 </form>
-<div class="col-sm-3 col-md-2 sidebar">
 
-    <ul class="nav nav-sidebar">
-        <li class="active"><a href="/admin_sArticle">查看文章 <span class="sr-only">(current)</span></a></li>
-        <li><a href="/admin_aLebel">添加标签</a></li>
-        <li><a href="/admin_sLebel">查看所有标签</a></li>
-    </ul>
-    <ul class="nav nav-sidebar">
-        <li><a href="/admin_sSubject">查看所有的专题</a></li>
-        <li><a href="/admin_aSubject">添加专题</a></li>
-        <li><a href="">添加一篇文章到专题</a></li>
-        <li><a href="">待续.....</a></li>
-    </ul>
-</div>
 <h2 class="sub-header">Article List By Condition</h2>
 <div class="table-responsive">
     <table class="table table-striped">
@@ -97,5 +84,4 @@
 </div>
 <!-- Button trigger modal -->
 
-@show
 @stop
