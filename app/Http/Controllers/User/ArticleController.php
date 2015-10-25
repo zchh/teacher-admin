@@ -97,8 +97,9 @@ class ArticleController extends Controller
     {
         session(["nowPage"=>"/user_readAllArticle"]);
         //获得用户id
-         $baseArticle = DB::table('base_article')->get();  //返回值为数组
+         $baseArticle = DB::table('base_article')->paginate(5);  //返回值为数组
          $inputData["articleData"] = $baseArticle;
+        
          return view("User.Article.readAllArticle",$inputData);
     }
     public function readSingleArticle($article_id)

@@ -92,6 +92,8 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            
 
 
                         </td>
@@ -139,8 +141,14 @@
         </div>
     </div>
 </div>
-
+<div class="col-sm-8 col-md-offset-2" >
+     <?php echo $userArticleClass->render(); ?>  
+</div>
+ 
 @stop
+
+
+
 
 
 
