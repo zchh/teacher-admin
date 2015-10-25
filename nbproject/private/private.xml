@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <coverage xmlns="http://www.netbeans.org/ns/code-coverage/1" enabled="false"/>
@@ -9,3 +10,25 @@
         </group>
     </open-files>
 </project-private>
+
+
+
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/routes.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/Admin/Article/subjectlist.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/Admin/ArticleController.php</file>
+
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Power/moreAdminPowerGroup.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/Admin/PowerController.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Power/sAdmin.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/routes.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Power/sAdminPowerGroup.blade.php</file>
+
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/User/ArticleController.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/routes.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/User/Article/readAllArticle.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/User/Article/readSingleArticle.blade.php</file>
+
+        </group>
+    </open-files>
+</project-private>
+
