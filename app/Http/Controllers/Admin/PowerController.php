@@ -12,7 +12,8 @@ class PowerController extends Controller {
 
     public function sAdmin() 
     {
-        $data['articleData'] = DB::table("base_admin")->leftJoin("base_admin_group", "admin_group", "=", "group_id")->get();
+        session(["now_address" => "/admin_sAdmin"]);
+        $data['articleData'] = DB::table("base_admin")->leftJoin("base_admin_group", "admin_group", "=", "group_id")->paginate(5);
         $data['groupData'] = DB::table("base_admin_group")->get();
         return view("Admin.Power.sAdmin", $data);
     }
@@ -30,13 +31,13 @@ class PowerController extends Controller {
         $baseFunc->setRedirectMessage(true, "添加管理员用户成功！", NULL, "/admin_sAdmin");
     }
 
-    public function moreAdmin($admin_id)
+    /*public function moreAdmin($admin_id)
     {
         $data["AdminData"] = DB::table("base_admin")->where("admin_id", "=", $admin_id)->get();
         $data["GroupData"] = DB::table("base_admin_group")->get();
         $data["GroupPowerData"] = DB::table("base_admin_re_power")->get();
         return view("Admin.Power.moreAdmin", $data);
-    }
+    }*/
 
     public function uAdmin(BaseFunc $baseFunc)
     {
@@ -60,6 +61,9 @@ class PowerController extends Controller {
 
     public function sAdminPowerGroup()
     {
+
+        session(["now_address" => "/admin_sAdminPowerGroup"]);
+
         $data["GroupData"] = DB::table("base_admin_group")->paginate(5);
         return view("Admin.Power.sAdminPowerGroup", $data);
     }
@@ -100,16 +104,31 @@ class PowerController extends Controller {
        // dump($data);
         $data['checkAdmin'] = DB::table("base_admin")->get();
         $data['checkPower'] = DB::table("base_admin_power")->get();
-        $data["AdminPowerGroup"] = DB::table("base_admin_re_power")
+        $AdminPowerGroup= DB::table("base_admin_re_power")
                 ->leftJoin("base_admin_power", "power_id", "=", "relation_power_id")
                 ->where("relation_group_id", "=", $group_id)
-                ->get(); 
+
+                ->get();
+        $power_ids=array();
+        foreach ($AdminPowerGroup as $value)
+        {
+            $power_ids[]=$value->power_id;
+        }
+        $data['power_ids']=$power_ids;
+        $data['AdminPowerGroup']=$AdminPowerGroup;
+
+
         return view("Admin.Power.moreAdminPowerGroup", $data);
     }
 
     public function addPowerToAdminPowerGroup(BaseFunc $baseFunc) 
     {
         $postData = Request::only("group_id", "power_id_array");
+        if($postData['power_id_array'] == "")
+        {
+          $baseFunc->setRedirectMessage(false, "没有选择权限！", NULL, NULL);
+          return redirect()->back();
+        }
         foreach ($postData["power_id_array"] as $data) 
         {
           DB::table("base_admin_re_power")->insert(["relation_power_id" => $data, "relation_group_id" => $postData["group_id"]]);
