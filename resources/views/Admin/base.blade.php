@@ -23,7 +23,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     
-                    <li><a href="admin_sAdmin">管理员权限</a></li>
+                    <li><a href="/admin_sAdmin">管理员权限</a></li>
                     <li><a href="#">用户权限</a></li>
                     <li><a href="#">文章</a></li>
                     <li><a href="#">图片库</a></li>
@@ -41,48 +41,13 @@
            </nav>   
 
 
-            <div class="col-sm-12">
-                   <div class="panel panel-default">
-                        <div class="panel-body">
-                                @section("top")
-                                @show
-                         </div>
-                   </div>
-           </div>
+@section("left_nav")
 
+@show
 
-            <div class="col-sm-2">
-                   <div class="panel panel-default">
-                        <div class="panel-body">
-                                @section("left")
-                                @show
-                         </div>
-                   </div>
-           </div>
+@section("main")
 
-
-            <div class="col-sm-10">
-                   <div class="panel panel-default">
-                        <div class="panel-body">
-                                @section("main")
-                                @show
-                         </div>
-                   </div>
-           </div>
-
-
-            <div class="col-sm-12">
-                   <div class="panel panel-default">
-                        <div class="panel-body">
-                                @section("footer")
-                                @show
-                         </div>
-                   </div>
-           </div>
-
-
-
-
+@show
 @append
 
 
