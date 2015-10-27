@@ -11,7 +11,6 @@ class ArticleController extends Controller
 
      public function sArticle(ArticleFunc $atcFunc)
     {
-       
         $articleData = $atcFunc->getUserArticle(session("user.user_id"));
         $inputData["articleData"] = $articleData;
         session(["nowPage"=>"/user_sArticle"]);

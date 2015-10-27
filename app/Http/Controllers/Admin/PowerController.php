@@ -61,7 +61,9 @@ class PowerController extends Controller {
 
     public function sAdminPowerGroup()
     {
+
         session(["now_address" => "/admin_sAdminPowerGroup"]);
+
         $data["GroupData"] = DB::table("base_admin_group")->paginate(5);
         return view("Admin.Power.sAdminPowerGroup", $data);
     }
@@ -105,6 +107,7 @@ class PowerController extends Controller {
         $AdminPowerGroup= DB::table("base_admin_re_power")
                 ->leftJoin("base_admin_power", "power_id", "=", "relation_power_id")
                 ->where("relation_group_id", "=", $group_id)
+
                 ->get();
         $power_ids=array();
         foreach ($AdminPowerGroup as $value)
@@ -113,6 +116,8 @@ class PowerController extends Controller {
         }
         $data['power_ids']=$power_ids;
         $data['AdminPowerGroup']=$AdminPowerGroup;
+
+
         return view("Admin.Power.moreAdminPowerGroup", $data);
     }
 

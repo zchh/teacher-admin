@@ -6,6 +6,7 @@
 
 
 
+
 <div class="col-sm-8">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -39,6 +40,7 @@
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                     <h4 class="modal-title" id="myModalLabel">警告！</h4>
+
                                                 </div>
                                                 <div class="modal-body">
                                                     将要移除该权限！
@@ -46,6 +48,7 @@
                                                 <div class="modal-footer">
                                                     <a href="/admin_removePowerToAdminPowerGroup/{{$data->relation_power_id}}" class="btn btn-danger btn-sm">移除</a>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+
 
                                                 </div>
                                             </div>
@@ -94,6 +97,7 @@
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="hidden" name="admin_id" value="{{ $data->admin_id }}">   
                                                     将要移除该管理员！ 
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button  class="btn btn-danger btn-sm" type="submit">移除</button>

@@ -1,8 +1,6 @@
 @extends("base")
 
-
 @section("body")
-
         
         <style>
             body { padding-top: 70px; }
@@ -24,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     
-                    <li><a href="/admin_sAdmin">管理员权限</a></li>
+                    <li><a href="admin_sAdmin">管理员权限</a></li>
                     <li><a href="#">用户权限</a></li>
                     <li><a href="#">文章</a></li>
                     <li><a href="#">图片库</a></li>
@@ -39,17 +37,39 @@
                   </ul>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
-           </nav>   
-
-
-@section("left_nav")
-
-@show
-
-
-@section("main")
-
-@show
-@append
-
-
+           </nav> 
+        
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 ">
+          <ul class="nav nav-sidebar">
+            <li><a href="admin_sAdmin">查看管理员</a></li>
+            <li><a href="admin_sAdminPowerGroup">查看权限组</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+          </ul>
+        </div>
+     
+          
+        <h2 class="sub-header">添加管理员用户</h2>
+        <hr>
+        <div class="col-sm-6 ">
+        <form action="/_aAdmin" method="post">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        
+        <h4>管理员用户名</h4>
+        <input type="text " id="inputText" class="form-control" name="admin_username" placeholder="Admin Username" required autofocus>
+        
+        <h4>管理员昵称</h4>
+        <input type="text" id="inputText" class="form-control"  name="admin_nickname" placeholder="Admin Nickname" required autofocus>
+        
+        <h4>密码</h4>
+        <input type="password" id="inputPassword" class="form-control" name="admin_password" placeholder="Admin Password" required>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+        </br>
+        </form>
+        </div>
+        </div>
+</div>
+        @stop
