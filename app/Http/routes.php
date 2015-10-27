@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -12,7 +13,14 @@
 */
 
 
-Route::get("/test","TestController@test");
+/*plplpl*/
+Route::get("/test",function(){
+    return view("Admin.Article.te");
+});
+
+
+Route::get("/","Index\BaseController@index");
+
 
 
 
@@ -31,24 +39,26 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
      * 控制器：PowerController
     */
     Route::get("/admin_sAdminPowerGroup","Admin\PowerController@sAdminPowerGroup");//查看所有的权限组
-    Route::post("/admin_aAdminPowerGroup","Admin\PowerController@aAdminPowerGroup");//添加权限组
-    Route::post("/admin_dAdminPowerGroup","Admin\PowerController@dAdminPowerGroup");//删除权限组
+    Route::get("/admin_aAdminPowerGroup","Admin\PowerController@aAdminPowerGroup");//添加权限组
+    Route::post("/_aAdminPowerGroup","Admin\PowerController@_aAdminPowerGroup");//执行添加权限组
+    Route::get("/admin_dAdminPowerGroup/{group_id}","Admin\PowerController@dAdminPowerGroup");//删除权限组
 
     Route::get("/admin_moreAdminPowerGroup/{group_id}","Admin\PowerController@moreAdminPowerGroup");           //查看一个权限组的详情
-    Route::post("/admin_uAdminPowerGroup","Admin\PowerController@uAdminPowerGroup");                            //修改权限组信息 (弹出框修改)
+    Route::post("/admin_uAdminPowerGroup","Admin\PowerController@uAdminPowerGroup");                 //修改权限组信息 (弹出框修改)
     Route::post("/admin_addAdminToAdminPowerGroup","Admin\PowerController@addAdminToAdminPowerGroup");           //添加用户到一个权限组,在详情页进行操作
     Route::post("/admin_removeAdminToAdminPowerGroup","Admin\PowerController@removeAdminToAdminPowerGroup");     //从一个权限组移出用户，在详情页操作
     Route::post("/admin_addPowerToAdminPowerGroup","Admin\PowerController@addPowerToAdminPowerGroup");         //添加权限到一个权限组,在详情页进行操作
-    Route::post("/admin_removePowerToAdminPowerGroup","Admin\PowerController@removePowerToAdminPowerGroup");     //从一个权限组移出权限，在详情页操作
+    Route::get("/admin_removePowerToAdminPowerGroup/{relation_power_id}","Admin\PowerController@removePowerToAdminPowerGroup");     //从一个权限组移出权限，在详情页操作
 
     Route::get("/admin_sAdmin","Admin\PowerController@sAdmin");//查看所有的管理员用户
-    Route::post("/admin_aAdmin","Admin\PowerController@aAdmin");//添加一个管理员用户
-    Route::post("/admin_dAdmin","Admin\PowerController@dAdmin");//删除某个管理员用户
+    Route::get("/admin_aAdmin","Admin\PowerController@aAdmin");//添加一个管理员用户
+    Route::post("/_aAdmin","Admin\PowerController@_aAdmin");//执行添加一个管理员用户
+    Route::get("/admin_dAdmin/{admin_id}","Admin\PowerController@dAdmin");//删除某个管理员用户
 
-    Route::get("/admin_moreAdmin","Admin\PowerController@moreAdmin");//查看一个管理员用户的详情
+    Route::get("/admin_moreAdmin/{admin_id}","Admin\PowerController@moreAdmin");//查看一个管理员用户的详情
     Route::post("/admin_uAdmin","Admin\PowerController@uAdmin");//修改某个管理员用户
 
-
+    
     /*
     /*
      * 用户级权限组管理功能
@@ -59,7 +69,7 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::post("/admin_dUserPowerGroup","Admin\PowerController@dUserPowerGroup");//删除权限组
 
     Route::get("/admin_moreUserPowerGroup/{group_id}","Admin\PowerController@moreUserPowerGroup");           //查看一个权限组的详情
-    Route::post("/admin_uUserPowerGroup","Admin\PowerController@uUserPowerGroup");                            //修改权限组信息 (弹出框修改)
+    Route::post("/admin_uUserPowerGroup/{group_id}","Admin\PowerController@uUserPowerGroup");                            //修改权限组信息 (弹出框修改)
     Route::post("/admin_addUserToUserPowerGroup","Admin\PowerController@addUserToUserPowerGroup");           //添加用户到一个权限组,在详情页进行操作
     Route::post("/admin_removeUserToUserPowerGroup","Admin\PowerController@removeUserToUserPowerGroup");     //从一个权限组移出用户，在详情页操作
     Route::post("/admin_addPowerToUserPowerGroup","Admin\PowerController@addPowerToUserPowerGroup");         //添加权限到一个权限组,在详情页进行操作
@@ -72,42 +82,51 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_moreUser","Admin\PowerController@moreUser");//查看一个用户的详情
     Route::post("/admin_uUser","Admin\PowerController@uUser");//修改某个用户
 
-
-
-
     /*
      * 文章管理组
      * 说明：对用户的文章进行管理
      * 控制器：ArticleController
      *  */
-    Route::get("/admin_sArticle","Admin\ArticleController@sArticle");   //查找文章
-    Route::get("/admin_aArticle","Admin\ArticleController@aArticle");   //添加文章
-    Route::post("/_admin_aArticle","Admin\ArticleController@_aArticle");   //添加文章
-    Route::get("/admin_dArticle/{article_id}","Admin\ArticleController@dArticle");   //删除文章
+    Route::get("/admin_sArticle","Admin\ArticleController@sArticle");   //查看文章(zuo)
+    Route::post("/admin_sArticleByCondition","Admin\ArticleController@sArticleByCondition");
+    Route::get("/admin_aArticle","Admin\ArticleController@aArticle");   //添加文章(zuo)
+    //Route::post("/_admin_aArticle","Admin\ArticleController@_aArticle");   //添加文章(zuo)
+    Route::post("/admin_aAticleLabel","Admin\ArticleController@aAticleLabel");      //给文章添加标签(zuo)
+    //Route::get("/_admin_aAticleLabel/{article_id}","Admin\ArticleController@_aAticleLabel"); //给文章添加标签，路由到表单提交页面(zuo)
+    Route::get("/admin_dArticle/{article_id}","Admin\ArticleController@dArticle");   //删除文章(zuo)
 
-    Route::get("/admin_moreArticle","Admin\ArticleController@moreArticle");     //文章详情
-    Route::post("/admin_uArticle","Admin\ArticleController@uArticle");          //更新文章
+    //Route::get("/admin_moreArticle","Admin\ArticleController@moreArticle");     //文章详情
+    Route::post("/admin_uArticle","Admin\ArticleController@uArticle");          //更新文章(zuo)
     //Route::post("/admin_RemoveArticleReply","Admin\ArticleController@RemoveArticleReply"); //移除评论  预留
-    Route::post("/admin_AddArticleLabel","Admin\ArticleController@AddArticleLabel");         //添加标签
+    //Route::post("/admin_AddArticleLabel","Admin\ArticleController@AddArticleLabel");         //添加标签
     Route::post("/admin_RemoveArticleLabel","Admin\ArticleController@RemoveArticleLabel");       //移出标签
 
 
-    Route::get("/admin_sLebel","Admin\ArticleController@sLebel");     //查看所有标签
-    Route::get("/admin_dLebel/{label_id}","Admin\ArticleController@dLebel");     //删除一个标签
-    Route::post("/admin_aLebel","Admin\ArticleController@aLebel");           //添加标签
-    Route::get("/admin_uLabel","Admin\ArticleController@uLebel");             //修改标签
+    Route::get("/admin_sLebel","Admin\ArticleController@sLebel");     //查看所有标签(zuo)
+    Route::get("/admin_dLebel/{label_id}","Admin\ArticleController@dLebel");     //删除一个标签(zuo)
+    //Route::get("/admin_aLebel","Admin\ArticleController@aLebel");
+    Route::post("/admin_aLebel","Admin\ArticleController@aLebel");           //添加标签(zuo)
+    Route::get("/admin_uLabel/{label_id}","Admin\ArticleController@uLebel");             //修改标签
+    Route::post("/_admin_uLabel","Admin\ArticleController@_uLebel");  //修改后弹出的提示信息
 
-    Route::get("/admin_sSubject","Admin\ArticleController@sSubject");         //查看所有的专题
-    Route::post("/admin_aSubject","Admin\ArticleController@aSubject");           //添加专题
-    Route::get("/admin_sSubject/{subject_id}","Admin\ArticleController@dSubject");          //删除专题
+    Route::get("/admin_sSubject","Admin\ArticleController@sSubject");         //查看所有的专题（zuo）
+    //Route::get("/admin_aSubject","Admin\ArticleController@aSubject");
+    Route::post("/admin_aSubject","Admin\ArticleController@aSubject");           //处理添加专题传过来的信息并进行添加（zuo）
+    Route::get("/admin_sSubject/{subject_id}","Admin\ArticleController@dSubject");          //删除专题（zuo）
 
-    Route::get("/admin_moreSubject","Admin\ArticleController@moreSubject");           //专题详情
-    Route::post("/admin_uSubject","Admin\ArticleController@uSubject");           //修改专题信息
-    Route::get("/admin_AddArticleToSubject","Admin\ArticleController@AddArticleToSubject");           //添加一篇文章到专题
-    Route::get("/admin_RemoveArticleToSubject","Admin\ArticleController@RemoveArticleToSubject");             //从专题移出一篇文章
+    Route::get("/admin_moreSubject/{subject_id}","Admin\ArticleController@moreSubject");           //专题详情(zuo)
+    //Route::post("/admin_uSubject","Admin\ArticleController@_uSubject"); 
+    Route::post("/admin_uSubject","Admin\ArticleController@uSubject");        //修改专题（zuo）
+    Route::post("/admin_AddArticleToSubject","Admin\ArticleController@AddArticleToSubject");   //添加一篇文章到专题（zuo）
+    Route::get("/admin_RemoveArticleToSubject/{subject_id}/{article_id}","Admin\ArticleController@RemoveArticleToSubject");//从专题移出一篇文章(zuo)
+
+
+    Route::get("/admin_te","Admin\ArticleController@te");   
+    Route::post("/_admin_te","Admin\ArticleController@_te");   
 
 
 });
+
 
 
 
@@ -148,12 +167,12 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_moreReply","User\ReplyController@moreReply");       //评论详情
     Route::get("/user_dReply/{reply}","User\ReplyController@dReply");//删除评论
     
-    //文章分类==============================
+    //文章分类
     Route::get("/user_sClass","User\ClassController@sClass");//查看，select
     Route::post("/user_aClass","User\ClassController@aClass");//添加,add
     Route::post("/user_uClass","User\ClassController@uClass");//更新,update
     Route::get("/user_dClass/{class_id}","User\ClassController@dClass");//删除,delete
-    //===========================================
+    
     //文章专题
     Route::get("/user_sSubject","User\SubjectController@sSubject");//查找专题
     Route::post("/user_aSubject","User\SubjectController@aSubject");//添加专题
@@ -183,6 +202,7 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     
 
 });
+
 
 
 

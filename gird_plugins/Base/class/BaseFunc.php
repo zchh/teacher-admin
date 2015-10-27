@@ -30,7 +30,10 @@ class BaseFunc
     }
     
     /**
-     * 在提交接收页面以后，将错误/正确提示信息保存于session，并在下一页面调用showRedirectMessage()将信息显示在指定位置
+     * 
+     * 放弃使用！！！
+     * 
+     * 在提交接收页面以后，将错误/正确提示信息保存于session，并在下一页面调用showRedirectMessage()将信息显示在指定位置  
      * @access public
      * @param bool $status  正确/错误
      * @param string $message 提示信息  
@@ -56,6 +59,7 @@ class BaseFunc
     
     
     /**
+     * 放弃使用！！！！！
      * 为表单的ajax提交提供快速方法和返回响应模态框，在接收函数中需要与responseAjax搭配
      * 注意，本函数可以自动识别单选，多选，多选存在数组中，
      * 对于单选框，只需要输入首行id,以name区别字段，值提取value中的
