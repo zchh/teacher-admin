@@ -15,7 +15,8 @@
                 <input type="text" class="form-control" name="search" placeholder="Search...">
                 <button type="submit" class="btn btn-info">查询</button>
             </form>
-            <h2 class="sub-header">文章列表</h2><hr>
+            <h2 class="sub-header">文章列表</h2>
+            <hr>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>

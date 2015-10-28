@@ -63,29 +63,38 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
      * 用户级权限组管理功能
      * 说明： 对于各种用户有不同的权限限制，这些权限组成一个权限组，用户和权限组关联
      *  */
-    Route::get("/admin_sUserPowerGroup","Admin\PowerController@sUserPowerGroup");//查看所有的权限组
-    Route::post("/admin_aUserPowerGroup","Admin\PowerController@aUserPowerGroup");//添加权限组
-    Route::post("/admin_dUserPowerGroup","Admin\PowerController@dUserPowerGroup");//删除权限组
+    Route::get("/admin_sUserPowerGroup","Admin\UserPowerController@sUserPowerGroup");//查看所有的权限组（zuo）
+    Route::post("/admin_aUserPowerGroup","Admin\UserPowerController@aUserPowerGroup");//添加权限组（zuo）
+    Route::get("/admin_dUserPowerGroup/{group_id}","Admin\UserPowerController@dUserPowerGroup");//删除权限组(zuo)
 
-    Route::get("/admin_moreUserPowerGroup/{group_id}","Admin\PowerController@moreUserPowerGroup");           //查看一个权限组的详情
-    Route::post("/admin_uUserPowerGroup/{group_id}","Admin\PowerController@uUserPowerGroup");                            //修改权限组信息 (弹出框修改)
-    Route::post("/admin_addUserToUserPowerGroup","Admin\PowerController@addUserToUserPowerGroup");           //添加用户到一个权限组,在详情页进行操作
-    Route::post("/admin_removeUserToUserPowerGroup","Admin\PowerController@removeUserToUserPowerGroup");     //从一个权限组移出用户，在详情页操作
-    Route::post("/admin_addPowerToUserPowerGroup","Admin\PowerController@addPowerToUserPowerGroup");         //添加权限到一个权限组,在详情页进行操作
-    Route::post("/admin_removePowerToUserPowerGroup","Admin\PowerController@removePowerToUserPowerGroup");     //从一个权限组移出权限，在详情页操作
+    Route::get("/admin_moreUserPowerGroup/{group_id}","Admin\UserPowerController@moreUserPowerGroup");           //查看一个权限组的详情（zuo）
+    Route::post("/admin_uUserPowerGroup","Admin\UserPowerController@uUserPowerGroup");                            //修改权限组信息 (弹出框修改)（zuo）
+    Route::post("/admin_addUserToUserPowerGroup","Admin\UserPowerController@addUserToUserPowerGroup");           //添加用户到一个权限组,在详情页进行操作(zuo)
+    Route::post("/admin_removeUserToUserPowerGroup","Admin\UserPowerController@removeUserToUserPowerGroup");     //从一个权限组移出用户，在详情页操作(zuo)
+    Route::post("/admin_addPowerToUserPowerGroup","Admin\UserPowerController@addPowerToUserPowerGroup");         //添加权限到一个权限组,在详情页进行操作
+    Route::get("/admin_removePowerToUserPowerGroup/{group_id}/{power_id}","Admin\UserPowerController@removePowerToUserPowerGroup");     //从一个权限组移出权限，在详情页操作(zuo)
 
-    Route::get("/admin_sUser","Admin\PowerController@sUser");//查看所有的用户
-    Route::post("/admin_aUser","Admin\PowerController@aUser");//添加一个用户
-    Route::post("/admin_dUser","Admin\PowerController@dUser");//删除某个用户
+    Route::get("/admin_sUser","Admin\UserPowerController@sUser");//查看所有的用户 (zuo)
+    Route::post("/admin_aUser","Admin\UserPowerController@aUser");//添加一个用户 （zuo）
+    Route::post("/admin_dUser/{user_id}","Admin\UserPowerController@dUser");//删除某个用户 (zuo)
 
-    Route::get("/admin_moreUser","Admin\PowerController@moreUser");//查看一个用户的详情
-    Route::post("/admin_uUser","Admin\PowerController@uUser");//修改某个用户
+    //Route::get("/admin_moreUser","Admin\UserPowerController@moreUser");//查看一个用户的详情
+    Route::post("/admin_uUser","Admin\UserPowerController@uUser");//修改某个用户 (zuo)
 
     /*
      * 文章管理组
      * 说明：对用户的文章进行管理
      * 控制器：ArticleController
      *  */
+    /*文章分类部分*/
+    Route::get("/admin_sClass","Admin\ArticleController@sClass");  //查看所有文章分类
+    Route::post("/admin_uClass","Admin\ArticleController@uClass"); //修改文章类别
+    Route::get("/admin_dClass/{class_id}","Admin\ArticleController@dClass");  //删除分类
+    Route::post("/admin_aClass","Admin\ArticleController@aClass");
+    /*
+     * 
+     */
+    
     Route::get("/admin_sArticle","Admin\ArticleController@sArticle");   //查看文章(zuo)
     Route::post("/admin_sArticleByCondition","Admin\ArticleController@sArticleByCondition");
     Route::get("/admin_aArticle","Admin\ArticleController@aArticle");   //添加文章(zuo)

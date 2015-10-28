@@ -6,31 +6,16 @@
             <url>app/Http/Controllers/Admin/ArticleController.php</url>
             <bookmark id="1">
                 <name/>
-                <line>188</line>
+                <line>10</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/routes.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/Admin/Article/subjectlist.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/Admin/ArticleController.php</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Power/moreAdminPowerGroup.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/Admin/PowerController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Power/sAdmin.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/routes.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Power/sAdminPowerGroup.blade.php</file>
-=======
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/User/ArticleController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/routes.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/User/Article/readAllArticle.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/User/Article/readSingleArticle.blade.php</file>
->>>>>>> origin/master
->>>>>>> origin/master
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/Admin/UserPower/moreUserPowerGroup.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/Admin/UserPowerController.php</file>
         </group>
     </open-files>
 </project-private>
