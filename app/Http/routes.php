@@ -195,9 +195,9 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
 
     //图片管理
     Route::get("/user_sImage","User\ImageController@sImage");
-    Route::post("/user_aImage","User\ImageController@aImage");
+    Route::post("/user_aImage","User\ImageController@aImage"); //增加图片
     Route::get("/user_dImage/{image_id}","User\ImageController@dImage");
-    Route::get("/user_uImage","User\ImageController@");
+    Route::get("/user_uImage","User\ImageController@uImage");
     
     
 

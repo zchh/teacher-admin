@@ -29,7 +29,7 @@
                         <td>{{$articleClass -> class_update_date}}</td>
                         <td>{{$articleClass -> class_name}}</td>
                         <td>
-                         
+
                             <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete_{{$articleClass -> class_id}}">
                                 删除
                             </button>
@@ -39,7 +39,7 @@
 
 
 
-                           
+
 
 
                             <!-- Button trigger modal -->
@@ -53,11 +53,11 @@
                                             <h4 class="modal-title" id="myModalLabel">删除类别</h4>
                                         </div>
                                         <div class="modal-body">
-                                           确定要删除吗？               
+                                            确定要删除吗？               
                                         </div>
                                         <div class="modal-footer">
-                                           <a href="/user_dClass/{{$articleClass -> class_id}}" class="btn btn-danger" name="delete">确定删除</a>
-                                           
+                                            <a href="/user_dClass/{{$articleClass -> class_id}}" class="btn btn-danger" name="delete">确定删除</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -92,8 +92,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
 
 
                         </td>
@@ -142,9 +142,9 @@
     </div>
 </div>
 <div class="col-sm-8 col-md-offset-2" >
-     <?php echo $userArticleClass->render(); ?>  
+    <?php echo $userArticleClass->render(); ?>  
 </div>
- 
+
 @stop
 
 

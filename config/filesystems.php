@@ -45,9 +45,12 @@ return [
 
 		'local' => [
 			'driver' => 'local',
-			'root'   => storage_path().'/app',
+			'root'   => $_SERVER["DOCUMENT_ROOT"].'/file',//storage_path().'/app',
 		],
-
+                /*"image" => [
+                      'driver' => 'image',
+                        'root' => $_SERVER["DOCUMENT_ROOT"].'/file',
+                ],*/
 		's3' => [
 			'driver' => 's3',
 			'key'    => 'your-key',
