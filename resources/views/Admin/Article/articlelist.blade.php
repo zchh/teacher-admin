@@ -1,13 +1,6 @@
 @extends("Admin.Article.base")
 @section("main")
 <!-- 导航条  -->
-    
-       
-
-
-
-
-
 
 <div class="col-sm-10">
     <div class="panel panel-default">
@@ -47,7 +40,7 @@
                             <td>{{ $data->subject_name }}</td>
 
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{$data->article_id}}">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal{{$data->article_id}}">
                                     并入专题
                                 </button>
 
@@ -88,7 +81,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add{{$data->article_title}}">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add{{$data->article_title}}">
                                     并入标签
                                 </button>
                                 <!-- Modal2 -->

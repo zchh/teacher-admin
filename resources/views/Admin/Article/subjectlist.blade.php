@@ -66,7 +66,7 @@
                             <td>{{ $data->subject_intro }}</td>
                             <td>{{ $data->subject_create_date }}</td>
                             <td colspan="3">
-                                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#edit{{$data->subject_id}}">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{$data->subject_id}}">
                                     修改
                                 </button>
                                 <!-- Modal -->
@@ -109,8 +109,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-primary" href="/admin_sSubject/{{ $data->subject_id  }}">Delete</a>
-                                <a class="btn btn-info" href="/admin_moreSubject/{{ $data->subject_id }}">详情页</a>
+                                <a class="btn btn-danger btn-sm" href="/admin_sSubject/{{ $data->subject_id  }}">Delete</a>
+                                <a class="btn btn-info btn-sm" href="/admin_moreSubject/{{ $data->subject_id }}">详情页</a>
                             </td>
                             <!--<td><a href="/admin_sSubject/{{ $data->subject_id  }}">Delete</a></td>
                             <td><a class="btn btn-info" href="/admin_moreSubject/{{ $data->subject_id }}">详情页</a></td>-->

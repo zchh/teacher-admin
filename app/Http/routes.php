@@ -129,6 +129,7 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     //Route::post("/admin_uSubject","Admin\ArticleController@_uSubject"); 
     Route::post("/admin_uSubject","Admin\ArticleController@uSubject");        //修改专题（zuo）
     Route::post("/admin_AddArticleToSubject","Admin\ArticleController@AddArticleToSubject");   //添加一篇文章到专题（zuo）
+    Route::post("/admin_AddArticleToSubject2","Admin\ArticleController@AddArticleToSubject2");   //添加一篇文章到专题（zuo）
     Route::get("/admin_RemoveArticleToSubject/{subject_id}/{article_id}","Admin\ArticleController@RemoveArticleToSubject");//从专题移出一篇文章(zuo)
 
 
