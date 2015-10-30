@@ -1,25 +1,28 @@
 @extends("Admin.Article.base")
 @section("main")
 
-<div class="col-md-1">专题详情</div>
+<div class="col-sm-7">
+    <h2>当前专题：{{$subject_by_id->subject_name}}</h2>
+    <hr>
+</div>
 <div class="col-sm-7">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>专题ID</th>
-                <th>专题名</th>
-                <th>专题介绍</th>
-                <th>专题对应文章主题</th>
-                <th>专题对应文章介绍</th>
+                <th>文章ID</th>
+                <th>文章创建日期</th>
+                <th>文章修改日期</th>
+                <th>文章主题</th>
+                <th>文章介绍</th>
                 <th>操作</th>
             </tr>
         </thead>
         @foreach($article_by_subject as $data)
         <tbody>
             <tr>
-                <td>{{ $data->subject_id }}</td>
-                <td>{{ $data->subject_name }}</td>
-                <td>{{ $data->subject_intro }}</td>
+                <td>{{ $data->article_id }}</td>
+                <td>{{ $data->article_create_date }}</td>
+                <td>{{ $data->article_update_date }}</td>
                 <td>{{ $data->article_title }}</td>
                 <td>{{ $data->article_intro }}</td>
                 @if($article_by_subject[0]->article_id != null)

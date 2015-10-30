@@ -14,8 +14,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/routes.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/Admin/UserPower/moreUserPowerGroup.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/Admin/UserPowerController.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/Admin/Article/articlelist.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/Admin/ArticleController.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/test1.blade.php</file>
         </group>
     </open-files>
 </project-private>

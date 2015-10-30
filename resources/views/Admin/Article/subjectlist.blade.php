@@ -52,8 +52,8 @@
                     <thead>
                         <tr>
                             <th>序号</th>
-                            <th>类别名字</th>
-                            <th>此类文章作者</th>
+                            <th>专题名字</th>
+                            <th>此专题文章作者</th>
                             <th>创建日期</th>
                             <th colspan="3">操作</th>
                         </tr>

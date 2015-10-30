@@ -55,6 +55,11 @@ class ArticleController extends Controller {
             //dump($data_by_condition);
             //$data_by_condition = DB::table("base_table")->whereBetween("$input_data['condition']",[$input_data['search'],$date_now])->get();
         }
+        elseif($input_data['condition'] == 'class_name')
+        {
+            
+            $res_data['data_by_condition'] = DB::table("base_article_class")->leftJoin("base_article","class_id","=","article_class")->where("class_name","=",$input_data['search'])->get();
+        }
         //专题信息
         $res_data['subject_data']=DB::table("base_article_subject")->get();
         return view("Admin.Article.conditionlist",$res_data);
@@ -211,6 +216,8 @@ class ArticleController extends Controller {
     //专题详情
     public function moreSubject($subject_id)
     {
+        $input_data['subject_by_id'] = DB::table("base_article_subject")->where("subject_id","=",$subject_id)->first();
+        //dump($input_data);exit();
         //获取当前专题下的所有文章信息
         $input_data['article_by_subject'] = DB::table("base_article_subject")->leftJoin("base_article_re_subject","subject_id","=","relation_subject")->
                 leftJoin("base_article","relation_article","=","article_id")->where("subject_id","=",$subject_id)->get();

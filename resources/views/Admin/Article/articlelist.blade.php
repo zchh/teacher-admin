@@ -1,6 +1,13 @@
 @extends("Admin.Article.base")
 @section("main")
 <!-- 导航条  -->
+    
+       
+
+
+
+
+
 
 <div class="col-sm-10">
     <div class="panel panel-default">
@@ -11,6 +18,7 @@
                 <select class="form-control" name="condition">
                     <option value="article_create_date">日期</option>
                     <option value="article_title">文章主题</option>
+                    <option value="class_name">文章分类</option>
                 </select>
                 <input type="text" class="form-control" name="search" placeholder="Search...">
                 <button type="submit" class="btn btn-info">查询</button>
@@ -128,6 +136,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 分页 -->
+            <?php echo $article_data->render();?>
         </div>
     </div>
 </div>
