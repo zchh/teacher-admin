@@ -9,7 +9,8 @@
   <div class="panel-body">
 
    <h1><p class="text-left">{{$data -> article_title}}</p></h1>
-   <h2><small><p class="text-left">{{$data -> article_update_date}}  by {{$data -> user_username }}</p></small></h2><hr/>
+   <h2><small><p class="text-left">{{$data -> article_update_date}}  by {{$data -> user_username }}</p></small></h2>
+   <hr>
    <h2><small><p class="text-left"><?php echo $data -> article_detail;?></p></small></h2>
      
         <nav class="pull-left">
@@ -19,7 +20,7 @@
               @endif
               @if($nextArticle!=-1 )
                 <li><a href="/user_readSingleArticle/{{$nextArticle}}">下一页 》</a></li>
-               @endif           
+              @endif           
           </ul>
         </nav>
   </div>

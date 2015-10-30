@@ -78,14 +78,14 @@ class ArticleController extends Controller {
             //并入专题成功，提示跳转
             //$data = $base->responseAjax("并入专题成功", "并入专题成功", "<a href='/admin_sArticle' class='btn btn-default'>点击返回</a>");
             //return $data;
-            $base->setRedirectMessage(true, "并入专题成功", "返回", "/admin_sArticle");
+            $base->setRedirectMessage(true, "并入专题成功", "NULL", "/admin_sArticle");
         }
         else
         {
             //并入专题失败，提示跳转
             //$data = $base->responseAjax("操作失败", "操作失败", "<a href='/admin_sArticle' class='btn btn-default'>点击返回</a>");
             //return $data;
-            $base->setRedirectMessage(false, "操作失败", "返回", "/admin_sArticle");
+            $base->setRedirectMessage(false, "操作失败", "NULL", "/admin_sArticle");
         }
         //dump($input_data);
     }

@@ -145,7 +145,7 @@ class PowerController extends Controller {
         {
             DB::table("base_admin")->where("admin_id", "=", $data)->update(["admin_group" => $groupId]);
         }
-        $baseFunc->setRedirectMessage(true, "添加管理员成功！", NULL, NULL);
+        $baseFunc->setRedirectMessage(true, "添加文章成功！", NULL, NULL);
         return redirect()->back();
     }
 

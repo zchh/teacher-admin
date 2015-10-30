@@ -13,6 +13,9 @@ class ArticleController extends Controller
     {
         $articleData = $atcFunc->getUserArticle(session("user.user_id"));
         $inputData["articleData"] = $articleData;
+            $data=DB::table("base_article")
+                ->leftJoin("base_article_class","class_id","=","article_class")
+                ->get();
         session(["nowPage"=>"/user_sArticle"]);
         return view("User.Article.sArticle",$inputData);
     }
@@ -44,8 +47,7 @@ class ArticleController extends Controller
         else
         {
             //$data  = $baseFunc->responseAjax("失败", "无法添加文章", NULL);
-            return "无法添加";
-            
+            return "无法添加";            
         }
         
     }
@@ -91,12 +93,157 @@ class ArticleController extends Controller
             return response()->json(['status' => false, 'message' => '<p class="text-danger">失败，请检查</p>']);
         }
     }
+    public function sSubject()
+    {
+        $data["subjectData"]=DB::table("base_article_subject")->get();
+        session(["nowPage"=>"/user_sSubject"]);
+        return view("User.Article.sSubject",$data);
+    }
+    public function aSubject(BaseFunc $base)
+    {
+        $subjectData = Request::only("subject_name","subject_intro"); 
+        $subjectData['subject_create_date']=date("Y-m-d H:i:s");
+        $subjectData['subject_update_date']=date("Y-m-d H:i:s");
+        $subjectData['subject_user']=session("user.user_id");
+        if(DB::table("base_article_subject")->insert($subjectData))
+        {
+            //添加成功，提示跳转
+            $base->setRedirectMessage(true, "添加专题成功！", null, null);
+            return redirect()->back();
+        }
+        else
+        {
+            //添加失败，提示跳转
+            $base->setRedirectMessage(false, "添加专题失败！", null, null);
+            return redirect()->back();
+        }
+        //dump($subject_add_data);
+    }
+
+    public function uSubject(BaseFunc $baseFunc)
+    {
+        $subjectData = Request::only("subject_name","subject_intro");
+        $subjectId = Request::input("subject_id");
+        $subjectData['subject_name']=$subjectData['subject_name'];
+        $subjectData['subject_update_date']=  date("Y-m-d H:i:s");
+        if(DB::table("base_article_subject")
+                ->where("subject_id","=",$subjectId)
+                ->where("subject_user","=",session("user.user_id"))
+                ->update($subjectData))
+        {
+            //修改成功，提示跳转
+            $baseFunc->setRedirectMessage(true, "修改专题成功！", null, null);
+            return redirect()->back();
+        }
+        else
+        {
+            //修改失败，提示跳转
+            $baseFunc->setRedirectMessage(false, "修改专题失败", null, null);
+            return redirect()->back();
+        }
+        //dump($sunject_update_data);
+    }
     
+    public function dSubject(BaseFunc $baseFunc,$subject_id)
+    {
+        //删除base_article_subject表的指定专题
+        DB::table("base_article_subject")
+                ->where("subject_id","=","$subject_id")
+                 ->where("subject_user","=",session("user.user_id"))
+                ->delete();
+        $baseFunc->setRedirectMessage(true, "删除专题成功！", null, null);
+        return redirect()->back();
+    }
+    
+    public function moreSubject($subject_id)
+    {
+         //获取当前专题下的所有文章信息
+        $moreSubject = DB::table("base_article_subject")
+                ->leftJoin("base_article_re_subject","subject_id","=","relation_subject")
+                ->leftJoin("base_article","relation_article","=","article_id")
+                ->where("subject_id","=",$subject_id)
+                ->get();
+        $inputData['moreSubject'] = $moreSubject;
+        //dump($input_data);
+        $inputData['checkArticle'] = DB::table("base_article")->get();
+        $article_ids=array();
+         foreach ($moreSubject as $value)
+        {
+            $article_ids[]=$value->article_id;
+        }
+       
+        $inputData['article_ids']=$article_ids;
+        return view("User.Article.moreSubject",$inputData);
+    }
+    
+    public function addArticleToSubject(BaseFunc $baseFunc)
+    {
+        $postData = Request::only("subject_id", "article_id_array");
+        if($postData['article_id_array'] == "")
+        {
+          $baseFunc->setRedirectMessage(false, "没有选择文章！", NULL, NULL);
+          return redirect()->back();
+        }
+        foreach ($postData["article_id_array"] as $data) 
+        {
+          DB::table("base_article_re_subject")->insert(["relation_article" => $data, "relation_subject" => $postData["subject_id"]]);
+        }
+        $baseFunc->setRedirectMessage(true, "添加文章成功！", NULL, NULL);
+        return redirect()->back();
+    }
+
+    
+    public function removeArticleToSubject(BaseFunc $baseFunc,$subject_id,$article_id)
+    {
+        DB::table("base_article_re_subject")
+                ->where("relation_subject","=",$subject_id)
+                ->where("relation_article","=",$article_id)
+                ->update(["relation_subject"=>null]);
+        $baseFunc->setRedirectMessage(true, "移除文章成功！", null, null);
+        return redirect()->back();
+    }
+
+    public function sLabel()
+    {
+        $data["labelData"]=DB::table("base_article_label")->get();
+        session(["nowPage"=>"/user_sLabel"]);
+        return view("User.Article.sLabel",$data);
+    }
+    
+    public function aLabel(BaseFunc $baseFunc)
+    {
+        $input_data = Request::only("label_name");
+        $input_data['label_create_date']=date("Y-m-d H:i:s");
+        $input_data['label_update_date']= date("Y-m-d H:i:s");
+        DB::table("base_article_label")->insert($input_data);
+        $baseFunc->setRedirectMessage(true, "添加标签成功！", null, null);
+        return redirect()->back();
+    }
+    
+    public function uLabel(BaseFunc $baseFunc)
+    {
+        $input_data = Request::only("label_id","label_name","label_update_date");
+        $input_data['label_update_date']= date("Y-m-d H:i:s");
+        DB::table("base_article_label")
+                ->where("label_id","=",$input_data['label_id'])
+                ->update($input_data);
+        $baseFunc->setRedirectMessage(true, "标签修改成功",null,null);
+        return redirect()->back();    
+    }
+    
+    public function dLabel(BaseFunc $baseFunc,$label_id)
+    {
+        DB::table("base_article_label")->where("label_id","=",$label_id)->delete();
+        $baseFunc->setRedirectMessage(true, "删除专题成功！", null, null);
+        return redirect()->back();
+    }
+
     public function readAllArticle()
     {
         //获得用户id
          $baseArticle = DB::table('base_article')->get();  //返回值为数组
          $inputData["articleData"] = $baseArticle;
+         session(["nowPage"=>"/user_readAllArticle"]);
          return view("User.Article.readAllArticle",$inputData);
     }
     public function readSingleArticle($article_id)

@@ -26,7 +26,7 @@
                     
                     <li><a href="/admin_sAdmin">管理员权限</a></li>
                     <li><a href="#">用户权限</a></li>
-                    <li><a href="#">文章</a></li>
+                    <li><a href="/admin_sArticle">文章</a></li>
                     <li><a href="#">图片库</a></li>
                     <li><a href="#">文件库</a></li>
                     <li><a href="#">消息</a></li>
