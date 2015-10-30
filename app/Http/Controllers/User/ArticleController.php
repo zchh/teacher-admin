@@ -9,7 +9,7 @@ use GirdPlugins\Base\ArticleFunc;
 class ArticleController extends Controller 
 {
 
-     public function sArticle(ArticleFunc $atcFunc)
+    public function sArticle(ArticleFunc $atcFunc)
     {
         $articleData = $atcFunc->getUserArticle(session("user.user_id"));
         $inputData["articleData"] = $articleData;
