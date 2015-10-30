@@ -196,9 +196,17 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_sImage","User\ImageController@sImage");
     Route::post("/user_aImage","User\ImageController@aImage");
     Route::get("/user_dImage/{image_id}","User\ImageController@dImage");
-    Route::get("/user_uImage","User\ImageController@");
+    Route::get("/user_uImage","User\ImageController@uImage");
     
     
+    
+    
+    //云存储
+    Route::get("/user_sFile","User\FileController@sFile");
+    
+    
+    //测试
+    //Route::get("/user_test","User\FileCOntroller@test");
 
 });
 

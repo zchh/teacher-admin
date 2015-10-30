@@ -32,19 +32,18 @@ class ArticleController extends Controller
     public function _aArticle(ArticleFunc $atcFunc,  BaseFunc $baseFunc)
     {
         
+        
+        
         $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
+        
         if(true == $atcFunc->addArticle($articleData))
         {
-            /*$data = $baseFunc->responseAjax("成功", "成功添加文章", '<script language="javascript" type="text/javascript">
-                window.location.href="/user_sArticle";
-                </script>');*/
-           // $baseFunc->setRedirectMessage(true, "成功添加文章,即将跳转",NULL);
-            return "完成添加";
+            return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
         }
         else
         {
-            //$data  = $baseFunc->responseAjax("失败", "无法添加文章", NULL);
-            return "无法添加";
+           
+           return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
             
         }
         

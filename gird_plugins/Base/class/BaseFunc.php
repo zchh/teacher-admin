@@ -9,7 +9,7 @@ class BaseFunc
     }
     
     
-    /**
+    /**放弃使用！！！
      * 重定向后显示提示信息和按钮
      * @access public
      * @return HTML代码 显示提示信息的html代码，打印在视图中
@@ -31,7 +31,7 @@ class BaseFunc
     
     /**
      * 
-     * 放弃使用！！！
+     * 
      * 
      * 在提交接收页面以后，将错误/正确提示信息保存于session，并在下一页面调用showRedirectMessage()将信息显示在指定位置  
      * @access public

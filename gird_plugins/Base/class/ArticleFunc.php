@@ -43,7 +43,7 @@ class ArticleFunc
         $articleDataDump["article_click"]=0;
         $articleDataDump["article_star"]=0;
         $articleData = array_merge($articleDataDump,$articleData);
-
+        
         $value = DB::table("base_article")->insert($articleData);
         return $value;
         //dump($articleData);
