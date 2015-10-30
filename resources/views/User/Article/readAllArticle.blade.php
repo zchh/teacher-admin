@@ -42,13 +42,15 @@
                         <td>
                           <a class="btn btn-default" href="/user_readSingleArticle/{{$data -> article_id}}">查看详情</a>
                         </td> 
-                        
                     </tr>
                     @endforeach
                 </table>
+                 <?php echo $articleData->render(); ?>
             </div>
             
            
         </div>
+                         
+                          
         
 @stop

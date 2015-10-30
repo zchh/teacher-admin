@@ -9,8 +9,10 @@ use GirdPlugins\Base\ArticleFunc;
 class ArticleController extends Controller 
 {
 
+
     public function sArticle(ArticleFunc $atcFunc)
     {
+
         $articleData = $atcFunc->getUserArticle(session("user.user_id"));
         $inputData["articleData"] = $articleData;
         session(["nowPage"=>"/user_sArticle"]);
@@ -30,9 +32,7 @@ class ArticleController extends Controller
         
     }
     public function _aArticle(ArticleFunc $atcFunc,  BaseFunc $baseFunc)
-    {
-        
-        
+    {        
         
         $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
         
@@ -44,6 +44,7 @@ class ArticleController extends Controller
         {
            
            return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
+
             
         }
         
@@ -93,14 +94,18 @@ class ArticleController extends Controller
     
     public function readAllArticle()
     {
+
+        session(["nowPage"=>"/user_readAllArticle"]);
         //获得用户id
-         $baseArticle = DB::table('base_article')->get();  //返回值为数组
+         $baseArticle = DB::table('base_article')->paginate(5);  //返回值为数组
          $inputData["articleData"] = $baseArticle;
          return view("User.Article.readAllArticle",$inputData);
     }
     public function readSingleArticle($article_id)
     {
-        
+
+         session(["nowPage"=>null]);
+
         //获取文章id，在页面输出这个id对应的各种内容
         // $inputData["articleData"] = DB::table('base_article')->get();  //返回值为数组，数组中包含多个类对象，一个对象为一个记录
          
@@ -126,8 +131,9 @@ class ArticleController extends Controller
         $i==0? $combine["previousArticle"]=-1 :$combine["previousArticle"]=$combine["articleData"][$i-1]->article_id;
         $combine["record"] = $record;
         
-         return view("User.Article.readSingleArticle",$combine);   
-         
+
+         return view("User.Article.readSingleArticle",$combine);    
+
          
          
     }
@@ -140,5 +146,4 @@ class ArticleController extends Controller
 
     
 
-    
 
