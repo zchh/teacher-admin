@@ -185,23 +185,23 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::post("/user_uClass","User\ClassController@uClass");//更新,update
     Route::get("/user_dClass/{class_id}","User\ClassController@dClass");//删除,delete
 
+   //文章专题
+    Route::get("/user_sSubject","User\ArticleController@sSubject");//查看专题
+    Route::post("/user_aSubject","User\ArticleController@aSubject");//添加专题
+    Route::post("/user_uSubject","User\ArticleController@uSubject");//修改专题
+    Route::get("/user_dSubject/{subject_id}","User\ArticleController@dSubject");//删除专题
     
-    //文章专题
-    Route::get("/user_sSubject","User\SubjectController@sSubject");//查找专题
-    Route::post("/user_aSubject","User\SubjectController@aSubject");//添加专题
-    Route::post("/user_dSubject\{subject_id}","User\SubjectController@dSubject");//删除专题
+    Route::get("/user_moreSubject/{subject_id}","User\ArticleController@moreSubject");//专题详情
+    Route::post("/user_addArticleToSubject","User\ArticleController@addArticleToSubject");//从专题添加文章
+    Route::get("/user_removeArticleToSubject/{subject_id}/{article_id}","User\ArticleController@removeArticleToSubject");//从专题移出文章
+    Route::get("/user_updatePositionInSubject","User\ArticleController@updatePositionInSubjec");//修改文章在专题的位置
     
-    Route::get("/user_moreSubject","User\SubjectController@moreSubject");//专题详情
-    Route::get("/user_addArticleToSubject","User\SubjectController@addArticleToSubject");//从专题添加文章
-    Route::get("/user_removeArticleToSubject","User\SubjectController@removeArticleToSubject");//从专题移出文章
-    Route::get("/user_updatePositionInSubject","User\SubjectController@updatePositionInSubjec");//修改文章在专题的位置
-    Route::get("/user_uSubject","User\SubjectController@user_uSubject");//修改专题
     
     //标签
-    Route::get("/user_sLabel","User\LabelController@sLabel");
-    Route::post("/user_aLabel","User\LabelController@aLabel");
-    Route::post("/user_uLabel","User\LabelController@uLabel");
-    Route::get("/user_dLabel/{label_id}","User\LabelController@dLabel");
+    Route::get("/user_sLabel","User\ArticleController@sLabel");//查看标签
+    Route::post("/user_aLabel","User\ArticleController@aLabel");//添加标签
+    Route::post("/user_uLabel","User\ArticleController@uLabel"); //修改标签
+    Route::get("/user_dLabel/{label_id}","User\ArticleController@dLabel"); //删除标签
     
     
     
@@ -224,6 +224,4 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
 
 
 });
-
-
 

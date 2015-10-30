@@ -7,7 +7,7 @@
         <div class="col-sm-8">
             <div class="panel panel-default">
                      <div class="panel-body">
-                         <h2>查看文章</h2>
+                         <h2>查看文章 | <a href="/user_aArticle" class="btn  btn-primary" >添加文章</a></h2>
                          <hr/>
 
 
@@ -18,8 +18,7 @@
                                         <th>文章标题</th>
                                         <th>创建日期</th>
                                         <th>更改日期</th>
-                                        <th>类别</th>
-                                        <th>隶属专题</th>
+                                        <th>类别</th>                                        
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -31,11 +30,8 @@
                                         <td>{{ $data->article_create_date }}</td>
                                         <td>{{ $data->article_update_date }}</td>
                                         <td>{{ $data->article_class }}</td>
-                                        <td>x</td>
-
-
                                         <td>
-                                            <a href="/user_uArticle/{{$data->article_id}}" class="btn btn-default">修改</a>
+                                            <a href="/user_uArticle/{{$data->article_id}}" class="btn btn-warning btn-sm">修改</a>
                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#del_{{$data->article_id}}">
                                                删除
                                             </button>
@@ -46,16 +42,16 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel">删除</h4>
+                                                            <h4 class="modal-title" id="myModalLabel">警告!</h4>
                                                         </div>
                                                         <form class="form-horizontal" action="/admin_AddArticleToSubject" method="post">
                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                             <div class="modal-body">
-                                                                <h3>确定要删除吗？</h3>
+                                                                将要删除此文章!
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                                                <a type="button" class="btn btn-danger" href="/user_dArticle/{{$data->article_id}}">确定</a>
+                                                                <a type="button" class="btn btn-danger" href="/user_dArticle/{{$data->article_id}}">删除</a>
                                                             </div>
                                                         </form>
                                                     </div>
