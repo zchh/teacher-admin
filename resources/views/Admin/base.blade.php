@@ -23,11 +23,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                    
                     <li><a href="/admin_sAdmin">管理员权限</a></li>
-                    <li><a href="/admin_sPower">用户权限</a></li>
+                    <li><a href="/admin_sUser">用户权限</a></li>
                     <li><a href="/admin_sArticle">文章</a></li>
-                    <li><a href="/admin_sImage">图片库</a></li>
+                    <li><a href="#">图片库</a></li>
                     <li><a href="#">文件库</a></li>
                     <li><a href="#">消息</a></li>
                    
@@ -40,6 +39,7 @@
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
            </nav>   
+
 
 
 @section("left_nav")

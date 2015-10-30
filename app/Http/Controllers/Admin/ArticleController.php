@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-class ArticleController extends Controller { 
+class ArticleController extends Controller {
+    
     /*public function te(BaseFunc $base)
     {  
        
@@ -54,38 +55,101 @@ class ArticleController extends Controller {
             //dump($data_by_condition);
             //$data_by_condition = DB::table("base_table")->whereBetween("$input_data['condition']",[$input_data['search'],$date_now])->get();
         }
+        elseif($input_data['condition'] == 'class_name')
+        {
+            
+            $res_data['data_by_condition'] = DB::table("base_article_class")->leftJoin("base_article","class_id","=","article_class")->where("class_name","=",$input_data['search'])->get();
+        }
         //专题信息
         $res_data['subject_data']=DB::table("base_article_subject")->get();
         return view("Admin.Article.conditionlist",$res_data);
         //dump($data_by_condition);
     }
-    //添加文章(这个函数是把添加文章时的选项数据显示出来)
-    public function aArticle()
+    //添加文章(这个函数是添加文章到专题)
+    public function AddArticleToSubject2(BaseFunc $base)
     {
-        //把所有的文章类别查询出来显示在option中
-        $input_data['article_class_data'] = DB::table("base_article_class")->get();
-        //把所有的文章专题查询出来显示在option中
-        $input_data['article_subject_data'] = DB::table("base_article_subject")->get();;
+        $input_data = Request::only("subject_id","article_id_array");
+        foreach ($input_data['article_id_array'] as $article_id) 
+        {
+            if(DB::table("base_article_re_subject")->where("relation_article","=",$article_id)
+                ->where("relation_subject","=",$input_data['subject_id'])
+                ->get())//判断文章是否已有专题
+                {
+                    if(DB::table("base_article_re_subject")->where("relation_article","=",$article_id)
+                        ->update(["relation_subject"=>$input_data['subject_id']])
+                        )
+                    {
+                        //并入专题成功，提示跳转
+                        $base->setRedirectMessage(true, "并入专题成功", null, null);
+                        return redirect()->back();
+                    }
+                    else
+                    {
+                        //并入专题失败，提示跳转
+                        $base->setRedirectMessage(false, "操作失败", null, null);
+                        return redirect()->back();
+                    }
+                }
+                else
+                {
+                    //没有专题，就添加专题
+                    if(DB::table("base_article_re_subject")->insert(["relation_subject"=>$input_data['subject_id'], "relation_article"=>$article_id]))
+                    {
+                        //成功
+                        $base->setRedirectMessage(true, "并入专题成功", null, null);
+                        return redirect()->back();
+                    }
+                    else
+                    {
+                        //失败
+                        $base->setRedirectMessage(false, "并入专题失败",  null, null);
+                        return redirect()->back();
+                    }
+                }
+        }
     }
     //接收表单把文章并入到一个专题
     public function AddArticleToSubject(BaseFunc $base)
     {
         $input_data = Request::only("article","subject");
+        $insert_data['relation_article'] = $input_data['article'];
+        $insert_data['relation_subject'] = $input_data['subject'];
         if(DB::table("base_article_re_subject")->where("relation_article","=",$input_data['article'])
+                ->where("relation_subject","=",$input_data['subject'])
+                ->get())//判断文章是否已有专题
+        {
+            if(DB::table("base_article_re_subject")->where("relation_article","=",$input_data['article'])
                 ->update(["relation_subject"=>$input_data['subject']])
                 )
-        {
-            //并入专题成功，提示跳转
-            //$data = $base->responseAjax("并入专题成功", "并入专题成功", "<a href='/admin_sArticle' class='btn btn-default'>点击返回</a>");
-            //return $data;
-            $base->setRedirectMessage(true, "并入专题成功", "返回", "/admin_sArticle");
+            {
+                //并入专题成功，提示跳转
+                //$data = $base->responseAjax("并入专题成功", "并入专题成功", "<a href='/admin_sArticle' class='btn btn-default'>点击返回</a>");
+                //return $data;
+                $base->setRedirectMessage(true, "并入专题成功", "返回", "/admin_sArticle");
+            }
+            else
+            {
+                //并入专题失败，提示跳转
+                //$data = $base->responseAjax("操作失败", "操作失败", "<a href='/admin_sArticle' class='btn btn-default'>点击返回</a>");
+                //return $data;
+                $base->setRedirectMessage(false, "操作失败", "返回", "/admin_sArticle");
+            }
         }
         else
         {
-            //并入专题失败，提示跳转
-            //$data = $base->responseAjax("操作失败", "操作失败", "<a href='/admin_sArticle' class='btn btn-default'>点击返回</a>");
-            //return $data;
-            $base->setRedirectMessage(false, "操作失败", "返回", "/admin_sArticle");
+            //没有专题，就添加专题
+            if(DB::table("base_article_re_subject")->insert($insert_data))
+            {
+                //成功
+                $base->setRedirectMessage(true, "并入专题成功", null, null);
+                return redirect()->back();
+            }
+            else
+            {
+                //失败
+                $base->setRedirectMessage(false, "并入专题失败",  null, null);
+                return redirect()->back();
+            }
         }
         //dump($input_data);
     }
@@ -142,18 +206,20 @@ class ArticleController extends Controller {
         //dump($sunject_update_data);
     }
     //根据$subject_id删除指定专题
-    public function dSubject($subject_id)
+    public function dSubject(BaseFunc $base,$subject_id)
     {
         //删除base_article_subject表的指定专题
         if(DB::table("base_article_subject")->where("subject_id","=","$subject_id")->delete())
         {
             //return  response()->json(['status'=>'true','message'=>'删除成功']);
-            echo "<script>window.alert('删除成功');window.location.href('/admin_sSubject');</script>";
+            $base->setRedirectMessage(true, "删除专题成功", null, null);
+            return redirect()->back();
             //删除成功后再删除base_article_re_subject
         }
         else
         {
-            echo "<script>window.alert('删除失败');window.location.href('/admin_sSubject');</script>";
+            $base->setRedirectMessage(false, "添加专题失败", null, null);
+            return redirect()->back();
             //return  response()->json(['status'=>'false','message'=>'删除失败']);
         }
     }
@@ -185,10 +251,21 @@ class ArticleController extends Controller {
     //专题详情
     public function moreSubject($subject_id)
     {
+        //获取所有的文章
+        $input_data['all_article_data'] = DB::table("base_article")->get();
+        $input_data['subject_by_id'] = DB::table("base_article_subject")->where("subject_id","=",$subject_id)->first();
+        //dump($input_data);exit();
         //获取当前专题下的所有文章信息
-        $input_data['article_by_subject'] = DB::table("base_article_subject")->leftJoin("base_article_re_subject","subject_id","=","relation_subject")->
+        $article_by_subject = DB::table("base_article_subject")->leftJoin("base_article_re_subject","subject_id","=","relation_subject")->
                 leftJoin("base_article","relation_article","=","article_id")->where("subject_id","=",$subject_id)->get();
-        //dump($input_data);
+        $article_ids = array();
+        foreach ($article_by_subject as $value) 
+        {
+           $article_ids[]=$value->article_id;
+        }
+        $input_data['article_ids']=$article_ids;
+        //dump($article_ids);exit();
+        $input_data['article_by_subject']=$article_by_subject;
         return view("Admin.Article.moresubject",$input_data);
     }
     
@@ -298,7 +375,9 @@ class ArticleController extends Controller {
         $input_data = Request::only("article_id","label_id");
         $insert_data['relation_article']=$input_data['article_id'];
         $insert_data['relation_label']=$input_data['label_id'];
-        if(DB::table("base_article_re_label")->where("relation_article","=",$input_data['article_id'])->get())//判断文章是否已有标签
+        if(DB::table("base_article_re_label")->where("relation_article","=",$input_data['article_id'])
+                ->where("relation_label","=",$input_data['label_id'])
+                ->get())//判断文章是否已有标签
         {
             //此文章有了标签就执行修改
             if(DB::table("base_article_re_label")->where("relation_article","=",$input_data['article_id'])
@@ -333,5 +412,65 @@ class ArticleController extends Controller {
         }
         //dump($_POST);
     }
-
+    /*
+     * 
+     * 文章分类部分
+     */
+    //查看所有分类
+    public function sClass()
+    {
+        $input_data['class_data'] = DB::table("base_article_class")->orderBy("class_create_date","desc")->paginate(3);
+        //dump($input_data);
+        return view("Admin.Article.sClass",$input_data);
+    }
+    //修改类别
+    public function uClass(BaseFunc $base)
+    {
+        $input_data = Request::only("class_id","class_name");
+        if(DB::table("base_article_class")->where("class_id","=",$input_data['class_id'])->update($input_data))
+        {
+            //成功
+            $base->setRedirectMessage(true, "修改分类成功", null, null);
+            return redirect()->back();
+        }
+        else
+        {
+            //失败
+            $base->setRedirectMessage(false, "修改分类失败", null, null);
+            return redirect()->back();
+        }
+    }
+    //删除类别
+    public function dClass(BaseFunc $base,$class_id)
+    {
+        if(DB::table("base_article_class")->where("class_id","=",$class_id)->delete())
+        {
+            //成功
+            $base->setRedirectMessage(true, "删除成功", null, null);
+            return redirect()->back();
+        }
+        else
+        {
+            //失败
+            $base->setRedirectMessage(false, "删除成功", null, null);
+            return redirect()->back();
+        }
+    }
+    //添加分类
+    public function aClass(BaseFunc $base)
+    {
+        $input_data = Request::only("class_name");
+        if(DB::table("base_article_class")->insert($input_data))
+        {
+            //成功
+            $base->setRedirectMessage(true, "添加分类成功", null, null);
+            return redirect()->back();
+        }
+        else
+        {
+            //失败
+            $base->setRedirectMessage(false, "添加分类失败", null, null);
+            return redirect()->back();
+        }
+    }
 }

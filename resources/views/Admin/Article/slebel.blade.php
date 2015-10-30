@@ -33,12 +33,10 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <!-- Button trigger modal -->
-            <div class="navbar-form navbar-right">
-                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+
+            <h2 class="sub-header">文章标签列表 | <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
                     添加标签
-                </button>
-            </div>
-            <h2 class="sub-header">文章标签列表</h2><hr>
+                </button></h2><hr>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -89,14 +87,14 @@
                                                     </div>
                                                 </form>
                                             </div>
- 
+
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit_label{{$data->label_id}}">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_label{{$data->label_id}}">
                                     编辑
                                 </button>
-                                <a class="btn btn-primary" href="/admin_dLebel/{{$data->label_id}}">Delete</a>
+                                <a class="btn btn-danger btn-sm" href="/admin_dLebel/{{$data->label_id}}">Delete</a>
                             </td>
                         </tr>
                         @endforeach
