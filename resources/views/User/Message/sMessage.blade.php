@@ -1,40 +1,38 @@
-@extends("User.Article.base")
+@extends("User.Message.base")
 @section("main")
 
 
 <div class="col-sm-8">
     <div class="panel panel-default">
         <div class="panel-body">
-            <h2>查看类别</h2>
+            <h2>查看消息箱</h2>
             <hr/>
 
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>用户</th>
-                        <th>创建日期</th>
-                        <th>更改日期</th>
-                        <th>类名</th>
+                        <th>消息标题</th>
+                        <th>消息内容</th>
+                        <th>消息创建时期</th>
+                        <th>消息接收者</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ($userArticleClass as $articleClass)   
-                    @if ($userId == $articleClass -> class_user)
+                    @foreach ($base_message as $single)   
+                    @if ($send_user == $single -> message_send_user)
                     <tr>
-                        <td>{{$articleClass -> class_id}}</td>
-                        <td>{{$articleClass -> user_nickname}}</td>
-                        <td>{{$articleClass -> class_create_date}}</td>
-                        <td>{{$articleClass -> class_update_date}}</td>
-                        <td>{{$articleClass -> class_name}}</td>
+                        <td>{{$single -> message_title}}</td>
+                        <td>{{$single -> message_data}}</td>
+                        <td>{{$single -> message_create_date}}</td>
+                        <td>{{$single -> user_username }}</td>
                         <td>
 
-                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete_{{$articleClass -> class_id}}">
+                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete_">
                                 删除
                             </button>
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#update_{{$articleClass -> class_id}}">
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#update_">
                                 修改
                             </button>
 
@@ -46,7 +44,7 @@
                             <!-- Button trigger modal -->
 
                             <!-- Modal -->
-                            <div class="modal fade" id="delete_{{$articleClass -> class_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal fade" id="delete_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -57,7 +55,7 @@
                                             确定要删除吗？               
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="/user_dClass/{{$articleClass -> class_id}}" class="btn btn-danger" name="delete">确定删除</a>
+                                            <a href="/user_dClass/" class="btn btn-danger" name="delete">确定删除</a>
 
                                         </div>
                                     </div>
@@ -70,7 +68,7 @@
                             <!-- Button trigger modal -->
 
                             <!-- Modal -->
-                            <div class="modal fade" id="update_{{$articleClass -> class_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal fade" id="update_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -82,8 +80,8 @@
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <div class="form-group">
                                                     <label for="exampleInputFile">类名</label>
-                                                    <input type="text" class="form-control" id="exampleInputPassword1" name="class_name" value="{{$articleClass -> class_name}}">
-                                                    <input type="hidden" value="{{$articleClass -> class_id}}" name="class_id">
+                                                    <input type="text" class="form-control" id="exampleInputPassword1" name="class_name" value="">
+                                                    <input type="hidden" value="" name="class_id">
                                                 </div>
                                         </div>
                                         <div class="modal-footer">
@@ -99,9 +97,8 @@
 
                         </td>
                     </tr>
-                    @endif
-                    @endforeach
-
+                  @endif
+                  @endforeach
                 </tbody>
             </table>
 
@@ -122,14 +119,18 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel"><h1>添加类别</h1></h4>
+                            <h4 class="modal-title" id="myModalLabel"><h1>添加消息信息</h1></h4>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="/user_aClass">
+                            <form method="post" action="/user_aMessage">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    <label for="exampleInputFile">类名</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" name="class_name">
+                                    <label for="exampleInputFile">消息接收者</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" name="message_recv_user">
+                                    <label for="exampleInputFile">消息标题</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" name="message_title">
+                                    <label for="exampleInputFile">消息内容</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" name="message_data">
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -143,16 +144,9 @@
     </div>
 </div>
 <div class="col-sm-8 col-md-offset-2" >
-    <?php echo $userArticleClass->render(); ?>  
+   
 </div>
 
+
 @stop
-
-
-
-
-
-
-
-
 

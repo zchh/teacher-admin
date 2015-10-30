@@ -10,34 +10,41 @@
 
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>图片名</th>
-                        <th>图片介绍</th>
-                        <th>图片路径</th>
-                        <th>图片格式</th>
-                        <th>图片用户名</th>
-                        <th>操作</th>
-                    </tr>
+                 
                 </thead>
                 <tbody>
 
                     @foreach($base_image as  $data)
-                    <tr>
-                        <td>{{$data->image_id}}</td>
-                        <td>{{$data -> image_name}}</td>
-                        <td>{{$data -> image_intro}}</td>
-                        <td>{{$data -> image_path}}</td>
-                        <td>{{$data -> image_format}}</td>
-                        <td>{{$data -> user_username}}</td>
-                        <td>
+                 
+                     
 
-                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete_{{ $data->image_id}}">
-                                删除
-                            </button>
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#update_{{ $data->image_id}}">
-                                修改
-                            </button>
+                            
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <img src="{{$data -> image_path}}" alt="...">
+                                        <div class="caption">
+                                            <h3>{{$data -> image_name}}</h3>
+                                            <p>{{$data -> image_intro}}</p>
+                                            <p>
+                                                <a type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete_{{ $data->image_id}}">
+                                                    删除
+                                                </a>
+                                                <a type="button" class="btn btn-default" data-toggle="modal" data-target="#update_{{ $data->image_id}}">
+                                                    修改
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+
+
+
+                  
+
+                        
+
+                    
 
 
 
@@ -57,10 +64,13 @@
                                         <div class="modal-body">
                                             确定要删除吗？               
                                         </div>
-                                        <div class="modal-footer">
-                                            <a href="/user_dImage/{{ $data->image_id}}" class="btn btn-danger" name="delete">确定删除</a>
+                                        <form>
 
-                                        </div>
+                                            <div class="modal-footer">
+                                                <a href="/user_dImage/{{ $data->image_id}}" class="btn btn-danger" name="delete">确定删除</a>
+
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -85,11 +95,11 @@
                                                     <div>
                                                         <label for="exampleInputFile">图片名</label>
                                                         <?php echo "<br/> "; ?>
-                                                        <input type="text" id="exampleInputFile" name="image_user_name" value="{{$data -> image_name}}">   
+                                                        <input type="text" class="form-control" name="image_user_name" value="{{$data -> image_name}}">   
                                                     </div>
                                                     <div>
                                                         <label for="exampleInputFile">图片介绍</label>
-                                                        <textarea class="form-control" rows="2" name="image_intro" value="{{$data -> image_intro}}"></textarea> 
+                                                        <textarea class="form-control" rows="2" name="image_intro" >{{$data -> image_intro}}</textarea> 
                                                     </div>
 
                                                     <input type="hidden" value="{{$data -> image_id}}" name="image_id">
@@ -106,8 +116,7 @@
 
 
 
-                        </td>
-                    </tr>
+                     
 
                     @endforeach
                 </tbody>
@@ -140,6 +149,11 @@
                                 <div class="form-group">
                                     <label for="exampleInputFile">请选择你要上传的图片文件</label>
                                     <input type="file" id="exampleInputFile" name="image_file">                              
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">请输入图片名</label>
+                                    <?php echo "<br/>"; ?>
+                                    <input type="text" class="form-control" name="image_name">                              
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">请输入你对上传图片的描述</label>
