@@ -30,7 +30,7 @@
                     <li><a href="#">图片库</a></li>
                     <li><a href="#">文件库</a></li>
                     <li><a href="/admin_sMessage">消息</a></li>
-                   
+                    <li><a href="/admin_sIndex">前台管理</a></li>
                   </ul>
                  
                    <ul class="nav navbar-nav navbar-right">

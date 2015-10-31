@@ -1,83 +1,50 @@
 @extends("Index.base")
 
-@section("left_nav")
-     <div class="col-sm-2">
-         <ul class="list-group">
-                <li class="list-group-item">
-                  <span class="badge">14</span>
-                  Cras justo odio
-                </li>
-                <li class="list-group-item">
-                  <span class="badge">14</span>
-                  Cras justo odio
-                </li>
-                <li class="list-group-item">
-                  <span class="badge">14</span>
-                  Cras justo odio
-                </li>
-                <li class="list-group-item">
-                  <span class="badge">14</span>
-                  Cras justo odio
-                </li>
-              </ul>
-     </div>
-@stop
-
-
 @section("main")
-     <div class="col-sm-10">
-        <div class="col-sm-12 " style="background-color:#58646F;height:100px">
-            <div class="col-sm-12" style="height:10px"></div>
-            <div class="col-sm-12">
-                <ul class="nav nav-pills" role="tablist">
-                    <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
-                    <li role="presentation"><a href="#">Profile</a></li>
-                    <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
-                </ul>
-            </div>
-        </div>
-        
-         <div class="col-sm-2" >
-              
-        </div>
-         
-          <div class="col-sm-10">
-              <div class="col-sm-12" style="height:10px"></div>
-                <div class="col-sm-3">
-                  <div class="thumbnail">
-                    <img src="..." alt="...">
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p>...</p>
-                      <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+  <div class="col-sm-12">
+     <div class="panel panel-default">
+         <div class="panel-body">
+                     不知道干嘛
+          </div>
+    </div>
+  </div>
+  <div class="col-sm-9" >
+     <div class="panel panel-default">
+         <div class="panel-body" style="background-color: gray">
+             @foreach($articleData as $data)
+             <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">{{$data->article_title}}</h3>
+                        </div>
+                        <div class="panel-body">
+                         {{$data->article_intro}}
+                         <hr/>
+                         <a href="" class="btn btn-default">查看详情</a>
+                        </div>
                     </div>
-                  </div>
-                </div>
+             </div>
              
+             @endforeach
+
+          </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+     <div class="panel panel-default">
+         <div class="panel-body">
               
-                <div class="col-sm-3 ">
-                  <div class="thumbnail">
-                    <img src="..." alt="...">
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p>...</p>
-                      <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                    </div>
-                  </div>
-                </div>
+             <br/>
+              这低下应该是热门推荐  ，在后台设置<br>
+              <a href="/index_findArticle">查找文章</a><br>
+              <a href="/index_articleDetail">文章细节</a><br>
+              <a href="/index_sArticle">查看一堆文章</a><br>
+              <a href="/index_userIndex">用户首页</a><br>
+              <a href="/index_sSubject">查看一堆专题</a><br>
+              <a href="/index_moreSubject">查看一个专题的详情</a><br>
+              <hr/>
               
-              
-                <div class="col-sm-3">
-                  <div class="thumbnail">
-                    <img src="..." alt="...">
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p>...</p>
-                      <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                    </div>
-                  </div>
-                </div>
-              
-        </div>
-     </div>
+          </div>
+    </div>
+  </div>
 @stop

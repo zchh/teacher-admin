@@ -7,14 +7,36 @@
 Route::get("/user_login","User\BaseController@login");
 Route::get("/user_logout","User\BaseController@logout");
 Route::post("/_user_login","User\BaseController@_login");
+
+
+//用户注册 10/31
+Route::get("/user_register","User\BaseController@register");        //交由张池完成 10/31
+Route::post("/_user_register","User\BaseController@_register");     //交由张池完成 10/31
+
+
+
+
 Route::group(['middleware' => ['LoginUserCheck']],function()
 {
-    Route::get("/user_index","User\BaseController@index");
-    Route::get("/user_logout","User\BaseController@logout");
+    
+    //用户中心 10/31 wjt
+    Route::get("/user_index","User\BaseController@index");      //主页
+    
+    Route::get("/user_logout","User\BaseController@logout");    //登出
+    
+    Route::get("/user_sInfo","User\BaseController@sInfo");          //用户信息
+    Route::post("/_user_uInfo","User\BaseController@_sInfo");       //修改用户信息
     
     
-
-
+    
+    //关注人10/31   wjt
+    Route::get("/user_sFocus","User\FriendController@sFocus");                       //查看关注人
+    Route::get("/user_aFocus/{id}","User\FriendController@aFocus");                 //添加关注人
+    Route::get("/user_dFocus/{id}","User\FriendController@dFocus");                  //删除关注人
+    Route::get("/user_sFocusArticle","User\FriendController@sFocusArticle");        //查看关注人有哪些动态
+    
+    
+    
     //用户文章  完成
     Route::get("/user_sArticle","User\ArticleController@sArticle");
     Route::get("/user_dArticle/{article_id}","User\ArticleController@dArticle");
