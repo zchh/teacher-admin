@@ -22,8 +22,8 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                           <ul class="nav navbar-nav">
 
-                            <li><a href="/admin_login">管理员级登陆</a></li>
-                            <li><a href="/user_login">用户级登陆</a></li>
+                            <li><a href="/admin_index">管理员级界面</a></li>
+                            <li><a href="/user_index">用户级界面</a></li>
                                
 
 

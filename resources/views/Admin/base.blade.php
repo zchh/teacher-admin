@@ -29,14 +29,24 @@
                     <li><a href="/admin_sArticle">文章</a></li>
                     <li><a href="#">图片库</a></li>
                     <li><a href="#">文件库</a></li>
-                    <li><a href="#">消息</a></li>
+                    <li><a href="/admin_sMessage">消息</a></li>
                    
                   </ul>
                  
-                  <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/admin_logout">登出</a></li>
-                    
-                  </ul>
+                   <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                个人操作<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/">回到用户前端</a></li>
+                                <li><a href="/admin_info">个人信息</a></li>
+                                <li><a href="/admin_logout">登出</a></li>
+
+                            </ul>
+
+                        </li>
+                 </ul>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
            </nav>   

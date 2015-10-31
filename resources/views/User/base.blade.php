@@ -78,7 +78,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        个人设置<span class="caret"></span>
+                        个人操作<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="/">回到用户前端</a></li>
