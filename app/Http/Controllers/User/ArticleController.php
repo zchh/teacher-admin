@@ -250,7 +250,7 @@ class ArticleController extends Controller
          session(["nowPage"=>"/user_readAllArticle"]);
          return view("User.Article.readAllArticle",$inputData);
     }
-    public function readSingleArticle($article_id)
+    public function readSingleArticle(ArticleFunc $articleFunc, $article_id)
     {
 
          session(["nowPage"=>null]);
@@ -280,8 +280,9 @@ class ArticleController extends Controller
         $i==0? $combine["previousArticle"]=-1 :$combine["previousArticle"]=$combine["articleData"][$i-1]->article_id;
         $combine["record"] = $record;
         
-
-         return view("User.Article.readSingleArticle",$combine);    
+        
+        $combine["replyData"] = $articleFunc->getArticleReply($article_id);
+        return view("User.Article.readSingleArticle",$combine);    
 
          
          

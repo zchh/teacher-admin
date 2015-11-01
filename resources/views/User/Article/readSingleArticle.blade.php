@@ -23,12 +23,19 @@
               @endif           
           </ul>
         </nav>
+        <hr/>
+        <?php echo $replyData; ?>
+
+
   </div>
   </div> 
  </div>
  <div class="col-md-2"></div>
  @endif
- @endforeach      
+ @endforeach  
+ 
+
+ 
 @stop
 
 

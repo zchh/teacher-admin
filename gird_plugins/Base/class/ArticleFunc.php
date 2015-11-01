@@ -114,19 +114,70 @@ class ArticleFunc
         return DB::table("base_article")->where("article_id","=",$detailId)->first();
     }
     
-    
-     /*
-     * 修改一篇文章
+    /*
+     * 获取一篇文章的评论
      * @access public
-     * @param array $articleData 文章类容数组
+     * @param string $articleId  获取的文章ID
      * 
-     * @return bool
+     * 
+     * @return html 界面 
      *      */
-    public function updateArticleDetail($articleData)
+    public function getArticleReply($articleId)
     {
+        $replyData = DB::table("base_article_reply")->where("reply_article","=",$articleId)
+                ->join("base_reply_relation","relation_child","=","reply_id")->get();//先查出该文章的所有节点和关系
+       // dump($replyData);
+        if($replyData == NULL){return NULL;}
+        
+        
+        $rootReply=[];
+        foreach($replyData as $key => $data)
+        {
+            if($data->relation_parent == NULL)
+            {
+                $rootReply[] =$data;
+                unset($replyData[$key]);  
+               
+            }
+            
+        }
+        
+        
+        $gui="";
+        foreach($rootReply as $data)
+        {
+            //$gui .= "<div class='col-sm-12 well'>";//界面html代码
+            $inputData["reply_data"] = $data;
+            $inputData["son"] = &$this->buildReplyTree($data->reply_id, $replyData);
+            $gui.=view("Base::reply",$inputData);
+  
+        }
+        
+        $inputData["article_id"] = $articleId;
+        $gui.=view("Base::aReply",$inputData);
+        
+        return $gui;
+       
         
     }
     
-  
+    private function &buildReplyTree($parent, &$replyData)
+    {
+        $gui="";
+        foreach($replyData as $key=>$data)
+        {
+            if($data->relation_parent == $parent )
+            {
+                $inputData["reply_data"] = $data;
+                $inputData["son"] = & $this -> buildReplyTree($data->reply_id, $replyData);
+                $gui.=view("Base::reply",$inputData);
+                unset($replyData[$key]); 
+            }
+        }
+        
+        return $gui;
+       
+    }
+    
 
 }
