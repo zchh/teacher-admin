@@ -1,34 +1,35 @@
 <?php
+
 namespace GirdPlugins\Base;
+
 use \Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-class BaseFunc
-{
+
+class BaseFunc {
+
     public function __construct() {
         
     }
-    
-    
-    /**放弃使用！！！
+
+    /*     * 放弃使用！！！
      * 重定向后显示提示信息和按钮
      * @access public
      * @return HTML代码 显示提示信息的html代码，打印在视图中
      * 
      * 在本次项目中已经添加到base.blade.php中，你只需要调用setRedirectMessage设置信息即可
      */
-    public function showRedirectMessage()
-    {
-        if(Session::get("__Ajax_RedirectFunc_have")!=true)
-        {
+
+    public function showRedirectMessage() {
+        if (Session::get("__Ajax_RedirectFunc_have") != true) {
             return NULL;
         }
-        Session::put("__Ajax_RedirectFunc_have",false);
-        $input_data["status"]=Session::get('__Ajax_RedirectFunc_status');
-        $input_data["message"]=Session::get('__Ajax_RedirectFunc_message');
+        Session::put("__Ajax_RedirectFunc_have", false);
+        $input_data["status"] = Session::get('__Ajax_RedirectFunc_status');
+        $input_data["message"] = Session::get('__Ajax_RedirectFunc_message');
         $input_data["plugin"] = Session::get('__Ajax_RedirectFunc_plugin');
-        return view("Base::showRedirectMessage",$input_data);
+        return view("Base::showRedirectMessage", $input_data);
     }
-    
+
     /**
      * 
      * 
@@ -41,23 +42,20 @@ class BaseFunc
      * @param string $redirect  如果需要顺便跳转到某个页面，可以将其url填入，如果为空，则忽略不跳转
      * @return NULL/直接跳转
      */
-    public function setRedirectMessage($status,$message,$plugin,$redirect=NULL)
-    {
-        Session::put("__Ajax_RedirectFunc_have",true);
+    public function setRedirectMessage($status, $message, $plugin, $redirect = NULL) {
+        Session::put("__Ajax_RedirectFunc_have", true);
         Session::flash('__Ajax_RedirectFunc_status', $status);
         Session::flash('__Ajax_RedirectFunc_message', $message);
-        Session::flash('__Ajax_RedirectFunc_plugin',$plugin);
-        if($redirect !== NULL)
-        {
-            echo 
+        Session::flash('__Ajax_RedirectFunc_plugin', $plugin);
+        if ($redirect !== NULL) {
+            echo
             '<script language="javascript" type="text/javascript">
-                window.location.href="'.$redirect.'";
+                window.location.href="' . $redirect . '";
                 </script> ';
         }
         return NULL;
     }
-    
-    
+
     /**
      * 放弃使用！！！！！
      * 为表单的ajax提交提供快速方法和返回响应模态框，在接收函数中需要与responseAjax搭配
@@ -72,17 +70,16 @@ class BaseFunc
      * @param bool $debug=false  是否开启调试
      * @return HTML代码  包含了ajax请求的js和响应模态框，把这个代码打印在视图中
      */
-    public function requestAjax(array $data_id_array, $submit_id, $recv,$debug=false)
-    {
-        $input_data["data_id_array"]=$data_id_array;
-        $input_data["submit_id"]=$submit_id;
-        $input_data["recv"]=$recv;
+    public function requestAjax(array $data_id_array, $submit_id, $recv, $debug = false) {
+        $input_data["data_id_array"] = $data_id_array;
+        $input_data["submit_id"] = $submit_id;
+        $input_data["recv"] = $recv;
         $input_data["debug"] = $debug;
-        
-        
+
+
         return view("Base::requestAjax", $input_data);
-         
-        
+
+
         /*
 
          * 
@@ -95,8 +92,7 @@ class BaseFunc
          * 请注意不要重名
          *          */
     }
-    
-    
+
     /**
      * 在接受页面返回一个ajax请求，符合requestAjax模态框的打印格式，与responseAjax搭配
      * 示范:
@@ -108,19 +104,15 @@ class BaseFunc
      * @param string $footer 模态框低栏按钮，可以填入html代码构建复杂功能
      * @return json，调用者接收到以后return该数据即可
      */
-    public function responseAjax($title,$message, $footer)
-    {
-        
-        $response["title"]=$title;
-        $response["message"]=$message;
-        $response["plugin"]=$footer;
-        
+    public function responseAjax($title, $message, $footer) {
+
+        $response["title"] = $title;
+        $response["message"] = $message;
+        $response["plugin"] = $footer;
+
         return response()->json($response);
     }
-    
-    
-    
-    
+
     /**
      * 管理员用户登陆检查
      * 
@@ -131,41 +123,30 @@ class BaseFunc
      *
      * @return 若成功，返回用户信息，失败返回false；
      */
-    public function loginAdminCheck($user_name,$password)
-    {
+    public function loginAdminCheck($user_name, $password) {
         $userData = DB::table("base_admin")
-                ->where("admin_username","=",$user_name)
-                ->where("admin_password","=",md5($password))
+                ->where("admin_username", "=", $user_name)
+                ->where("admin_password", "=", md5($password))
                 ->first();
-        if($userData!=NULL)
-        {
+        if ($userData != NULL) {
             return $userData;
-        }
-        else
-        {
-            return false;
-        }
-        
-    }
-    public function loginUserCheck($user_name,$password)
-    {
-         $userData = DB::table("base_user")
-                ->where("user_username","=",$user_name)
-                ->where("user_password","=",md5($password))
-                ->first();
-        if($userData!=NULL)
-        {
-            return $userData;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    
- 
-      
+    public function loginUserCheck($user_name, $password) {
+        $userData = DB::table("base_user")
+                ->where("user_username", "=", $user_name)
+                ->where("user_password", "=", md5($password))
+                ->first();
+        if ($userData != NULL) {
+            return $userData;
+        } else {
+            return false;
+        }
+    }
+
+   
+
 }
-
-?>

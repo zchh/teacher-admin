@@ -29,8 +29,18 @@
                     <li><a href="/admin_sArticle">文章</a></li>
                     <li><a href="#">图片库</a></li>
                     <li><a href="#">文件库</a></li>
-                    <li><a href="/admin_sMessage">消息</a></li>
-                    <li><a href="/admin_sIndex">前台管理</a></li>
+
+
+                    <li><a href="/admin_sMessage" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                         消息箱<span class="caret"></span>
+                        </a>      
+                    <ul class="dropdown-menu" >
+                        <li><a href="/admin_sMessage">查看消息</a></li>
+                        <li><a href="/admin_aMessage">添加消息</a></li>
+                    </ul>  
+                    </li>
+
+
                   </ul>
                  
                    <ul class="nav navbar-nav navbar-right">

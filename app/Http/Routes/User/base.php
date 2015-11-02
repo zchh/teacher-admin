@@ -97,16 +97,15 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_dImage/{image_id}","User\ImageController@dImage");
     Route::get("/user_uImage","User\ImageController@uImage");
     
-    Route::get("/user_sMessage","User\MessageController@sMessage"); //查
-    Route::post("/user_aMessage","User\MessageController@aMessage");//增
-    Route::get("/user_dMessage","User\MessageController@dMessage");//删
-    Route::post("/user_uMessage/{Message_id}","User\MessageController@uMessage"); //改
     
     //添加评论 11/1 wjt
     Route::post("/user_aReply","User\ReplyController@aReply");
     
 
-    
+    //消息
+    Route::get("/user_sMessage","User\MessageController@sMessage"); //查
+    Route::post("/user_aMessage","User\MessageController@aMessage");//增
+    Route::get("/user_dMessage/{message_id}","User\MessageController@dMessage");//删
     
 
 

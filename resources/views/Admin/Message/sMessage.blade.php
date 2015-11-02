@@ -1,4 +1,4 @@
-@extends("User.Message.base")
+@extends("Admin.Message.base")
 @section("main")
 
 
@@ -21,17 +21,16 @@
                 <tbody>
 
                     @foreach ($base_message as $single)   
-                    @if ($send_user == $single -> message_send_user)
+                    @if ($send_admin == $single -> message_send_admin)
                     <tr>
                         <td>{{$single -> message_title}}</td>
-
                         <td>
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#select_{{$single -> message_id}}">
-                               查看详情
-                            </button>
-                            </td>
+                                查看详情
+                            </button>  
+                        </td>
                         <td>{{$single -> message_create_date}}</td>
-                        <td>{{$single -> user_username }}</td>
+                        <td>{{$single -> admin_username}}</td>
                         <td>
 
                             <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete_{{$single -> message_id}}">
@@ -47,23 +46,23 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">删除消息</h4>
+                                            <h4 class="modal-title" id="myModalLabel">删除类别</h4>
                                         </div>
                                         <div class="modal-body">
                                             确定要删除吗？               
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="/user_dMessage/{{$single -> message_id}}" class="btn btn-danger" name="delete">确定删除</a>
+                                            <a href="/admin_dMessage/{{$single -> message_id}}" class="btn btn-danger" name="delete">确定删除</a>
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            
-                            
-                            
-                                 <div class="modal fade" id="select_{{$single -> message_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+
+
+
+                            <div class="modal fade" id="select_{{$single -> message_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -71,20 +70,26 @@
                                             <h4 class="modal-title" id="myModalLabel">消息内容详情</h4>
                                         </div>
                                         <div class="modal-body">
-                                              <blockquote>
-                                                   <p>{{$single -> message_data}}</p>
-                                                  </blockquote>          
+                                            <blockquote>
+                                                <p>{{$single -> message_data}}</p>
+                                            </blockquote>          
                                         </div>
                                         <div class="modal-footer">
-                                           
+
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            
-                            
+
+
+
+
+
+
+
+
 
                         </td>
                     </tr>
@@ -113,7 +118,7 @@
                             <h4 class="modal-title" id="myModalLabel"><h1>添加消息信息</h1></h4>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="/user_aMessage">
+                            <form method="post" action="/admin_aMessage">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
                                     <label for="exampleInputFile">消息接收者</label>
@@ -135,12 +140,9 @@
     </div>
 </div>
 
-
 <div class="col-sm-8 col-md-offset-2" >
     <?php echo $base_message->render(); ?>  
-
 </div>
 
 
 @stop
-

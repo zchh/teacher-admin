@@ -10,6 +10,7 @@ class ArticleController extends Controller
 {
 
 
+
     public function sArticle(ArticleFunc $atcFunc)
     {
 
@@ -295,5 +296,4 @@ class ArticleController extends Controller
 
 
     
-
 

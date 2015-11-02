@@ -17,31 +17,25 @@ class MessageController extends Controller {
         // dump(session("nowPage"));
         //从数据库提取数据，为获得发送方和接收方，需要合并三张表
         //用户发送给用户
-        $combine['base_message'] = DB::table('base_message')->join('base_user', 'message_recv_user', '=', 'user_id')->get();
-        $combine['send_user'] = session("user.user_id");  //获取发送方id
+        //管理员发送给用户
+        $combine['base_message'] = DB::table('base_message')->join('base_user', 'message_recv_user', '=', 'user_id')->paginate(2);
+        $combine['send_user'] = session("user.user_id");  //获取用户发送方id
 
-
-        /*
-          $combine['base_image'] = DB::table('base_image')    //为了获得图片用户，要合并两张表
-          ->join('base_user', 'base_image.image_user', '=', 'base_user.user_id')->paginate(6); //分页，两条记录一页
-          // $data['base_image'] = DB::table('base_image')->get();
-
-         */
 
         return view("User.Message.sMessage", $combine);
     }
 
-    public function aMessage(BaseFunc $baseFunc) 
-    {
+    public function aMessage(BaseFunc $baseFunc) {
         $recv_user = $_POST['message_recv_user'];
         $gets = DB::table('base_user')->get();
+        $i = 0;  //用于记录的增加
         foreach ($gets as $get) {
             if ($get->user_username == $recv_user) {   //判断此接收者名字是否存在
                 //存在,就将数据插入
                 $data['message_create_date'] = date('Y-m-d H:i:s');
-                $data['massege_title'] = $_POST['message_title'];
+                $data['message_title'] = $_POST['message_title'];
                 $data['message_data'] = $_POST['message_data'];
-                $data['message_recv_user'] = $_POST['message_recv_user'];
+                $data['message_recv_user'] = $get->user_id;     //插入的是id,//获取接收者名字的id
                 $data['message_send_user'] = session("user.user_id");
                 if (DB::table('base_message')->insert($data)) {
                     $baseFunc->setRedirectMessage(true, "数据插入成功", NULL, "/user_sMessage");
@@ -51,15 +45,37 @@ class MessageController extends Controller {
                     break;
                 }
             } else {
-                $baseFunc->setRedirectMessage(false, "此接收者名不存在", NULL, "/user_sMessage");
-                break;
+                $i ++;
             }
         }
+        if ($i == count($gets)) {
+            $baseFunc->setRedirectMessage(false, "此接收者不存在", NULL, "/user_sMessage");
+        }
     }
-    
-    
-    
-    
-    
+
+    public function dMessage($message_id, BaseFunc $baseFunc) {
+        dump($message_id);
+        $userId = session("user.user_id");    //提取用户id
+
+        $get = DB::table('base_message')->where('message_send_user', '=', $userId)->where('message_id', '=', $message_id)->delete();
+        if ($get == null) {
+            $baseFunc->setRedirectMessage(false, "删除失败", NULL, "/user_sMessage");
+        } else {
+            $baseFunc->setRedirectMessage(true, "删除成功", NULL, "/user_sMessage");
+        }
+    }
+
+    public function readSingleMessage($message_id, BaseFunc $baseFunc) {
+
+        session(["nowPage" => "/user_sMessage"]);
+        // dump(session("nowPage"));
+        //从数据库提取数据，为获得发送方和接收方，需要合并三张表
+        //用户发送给用户
+        //管理员发送给用户
+        $inputData['singleData'] = DB::table('base_message')->where('message_id', '=', $message_id)->first();
+
+
+        return view("User.Message.readSingleMessage", $inputData);
+    }
 
 }
