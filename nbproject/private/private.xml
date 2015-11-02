@@ -1,68 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-<<<<<<< HEAD
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-=======
-    <coverage xmlns="http://www.netbeans.org/ns/code-coverage/1" enabled="false"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/routes.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/User/ImageController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/User/Image/sImage.blade.php</file>
-        </group>
->>>>>>> origin/zhangchi
-    </open-files>
-</project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <coverage xmlns="http://www.netbeans.org/ns/code-coverage/1" enabled="false"/>
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>app/Http/Controllers/Admin/ArticleController.php</url>
-            <bookmark id="1">
-                <name/>
-                <line>10</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/routes.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/Admin/Article/articlelist.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/Admin/ArticleController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/test1.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/User/Article/readSingleArticle.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/User/ReplyController.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Routes/User/base.php</file>
         </group>
     </open-files>
 </project-private>
->>>>>>> 681216c2d836e47ad15043a162bb7abf7237a79e
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <coverage xmlns="http://www.netbeans.org/ns/code-coverage/1" enabled="false"/>
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>resources/views/Admin/Power/sAdminPowerGroup.blade.php</url>
-            <bookmark id="1">
-                <name/>
-                <line>29</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/User/ArticleController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/Admin/PowerController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/User/Article/sSubject.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/routes.php</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> 382935380de8f29be456e33ca5095fdfadff309b

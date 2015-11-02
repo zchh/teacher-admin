@@ -3,6 +3,8 @@
 
 
 
+
+
 //用户前台相关页面
 Route::get("/user_login","User\BaseController@login");
 Route::get("/user_logout","User\BaseController@logout");
@@ -59,9 +61,9 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
 
     //文章的评论管理
     Route::get("/user_sReply","User\ReplyController@sReply");       //查看评论
-    Route::get("/user_moreReply","User\ReplyController@moreReply");       //评论详情
-    Route::get("/user_dReply/{reply}","User\ReplyController@dReply");//删除评论
-    
+    /*Route::get("/user_moreReply","User\ReplyController@moreReply");       //评论详情
+    Route::get("/user_dReply/{reply}","User\ReplyController@dReply");*///删除评论
+    Route::post("/user_aReply","User\ReplyController@aReply");
     //文章分类
 
     Route::get("/user_sClass","User\ClassController@sClass");//查看，select

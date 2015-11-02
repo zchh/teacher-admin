@@ -81,11 +81,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add{{$data->article_title}}">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add{{$data->article_id}}">
                                     并入标签
                                 </button>
                                 <!-- Modal2 -->
-                                <div class="modal fade" id="add{{$data->article_title}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal fade" id="add{{$data->article_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
