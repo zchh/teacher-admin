@@ -16,9 +16,6 @@ class ArticleController extends Controller
 
         $articleData = $atcFunc->getUserArticle(session("user.user_id"));
         $inputData["articleData"] = $articleData;
-            $data=DB::table("base_article")
-                ->leftJoin("base_article_class","class_id","=","article_class")
-                ->get();
         session(["nowPage"=>"/user_sArticle"]);
         return view("User.Article.sArticle",$inputData);
     }
@@ -246,7 +243,9 @@ class ArticleController extends Controller
 
         session(["nowPage"=>"/user_readAllArticle"]);
         //获得用户id
-         $baseArticle = DB::table('base_article')->paginate(5);  //返回值为数组
+         $baseArticle = DB::table('base_article')
+                 ->leftJoin("base_user","user_id","=","article_user")
+                 ->paginate(5);  //返回值为数组
          $inputData["articleData"] = $baseArticle;
          session(["nowPage"=>"/user_readAllArticle"]);
          return view("User.Article.readAllArticle",$inputData);
@@ -289,6 +288,12 @@ class ArticleController extends Controller
          
     }
     
+    public function sCollect()
+    {
+        session(["nowPage"=>"/user_sCollect"]);
+        $data=DB::table('base_article_collect')->get();
+        return view("User.Article.sCollect",$data);
+    }
     
     
 }

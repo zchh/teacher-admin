@@ -14,7 +14,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">请选择要添加的权限</h4>
+                            <h4 class="modal-title" id="myModalLabel">请选择要添加的文章</h4>
                         </div>
                         <form action="/user_addArticleToSubject" method="post">
                             <div class="modal-body">            
@@ -90,7 +90,9 @@
                     <div class="panel-body ">
                         <h3 class="container">专题介绍</h3>
                         <hr>
+                        @foreach($moreSubject as $data)
                         <h4 class="container">{{ $data->subject_intro }}</h4>
+                        @endforeach
                     </div>
                 </div>
             </div>

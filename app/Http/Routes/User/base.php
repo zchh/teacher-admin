@@ -87,7 +87,8 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::post("/user_uLabel","User\ArticleController@uLabel"); //修改标签
     Route::get("/user_dLabel/{label_id}","User\ArticleController@dLabel"); //删除标签
     
-    
+    //收藏夹
+     Route::get("/user_sCollect","User\ArticleController@sCollect");//查看收藏夹
     
 
     //图片管理

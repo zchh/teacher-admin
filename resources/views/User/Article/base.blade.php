@@ -9,6 +9,7 @@
 
                   <li class="<?php if(session("nowPage")=="/user_sArticle"){echo "active";}?>"><a href="/user_sArticle"  id="user_sArticle">查看文章</a></li>
                   <li class="<?php if(session("nowPage")=="/user_aArticle"){echo "active";}?>"><a href="/user_aArticle"  id="user_aArticle">添加文章</a></li>
+                  <li class="<?php if(session("nowPage")=="/user_sCollect"){echo "active";}?>"><a href="/user_sCollect"  id="user_sCollect">收藏文章</a></li>
 
                 </ul>
                 <ul class="nav nav-sidebar">
