@@ -25,6 +25,7 @@
                   <ul class="nav navbar-nav">
                     <li><a href="/user_index">最新文章</a></li>
                     <li><a href="/user_index" href="#menu-toggle" id="menu-toggle">分类</a></li>
+                     <li><a href="/index_sSubject" href="#menu-toggle" id="menu-toggle">专题</a></li>
 
                   </ul>
 
@@ -77,6 +78,7 @@
   <div id="page-content-wrapper">
           
       @section("main")
+      
       @show
          
   </div>
