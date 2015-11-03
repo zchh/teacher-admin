@@ -135,6 +135,16 @@ class BaseFunc {
         }
     }
 
+     /**
+     * 用户登陆检查
+     * 
+     * 
+     * @access public
+     * @param string $user_name 用户名
+     * @param string $password 密码
+     *
+     * @return 若成功，返回用户信息，失败返回false；
+     */
     public function loginUserCheck($user_name, $password) {
         $userData = DB::table("base_user")
                 ->where("user_username", "=", $user_name)
@@ -146,6 +156,9 @@ class BaseFunc {
             return false;
         }
     }
+   
+    
+ 
 
    
 
