@@ -18,10 +18,17 @@ Route::get("/index_sSubject","Index\BaseController@sSubject");        //查看�
 
 Route::get("/index_moreSubject/{subject_id}","Index\BaseController@moreSubject");        //查看专题中的文章   //zc改
 //10/31 wjt end
-/*
-Route::get("/index_test",function(\GirdPlugins\Base\UserFunc $userFunc)
+
+Route::get("/power_check_demo",function(\GirdPlugins\Base\AdminPowerFunc $adminFunc,  GirdPlugins\Base\UserPowerFunc $userFunc)
 {
     dump($userFunc->getUserPower(1));
-});*/
+    dump($userFunc->checkUserPower(4));
+    
+    
+    dump($adminFunc->getAdminPower(1));
+    dump($adminFunc->checkAdminPower(4));
+   
+    
+});
 
 ?>

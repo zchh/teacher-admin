@@ -1,6 +1,7 @@
 <?php
 namespace GirdPlugins\Base;
 use \Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 class UserPowerFunc
 {
      /**
@@ -13,18 +14,17 @@ class UserPowerFunc
      */
     public function getUserPower($userId)
     {
-        /*$groupData = DB::table("base_user")->where("user_id","=",$userId)
-                ->leftJoin("base_user_group","user_group","=","group_id")
-                ->first();
-        dump($groupData);
-        $powerData = DB::table("base_user_re_power")->where("relation_group","=",$groupData->group_id)->get();
+        $groupData = DB::table("base_user")->where("user_id","=",$userId)->first();
+        
+        $powerData = DB::table("base_user_re_power")->where("relation_group","=",$groupData->user_group)->get();
+        
         $returnData=[];
         foreach($powerData as $data)
         {
-            $returnData[]=$data->power;
+            $returnData[]=$data->relation_power;
         }
-        dump($powerData);*/
-        return NULL;
+        //dump($returnData);
+        return $returnData;
     
     }
         
@@ -33,12 +33,24 @@ class UserPowerFunc
      * 
      * 
      * @access public
-     * @param power
+     * @param int $powerId 权限id
      *
-     * @return 若成功，返回用户信息，失败返回false；
+     * @return bool；
      */
-    public function checkUserPower()
+    public function checkUserPower($powerId)
     {
-        return true;
+        $powerData = session("user.user_power");
+        if($powerData == NULL)
+        {
+            return false;
+        }
+        foreach($powerData as $data)
+        {
+            if($data == $powerId)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

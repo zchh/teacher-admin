@@ -1,6 +1,7 @@
 <?php
 namespace GirdPlugins\Base;
 use \Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 class AdminPowerFunc
 {
      /**
@@ -15,7 +16,17 @@ class AdminPowerFunc
      */
     public function getAdminPower($adminId)
     {
-        return NULL;
+         $groupData = DB::table("base_admin")->where("admin_id","=",$adminId)->first();
+        //dump($groupData);
+        $powerData = DB::table("base_admin_re_power")->where("relation_group_id","=",$groupData->admin_group)->get();
+        //dump($powerData);
+        $returnData=[];
+        foreach($powerData as $data)
+        {
+            $returnData[] = $data->relation_power_id;
+        }
+        //dump($returnData);
+        return $returnData;
     }
 
      /**
@@ -23,14 +34,25 @@ class AdminPowerFunc
      * 
      * 
      * @access public
-     * @param string $user_name 用户名
-     * @param string $password 密码
+     * @param int powerId 权限ID
      *
      * @return 若成功，返回用户信息，失败返回false；
      */
-    public function checkAdminPower()
+    public function checkAdminPower($powerId)
     {
-        return true;
+        $powerData = session("admin.admin_power");
+        if($powerData == NULL)
+        {
+            return false;
+        }
+        foreach($powerData as $data)
+        {
+            if($data == $powerId)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     
 }
