@@ -9,8 +9,7 @@
     </div>
   </div>
   <div class="col-sm-9" >
-     <div class="panel panel-default">
-         <div class="panel-body" style="background-color: gray">
+    
              @foreach($articleData as $data)
              <div class="col-sm-12">
                     <div class="panel panel-default">
@@ -27,13 +26,11 @@
              
              @endforeach
 
-          </div>
-    </div>
+     
   </div>
   <div class="col-sm-3">
      <div class="panel panel-default">
-         <div class="panel-body">
-              
+         <div class="panel-body"> 
              <br/>
               这低下应该是热门推荐  ，在后台设置<br>
               <a href="/index_findArticle">查找文章</a><br>

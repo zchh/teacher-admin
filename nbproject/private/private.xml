@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Routes/Index/base.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/Admin/BaseController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/gird_plugins/Base/class/UserFunc.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/gird_plugins/Base/class/LogFunc.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/gird_plugins/Base/class/BaseFunc.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/gird_plugins/Base/class/AdminPowerFunc.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

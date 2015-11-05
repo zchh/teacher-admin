@@ -1,6 +1,7 @@
 <?php
 namespace GirdPlugins\Base;
 use \Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 class LogFunc
 {
         

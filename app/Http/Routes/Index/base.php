@@ -23,8 +23,6 @@ Route::get("/power_check_demo",function(\GirdPlugins\Base\AdminPowerFunc $adminF
 {
     dump($userFunc->getUserPower(1));
     dump($userFunc->checkUserPower(4));
-    
-    
     dump($adminFunc->getAdminPower(1));
     dump($adminFunc->checkAdminPower(4));
    

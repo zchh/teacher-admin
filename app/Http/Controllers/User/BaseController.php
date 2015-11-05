@@ -34,7 +34,7 @@ class BaseController extends Controller {
   }
   public function index()
   {
-       dump(session("user"));
+      //dump(session("user"));
       return view("User.index");
      
   }

@@ -40,7 +40,7 @@
                             <td>{{ $data->subject_name }}</td>
 
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal{{$data->article_id}}">
+                                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal{{$data->article_id}}">
                                     并入专题
                                 </button>
 
@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add{{$data->article_id}}">
+                                <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#add{{$data->article_id}}">
                                     并入标签
                                 </button>
                                 <!-- Modal2 -->
@@ -122,7 +122,50 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-danger btn-sm" href="/admin_dArticle/{{ $data->article_id }}" role="button">删除文章</a>
+                                @if($data->recommend_id==NULL)
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add_recommend_article{{$data->article_id}}">
+                                    推荐
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="add_recommend_article{{$data->article_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">新增推荐文章</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form action="/admin_aRecommendArticle" method="post">
+                                                 <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label >别名</label>
+                                                        <input type="text" class="form-control" name="recommend_name" placeholder="" value="{{ $data->article_title }}">
+                                                     </div>
+                                                    
+                                                     
+                                                    <select class="form-control" name="recommend_class">
+                                                        @foreach($recommend_class as $class_son_data)
+                                                        <option value="{{$class_son_data->class_id}}">{{$class_son_data->class_name}}</option>
+                                                        @endforeach
+                                                    
+                                                    </select>
+                                                     
+                                                     <input name="article_id" value="{{ $data->article_id }}" type="hidden">
+                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                 </div>  
+                                          </div>
+                                          <div class="modal-footer">
+                                            <a  class="btn btn-default" data-dismiss="modal">关闭</a>
+                                            <button type="submit" class="btn btn-primary">提交</button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                @endif
+                                <a class="btn btn-danger btn-xs" href="/admin_dArticle/{{ $data->article_id }}" role="button">删除文章</a>
                             </td>
                         </tr>
                         @endforeach

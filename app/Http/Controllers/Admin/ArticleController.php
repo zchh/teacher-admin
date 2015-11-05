@@ -18,11 +18,15 @@ class ArticleController extends Controller {
         $input_data['article_data'] = DB::table("base_article")
                 ->leftJoin("base_article_re_subject","article_id","=","relation_article")
                 ->leftJoin("base_article_subject","relation_subject","=","subject_id")
+                ->leftJoin("base_display_article_recommend","recommend_article","=","article_id")
                 ->paginate(3);
-        //dump($input_data);
+        
+        $input_data["recommend_class"] = DB::table("base_display_article_class")->get();
+        
         $input_data['subject_data']=DB::table("base_article_subject")->get();
         $input_data['label_data']=DB::table("base_article_label")->get();
         return view("Admin.Article.articlelist",$input_data);
+        //dump($input_data);
     }
     //根据条件选择文章
     public function sArticleByCondition()     

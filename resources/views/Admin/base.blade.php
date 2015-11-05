@@ -28,7 +28,16 @@
                     <li><a href="/admin_sUser">用户权限</a></li>
                     <li><a href="/admin_sArticle">文章</a></li>
                     <li><a href="#">图片库</a></li>
-                    <li><a href="#">文件库</a></li>
+                    <li><a href="/admin_displayIndex" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        网站管理<span class="caret"></span>
+                        </a>      
+                        <ul class="dropdown-menu" >
+                            <li><a href="/admin_sRecommendArticle">推荐文章</a></li>
+                            <li><a href="/admin_sDisplayArticleClass">文章分类</a></li>
+                            <li><a href="/admin_sRecommendSubject">推荐专题</a></li>
+                            <li><a href="/admin_sDisplaySubjectClass">专题分类</a></li>
+                        </ul>  
+                    </li>
 
 
                     <li><a href="/admin_sMessage" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
