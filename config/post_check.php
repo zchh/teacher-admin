@@ -24,6 +24,15 @@ return [
         
         ],
     
+    //文章推荐类别
+    "class_name"=>[ 
+        "rule"=>["alpha_num","max:30"],
+        "message"=>"分类不能大于30个字符"
+        ],
+    "class_id"=>[ 
+        "rule"=>["integer","max:10"],
+        ],
+    
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%end wjt
     
     

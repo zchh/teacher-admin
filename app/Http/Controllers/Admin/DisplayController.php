@@ -127,7 +127,7 @@ class DisplayController extends Controller {
         return view("Admin.Display.sDisplayArticleClass");
     }
     
-    
+    //添加前台推荐文章分类
     public function aDisplayArticleClass()
     {
         $inputData = Request::only("class_name");
@@ -151,7 +151,7 @@ class DisplayController extends Controller {
         
         //dump($_POST);
     }
-    
+    //更新前台推荐文章分类
     public function uDisplayArticleClass()
     {
         $inputData = Request::only("class_name");
@@ -174,6 +174,7 @@ class DisplayController extends Controller {
             return redirect()->back();
         }
     }
+    //删除前台推荐文章分类
     public function dDisplayArticleClass($class_id)
     {
         
@@ -195,6 +196,9 @@ class DisplayController extends Controller {
             return redirect()->back();
         }
     }
+    
+    
+    //查看所有的推荐专题
     
     
 }
