@@ -139,12 +139,7 @@
                                           <div class="modal-body">
                                             <form action="/admin_aRecommendArticle" method="post">
                                                  <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label >别名</label>
-                                                        <input type="text" class="form-control" name="recommend_name" placeholder="" value="{{ $data->article_title }}">
-                                                     </div>
-                                                    
-                                                     
+                                                     <label>添加到</label>
                                                     <select class="form-control" name="recommend_class">
                                                         @foreach($recommend_class as $class_son_data)
                                                         <option value="{{$class_son_data->class_id}}">{{$class_son_data->class_name}}</option>

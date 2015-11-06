@@ -24,7 +24,7 @@ class BaseController extends Controller {
         
         $key = "%".$_GET["key"]."%";
        // $inputData['article'] = DB::table('base_article')-> where('article_title','=','') ->first();
-        $results['article'] = DB::select('select * from base_article where article_title like :key', ['key' => $key]);
+        $results['articleData'] = DB::select('select * from base_article where article_title like :key', ['key' => $key]);
       // dump($results);
       //exit();
        return view("Index.Article.findArticle",$results);
@@ -38,14 +38,15 @@ class BaseController extends Controller {
     
     public function userIndex($user_id)  //用户首页
     {
-        //把用户昵称发过去
-        
-     
-        $inputData['data']=DB::table('base_user')-> where('user_id','=', $user_id) ->first();//提取一条记录,获得用户昵称
+        //获取用户信息
+        $inputData['userData']=DB::table('base_user')-> where('user_id','=', $user_id) ->first();//提取一条记录,获得用户昵称
         
         //获得当前用户的所有文章
-        $inputData['article'] = DB::table('base_article')-> where('article_user','=', $user_id) ->get();
-        
+        $inputData['articleData'] = DB::table('base_article')-> where('article_user','=', $user_id)->
+                orderBy("article_id","desc")->get();
+        //获取当前用户的专题
+        $inputData["subjectData"] = DB::table("base_article_subject")-> where('subject_user','=', $user_id)->
+                orderBy("subject_id","desc")->get();
         
         return view("Index.User.userIndex",$inputData);
         
@@ -61,16 +62,37 @@ class BaseController extends Controller {
     
    public function moreSubject($subject_id)     //传递满足$subject_id的文章
     {
-           $inputData['article_id'] =  DB::table('base_article_re_subject')->where('relation_subject','=',$subject_id)->get();//提取包含文章多个id
+           $inputData['articleData'] =  DB::table('base_article_re_subject')
+                   ->join("base_article","article_id","=","relation_article")
+                   ->where('relation_subject','=',$subject_id)
+                   ->orderBy("relation_sort")->get();//提取包含文章多个id
           // $article_id = $subject -> relation_subject;
-           $inputData['article'] =  DB::table('base_article')->get();     
+           $inputData['subjectData'] =  DB::table('base_article_subject')
+                   ->where("subject_id","=",$subject_id)
+                   ->first();     
             
-        return view("Index.Subject.moreSubject",$inputData);
+           dump($inputData);
+           return view("Index.Subject.moreSubject",$inputData);
+        
     }
     
     public function articleDetail(ArticleFunc $articleFunc, $article_id)
     {
         
+        $viewData["articleData"] = DB::table('base_article')
+                  ->where("article_id","=",$article_id)
+                  ->leftJoin("base_user","user_id","=","article_user")
+                  ->first();
+        $viewData["choseData"] =NULL;
+        $viewData["userData"] =  DB::table('base_article')
+                  ->where("article_id","=",$article_id)
+                  ->leftJoin("base_user","user_id","=","article_user")
+                  ->first();
+        $viewData["replyData"] = $articleFunc->getArticleReply($article_id);
+        
+        return view("Index.Article.articleDetail",$viewData);
+        
+        /*
         //把文章详情传递过去
         
              session(["nowPage"=>null]);
@@ -82,9 +104,15 @@ class BaseController extends Controller {
          
           $combine["articleData"] = DB::table('base_article')    //为了获得作者，要合并两张表
           ->join('base_user', 'base_article.article_user', '=', 'base_user.user_id')
+          ->orderBy("article_click","desc")
           ->get();
-
-          $combine["article_id"] = $article_id;    //获取路由上的article_id
+          
+          $combine["userData"] = DB::table('base_article')
+                  ->where("article_id","=",$article_id)
+                  ->leftJoin("base_user","user_id","=","article_user")
+                  ->first();
+          
+         $combine["article_id"] = $article_id;    //获取路由上的article_id
   
         foreach ($combine["articleData"] as $key => $data)
         {
@@ -103,6 +131,6 @@ class BaseController extends Controller {
         
         $combine["replyData"] = $articleFunc->getArticleReply($article_id);
         
-        return view("Index.Article.articleDetail",$combine);
+        return view("Index.Article.articleDetail",$combine);*/
     }
 }

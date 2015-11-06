@@ -33,9 +33,9 @@
                         </a>      
                         <ul class="dropdown-menu" >
                             <li><a href="/admin_sRecommendArticle">推荐文章</a></li>
-                            <li><a href="/admin_sDisplayArticleClass">文章分类</a></li>
+                            
                             <li><a href="/admin_sRecommendSubject">推荐专题</a></li>
-                            <li><a href="/admin_sDisplaySubjectClass">专题分类</a></li>
+                            
                         </ul>  
                     </li>
 

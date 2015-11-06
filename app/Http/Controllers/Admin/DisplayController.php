@@ -43,9 +43,8 @@ class DisplayController extends Controller {
             $inputData["recommendData"] = DB::table("base_display_article_recommend")
                 ->leftJoin("base_article","article_id","=","recommend_article")
                 ->leftJoin("base_user","article_user","=","user_id")
-                ->leftJoin("base_display_re_article","relation_recommend","=","recommend_id")
-                ->leftJoin("base_display_article_class","relation_class","=","class_id")
-                    ->orderBy(Request::input("sort_id","recommend_id"),"desc")
+                ->leftJoin("base_display_class","recommend_class","=","class_id")
+                ->orderBy(Request::input("sort_id","recommend_id"),"desc")
                     ->where("article_title","like","%".$_GET["search_article"]."%")
                 ->simplePaginate(10);
         }
@@ -54,14 +53,13 @@ class DisplayController extends Controller {
         $inputData["recommendData"] = DB::table("base_display_article_recommend")
                 ->leftJoin("base_article","article_id","=","recommend_article")
                 ->leftJoin("base_user","article_user","=","user_id")
-                ->leftJoin("base_display_re_article","relation_recommend","=","recommend_id")
-                ->leftJoin("base_display_article_class","relation_class","=","class_id")
+                ->leftJoin("base_display_class","recommend_class","=","class_id")
                 ->orderBy(Request::input("sort_id","recommend_id"),"desc")
                 ->simplePaginate(10);
         
         }
         
-        $inputData["class_data"] = DB::table("base_display_article_class")->get();
+        $inputData["class_data"] = DB::table("base_display_class")->get();
         //dump($inputData);
         return view("Admin.Display.sRecommendArticle",$inputData);
     }
@@ -95,18 +93,17 @@ class DisplayController extends Controller {
     //添加一个推荐文章
     public function aRecommendArticle(BaseFunc $baseFunc)
     {
-       
-        $inputData = Request::only("recommend_class","article_id","recommend_name");
+        
+        $inputData = Request::only("recommend_class","article_id");
         
         $recommendsData["recommend_article"] = $inputData["article_id"];
-        $recommendsData["recommend_name"] = $inputData["recommend_name"];
+        $recommendsData["recommend_class"] = $inputData["recommend_class"];
         $recommendsData["recommend_create_date"] = date('Y-m-d H:i:s');
         
         DB::beginTransaction();
         
         $id = DB::table("base_display_article_recommend")->insertGetId($recommendsData);
-        DB::table("base_display_re_article")->insert(["relation_class" =>  $inputData["recommend_class"], 
-            "relation_recommend"=>$id]);
+       
         $this->logFunc->addLog(
                 ["log_level"=>0,
                 "log_title"=>"添加了一个文章推荐,id=".$inputData["article_id"],
@@ -118,85 +115,7 @@ class DisplayController extends Controller {
         return redirect()->back();
     
     }
-    
-    
-    //前台推荐文章分类
-    public function sDisplayArticleClass()
-    {
-        session(["now_address" => "/admin_sDisplayArticleClass"]);
-        return view("Admin.Display.sDisplayArticleClass");
-    }
-    
-    //添加前台推荐文章分类
-    public function aDisplayArticleClass()
-    {
-        $inputData = Request::only("class_name");
-        DB::beginTransaction();
-        if(1==DB::table("base_display_article_class")->insert($inputData))
-        {
-             $this->logFunc->addLog(
-                ["log_level"=>0,
-                "log_title"=>"添加了一个推荐文章分类,class_name=".$inputData["class_name"],
-                "log_detail"=>"添加了一个推荐文章分类，class_name=".$inputData["class_name"],
-                "log_admin"=>session("admin.admin_id")]);
-             DB::commit();
-            $this->baseFunc->setRedirectMessage(true, "添加推荐文章分类成功", NULL);
-            return redirect()->back();
-        }
-        else
-        {
-            $this->baseFunc->setRedirectMessage(false, "添加推荐文章分类失败", NULL);
-            return redirect()->back();
-        }
-        
-        //dump($_POST);
-    }
-    //更新前台推荐文章分类
-    public function uDisplayArticleClass()
-    {
-        $inputData = Request::only("class_name");
-        $class_id = Request::input("class_id");
-        DB::beginTransaction();
-        if(1==DB::table("base_display_article_class")->where("class_id","=",$class_id)->update($inputData))
-        {
-             $this->logFunc->addLog(
-                ["log_level"=>0,
-                "log_title"=>"更改了一个推荐文章分类,class_name=".$inputData["class_name"],
-                "log_detail"=>"更改了一个推荐文章分类，class_name=".$inputData["class_name"],
-                "log_admin"=>session("admin.admin_id")]);
-             DB::commit();
-            $this->baseFunc->setRedirectMessage(true, "修改推荐文章分类成功", NULL);
-            return redirect()->back();
-        }
-        else
-        {
-            $this->baseFunc->setRedirectMessage(false, "修改推荐文章分类失败", NULL);
-            return redirect()->back();
-        }
-    }
-    //删除前台推荐文章分类
-    public function dDisplayArticleClass($class_id)
-    {
-        
-        DB::beginTransaction();
-        if(1==DB::table("base_display_article_class")->where("class_id","=",$class_id)->delete())
-        {
-             $this->logFunc->addLog(
-                ["log_level"=>0,
-                "log_title"=>"删除了一个推荐文章分类,class_id=".$class_id,
-                "log_detail"=>"删除了一个推荐文章分类，class_id=".$class_id,
-                "log_admin"=>session("admin.admin_id")]);
-             DB::commit();
-            $this->baseFunc->setRedirectMessage(true, "删除推荐文章分类成功", NULL);
-            return redirect()->back();
-        }
-        else
-        {
-            $this->baseFunc->setRedirectMessage(false, "删除推荐文章分类失败", NULL);
-            return redirect()->back();
-        }
-    }
-    
+  
     
     //查看所有的推荐专题
     public function  sRecommendSubject()
@@ -215,8 +134,7 @@ class DisplayController extends Controller {
             $recommendData["recommendData"] = DB::table("base_display_subject_recommend")
                 ->leftJoin("base_article_subject","subject_id","=","recommend_subject")
                 ->leftJoin("base_user","user_id","=","subject_user")
-                ->leftJoin("base_display_re_subject","relation_recommend","=","recommend_id")
-                ->leftJoin("base_display_subject_class","class_id","=","relation_class")
+                ->leftJoin("base_display_class","recommend_class","=","class_id")
                 ->where("subject_name","like","%".$search ."%")
                 ->orderBy($sort,"desc")
                 ->simplePaginate(10);
@@ -226,25 +144,50 @@ class DisplayController extends Controller {
             $recommendData["recommendData"] = DB::table("base_display_subject_recommend")
                 ->leftJoin("base_article_subject","subject_id","=","recommend_subject")
                 ->leftJoin("base_user","user_id","=","subject_user")
-                ->leftJoin("base_display_re_subject","relation_recommend","=","recommend_id")
-                ->leftJoin("base_display_subject_class","class_id","=","relation_class")
+                ->leftJoin("base_display_class","recommend_class","=","class_id")
                 ->orderBy($sort,"desc")
                 ->simplePaginate(10);
         }
         
         //dump($recommendData);
-        $recommendData["class_data"] = DB::table("base_display_subject_class")->get();
+        $recommendData["class_data"] = DB::table("base_display_class")->get();
         
-        
+       // dump($recommendData["class_data"]);
         return view("Admin.Display.sRecommendSubject",$recommendData);
         
         
     }
     
+    public function uRecommendArticle()
+    {
+        $inputData = Request::only("recommend_class");
+        $relation_id = Request::input("recommend_id");
+        DB::beginTransaction();
+        if(1==DB::table("base_display_article_recommend")->where("recommend_id","=",$relation_id)->update($inputData))
+        {
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"更改了一个推荐文章信息,recommend_id=".$relation_id,
+                "log_detail"=>"更改了一个推荐文章信息，recommend_id=".$relation_id,
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "修改推荐文章成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "修改推荐文章失败", NULL);
+            return redirect()->back();
+        }
+    }
+    
+    
+    
+    
     //添加专题
     public function aRecommendSubject()
     {
-       $inputData =  Request::only("recommend_subject");
+       $inputData =  Request::only("recommend_subject","recommend_class");
        $inputData["recommend_create_date"] = date('Y-m-d H:i:s');  
        $inputData["recommend_update_date"] = date('Y-m-d H:i:s');
        if(DB::table("base_display_subject_recommend")->insert($inputData))
@@ -264,6 +207,30 @@ class DisplayController extends Controller {
             return redirect()->back();
        }
       
+    }
+    
+    //更改专题
+     public function uRecommendSubject()
+    {
+        $inputData = Request::only("recommend_class");
+        $relation_id = Request::input("recommend_id");
+        DB::beginTransaction();
+        if(1==DB::table("base_display_subject_recommend")->where("recommend_id","=",$relation_id)->update($inputData))
+        {
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"更改了一个推荐专题信息,recommend_id=".$relation_id,
+                "log_detail"=>"更改了一个推荐专题信息，recommend_id=".$relation_id,
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "修改推荐专题成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "修改推荐专题失败", NULL);
+            return redirect()->back();
+        }
     }
     
     
@@ -289,12 +256,15 @@ class DisplayController extends Controller {
         }
     }
     
+    
+    /////////////////展示类
+    
     //添加展示主题类
-    public function aDisplaySubjectClass()
+    public function aDisplayClass()
     {
         $inputData = Request::only("class_name");
         DB::beginTransaction();
-        if(1==DB::table("base_display_subject_class")->insert($inputData))
+        if(1==DB::table("base_display_class")->insert($inputData))
         {
              $this->logFunc->addLog(
                 ["log_level"=>0,
@@ -313,11 +283,11 @@ class DisplayController extends Controller {
     }
     
     //更新展示主题类
-    public function dDisplaySubjectClass($class_id)
+    public function dDisplayClass($class_id)
     {
         
         DB::beginTransaction();
-        if(1==DB::table("base_display_subject_class")->where("class_id","=",$class_id)->delete())
+        if(1==DB::table("base_display_class")->where("class_id","=",$class_id)->delete())
         {
              $this->logFunc->addLog(
                 ["log_level"=>0,
@@ -337,12 +307,12 @@ class DisplayController extends Controller {
     
     
     //更新展示主题类
-    public function uDisplaySubjectClass()
+    public function uDisplayClass()
     {
         $inputData = Request::only("class_name");
         $class_id = Request::input("class_id");
         DB::beginTransaction();
-        if(1==DB::table("base_display_subject_class")->where("class_id","=",$class_id)->update($inputData))
+        if(1==DB::table("base_display_class")->where("class_id","=",$class_id)->update($inputData))
         {
              $this->logFunc->addLog(
                 ["log_level"=>0,

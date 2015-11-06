@@ -1,28 +1,15 @@
 @extends("Index.base")
 @section("main")
 
-@foreach($articleData  as $data)
-@if($data -> article_id == $article_id)
- 
- <div class="col-md-8">
+ <div class="col-sm-8 col-sm-offset-1">
   <div class="panel panel-default">
   <div class="panel-body">
 
-   <h1><p class="text-left">{{$data -> article_title}}</p></h1>
-   <h2><small><p class="text-left">{{$data -> article_update_date}}  by <a href="/index_userIndex/{{$data -> user_id}}">{{$data -> user_username }}</a> </p></small></h2>
+   <h1><p class="text-left">{{$articleData -> article_title}}</p></h1>
+   <h2><small><p class="text-left">{{$articleData -> article_update_date}}  by <a href="/index_userIndex/{{$articleData -> user_id}}">{{$articleData -> user_username }}</a> </p></small></h2>
    <hr>
-   <h2><small><p class="text-left"><?php echo $data -> article_detail;?></p></small></h2>
+  <?php echo $articleData -> article_detail;?>
      
-        <nav class="pull-left">
-          <ul class="pager">
-              @if($previousArticle!=-1)
-                   <li><a href="/index_articleDetail/{{$previousArticle}}">《 前一页 </a></li>
-              @endif
-              @if($nextArticle!=-1 )
-                <li><a href="/index_articleDetail/{{$nextArticle}}">下一页 》</a></li>
-              @endif           
-          </ul>
-        </nav>
         <hr/>
         <?php echo $replyData; ?>
 
@@ -30,9 +17,32 @@
   </div>
   </div> 
  </div>
- <div class="col-md-2"></div>
- @endif
- @endforeach  
+    <div class="col-sm-2">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                    <img src="/Public/2h.jpg" class="text-center img-circle img-responsive" style="width:80%;height:100%;left: 10%;position:relative">
+                    <hr/>
+                    <h4 style='margin: auto'>{{$userData->user_username}}</h4>
+                    <hr>
+                    <small>{{$userData->user_intro}}</small>
+                    <hr>
+                    <a  class="btn btn-default btn-sm" href="/index_userIndex/{{$userData->user_id}}" aria-label="Left Align">
+                      <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span>  个人主页
+                    </a>
+                     <a  class="btn btn-default btn-sm" href="#" aria-label="Left Align">
+                      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>  关注
+                    </a>
+             </div>
+       </div>
+        
+         <div class="panel panel-default">
+            <div class="panel-body">
+                    特殊推荐表
+             </div>
+       </div>
+    </div>
+
+
 
 
 @stop

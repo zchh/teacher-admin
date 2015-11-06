@@ -124,9 +124,18 @@
                                               </div>
                                               <div class="modal-body">
                                                   <form action="/admin_aRecommendSubject" method="post">
-                                                  <h4>将 {{$data->subject_name}} 加入推荐？</h4>
-                                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                  <input type="hidden" name="recommend_subject" value="{{$data->subject_id}}">
+                                                           <div class="form-group">
+                                                             <label>添加到</label>
+                                                            <select class="form-control" name="recommend_class">
+                                                                @foreach($recommend_class as $class_son_data)
+                                                                <option value="{{$class_son_data->class_id}}">{{$class_son_data->class_name}}</option>
+                                                                @endforeach
+
+                                                            </select>
+
+                                                             <input name="recommend_subject" value="{{ $data->subject_id }}" type="hidden">
+                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                         </div>  
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

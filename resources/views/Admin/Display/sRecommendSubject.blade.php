@@ -26,7 +26,49 @@
                                   <td>{{$data->user_nickname}}</td>
                                   <td>{{$data->class_name}}</td>
                                   <td>
+                                       
                                         <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#upd_re_{{$data->recommend_id}}">
+                                          修改推荐
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="upd_re_{{$data->recommend_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">修改推荐</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <form action="/admin_uRecommendSubject" method="post">
+                                                      <input type="hidden"name="_token"value="{{ csrf_token() }}">
+                                                       <input type="hidden" name="recommend_id" value="{{ $data->recommend_id }}">
+                                                       <div class="form-group">
+                                                           <label>分类</label>
+                                                          <select class="form-control" name="recommend_class">
+                                                              @foreach($class_data as $value)
+                                                                @if($value->class_id == $data->class_id)
+                                                                    <option selected="selected" value="{{$value->class_id}}">{{$value->class_name}}</option>
+                                                                @else
+                                                                    <option value="{{$value->class_id}}">{{$value->class_name}}</option>
+                                                                @endif
+                                                              @endforeach
+                                                          </select>
+                                                       </div>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="submit" class="btn btn-primary">确认</button>
+                                                </form>
+                                                
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
+                                        
+                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#del_re_{{$data->recommend_id}}">
                                           移出推荐
                                         </button>
@@ -107,7 +149,7 @@
 
                                       <div class="collapse" id="add_class">
                                         <div class="well">
-                                           <form action="/admin_aDisplaySubjectClass" method="post">
+                                           <form action="/admin_aDisplayClass" method="post">
                                                 <div class="form-group">
                                                   <input type="hidden"name="_token"value="{{ csrf_token() }}">
                                                   <label >新增类别名</label>
@@ -122,7 +164,7 @@
                                       @foreach($class_data as $data)
                                           <div class="collapse" id="update_class_{{$data->class_id}}">
                                             <div class="well">
-                                               <form action="/admin_uDisplaySubjectClass" method="post">
+                                               <form action="/admin_uDisplayClass" method="post">
                                                     <div class="form-group">
                                                       <label >类别名</label>
                                                      <input type="hidden"name="_token"value="{{ csrf_token() }}">
@@ -151,7 +193,7 @@
                                                          aria-expanded="false" aria-controls="update_class_{{$data->class_id}}">
                                                         修改
                                                       </a>
-                                                      <a href="admin_dDisplaySubjectClass/{{$data->class_id}}" class="btn btn-danger" >删除</a>
+                                                      <a href="admin_dDisplayClass/{{$data->class_id}}" class="btn btn-danger" >删除</a>
 
 
                                                   </td>

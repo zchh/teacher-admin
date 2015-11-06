@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Display/sRecommendSubject.blade.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Display/index.blade.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/Admin/DisplayController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Display/sRecommendArticle.blade.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Display/base.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/gird_plugins/Base/class/LogFunc.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Article/subjectlist.blade.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/config/post_check.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Routes/Admin/display.php</file>
         </group>

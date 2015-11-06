@@ -3,11 +3,12 @@
 @section("body")
 
 @section("top_nav")
-        <style>
-            body { padding-top: 50px; }
-        </style>
-        <link href="/css/simple-sidebar.css" rel="stylesheet">
-        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<style>
+    body { padding-top: 60px; }
+    
+</style>
+       
+        <nav class="navbar navbar-default navbar-fixed-top " >
               <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -45,61 +46,19 @@
         </nav> 
 @show
 
- <div id="wrapper">
+
 
     @section("left_nav")
-      <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-              <li class="sidebar-brand">
-
-                <h3>查看类别</h3>
-
-              </li>
-              <li>
-                  <a href="#">最热头条</a>
-              </li>
-              <li>
-                  <a href="#">最新文章</a>
-              </li>
-              <li>
-                  <a href="#">分类3</a>
-              </li>
-
-          </ul>
-      </div>     
+       
     @show
         
 
-  
-  <!-- /#sidebar-wrapper -->
- 
-  <!-- Page Content -->
-  <div id="page-content-wrapper">
+
           
-      @section("main")
-      
-      @show
+    @section("main")
+
+    @show
          
-  </div>
-  <!-- /#page-content-wrapper -->
-
-</div>
-<!-- /#wrapper -->
-
-<!-- Menu Toggle Script -->
-<script>
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");/*切换类的样式*/
-});
-</script>
-
-
-
-
-
-
 
 
        
