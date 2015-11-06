@@ -46,6 +46,7 @@
                 </button>
             </div>
             <h2 class="sub-header">文章专题列表</h2>
+           
             <hr>
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -109,7 +110,34 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-danger btn-sm" href="/admin_sSubject/{{ $data->subject_id  }}">Delete</a>
+                                @if($data->recommend_id == NULL)
+                                 <a class="btn btn-default btn-sm" 
+                                     data-toggle="modal" data-target="#addRecommend{{$data->subject_id}}">加入推荐</a>
+                                       
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="addRecommend{{$data->subject_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">加入推荐</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <form action="/admin_aRecommendSubject" method="post">
+                                                  <h4>将 {{$data->subject_name}} 加入推荐？</h4>
+                                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                  <input type="hidden" name="recommend_subject" value="{{$data->subject_id}}">
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                <button type="submit" class="btn btn-primary">确认</button>
+                                                </form>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                               @endif
+                                <a class="btn btn-danger btn-sm" href="/admin_sSubject/{{ $data->subject_id  }}">删除</a>
                                 <a class="btn btn-info btn-sm" href="/admin_moreSubject/{{ $data->subject_id }}">详情页</a>
                             </td>
                             <!--<td><a href="/admin_sSubject/{{ $data->subject_id  }}">Delete</a></td>

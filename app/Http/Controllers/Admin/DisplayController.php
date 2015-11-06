@@ -199,6 +199,165 @@ class DisplayController extends Controller {
     
     
     //查看所有的推荐专题
+    public function  sRecommendSubject()
+    {
+        session(["now_address" => "/admin_sRecommendSubject"]);
+        
+        $sort = Request::input("sort",NULL);
+        if($sort  ==NULL )
+        {
+            $sort = "recommend_id";
+        }
+        
+        $search = Request::input("search_subject",NULL);
+        if($search != NULL)
+        {
+            $recommendData["recommendData"] = DB::table("base_display_subject_recommend")
+                ->leftJoin("base_article_subject","subject_id","=","recommend_subject")
+                ->leftJoin("base_user","user_id","=","subject_user")
+                ->leftJoin("base_display_re_subject","relation_recommend","=","recommend_id")
+                ->leftJoin("base_display_subject_class","class_id","=","relation_class")
+                ->where("subject_name","like","%".$search ."%")
+                ->orderBy($sort,"desc")
+                ->simplePaginate(10);
+        }
+        else
+        {
+            $recommendData["recommendData"] = DB::table("base_display_subject_recommend")
+                ->leftJoin("base_article_subject","subject_id","=","recommend_subject")
+                ->leftJoin("base_user","user_id","=","subject_user")
+                ->leftJoin("base_display_re_subject","relation_recommend","=","recommend_id")
+                ->leftJoin("base_display_subject_class","class_id","=","relation_class")
+                ->orderBy($sort,"desc")
+                ->simplePaginate(10);
+        }
+        
+        //dump($recommendData);
+        $recommendData["class_data"] = DB::table("base_display_subject_class")->get();
+        
+        
+        return view("Admin.Display.sRecommendSubject",$recommendData);
+        
+        
+    }
     
+    //添加专题
+    public function aRecommendSubject()
+    {
+       $inputData =  Request::only("recommend_subject");
+       $inputData["recommend_create_date"] = date('Y-m-d H:i:s');  
+       $inputData["recommend_update_date"] = date('Y-m-d H:i:s');
+       if(DB::table("base_display_subject_recommend")->insert($inputData))
+       {
+            $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"添加了一个推荐专题subject_id=".$inputData["recommend_subject"],
+                "log_detail"=>"添加了一个推荐专题subject_id=".$inputData["recommend_subject"],
+                "log_admin"=>session("admin.admin_id")]);
+            $this->baseFunc->setRedirectMessage(true, "添加推荐专题成功", NULL);
+            return redirect()->back();
+       }
+       else
+       {
+           
+            $this->baseFunc->setRedirectMessage(false, "无法推荐专题", NULL);
+            return redirect()->back();
+       }
+      
+    }
+    
+    
+    //删除专题
+    public function dRecommendSubject($re_id)
+    {
+         DB::beginTransaction();
+        if(1==DB::table("base_display_subject_recommend")->where("recommend_id","=",$re_id)->delete())
+        {
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"删除了一个推荐专题,subject_id=".$re_id,
+                "log_detail"=>"删除了一个推荐专题，subject_id=".$re_id,
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "删除推荐文章分类成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "删除推荐文章分类失败", NULL);
+            return redirect()->back();
+        }
+    }
+    
+    //添加展示主题类
+    public function aDisplaySubjectClass()
+    {
+        $inputData = Request::only("class_name");
+        DB::beginTransaction();
+        if(1==DB::table("base_display_subject_class")->insert($inputData))
+        {
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"添加推荐专题分类,class_name=".$inputData["class_name"],
+                "log_detail"=>"添加推荐专题分类，class_name=".$inputData["class_name"],
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "添加推荐专题分类成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "添加推荐专题分类失败", NULL);
+            return redirect()->back();
+        }
+    }
+    
+    //更新展示主题类
+    public function dDisplaySubjectClass($class_id)
+    {
+        
+        DB::beginTransaction();
+        if(1==DB::table("base_display_subject_class")->where("class_id","=",$class_id)->delete())
+        {
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"删除了一个推荐专题分类,class_id=".$class_id,
+                "log_detail"=>"删除了一个推荐专题分类，class_id=".$class_id,
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "删除推荐文章分类成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "删除推荐文章分类失败", NULL);
+            return redirect()->back();
+        }
+    }
+    
+    
+    //更新展示主题类
+    public function uDisplaySubjectClass()
+    {
+        $inputData = Request::only("class_name");
+        $class_id = Request::input("class_id");
+        DB::beginTransaction();
+        if(1==DB::table("base_display_subject_class")->where("class_id","=",$class_id)->update($inputData))
+        {
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"更改了一个推荐专题分类,class_name=".$inputData["class_name"],
+                "log_detail"=>"更改了一个推荐专题分类，class_name=".$inputData["class_name"],
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "修改推荐专题分类成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "修改推荐专题分类失败", NULL);
+            return redirect()->back();
+        }
+    }
     
 }

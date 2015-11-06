@@ -24,6 +24,7 @@ return [
         
         ],
     
+    
     //文章推荐类别
     "class_name"=>[ 
         "rule"=>["alpha_num","max:30"],
@@ -32,6 +33,14 @@ return [
     "class_id"=>[ 
         "rule"=>["integer","max:10"],
         ],
+    
+    
+    //推荐专题
+     "recommend_subject"=>[ 
+        "rule"=>["integer","max:10"],
+        
+        ],
+    
     
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%end wjt
     

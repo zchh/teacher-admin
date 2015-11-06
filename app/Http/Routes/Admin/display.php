@@ -16,6 +16,14 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::post("/admin_uDisplayArticleClass","Admin\DisplayController@uDisplayArticleClass");     //修改文章分类
     
     Route::get("/admin_sRecommendSubject","Admin\DisplayController@sRecommendSubject");           //推荐专题
-    Route::get("/admin_sDisplaySubjectClass","Admin\DisplayController@sDisplaySubjectClass");      //展示级专题分类
+    Route::post("/admin_aRecommendSubject","Admin\DisplayController@aRecommendSubject");           //添加推荐专题
+    Route::get("/admin_dRecommendSubject/{subject_id}","Admin\DisplayController@dRecommendSubject");           //删除推荐专题
+    
+    
+    //Route::get("/admin_sDisplaySubjectClass","Admin\DisplayController@sDisplaySubjectClass");      //展示级专题分类
+    Route::post("/admin_aDisplaySubjectClass","Admin\DisplayController@aDisplaySubjectClass");     //添加专题分类
+    Route::get("/admin_dDisplaySubjectClass/{class_id}","Admin\DisplayController@dDisplaySubjectClass");//删除专题分类
+    Route::post("/admin_uDisplaySubjectClass","Admin\DisplayController@uDisplaySubjectClass");     //修改专题分类
+    
 });
 ?>

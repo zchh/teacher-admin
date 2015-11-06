@@ -173,7 +173,9 @@ class ArticleController extends Controller {
     {
         session(["now_address" => "/admin_sSubject"]);
         //查找文章专题并分页显示
-        $input_data['subject_data'] = DB::table('base_article_subject')->get();
+        $input_data['subject_data'] = DB::table('base_article_subject')
+                ->leftJoin("base_display_subject_recommend","recommend_subject","=","subject_id")
+                ->get();  //dump($input_data);
         return view("Admin.Article.subjectlist",$input_data);
     }
     //(进行更新)
