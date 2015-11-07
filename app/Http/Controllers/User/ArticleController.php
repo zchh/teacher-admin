@@ -29,6 +29,8 @@ class ArticleController extends Controller
         /*$inputData["ajaxRequest"] = $baseFunc->requestAjax(
         ["article_title","article_intro","article_class","article_sort"],
                 "submitForm", "_user_aArticle",true);*/
+        
+       
        
         return view("User.Article.aArticle",$inputData);
         
@@ -42,9 +44,19 @@ class ArticleController extends Controller
             return redirect()->back();
         }
         $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
+
         DB::beginTransaction();
+
+        //插入封面图
+        if(session("image.image_id") != null)
+        {
+             $articleData["article_image"] = session("image.image_id");   //传递文章封面ID
+        }
+         
+
         if(true == $atcFunc->addArticle($articleData))
         {
+
             $log_array['log_level']=0;
             $log_array['log_title']="添加操作";
             $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."添加了一篇文章";
@@ -52,12 +64,15 @@ class ArticleController extends Controller
             $log_array['log_user']=session("user.user_id");
             $logFunc->addLog($log_array);
             DB::commit();
-            return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
+
+
+            return response()->json(['status' => true, 'message' => '<p class="text-success">添加成功，即将跳转</p>']);
         }
         else
         {
-          
-           return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
+
+           return response()->json(['status' =>false, 'message' => '<p class="text-success">添加失败，即将跳转</p>']);
+
            
         }        
     }
@@ -94,6 +109,9 @@ class ArticleController extends Controller
         ["article_title","article_intro","article_class","article_sort","article_detail"],
                 "submitForm", "/_user_uArticle",true);
         $inputData["articleDetail"] = $atcFunc->getArticleDetail($articleId);
+        
+        
+        
         return view("User.Article.uArticle",$inputData);
         
     }
@@ -111,12 +129,18 @@ class ArticleController extends Controller
             return redirect()->back();
         }
         $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
+          if(session("image.image_id") != null)  //zc
+        {
+             $articleData["article_image"] = session("image.image_id");   //传递文章封面ID
+        }
+
         $articleId = Request::input("article_id");
         DB::beginTransaction();
         if(DB::table("base_article")->where("article_id","=",$articleId)
                 ->where("article_user","=",session("user.user_id"))
                 ->update($articleData))
         {
+
             $log_array['log_level']=0;
             $log_array['log_title']="修改操作";
             $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."修改了一篇文章";
@@ -124,6 +148,9 @@ class ArticleController extends Controller
             $log_array['log_user']=session("user.user_id");
             $logFunc->addLog($log_array);
             DB::commit();
+
+            Session::put("image.image_id", null); //zc
+
             return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
         }
         else
@@ -450,6 +477,7 @@ class ArticleController extends Controller
         return view("User.Article.sCollect",$data);
     }
     
+
     public function aCollect(LogFunc $logFunc,BaseFunc $baseFunc)
     {
         $input_data=Request::only("collect_name");
@@ -478,6 +506,12 @@ class ArticleController extends Controller
         return view("User.Article.moreCollect",$data);
     }
 
+
+
+    public function aArticleImage()          //张池增加
+    {
+        return("User.Article.aArticleImage");
+    }
 
 
 

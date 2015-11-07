@@ -53,9 +53,12 @@
                                                                <a href="/index_articleDetail/{{$data->article_id}}" class="btn btn-default  ">查看详情</a>
                                                                </div>
 
+
                                                            </div>
                                                        </div>
                                                
+
+
 
                                               @endforeach
                                             
@@ -81,6 +84,7 @@
                                                            </div>
                                                        </div>
                                                
+
 
                                               @endforeach
                                         </div>

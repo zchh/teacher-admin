@@ -8,8 +8,6 @@ class UserPowerFunc
      * 用户权限获取
      * @access public
      * @param int $powerId
-     * 
-     *
      * @return Bool
      */
     public function getUserPower($userId)
@@ -35,7 +33,7 @@ class UserPowerFunc
      * @access public
      * @param int $powerId 权限id
      *
-     * @return bool；
+    * @return bool；
      */
     public function checkUserPower($powerId)
     {

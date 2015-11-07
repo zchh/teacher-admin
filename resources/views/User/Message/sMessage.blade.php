@@ -1,4 +1,4 @@
-@extends("User.Message.base")
+ @extends("User.Message.base")
 @section("main")
 
 
@@ -12,9 +12,9 @@
                 <thead>
                     <tr>
                         <th>消息标题</th>
-                        <th>消息内容</th>
                         <th>消息创建时期</th>
                         <th>消息接收者</th>
+                        <th>消息内容</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -24,14 +24,13 @@
                     @if ($send_user == $single -> message_send_user)
                     <tr>
                         <td>{{$single -> message_title}}</td>
-
-                        <td>
+                        <td>{{$single -> message_create_date}}</td>
+                        <td>{{$single -> user_username }}</td>
+                          <td>
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#select_{{$single -> message_id}}">
                                查看详情
                             </button>
                             </td>
-                        <td>{{$single -> message_create_date}}</td>
-                        <td>{{$single -> user_username }}</td>
                         <td>
 
                             <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#delete_{{$single -> message_id}}">

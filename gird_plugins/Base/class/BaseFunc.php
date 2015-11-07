@@ -135,6 +135,7 @@ class BaseFunc {
         }
     }
 
+
      /**
      * 用户登陆检查
      * 
@@ -159,6 +160,7 @@ class BaseFunc {
    
     
  
+
 
    
 

@@ -54,7 +54,9 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      =>  '114.215.156.124',
+
+			'host'      => "114.215.156.124", //'localhost',
+
 			'database'  => 'base_cms',
 			'username'  =>  'cookie',
 			'password'  => '123456',

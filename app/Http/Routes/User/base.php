@@ -44,7 +44,7 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_dArticle/{article_id}","User\ArticleController@dArticle");
 
     
-    Route::get("/user_aArticle","User\ArticleController@aArticle");
+    Route::get("/user_aArticle","User\ArticleController@aArticle");            //zc
     Route::post("/_user_aArticle","User\ArticleController@_aArticle");
     
 
@@ -112,6 +112,19 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::post("/user_aMessage","User\MessageController@aMessage");//增
     Route::get("/user_dMessage/{message_id}","User\MessageController@dMessage");//删
     
+    
+    //图片在框架里面添加
+  
+    Route::get("/user_sImageInFrame","User\ImageController@sImageInFrame");   //iframe网页，用于选择图片，zc
+    Route::get("/user_sImageIdInFrame/{image_id}","User\ImageController@sImageIdInFrame");
+    
+    //个人信息
+    //zc########################################################
+     Route::get("/user_sPersonalMessage","User\PersonalMessageController@sPersonalMessage");  //查看个人信息
+     Route::get("/user_uPersonalMessage","User\PersonalMessageController@uPersonalMessage");  //修改个人信息表单界面
+     Route::post("/_user_uPersonalMessage","User\PersonalMessageController@_uPersonalMessage");//修改个人信息
+    
+    //zc#########################################################
 
 
 });

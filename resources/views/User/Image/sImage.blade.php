@@ -95,7 +95,7 @@
                                                     <div>
                                                         <label for="exampleInputFile">图片名</label>
                                                         <?php echo "<br/> "; ?>
-                                                        <input type="text" class="form-control" name="image_user_name" value="{{$data -> image_name}}">   
+                                                        <input type="text" class="form-control" name="image_name" value="{{$data -> image_name}}">   
                                                     </div>
                                                     <div>
                                                         <label for="exampleInputFile">图片介绍</label>

@@ -82,7 +82,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="/">回到用户前端</a></li>
-                        <li><a href="/user">个人信息</a></li>
+                        <li><a href="/user_sPersonalMessage">个人信息</a></li>
                         <li><a href="/user_logout">登出</a></li>
 
                     </ul>
