@@ -18,8 +18,8 @@ class DisplayController extends Controller {
         $this->logFunc = $logFunc;
         if(!$powerFunc->checkAdminPower(13))
        {
-            $this->baseFunc->setRedirectMessage(false, "你没有权限", NULL);
-            return redirect()->back();
+            $this->baseFunc->setRedirectMessage(false, "你没有权限", NULL,"/admin_index");
+            //return redirect("/admin_index");//在这里不能使用跳转
             
        }
         

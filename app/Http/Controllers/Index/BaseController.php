@@ -10,7 +10,8 @@ class BaseController extends Controller {
     public function index()  
     {
         $inputData['articleData'] = DB::table("base_article")->get();
-        
+        $inputData["displayArticleGui"] = $this->displayArticleClassBar(1);
+        $inputData["newArticle"] = $this->newArticle();
         return view("Index.index",$inputData);
     }
     
@@ -100,5 +101,51 @@ class BaseController extends Controller {
                   //->leftJoin("base_article","user_id","=","article_user")
                   ->first();
          return view("Index.User.userSider",$viewData);
+    }
+    
+    //一个推荐文章的板块
+    private function displayArticleClassBar($class_id,$num = 5)
+    {
+        $viewData["classData"] = DB::table("base_display_class")->where("class_id","=",$class_id)->first();
+        $viewData["articleData"] = DB::table("base_display_article_recommend")
+                ->where("recommend_class","=",$class_id)
+                ->leftJoin("base_article","article_id","=","recommend_article")
+                ->skip(0)->take($num)
+                //->orderBy("recommend_sort","desc")
+                ->get();
+        return view("Index.Gui.displayArticleClassBar",$viewData);
+    }
+    //一个推荐专题类的板块
+    private function displaySubjectClassBar($class_id,$num = 5)
+    {
+        $viewData["classData"] = DB::table("base_display_class")->where("class_id","=",$class_id)->first();
+        $viewData["subjectData"] = DB::table("base_display_subject_recommend")
+                ->where("recommend_class","=",$class_id)
+                ->leftJoin("base_subject","subject_id","=","recommend_subject")
+                ->skip(0)->take($num)
+                //->orderBy("recommend_sort","desc")
+                ->get();
+        return view("Index.Gui.displaySubjectClassBar",$viewData);
+    }
+    
+    //最新文章板块
+    private function newArticle($num = 5)
+    {
+        $viewData["articleData"] = DB::table("base_article")
+                ->orderBy("article_id","desc")
+                ->skip(0)->take($num)
+                ->get();
+        return view("Index.Gui.newArticle",$viewData);
+    }
+    
+    //首页推荐组件
+    private function indexRecommendArticle($num = 5)
+    {
+        
+    }
+    //侧栏类别组件
+    private function sidebarClass()
+    {
+        
     }
 }

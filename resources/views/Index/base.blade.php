@@ -4,7 +4,8 @@
 
 @section("top_nav")
 <style>
-    body { padding-top: 60px; }
+    body { padding-top: 60px; 
+    background-color: #EEEEEE}
     
 </style>
        

@@ -54,10 +54,10 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      =>  'localhost',
+			'host'      =>  '114.215.156.124',
 			'database'  => 'base_cms',
-			'username'  =>  'root',
-			'password'  => '',
+			'username'  =>  'cookie',
+			'password'  => '123456',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

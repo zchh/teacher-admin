@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">Base CMS</a>
+                  <a class="navbar-brand" href="#">Base CMS 管理员后台</a>
                 </div>
 
                 
