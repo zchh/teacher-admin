@@ -63,7 +63,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">添加到</label>
-                                                        <div class="col-sm-10">
+                                                        <div class="col-sm-10"><input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                             <select class="form-control" name="subject">
                                                                 @foreach($subject_data as $subject)
                                                                 <option value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>

@@ -63,7 +63,7 @@ class BaseController extends Controller {
    public function moreSubject($subject_id)     //传递满足$subject_id的文章
     {
            $inputData['articleData'] =  DB::table('base_article_re_subject')
-                   ->join("base_article","article_id","=","relation_article")
+                   ->leftJoin("base_article","article_id","=","relation_article")
                    ->where('relation_subject','=',$subject_id)
                    ->orderBy("relation_sort")->get();//提取包含文章多个id
           // $article_id = $subject -> relation_subject;
@@ -71,7 +71,7 @@ class BaseController extends Controller {
                    ->where("subject_id","=",$subject_id)
                    ->first();     
             
-           dump($inputData);
+           $inputData["userInfoGui"] = $this->userSider($inputData["subjectData"]->subject_user);;
            return view("Index.Subject.moreSubject",$inputData);
         
     }
@@ -84,53 +84,21 @@ class BaseController extends Controller {
                   ->leftJoin("base_user","user_id","=","article_user")
                   ->first();
         $viewData["choseData"] =NULL;
-        $viewData["userData"] =  DB::table('base_article')
-                  ->where("article_id","=",$article_id)
-                  ->leftJoin("base_user","user_id","=","article_user")
-                  ->first();
+        
         $viewData["replyData"] = $articleFunc->getArticleReply($article_id);
-        
+        $viewData["userInfoGui"] = $this->userSider($viewData["articleData"]->article_user);
         return view("Index.Article.articleDetail",$viewData);
-        
-        /*
-        //把文章详情传递过去
-        
-             session(["nowPage"=>null]);
-
-        //获取文章id，在页面输出这个id对应的各种内容
-        // $inputData["articleData"] = DB::table('base_article')->get();  //返回值为数组，数组中包含多个类对象，一个对象为一个记录
-         
-         //$inputData["article_id"] = $article_id;
-         
-          $combine["articleData"] = DB::table('base_article')    //为了获得作者，要合并两张表
-          ->join('base_user', 'base_article.article_user', '=', 'base_user.user_id')
-          ->orderBy("article_click","desc")
-          ->get();
-          
-          $combine["userData"] = DB::table('base_article')
-                  ->where("article_id","=",$article_id)
-                  ->leftJoin("base_user","user_id","=","article_user")
-                  ->first();
-          
-         $combine["article_id"] = $article_id;    //获取路由上的article_id
-  
-        foreach ($combine["articleData"] as $key => $data)
-        {
-            if($data -> article_id == $article_id)
-            {
-              $i = $key;                       //获取是路由id的数组下标
-              break;
-            }
-        }
-        $record = count($combine["articleData"]);   //记录条数
        
-        $i==$record-1? $combine["nextArticle"]=-1 :$combine["nextArticle"]=$combine["articleData"][$i+1]->article_id;//为-1,相当于为空
-        $i==0? $combine["previousArticle"]=-1 :$combine["previousArticle"]=$combine["articleData"][$i-1]->article_id;
-        $combine["record"] = $record;
-        
-        
-        $combine["replyData"] = $articleFunc->getArticleReply($article_id);
-        
-        return view("Index.Article.articleDetail",$combine);*/
+    }
+    
+    
+    //用户侧栏组件
+    private function userSider($user_id)
+    {
+        $viewData["userData"] =  DB::table('base_user')
+                  ->where("user_id","=",$user_id)
+                  //->leftJoin("base_article","user_id","=","article_user")
+                  ->first();
+         return view("Index.User.userSider",$viewData);
     }
 }
