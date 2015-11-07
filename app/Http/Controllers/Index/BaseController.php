@@ -12,6 +12,8 @@ class BaseController extends Controller {
         $inputData['articleData'] = DB::table("base_article")->get();
         $inputData["displayArticleGui"] = $this->displayArticleClassBar(1);
         $inputData["newArticle"] = $this->newArticle();
+        $inputData["indexRecommendArticle"] = $this->indexRecommendArticle();
+        $inputData["displaySidebarClass"] = $this->sidebarClass();
         return view("Index.index",$inputData);
     }
     
@@ -22,10 +24,25 @@ class BaseController extends Controller {
     public function findArticle()  
     {
       // dump($_GET);
+        if(isset($_GET["key"]))
+        {
+            $key = "%".$_GET["key"]."%";
+            $results['articleData'] = DB::select('select * from base_article where article_title like :key', ['key' => $key]);
+        }
+        /*
+        if(isset($_GET["class"]))
+        {
+            $results['articleData'] = DB::table("base_display_article_recommend")
+                    ->where("recommend_class","=",$_GET["class"])
+                    ->leftJoin("base_article","article_id","=","recommend_article")
+                    ->orderBy("article_id","desc")
+                    ->simplePaginate(10);
+        }
+        */
+        if($results  ==  NULL){return redirect()->back();}
         
-        $key = "%".$_GET["key"]."%";
        // $inputData['article'] = DB::table('base_article')-> where('article_title','=','') ->first();
-        $results['articleData'] = DB::select('select * from base_article where article_title like :key', ['key' => $key]);
+       
       // dump($results);
       //exit();
        return view("Index.Article.findArticle",$results);
@@ -138,15 +155,22 @@ class BaseController extends Controller {
         return view("Index.Gui.newArticle",$viewData);
     }
     
-    //首页推荐组件
+    //首页推荐栏
     private function indexRecommendArticle($num = 5)
     {
-        
+        $viewData["indexData"] = DB::table("base_index_display")
+                ->leftJoin("base_article","article_id","=","display_article_id")
+                ->orderBy("display_sort","desc")->skip(0)->take($num)->get();
+        return view("Index.Gui.indexRecommendArticle",$viewData);
     }
-    //侧栏类别组件
+    
+    
+    //侧栏类别组件  需要一个单独的按类查找的页面
     private function sidebarClass()
     {
-        
+        $viewData["classData"] = DB::table("base_display_class")
+               ->orderBy("class_sort","desc")->get();
+        return view("Index.Gui.sidebarClass",$viewData);
     }
     
 }

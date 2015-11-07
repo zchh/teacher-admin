@@ -2,12 +2,12 @@
   <!-- Default panel contents -->
 
   <div class="panel-body">
-      <h2>最新文章</h2>
+      <h2>热门推荐</h2>
   </div>
 
   <!-- Table -->
   <table class="table table-hover">
-      @foreach($articleData as $data)
+      @foreach($indexData as $data)
       <tr>
           <td> 
               <a href="/index_articleDetail/{{$data->article_id}}">
