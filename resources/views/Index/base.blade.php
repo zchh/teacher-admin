@@ -60,7 +60,11 @@
 
     @show
          
-
+<footer class="main-fooder "style="background-color: #f3f3f3;height: 90px; position: absolute;bottom: 0;width: 100%;">
+    <div class="container">
+        <p class="col-lg-offset-5 text-muted  glyphicon glyphicon-copyright-mark" style="top: 50px;"> 2015 Struck by Cookie</p>
+    </div>
+</footer>
 
        
         
