@@ -23,5 +23,11 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_dDisplayClass/{class_id}","Admin\DisplayController@dDisplayClass");//删除分类
     Route::post("/admin_uDisplayClass","Admin\DisplayController@uDisplayClass");     //修改分类
     
+    
+    
+    Route::post("/admin_aDisplayIndex","Admin\DisplayController@aDisplayIndex");    //添加首页展示
+    Route::get("/admin_sDisplayIndex","Admin\DisplayController@sDisplayIndex");     //查看首页所有展示
+    Route::get("/admin_dDisplayIndex/{display_id}","Admin\DisplayController@dDisplayIndex");     //删除首页展示
+    Route::post("/admin_uDisplayIndex","Admin\DisplayController@uDisplayIndex");     //修改首页展示
 });
 ?>

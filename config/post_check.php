@@ -15,11 +15,11 @@ return [
         ],
 
      "recommend_class"=>[ 
-        "rule"=>["integer","max:10"],
+        "rule"=>["integer"],
         
         ],
     "article_id"=>[ 
-        "rule"=>["integer","max:10"],
+        "rule"=>["integer"],
         
         ],
      //文章推荐类别

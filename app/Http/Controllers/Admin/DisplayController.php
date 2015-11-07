@@ -44,6 +44,7 @@ class DisplayController extends Controller {
                 ->leftJoin("base_article","article_id","=","recommend_article")
                 ->leftJoin("base_user","article_user","=","user_id")
                 ->leftJoin("base_display_class","recommend_class","=","class_id")
+                ->leftJoin("base_index_display","display_article_id","=","article_id")
                 ->orderBy(Request::input("sort_id","recommend_id"),"desc")
                     ->where("article_title","like","%".$_GET["search_article"]."%")
                 ->simplePaginate(10);
@@ -54,6 +55,7 @@ class DisplayController extends Controller {
                 ->leftJoin("base_article","article_id","=","recommend_article")
                 ->leftJoin("base_user","article_user","=","user_id")
                 ->leftJoin("base_display_class","recommend_class","=","class_id")
+                ->leftJoin("base_index_display","display_article_id","=","article_id")
                 ->orderBy(Request::input("sort_id","recommend_id"),"desc")
                 ->simplePaginate(10);
         
@@ -144,7 +146,7 @@ class DisplayController extends Controller {
             $recommendData["recommendData"] = DB::table("base_display_subject_recommend")
                 ->leftJoin("base_article_subject","subject_id","=","recommend_subject")
                 ->leftJoin("base_user","user_id","=","subject_user")
-                ->leftJoin("base_display_class","recommend_class","=","class_id")
+                ->leftJoin("base_display_class","recommend_class","=","class_id") 
                 ->orderBy($sort,"desc")
                 ->simplePaginate(10);
         }
@@ -158,6 +160,7 @@ class DisplayController extends Controller {
         
     }
     
+    //更新推荐文章
     public function uRecommendArticle()
     {
         $inputData = Request::only("recommend_class");
@@ -329,5 +332,101 @@ class DisplayController extends Controller {
             return redirect()->back();
         }
     }
+    
+    
+    
+    //首页展示添加
+    public function aDisplayIndex()
+    {
+        $displayData = Request::only("display_article_id","display_location");
+        //dump($displayData); exit();
+        DB::beginTransaction();
+       
+        if($id = DB::table("base_index_display")->insertGetId($displayData))
+        {
+           
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"添加了一个展示,display_id=".$id,
+                "log_detail"=>"display_id = $id ,display_article=".$displayData["display_article_id"]." , "
+                    . "display_location = ".$displayData["display_location"],
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "添加展示成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "添加展示失败", NULL);
+            return redirect()->back();
+        }
+    }
+    
+    //首页展示查看
+    public function sDisplayIndex()
+    {
+       session(["now_address" => "/admin_sDisplayIndex"]);
+       $viewData["indexData"] = DB::table("base_index_display")
+               ->leftJoin("base_article","article_id","=","display_article_id")
+               ->leftJoin("base_user","user_id","=","article_user")
+               ->orderBy("display_id","desc")
+               ->get();
+       
+       
+       return view("Admin.Display.sDisplayIndex",$viewData); 
+    }
+    
+    
+    //首页展示页删除
+    public function dDisplayIndex($display_id)
+    {
+       DB::beginTransaction();
+        if(DB::table("base_index_display")->where("display_id","=",$display_id)->delete())
+        {
+           
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"移出了一个展示,display_id=$display_id",
+                "log_detail"=>"display_id=$display_id",
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "删除展示成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "删除展示失败", NULL);
+            return redirect()->back();
+        }
+    }
+    
+    //首页展示页修改
+    public function uDisplayIndex()
+    {
+        $inputData = Request::only("display_location");
+        $displayId = Request::input("display_id");
+        
+        
+        DB::beginTransaction();
+        if(DB::table("base_index_display")->where("display_id","=",$displayId)->update($inputData))
+        {
+           
+             $this->logFunc->addLog(
+                ["log_level"=>0,
+                "log_title"=>"更改了一个展示,display_id=$displayId",
+                "log_detail"=>"display_id=$displayId",
+                "log_admin"=>session("admin.admin_id")]);
+             DB::commit();
+            $this->baseFunc->setRedirectMessage(true, "修改展示成功", NULL);
+            return redirect()->back();
+        }
+        else
+        {
+            $this->baseFunc->setRedirectMessage(false, "修改展示失败", NULL);
+            return redirect()->back();
+        }
+        
+    }
+    
     
 }

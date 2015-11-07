@@ -26,6 +26,45 @@
                                   <td>{{$data->user_nickname}}</td>
                                   <td>{{$data->class_name}}</td>
                                   <td>
+                                      @if($data->display_id == NULL)
+                                       <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add_index_diaplay_{{$data->article_id}}">
+                                          展示
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="add_index_diaplay_{{$data->article_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">添加到展示</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <form action="/admin_aDisplayIndex" method="post">
+                                                      <input type="hidden" value="{{$data->article_id}}" name="display_article_id" >
+                                                      <input type="hidden"name="_token" value="{{ csrf_token() }}">
+                                                       <div class="form-group">
+                                                            <label >添加到哪里展示</label>
+                                                          <select class="form-control" name="display_location">
+                                                            <option value="0">主页推荐</option>
+                                                            <option value="2">侧栏推荐</option>
+                                                            
+                                                          </select>
+                                                      </div>
+                                                  
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="submit" class="btn btn-primary">确定</button>
+                                                    </form>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        @endif
+                                      
+                                      
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#upd_re_{{$data->recommend_id}}">
                                           修改推荐

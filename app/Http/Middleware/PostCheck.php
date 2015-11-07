@@ -61,7 +61,8 @@ class PostCheck {
                   else 
                   {
                       $m="";
-                     foreach ($defaultMessage->$key as $message)
+                     // dump($defaultMessage);exit();
+                     foreach ($defaultMessage->get($key) as $message)
                     {
                        $m.=$message."<br/>";
                     }
