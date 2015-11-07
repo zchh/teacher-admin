@@ -91,6 +91,8 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     
     //收藏夹
      Route::get("/user_sCollect","User\ArticleController@sCollect");//查看收藏夹
+     Route::post("/user_aCollect","User\ArticleController@aCollect");//添加收藏夹
+     Route::get("/user_moreCollect/{collect_id}","User\ArticleController@moreCollect");//收藏夹详情
     
 
     //图片管理

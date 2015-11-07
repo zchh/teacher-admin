@@ -7,7 +7,9 @@
 <div class="col-sm-8">
     <div class="panel panel-default">
         <div class="panel-body">
-            <h2>我的收藏 | <button class="btn  btn-primary "  data-toggle="modal" data-target="#aCollect" type="button">添加收藏夹</button></h2>              
+          
+             
+            <h2>当前收藏夹：{{$nowCollect[0]->collect_name}} | <button class="btn  btn-primary "  data-toggle="modal" data-target="#aCollect" type="button">添加收藏夹</button></h2>              
             <div class="modal fade" id="aCollect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -30,35 +32,31 @@
                 </div>
             </div></h2>
             <hr>
-
+        @if($nowCollect != NULL)
             <table class="table table-striped" >
                 <thead>
                     <tr>
-                        <th>收藏夹</th>
+                        <th>文章</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($collectData as $data)
-                   
-                    @if($data->collect_folder==1)
+                    @foreach($moreCollect as $data)
+                    @if($data->collect_folder==0)
                     <tr>
-                        <td><a href="/user_moreCollect/{{$data->collect_id}}"><img src="/image/collect.png" style="width:5%;height:5%">  {{$data->collect_name}}</a></td>
-                        <td>删除</td>
-                    </tr>                    
-                    @else
-                    
-                    <tr>
-                        <td><a href="/user_readSingleArticle/{{$data->article_id}}"><img src="/image/article.png" style="width:5%;height:5%">  {{$data->article_title}}</a></td>
+                        <td><a href="/user_readSingleArticle/{{$data->article_id}}"> <img src="/image/article.png" style="width:5%;height:5%"> {{$data->article_title}}</a></td>
                         <td>删除</td>
                     </tr>
-                   
+                    @else
+                    <tr>
+                        <td><a href="/user_moreCollect/{{$data->collect_id}}"><img src="/image/collect.png" style="width:5%;height:5%"> {{$data->collect_name}}</a></td>
+                        <td>删除</td>
+                    </tr>
                     @endif
-                 
                     @endforeach
                 </tbody>
             </table>
-
+            @endif
         </div>
     </div>
 </div>
