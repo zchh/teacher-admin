@@ -57,8 +57,12 @@ class BaseController extends Controller {
     public function userIndex($user_id)  //用户首页
     {
         //获取用户信息
+
         $inputData['userData']=DB::table('base_user')-> where('user_id','=', $user_id)
-            ->leftJoin("base_image","image_id","=","user_image")->first();//提取一条记录,获得用户昵称
+            ->leftJoin("base_image","image_id","=","user_image")
+                ->leftJoin("base_user_relation","relation_focus","=","user_id")
+                    ->first();//提取一条记录,获得用户昵称
+
         
         //获得当前用户的所有文章
         $inputData['articleData'] = DB::table('base_article')-> where('article_user','=', $user_id)->
@@ -137,6 +141,7 @@ class BaseController extends Controller {
     private function userSider($user_id)
     {
         $viewData["userData"] =  DB::table('base_user')
+                ->leftJoin("base_user_relation","relation_focus","=","user_id")
                   ->where("user_id","=",$user_id)
                ->leftJoin("base_image","image_id","=","user_image")
                   //->leftJoin("base_article","user_id","=","article_user")

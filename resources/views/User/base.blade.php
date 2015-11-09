@@ -66,12 +66,10 @@
                         <li><a href="/user_sMessage">查看消息</a></li>
                         <li><a href="/user_aMessage">添加消息</a></li>
                     </ul>  
-
-
-
-
                 </li>
-
+                <li>
+                    <a href="/user_sFocus">我的关注</a>
+                </li>
 
             </ul>
 

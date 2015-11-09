@@ -32,11 +32,12 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     
     
     //关注人10/31   wjt
+    /*
     Route::get("/user_sFocus","User\FriendController@sFocus");                       //查看关注人
     Route::get("/user_aFocus/{id}","User\FriendController@aFocus");                 //添加关注人
     Route::get("/user_dFocus/{id}","User\FriendController@dFocus");                  //删除关注人
     Route::get("/user_sFocusArticle","User\FriendController@sFocusArticle");        //查看关注人有哪些动态
-    
+    */
     
     
     //用户文章  完成
@@ -126,7 +127,13 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     
     //zc#########################################################
 
-
+     //关注
+    //wyf########################################################
+     Route::get("/user_sFocus","User\FocusController@sFocus");//查看关注
+     Route::post("/user_aFocus","User\FocusController@aFocus");//添加关注
+     Route::get("/user_dFocus/{relation_id}","User\FocusController@dFocus");//取消关注
+     Route::post("/user_uFocus","User\FocusController@uFocus");//修改备注
+     //wyf#######################################################
 });
 
 ?>

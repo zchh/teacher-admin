@@ -71,7 +71,6 @@
            </nav>   
 
 
-
 @section("left_nav")
 
 @show
@@ -80,5 +79,7 @@
 @section("main")
 
 @show
+
+
 @append
 

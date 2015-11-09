@@ -45,6 +45,7 @@ class ArticleController extends Controller
         }
         $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
 
+
         DB::beginTransaction();
 
         //插入封面图
@@ -54,8 +55,10 @@ class ArticleController extends Controller
         }
          
 
+
         if(true == $atcFunc->addArticle($articleData))
         {
+
 
             $log_array['log_level']=0;
             $log_array['log_title']="添加操作";
@@ -67,11 +70,14 @@ class ArticleController extends Controller
 
 
             return response()->json(['status' => true, 'message' => '<p class="text-success">添加成功，即将跳转</p>']);
+
         }
         else
         {
 
+
            return response()->json(['status' =>false, 'message' => '<p class="text-success">添加失败，即将跳转</p>']);
+
 
            
         }        
@@ -141,6 +147,7 @@ class ArticleController extends Controller
                 ->update($articleData))
         {
 
+
             $log_array['log_level']=0;
             $log_array['log_title']="修改操作";
             $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."修改了一篇文章";
@@ -150,6 +157,7 @@ class ArticleController extends Controller
             DB::commit();
 
             Session::put("image.image_id", null); //zc
+
 
             return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
         }
@@ -472,6 +480,7 @@ class ArticleController extends Controller
                 ->leftJoin("base_collect_relation","relation_id","=","collect_id")
                 ->leftJoin("base_user","user_id","=","collect_id")
                 ->leftJoin("base_article","article_id","=","collect_article_id")
+
                 ->get();
         
         return view("User.Article.sCollect",$data);
@@ -512,6 +521,7 @@ class ArticleController extends Controller
     {
         return("User.Article.aArticleImage");
     }
+
 
 
 

@@ -19,10 +19,10 @@ class PowerController extends Controller {
         return view("Admin.Power.sAdmin", $data);
     }
 
-    public function aAdmin() 
+    /*public function aAdmin() 
     {
         return view("Admin.Power.aAdmin");
-    }
+    }*/
 
     public function _aAdmin(AdminPowerFunc $adminPowerFunc,BaseFunc $baseFunc,LogFunc $logFunc) 
     {
@@ -34,16 +34,26 @@ class PowerController extends Controller {
         }
         $input = Request::only('admin_username', 'admin_nickname', 'admin_password','admin_group');
         $input["admin_password"] = md5('admin_password');
-        DB::beginTransaction();
-        DB::table("base_admin")->insert($input);
-        $log_array['log_level']=0;
-        $log_array['log_title']="添加操作";
-        $log_array['log_detail']=  date("Y-m-d H:i:s").session('admin_nickname')."添加了一个管理员用户";
-        $log_array['log_data']="添加";
-        $log_array['log_admin']=session('admin_nickname');
-        $logFunc->addLog($log_array);
-        DB::commit();
-        $baseFunc->setRedirectMessage(true, "添加管理员用户成功！", NULL, "/admin_sAdmin");
+        $data["admin_username"]=DB::table('base_admin')->where("admin_username","=",$input['admin_username'])->get();
+        if($data['admin_username']!=NULL)
+        {
+            $baseFunc->setRedirectMessage(false, "添加管理员用户失败！", "已经有此管理员用户", NULL);
+            return redirect()->back();    
+        }
+        else
+        {
+            DB::beginTransaction();
+            DB::table("base_admin")->insert($input);
+            $log_array['log_level']=0;
+            $log_array['log_title']="添加操作";
+            $log_array['log_detail']=  date("Y-m-d H:i:s").session('admin_nickname')."添加了一个管理员用户";
+            $log_array['log_data']="添加";
+            $log_array['log_admin']=session('admin_nickname');
+            $logFunc->addLog($log_array);
+            DB::commit();
+            $baseFunc->setRedirectMessage(true, "添加管理员用户成功！", NULL, "/admin_sAdmin");
+        }
+        
     }
 
     /*public function moreAdmin($admin_id)
@@ -90,15 +100,13 @@ class PowerController extends Controller {
             $baseFunc->setRedirectMessage(false, "您没有权限进行此操作，请联系超级管理员", NULL, "null");
             return redirect()->back();
         }
-        DB::beginTransarticle();
         DB::table("base_admin")->where("admin_id", "=", $admin_id)->delete();
         $log_array['log_level']=0;
         $log_array['log_title']="删除操作";
         $log_array['log_detail']=  date("Y-m-d H:i:s").session('admin_nickname')."删除了一个管理员用户";
         $log_array['log_data']="删除";
-        $log_array['log_admin']=session('admin_nickname');
+        $log_array['log_admin']=session('admin_id');  
         $logFunc->addLog($log_array);
-        DB::commit();
         $baseFunc->setRedirectMessage(true, "删除管理员用户成功！", NULL, "/admin_sAdmin");
     }
 

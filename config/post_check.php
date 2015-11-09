@@ -30,7 +30,44 @@ return [
     "class_id"=>[ 
         "rule"=>["integer","max:10"],
         ],
-    
+    //***********************************wyf
+   "admin_username"=>[
+       "rule"=>['alpha_dash'],
+       "message"=>"用户名仅允许字母、数字、破折号（-）以及底线（_）"
+   ],
+    "admin_nickname"=>[
+        "rule"=>['alpha_dash'],
+        "message"=>"昵称仅允许字母、数字、破折号（-）以及底线（_）"
+    ],
+    "admin_password"=>[
+        "rule"=>['alpha_dash'],
+        "message"=>"密码仅允许字母、数字、破折号（-）以及底线（_）"
+    ],
+    "group_name"=>[
+        "rule"=>['alpha_dash'],
+        "message"=>"权限组名称仅允许字母、数字、破折号（-）以及底线（_）"
+    ],
+    "class_name"=>[
+        "rule"=>['alpha_dash'],
+        "message"=>"类别名称仅允许字母、数字、破折号（-）以及底线（_）"
+    ],
+    "lable_name"=>[
+        "rule"=>['alpha_dash'],
+        "message"=>"标签名称仅允许字母、数字、破折号（-）以及底线（_）"
+    ],
+    "subject_name"=>[
+        "rule"=>['alpha_dash'],
+        "message"=>"专题名称仅允许字母、数字、破折号（-）以及底线（_）"
+    ],
+    "subject_intro"=>[
+        "rule"=>['alpha_dash'],
+        "message"=>"专题介绍仅允许字母、数字、破折号（-）以及底线（_）"
+    ],
+    "relation_focus"=>[
+        "rule"=>['alpha_dash'],
+        "message"=>"专题介绍仅允许字母、数字、破折号（-）以及底线（_）"
+    ],
+    //*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     
     //推荐专题
      "recommend_subject"=>[ 
