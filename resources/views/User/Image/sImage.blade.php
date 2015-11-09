@@ -131,12 +131,12 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_{{ $data->image_id}}">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_">
                 添加图片
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="add_{{ $data->image_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="add_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

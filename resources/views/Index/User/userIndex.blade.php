@@ -8,7 +8,7 @@
 		background-size:100% 100%;height:300px;border: 1px solid gray;
 		border-radius:10px;	">
                  <div style="margin: 15px auto; width:150px;height:150px">
-                      <img src="/Public/folder.jpg" class="img-circle" style="margin:auto ;width:100%;height:100%">
+                      <img src="{{$userData->image_path}}" class="img-circle" style="margin:auto ;width:100%;height:100%">
                  </div>
                  <div style="width:150px;height:100px;margin:15px auto;" >
                      <h3 style="text-align: center;color:white">{{$userData->user_username}}</h3>

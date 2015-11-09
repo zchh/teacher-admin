@@ -22,8 +22,10 @@ class ImageController extends Controller {
     }
 
     public function aImage(BaseFunc $baseFunc, LogFunc $logFunc, UserPowerFunc $UserPowerFunc) {   //增加图片
+
+        dump(Request::all());
         if (!request::hasFile('image_file')) {
-            $this->handle_indicate(false, "没有文件");
+            $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
             return redirect()->back();  //跳回上一页
         } else {
             //从前端提取文件
@@ -55,7 +57,8 @@ class ImageController extends Controller {
 
 
             if (!$UserPowerFunc->checkUserPower(7)) {                    //权限验证
-                return redirect()->back();  //跳回上一页     
+                $baseFunc->setRedirectMessage(false, "错误，无权限", NULL);
+                return redirect()->back();  //跳回上一页
             }
             if (DB::table("base_image")->insert($input_data)) {
                 $baseFunc->setRedirectMessage(true, "数据插入成功", NULL);

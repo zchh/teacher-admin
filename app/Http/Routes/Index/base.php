@@ -19,6 +19,11 @@ Route::get("/index_sSubject","Index\BaseController@sSubject");        //查看�
 Route::get("/index_moreSubject/{subject_id}","Index\BaseController@moreSubject");        //查看专题中的文章   //zc改
 //10/31 wjt end
 
+
+//查看类别
+Route::get("/index_sDisplayArticleClass/{class_id}","Index\BaseController@sDisplayArticleClass");
+
+
 Route::get("/power_check_demo",function(\GirdPlugins\Base\AdminPowerFunc $adminFunc,  GirdPlugins\Base\UserPowerFunc $userFunc)
 {
     dump($userFunc->getUserPower(1));

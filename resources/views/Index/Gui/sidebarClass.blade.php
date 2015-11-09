@@ -2,7 +2,7 @@
     
     <div class="list-group">
         @foreach($classData as $data)
-            <a href="/index_findArticle?class={{$data->class_id}}" class="list-group-item">
+            <a href="/index_sDisplayArticleClass/{{$data -> class_id}}" class="list-group-item">
               {{$data->class_name}}
             </a>
         @endforeach

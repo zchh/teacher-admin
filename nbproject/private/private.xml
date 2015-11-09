@@ -2,26 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Routes/Index/base.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Index/Subject/moreSubject.blade.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/Index/BaseController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Index/Article/articleDetail.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Article/articlelist.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Admin/Article/subjectlist.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Index/Subject/sSubject.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Index/User/userSider.blade.php</file>
-=======
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/User/Article/moreCollect.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/User/Article/sCollect.blade.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/User/ArticleController.php</file>
-            <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Routes/User/base.php</file>
->>>>>>> wangyufei
         </group>
-=======
-        <group/>
->>>>>>> origin/zhangchi
     </open-files>
 </project-private>

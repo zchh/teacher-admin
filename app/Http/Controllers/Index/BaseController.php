@@ -48,7 +48,7 @@ class BaseController extends Controller {
        return view("Index.Article.findArticle",$results);
     }
     
-    
+
     public function sArticle()
     {
         return view("Index.sArticle");
@@ -57,7 +57,8 @@ class BaseController extends Controller {
     public function userIndex($user_id)  //用户首页
     {
         //获取用户信息
-        $inputData['userData']=DB::table('base_user')-> where('user_id','=', $user_id) ->first();//提取一条记录,获得用户昵称
+        $inputData['userData']=DB::table('base_user')-> where('user_id','=', $user_id)
+            ->leftJoin("base_image","image_id","=","user_image")->first();//提取一条记录,获得用户昵称
         
         //获得当前用户的所有文章
         $inputData['articleData'] = DB::table('base_article')-> where('article_user','=', $user_id)->
@@ -65,7 +66,9 @@ class BaseController extends Controller {
         //获取当前用户的专题
         $inputData["subjectData"] = DB::table("base_article_subject")-> where('subject_user','=', $user_id)->
                 orderBy("subject_id","desc")->get();
-        
+
+
+        //dump($inputData);
         return view("Index.User.userIndex",$inputData);
         
         
@@ -108,6 +111,26 @@ class BaseController extends Controller {
         return view("Index.Article.articleDetail",$viewData);
        
     }
+
+
+    public function sDisplayArticleClass($class_id)
+    {
+        $viewData["classData"] = DB::table("base_display_class")->where("class_id","=",$class_id)->get();
+        $viewData["articleData"] = DB::table("base_display_article_recommend")
+            ->where("recommend_class","=",$class_id)
+            ->leftJoin("base_article","article_id","=","recommend_article")
+            ->orderBy("article_id","desc")
+            ->simplePaginate(15);
+       /* $viewData["subjectData"] = DB::table("base_display_subject_recommend")
+            ->where("recommend_class","=",$class_id)
+            ->leftJoin("base_article","article_id","=","recommend_article")
+            ->get();*/
+
+
+        $viewData["articleClassBar"] =$this->sidebarClass();
+        $viewData["indexRecommendArticle"] = $this->indexRecommendArticle();
+        return view("Index.sDisplayArticleClass", $viewData);
+    }
     
     
     //用户侧栏组件
@@ -115,6 +138,7 @@ class BaseController extends Controller {
     {
         $viewData["userData"] =  DB::table('base_user')
                   ->where("user_id","=",$user_id)
+               ->leftJoin("base_image","image_id","=","user_image")
                   //->leftJoin("base_article","user_id","=","article_user")
                   ->first();
          return view("Index.User.userSider",$viewData);
