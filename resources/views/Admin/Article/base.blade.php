@@ -10,8 +10,9 @@
     </ul>
     <ul class="nav nav-pills nav-stacked">
         <li class="<?php if(session("now_address") == "/admin_sSubject"){echo "active";}?>"><a href="/admin_sSubject">查看所有的专题</a></li>
-        <li role="presentation"><a href="/admin_sClass">查看所有分类</a></li>
+        <li class="<?php if(session("now_address") == "/admin_sClass"){echo "active";}?>"><a href="/admin_sClass">查看所有分类</a></li>
         <li role="presentation"><a href="">待续.....</a></li>
+        
     </ul>
 </div>
 <!--  

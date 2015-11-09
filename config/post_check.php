@@ -83,6 +83,7 @@ return [
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%end wjt%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     
+
     
      "user_age" => [                                   //修改个人信息的年龄
         "rule" => ['integer', "required"],
@@ -209,4 +210,78 @@ return [
     
 
 
+
+
+    //管理员文章部分（#包含的内容是彭亮写的）########################################################3
+    "subject"=>[
+        "rule"=>['required'],     //文章并入专题
+        "message"=>"必须选择一个专题"
+    ],
+    "label_id"=>[
+        "rule"=>['required','digits:10'],     //为文章添加标签
+        "message"=>"必须选择一个标签"
+    ],
+    "article_id_array"=>[       //选择一个或多篇文章添加到当前专题（控制器接收的数据为数组）
+        "rule"=>['required','array'],
+        "message"=>"选项框不能为空",
+    ],
+    "class_name"=>[     //添加类别
+        "rule"=>['required','string'],
+        "message"=>"类别名称不能为空"
+    ],
+    "class_id"=>[       //类别修改
+        "rule"=>['required','digits:10'],
+        "message"=>"类别ID不能为空"
+    ],
+    "label_name"=>[     //添加标签
+        "rule"=>['required','string'],
+        "message"=>"标签名称不能为空"
+    ],
+    "label_id"=>[       //标签修改
+        "rule"=>['required','digits:10'],
+        "message"=>"标签ID不能为空"
+    ],
+    "subject_name"=>[       //添加专题
+        "rule"=>['required','string'],
+        "message"=>"专题名称不能为空"
+    ],
+    "subject_intro"=>[       //添加专题
+        "rule"=>['required','string'],
+        "message"=>"专题介绍不能为空"
+    ],
+    "subject_id"=>[       //修改专题
+        "rule"=>['required'],
+        "message"=>"专题ID不能为空"
+    ],
+    //用户权限部分（彭亮）
+    "user_username"=>[       //添加用户（用户名）
+        "rule"=>['required','max:50'],
+        "message"=>"用户名不能为空"
+    ],
+    "user_nickname"=>[       //添加用户（用户昵称）
+        "rule"=>['max:50'],
+        "message"=>"用户昵称长度不能超过50"
+    ],
+    "user_password"=>[       //添加用户（用户密码）
+        "rule"=>['required','max:50'],
+        "message"=>"密码为必填项"
+    ],
+    "user_group"=>[       //添加用户（用户权限组）
+        "rule"=>['required'],
+        "message"=>"必选为用户选择一个权限组"
+    ],
+   "group_name"=>[       //添加权限组
+        "rule"=>['required','max:50'],
+        "message"=>"此字段不能为空"
+    ],
+    "power_id_array"=>[       //添加权限到当前权限组
+        "rule"=>['required','array'],
+        "message"=>"至少得选择一项权限"
+    ],
+    "user_id_array"=>[       //添加用户到当前权限组
+        "rule"=>['required','array'],
+        "message"=>"至少得选择一个用户"
+    ],
+    //#########################################################
 ];
+

@@ -88,11 +88,13 @@ class LogFunc
         }
     }
 
+
     /*
      * 基于管理员id查询记录
      * @access public
      * @param $log_admin
      * @return array
+
      */
 
     public function selectLogByAdmin($log_admin) {                //zc

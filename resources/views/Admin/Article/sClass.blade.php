@@ -60,7 +60,7 @@
                             <td>{{$data->class_create_date}}</td>
                             <td>{{$data->class_update_date}}</td>
                             <td colspan="3">
-                                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#edit{{$data->class_id}}">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{$data->class_id}}">
                                     文章类别修改
                                 </button>
                                 <!-- Modal -->
@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="btn btn-primary" href="/admin_dClass/{{$data->class_id}}">Delete</a>
+                                <a class="btn btn-danger btn-sm" href="/admin_dClass/{{$data->class_id}}">删除</a>
                             </td>
                         </tr>
                         @endforeach
@@ -104,6 +104,7 @@
                 </table>
             </div>
             <!-- 分页 -->
+            <?php echo $class_data->render(); ?>
         </div>
     </div>
 </div>

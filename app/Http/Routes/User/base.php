@@ -62,9 +62,9 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
 
     //文章的评论管理
     Route::get("/user_sReply","User\ReplyController@sReply");       //查看评论
-    /*Route::get("/user_moreReply","User\ReplyController@moreReply");       //评论详情
-    Route::get("/user_dReply/{reply}","User\ReplyController@dReply");*///删除评论
-    Route::post("/user_aReply","User\ReplyController@aReply");
+    /*Route::get("/user_moreReply","User\ReplyController@moreReply");  */     //评论详情
+    Route::get("/user_dReply/{reply_id}","User\ReplyController@dReply");//删除评论
+    Route::post("/user_aReply","User\ReplyController@aReply");  //添加评论
     //文章分类
 
     Route::get("/user_sClass","User\ClassController@sClass");//查看，select
@@ -104,8 +104,6 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_uImage","User\ImageController@uImage");
     
     
-    //添加评论 11/1 wjt
-    Route::post("/user_aReply","User\ReplyController@aReply");
     
 
     //消息

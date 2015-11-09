@@ -16,6 +16,7 @@
                   <li class="<?php if(session("nowPage")=="/user_sSubject"){echo "active";}?>"><a href="/user_sSubject">查看专题</a></li>
                    <li class="<?php if(session("nowPage")=="/user_sClass"){echo "active";}?>"><a href="/user_sClass"  >查看类别</a></li>
                   <li class="<?php if(session("nowPage")=="/user_sLabel"){echo "active";}?>"><a href="/user_sLabel">查看标签</a></li>
+                  <li class="<?php if(session("nowPage")=="/user_sReply"){echo "active";}?>"><a href="/user_sReply">查看评论</a></li>
                   <li class="<?php if(session("nowPage")=="/user_readAllArticle"){echo "active";}?>"><a href="/user_readAllArticle" id="user_readAllArticle">查看其他用户文章</a></li>
                 </ul>
 

@@ -11,6 +11,7 @@
 >>>>>>> origin/zhangchi
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Routes/Index/base.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/app/Http/Controllers/Index/BaseController.php</file>
 =======
@@ -23,6 +24,11 @@
             <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/User/Focus/sFocus.blade.php</file>
             <file>file:/C:/Wnmp/PHP_Project/cms_base/resources/views/Index/User/userSider.blade.php</file>
 >>>>>>> 5c6e3ca5af7702fd8312459efd39694b54f6d992
+=======
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/resources/views/Admin/Article/articlelist.blade.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Controllers/Admin/ArticleController.php</file>
+            <file>file:/C:/Wnmp/PHP_Project/Base-CMS/app/Http/Routes/Admin/base.php</file>
+>>>>>>> origin/pengliang
         </group>
 <<<<<<< HEAD
 =======

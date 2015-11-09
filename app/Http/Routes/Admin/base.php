@@ -75,7 +75,9 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
      */
     
     Route::get("/admin_sArticle","Admin\ArticleController@sArticle");   //查看文章(zuo)
-    Route::post("/admin_sArticleByCondition","Admin\ArticleController@sArticleByCondition");
+    Route::post("/admin_sArticleByCondition","Admin\ArticleController@sArticleByCondition");//根据输入框关键字查找
+    Route::get("/admin_sArticleByClass","Admin\ArticleController@sArticleByClass");//根据类别帅选查找
+    
     Route::get("/admin_aArticle","Admin\ArticleController@aArticle");   //添加文章(zuo)
     //Route::post("/_admin_aArticle","Admin\ArticleController@_aArticle");   //添加文章(zuo)
     Route::post("/admin_aAticleLabel","Admin\ArticleController@aAticleLabel");      //给文章添加标签(zuo)
@@ -112,9 +114,13 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_sMessage","Admin\MessageController@sMessage"); //查
     Route::post("/admin_aMessage","Admin\MessageController@aMessage");//增
     Route::get("/admin_dMessage/{message_id}","Admin\MessageController@dMessage");//删
-
-
-   
+    /*
+     * 
+     * 管理员对用户的评论的管理
+     * 
+     */
+    Route::get("/admin_sReply","Admin\ReplyController@sReply");  //查看所有评论
+    Route::get("/admin_dReply/{reply_id}","Admin\ReplyController@dReply"); //删除评论
 
 
 });
