@@ -121,7 +121,6 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     
     //个人信息
     //zc########################################################
-     Route::get("/user_sPersonalMessage","User\PersonalMessageController@sPersonalMessage");  //查看个人信息
      Route::get("/user_uPersonalMessage","User\PersonalMessageController@uPersonalMessage");  //修改个人信息表单界面
      Route::post("/_user_uPersonalMessage","User\PersonalMessageController@_uPersonalMessage");//修改个人信息
     

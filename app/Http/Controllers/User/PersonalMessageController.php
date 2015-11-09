@@ -13,13 +13,6 @@ use GirdPlugins\Base\UserPowerFunc;      //zc
 
 class PersonalMessageController extends Controller {
 
-    public function sPersonalMessage() {
-        session(["nowPage" => "/user_sPersonalMessage"]);
-        $userId = session("user.user_id");
-        $inputData["personalMessage"] = DB::table('base_user')->where('user_id', '=', $userId)->first();
-        return view("User.PersonalMessage.sPersonalMessage", $inputData);
-    }
-
     public function uPersonalMessage() {
         $userId = session("user.user_id");
         $inputData["personalMessage"] = DB::table('base_user')->where('user_id', '=', $userId)->first();
@@ -56,20 +49,20 @@ class PersonalMessageController extends Controller {
             }
         }
         if ($i >= count($data)) {
-            $baseFunc->setRedirectMessage(true, "修改失败，该用户已不存在", NULL, "/user_sPersonalMessage");
+            $baseFunc->setRedirectMessage(true, "修改失败，该用户已不存在", NULL, "/user_uPersonalMessage");
         }
+        
         /*
           if (!$UserPowerFunc->checkUserPower(10)) {                    //权限验证
-            return redirect()->back();  //跳回上一页     
-        }
+          return redirect()->back();  //跳回上一页
+          }
          * *
          */
- 
-        
+
         $count1 = DB::table('base_user')->where('user_id', '=', $userId)->update($personalMessageData);
         Session::put("image.image_id", null); //zc
         $logFunc->insertLog($log_array);    //插入操作记录
-        $baseFunc->setRedirectMessage(true, "修改成功", NULL, "/user_sPersonalMessage");
+        $baseFunc->setRedirectMessage(true, "修改成功", NULL, "/user_uPersonalMessage");
     }
 
 }

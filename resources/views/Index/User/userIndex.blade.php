@@ -79,6 +79,7 @@
                         <li role="presentation"><a href="#image" aria-controls="image" role="tab" data-toggle="tab">
                                 <h3><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> 图片</h3></a></li>
 
+
                     </ul>
 
                     <!-- Tab panes -->
@@ -99,6 +100,7 @@
                                     <div class="col-sm-12">
                                         <a href="/index_articleDetail/{{$data->article_id}}" class="btn btn-default  ">查看详情</a>
                                     </div>
+
 
 
                                 </div>
@@ -142,6 +144,7 @@
                     </div>
 
                 </div>
+
             </div>
 
         </div>

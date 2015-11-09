@@ -60,6 +60,7 @@ class ArticleController extends Controller
         {
 
 
+
             $log_array['log_level']=0;
             $log_array['log_title']="添加操作";
             $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."添加了一篇文章";
@@ -486,6 +487,7 @@ class ArticleController extends Controller
         return view("User.Article.sCollect",$data);
     }
     
+
 
     public function aCollect(LogFunc $logFunc,BaseFunc $baseFunc)
     {

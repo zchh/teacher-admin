@@ -18,6 +18,7 @@ class ImageController extends Controller {
         session(["nowPage" => "/user_sImage"]);
         $combine['base_image'] = DB::table('base_image')    //为了获得图片用户，要合并两张表
                         ->join('base_user', 'base_image.image_user', '=', 'base_user.user_id')->paginate(6); //分页，两条记录一页
+       
         return view("User.Image.sImage", $combine);
     }
 
@@ -25,7 +26,9 @@ class ImageController extends Controller {
 
         dump(Request::all());
         if (!request::hasFile('image_file')) {
+
             $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
+
             return redirect()->back();  //跳回上一页
         } else {
             //从前端提取文件

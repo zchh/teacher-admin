@@ -202,4 +202,7 @@ class BaseController extends Controller {
         return view("Index.Gui.sidebarClass",$viewData);
     }
     
+
+    
+
 }
