@@ -3,6 +3,8 @@
 
 <div class="col-sm-8 col-sm-offset-2">
 
+
+
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-sm-12" style="background:url('/Public/2h.jpg');
@@ -28,6 +30,7 @@
                                     您确定要取消关注吗？
                                 </div>
                                 <div class="modal-footer">
+
 
 
                                     <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
@@ -79,37 +82,9 @@
                         <li role="presentation"><a href="#image" aria-controls="image" role="tab" data-toggle="tab">
                                 <h3><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> 图片</h3></a></li>
 
-
                     </ul>
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="article" class="tab-pane active " id="article">
-                            @foreach($articleData as $data)
 
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="col-sm-8">
-                                        <h4>{{$data->article_title}} </h4><small> | {{$data->article_create_date}}.</small><br>
-                                        {{$data->article_intro}}
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <img src="/Public/2h.jpg" class="img-responsive img-rounded">
-
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <a href="/index_articleDetail/{{$data->article_id}}" class="btn btn-default  ">查看详情</a>
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-
-
-
-
-                            @endforeach
 
 
                         </div>
@@ -144,6 +119,7 @@
                     </div>
 
                 </div>
+
 
             </div>
 

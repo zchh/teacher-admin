@@ -16,8 +16,10 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/source/bootstrap/js/bootstrap.min.js"></script>
-
+<script src="/source/less/less.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+
 <script>
 $.ajaxSetup({
     headers: {

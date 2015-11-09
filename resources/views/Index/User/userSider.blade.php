@@ -1,4 +1,5 @@
 
+
 <div class="panel panel-default">
     <div class="panel-body">
         <img src="{{$userData->image_path}}" class="text-center img-circle img-responsive" style="width:80%;height:100%;left: 10%;position:relative">
@@ -59,4 +60,5 @@
         @endif
     </div>
 </div>
+
 

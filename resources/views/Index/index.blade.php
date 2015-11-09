@@ -1,9 +1,10 @@
 @extends("Index.base")
 
 @section("main")
+    <div class="bgi_div"><img src="/image/3.jpg" class="full_image"></div>
     <div class="col-sm-10 col-sm-offset-1">
         <div class="col-sm-12">
-           
+           <div class="col-sm-12">
             
             
                 <div class="panel panel-default">
@@ -11,6 +12,7 @@
                              Basic panel example
                       </div>
                 </div>
+           </div>
                 
            
         </div>
@@ -28,12 +30,15 @@
            </div>
            
         </div>
+
         <div class="col-sm-3">
-            <?php echo $displaySidebarClass;?>
+            <div class="col-sm-12"> <?php echo $displaySidebarClass;?></div>
+
         </div>
        
        
     
     </div>
-
+    <link href="/css/Index/index.css">
 @stop
+
