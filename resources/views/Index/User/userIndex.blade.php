@@ -84,29 +84,55 @@
 
                     </ul>
 
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="article" class="tab-pane active " id="article">
+                            @foreach($articleData as $data)
 
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-8">
+                                            <h4>{{$data->article_title}} </h4><small> | {{$data->article_create_date}}.</small><br>
+                                            {{$data->article_intro}}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <img src="/Public/2h.jpg" class="img-responsive img-rounded">
+
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <a href="/index_articleDetail/{{$data->article_id}}" class="btn btn-default  ">查看详情</a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+
+                            @endforeach
 
 
                         </div>
                         <div role="subject" class="tab-pane fade " id="subject">
                             @foreach($subjectData as $data)
 
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="col-sm-8">
-                                        <h4>{{$data->subject_name}} </h4><small> | {{$data->subject_create_date}}.</small><br>
-                                        {{$data->subject_intro}}
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <img src="/Public/2h.jpg" class="img-responsive img-rounded">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-8">
+                                            <h4>{{$data->subject_name}} </h4><small> | {{$data->subject_create_date}}.</small><br>
+                                            {{$data->subject_intro}}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <img src="/Public/2h.jpg" class="img-responsive img-rounded">
+
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <a href="/index_moreSubject/{{$data->subject_id}}" class="btn btn-default  ">查看详情</a>
+                                        </div>
 
                                     </div>
-                                    <div class="col-sm-12">
-                                        <a href="/index_moreSubject/{{$data->subject_id}}" class="btn btn-default  ">查看详情</a>
-                                    </div>
-
                                 </div>
-                            </div>
 
 
 
@@ -117,6 +143,8 @@
                         </div>
 
                     </div>
+
+
 
                 </div>
 
