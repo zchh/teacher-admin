@@ -39,6 +39,6 @@
        
     
     </div>
-    <link href="/css/Index/index.css">
+    <link rel="stylesheet" href="/css/Index/index.css"/>
 @stop
 
