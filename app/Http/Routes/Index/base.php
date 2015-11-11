@@ -4,6 +4,7 @@ Route::get("/","Index\BaseController@index");
 Route::get("/index_index","Index\BaseController@index");        //首页
 
 
+
 Route::get("/index_findArticle","Index\BaseController@findArticle");        //查找文章显示结果的页面
 
 Route::get("/index_articleDetail/{article_id}","Index\BaseController@articleDetail");          //文章详情的页面   //zc改

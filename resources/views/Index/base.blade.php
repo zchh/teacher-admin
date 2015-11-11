@@ -8,7 +8,6 @@
     background-color: #EEEEEE}
     
 </style>
-       
         <nav class="navbar navbar-default navbar-fixed-top " >
               <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,8 +26,8 @@
                   <ul class="nav navbar-nav">
                     <li><a href="/user_index">最新文章</a></li>
                     <li><a href="/user_index" href="#menu-toggle" id="menu-toggle">分类</a></li>
-                     <li><a href="/index_sSubject" href="#menu-toggle" id="menu-toggle">专题</a></li>
-
+                    <li><a href="/index_sSubject" href="#menu-toggle" id="menu-toggle">专题</a></li>
+                    <li><a href="/user_register" href="#menu-toggle" id="menu-toggle">注册</a></li>
                   </ul>
 
                   <ul class="nav navbar-nav navbar-right">

@@ -16,6 +16,7 @@ class BaseController extends Controller {
         $inputData["displaySidebarClass"] = $this->sidebarClass();
         return view("Index.index",$inputData);
     }
+
     
     
     //从前端输入框获得一个名字为key的输入框，key 就是输入的文章名
@@ -155,6 +156,7 @@ class BaseController extends Controller {
     }
     
     //一个推荐文章类的板块
+
     private function displayArticleClassBar($class_id,$num = 5)
     {
         $viewData["classData"] = DB::table("base_display_class")->where("class_id","=",$class_id)->first();

@@ -34,6 +34,7 @@ class ArticleController extends Controller {
     //根据输入框关键字查找
     public function sArticleByCondition()     
     { 
+
         $input_data=Request::only("article_title");
         $res_data['article_data']=DB::table("base_article")
                 ->leftJoin("base_article_re_subject","article_id","=","relation_article")

@@ -9,7 +9,8 @@
 Route::get("/user_login","User\BaseController@login");
 Route::get("/user_logout","User\BaseController@logout");
 Route::post("/_user_login","User\BaseController@_login");
-
+Route::get("/user_register","User\BaseController@register");//用户注册页面
+Route::post("/_user_register","User\BaseController@_register");//处理注册数据
 
 //用户注册 10/31
 Route::get("/user_register","User\BaseController@register");        //交由张池完成 10/31

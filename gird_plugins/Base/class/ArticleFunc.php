@@ -126,7 +126,7 @@ class ArticleFunc
     {
         $replyData = DB::table("base_article_reply")->where("reply_article","=",$articleId)
                 ->join("base_reply_relation","relation_child","=","reply_id")->get();//先查出该文章的所有节点和关系
-       // dump($replyData);
+        //dump($replyData);
         if($replyData == NULL){return NULL;}
         
         

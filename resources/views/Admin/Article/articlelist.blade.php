@@ -32,6 +32,7 @@
                                         <td>{{ $data->subject_name }}</td>
 
                                         <td>
+
                                            
                                           
                                          
@@ -75,6 +76,7 @@
                                                 </div>
                                                 @endif
                                                 <a class="btn btn-danger btn-xs" href="/admin_dArticle/{{ $data->article_id }}" role="button">删除文章</a>
+
                                         </td>
                                     </tr>
                                     @endforeach
@@ -113,8 +115,7 @@
                             </ul>
                         </div>
                         <div class="col-sm-12" style="height:20px"></div>
-                        <form action="/admin_sArticleByCondition" method="post">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <form action="/admin_sArticleByCondition" method="get">
                             <div class="col-sm-12">   
                                 <input type="text" class="form-control" name="article_title"  placeholder="搜索主题关键字...">
                             </div>
