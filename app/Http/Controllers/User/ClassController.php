@@ -18,7 +18,7 @@ class ClassController extends Controller {
         // dump(session("nowPage"));
         $user_id = session("user.user_id"); //获取用户id
         $combine['userArticleClass'] = DB::table('base_article_class')    //为了获得作者，要合并两张表
-                        ->join('base_user', 'base_article_class.class_user', '=', 'base_user.user_id')->paginate(2);
+                        ->join('base_user', 'base_article_class.class_user', '=', 'base_user.user_id')->paginate(10);
         $combine['userId'] = $user_id;   //传递当前用户id到界面
         return view("User.Article.sClass", $combine);
     }

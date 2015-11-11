@@ -52,8 +52,16 @@ class PostCheck {
                {
                   if( ($tmp=config("post_check.".$key.".message")) != NULL)
                   {
-                      $this->baseFunc->setRedirectMessage(false,$tmp , NULL, NULL);
-                      return redirect()->back();
+                    if (Request::ajax()) 
+                    {
+                        return response()->json(['status' => false, 'message' =>$tmp]);
+                    }
+                    else
+                    {
+                        $this->baseFunc->setRedirectMessage(false,$tmp , NULL, NULL);
+                        return redirect()->back();
+                    }
+                    
                   }
                   else 
                   {
@@ -63,8 +71,17 @@ class PostCheck {
                     {
                        $m.=$message."<br/>";
                     }
-                    $this->baseFunc->setRedirectMessage(false,$m , NULL, NULL);
-                    return redirect()->back();
+                    
+                    if (Request::ajax()) 
+                    {
+                        return response()->json(['status' => false, 'message' =>$m]);
+                    }
+                    else
+                    {
+                        $this->baseFunc->setRedirectMessage(false,$m , NULL, NULL);
+                        return redirect()->back();
+                    }
+                    
                       
                   }
                }

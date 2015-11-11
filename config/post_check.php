@@ -31,7 +31,43 @@ return [
     "class_id"=>[ 
         "rule"=>["integer","max:10"],
         ],
+      
+    //推荐专题
+     "recommend_subject"=>[ 
+        "rule"=>["integer","max:10"],
+        
+        ],
+    
+     //11/11
+    "article_title"=>[ 
+        "rule"=>["max:50","required"],
+        "message"=>"标题太长了，请限制在50个字符以内"
+        ],
+    
+     "article_intro"=>[ 
+        "rule"=>["max:150"],
+        "message"=>"介绍请限制在150个字符以内"
+        ],
+    
+    "article_class"=>[ 
+        "rule"=>["numeric"],
+        ],
+    "article_sort" =>[
+        "rule" =>["integer","max:100"],//,"min:150"测试ajax验证专用
+        "message"=>"请确保排序为数字，且最大不超过100"
+    ],
+     "article_detail" =>[
+        "rule" =>["max:60000"],
+        "message"=>"文章不可超过60000字"
+    ],
+    // 11/11 end
+  
+    
+    
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%end wjt%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+    
     //***********************************wyf
    "admin_username"=>[
        "rule"=>['alpha_dash'],
@@ -70,29 +106,7 @@ return [
         "message"=>"专题介绍仅允许字母、数字、破折号（-）以及底线（_）"
     ],
     //*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-    
-
-    //推荐专题
-     "recommend_subject"=>[ 
-        "rule"=>["integer","max:10"],
-        
-        ],
-    
-    
-    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%end wjt%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    
-
-    
-     "user_age" => [                                   //修改个人信息的年龄
-        "rule" => ['integer', "required"],
-        "message" => "年龄不能为空，且必须为整数值"
-    ],
-    
-     "user_intro" => [                                   //修改个人信息的简介
-        "rule" => ['max:34', "required"],
-        "message" => "简介不能为空，且不能超过34个字"
-    ],
+ 
     
 
     
@@ -153,6 +167,7 @@ return [
         "rule" => ['max:34', "required"],
         "message" => "简介不能为空，且不能超过34个字"
     ],
+        
     
 
         /*

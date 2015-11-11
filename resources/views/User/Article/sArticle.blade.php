@@ -13,7 +13,7 @@
                         <!-- Single button -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                分类  <span class="caret"></span>
+                                分类 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a href="/user_sArticle?class=&sort={{$sort}}">所有分类</a></li>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                排序  <span class="caret"></span>
+                                排序 {{$sort}}  <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
 
@@ -38,13 +38,23 @@
                     </div>
 
                     <div class="pull-right" style="position: relative;top:-8px">
+                        
                         <form class="navbar-form navbar-left" method="get" action="/user_sArticle">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="key" placeholder="按标题搜索文章">
+                                <input type="text" class="form-control" name="key" placeholder="按标题搜索文章" value="{{$key}}">
                                 <input type="hidden" name="class" value="{{$class}}">
                                 <input type="hidden" name="sort" value="{{$sort}}">
                             </div>
                             <button type="submit" class="btn btn-default " >搜索</button>
+                            @if($key!=NULL)
+                            <div class="pull-right" style="padding-top: 5px;padding-left: 5px">
+                                <a href="/user_sArticle?class={{$class}}&sort={{$sort}}&key=" class="label label-primary" style="display: block;height:60%;margin-left:5px；float:left">
+                                    当前搜索 ：{{$key}}
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                                </a>
+                                
+                            </div>
+                            @endif
                         </form>
                     </div>     
                     

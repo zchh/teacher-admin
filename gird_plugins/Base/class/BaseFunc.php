@@ -4,7 +4,7 @@ namespace GirdPlugins\Base;
 
 use \Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Request;
 class BaseFunc {
 
     public function __construct() {
@@ -43,6 +43,7 @@ class BaseFunc {
          if (Request::ajax()) 
         {//如果是ajax请求
             //
+              return response()->json(['status' => $status, 'message' => $message,"plugin" => $plugin]);
         } else 
         {
             Session::put("__Ajax_RedirectFunc_have", true);

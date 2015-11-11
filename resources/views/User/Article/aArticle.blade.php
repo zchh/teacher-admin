@@ -128,7 +128,7 @@ $(document).ready(function() {
                 url: "/_user_aArticle",
                 success: function(data) {
 
-                    $("#inst").html(data);
+                    /*$("#inst").html(data);*/
                     $('#show_message').trigger('click');  //模拟点开模态框
 
                     if (data.status == true)

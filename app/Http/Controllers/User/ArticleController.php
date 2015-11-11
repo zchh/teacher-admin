@@ -24,7 +24,7 @@ class ArticleController extends Controller
         $inputData["key"] = $key;
         $inputData["sort"] = $sort;
         $inputData["class"] = $class;
-        $pageLimit = 2;
+        $pageLimit = 5;
         
         
         if( $class!= NULL) //有类的情况
