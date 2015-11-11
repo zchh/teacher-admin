@@ -4,14 +4,53 @@
   
 
 
-        <div class="col-sm-8">
+        <div class="col-sm-10">
             <div class="panel panel-default">
-                     <div class="panel-body">
-                         <h2>查看文章 | <a href="/user_aArticle" class="btn  btn-primary" >添加文章</a></h2>
-                         <hr/>
+                <div class="panel-body">
+                    <h2>查看文章</h2> 
+                    <div class="pull-left">
+                        <a href="/user_aArticle" class="btn  btn-primary btn-sm" >添加文章</a>
+                        <!-- Single button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                分类  <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/user_sArticle?class=&sort={{$sort}}">所有分类</a></li>
+                                @foreach($classData as $data)
+                                <li><a href="/user_sArticle?class={{$data->class_id}}&sort={{$sort}}&key={{$key}}">{{$data->class_name}}</a></li>
+                                @endforeach
+
+                            </ul>
+
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                排序  <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+
+                                <li><a href="/user_sArticle?class={{$class}}&sort=article_id&key={{$key}}">最近发表</a></li>
+                                <li><a href="/user_sArticle?class={{$class}}&sort=article_sort&key={{$key}}">最高优先级</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pull-right" style="position: relative;top:-8px">
+                        <form class="navbar-form navbar-left" method="get" action="/user_sArticle">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="key" placeholder="按标题搜索文章">
+                                <input type="hidden" name="class" value="{{$class}}">
+                                <input type="hidden" name="sort" value="{{$sort}}">
+                            </div>
+                            <button type="submit" class="btn btn-default " >搜索</button>
+                        </form>
+                    </div>     
+                    
 
 
-                            <table class="table table-striped">
+                            <table class="table table-striped table-bordered ">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -29,10 +68,10 @@
                                         <td>{{ $data->article_title }}</td>
                                         <td>{{ $data->article_create_date }}</td>
                                         <td>{{ $data->article_update_date }}</td>
-                                        <td>{{ $data->article_class }}</td>
+                                        <td>{{ $data->class_name }}</td>
                                         <td>
-                                            <a href="/user_uArticle/{{$data->article_id}}" class="btn btn-warning btn-sm">修改</a>
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#del_{{$data->article_id}}">
+                                            <a href="/user_uArticle/{{$data->article_id}}" class="btn btn-warning btn-xs">修改</a>
+                                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#del_{{$data->article_id}}">
                                                删除
                                             </button>
 
@@ -62,10 +101,14 @@
                                 </tbody>
                             </table>
 
-
+                         <hr>
+                         <?php echo $pageGui;?><br>
+                         <b>当前第 {{$nowPage}} 页 | 共 {{$allPage}} 页</b>
                          
                       </div>
             </div>
         </div>
+
+     
         
 @stop

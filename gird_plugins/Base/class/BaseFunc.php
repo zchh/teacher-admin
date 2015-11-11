@@ -31,9 +31,6 @@ class BaseFunc {
     }
 
     /**
-     * 
-     * 
-     * 
      * 在提交接收页面以后，将错误/正确提示信息保存于session，并在下一页面调用showRedirectMessage()将信息显示在指定位置  
      * @access public
      * @param bool $status  正确/错误
@@ -43,17 +40,23 @@ class BaseFunc {
      * @return NULL/直接跳转
      */
     public function setRedirectMessage($status, $message, $plugin, $redirect = NULL) {
-        Session::put("__Ajax_RedirectFunc_have", true);
-        Session::flash('__Ajax_RedirectFunc_status', $status);
-        Session::flash('__Ajax_RedirectFunc_message', $message);
-        Session::flash('__Ajax_RedirectFunc_plugin', $plugin);
-        if ($redirect !== NULL) {
-            echo
-            '<script language="javascript" type="text/javascript">
+         if (Request::ajax()) 
+        {//如果是ajax请求
+            //
+        } else 
+        {
+            Session::put("__Ajax_RedirectFunc_have", true);
+            Session::flash('__Ajax_RedirectFunc_status', $status);
+            Session::flash('__Ajax_RedirectFunc_message', $message);
+            Session::flash('__Ajax_RedirectFunc_plugin', $plugin);
+            if ($redirect !== NULL) {
+                echo
+                '<script language="javascript" type="text/javascript">
                 window.location.href="' . $redirect . '";
                 </script> ';
+            }
+            return NULL;
         }
-        return NULL;
     }
 
     /**
@@ -113,6 +116,9 @@ class BaseFunc {
         return response()->json($response);
     }
 
+    
+    
+    
     /**
      * 管理员用户登陆检查
      * 
@@ -157,6 +163,9 @@ class BaseFunc {
             return false;
         }
     }
+    
+    
+    
    
     
  

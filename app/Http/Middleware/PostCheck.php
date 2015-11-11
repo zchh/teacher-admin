@@ -47,10 +47,7 @@ class PostCheck {
                $errorData = $validator->failed();
                $defaultMessage= $validator->messages();
                
-               
                //dump($errorData);
-               
-               
                 foreach($errorData as $key => $data)
                {
                   if( ($tmp=config("post_check.".$key.".message")) != NULL)

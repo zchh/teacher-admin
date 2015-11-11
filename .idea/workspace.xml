@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1adc677a-9dc2-4adc-af64-f35011549c25" name="Default" comment="11/10 phpstorm">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/Article/articlelist.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/Article/articlelist.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Index/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Index/index.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.xml" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Index/User/userIndex.blade.php" afterPath="$PROJECT_DIR$/resources/views/Index/User/userIndex.blade.php" />
@@ -235,7 +236,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16826923" sideWeight="0.50884956" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17307693" sideWeight="0.49115044" order="0" side_tool="false" content_ui="combo" />

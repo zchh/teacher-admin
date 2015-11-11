@@ -26,7 +26,7 @@
             </div>
             <div class="col-sm-6 form-group">
                 <label >文章排序</label>
-                <input type="text" class="form-control" placeholder="" id="a_sort" value="{{$articleDetail->article_sort}}">
+                <input type="number" class="form-control" placeholder="" id="a_sort" value="{{$articleDetail->article_sort}}">
 
             </div>
 
@@ -133,7 +133,7 @@ type:"post",
         url:"/_user_uArticle",
         success:function(data){
 
-        //$("#inst").html(data);
+        //$("#inst").html(data);alert(data);
         $('#show_message').trigger('click'); //模拟点开模态框
                 if (data.status == true)
         {

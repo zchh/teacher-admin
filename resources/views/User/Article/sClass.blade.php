@@ -12,7 +12,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>用户</th>
+                    
                         <th>创建日期</th>
                         <th>更改日期</th>
                         <th>类名</th>
@@ -25,7 +25,7 @@
                     @if ($userId == $articleClass -> class_user)
                     <tr>
                         <td>{{$articleClass -> class_id}}</td>
-                        <td>{{$articleClass -> user_nickname}}</td>
+                        
                         <td>{{$articleClass -> class_create_date}}</td>
                         <td>{{$articleClass -> class_update_date}}</td>
                         <td>{{$articleClass -> class_name}}</td>

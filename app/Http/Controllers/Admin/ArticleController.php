@@ -47,6 +47,9 @@ class ArticleController extends Controller {
         return view("Admin.Article.articlelist",$res_data);
         //dump($data_by_condition);
     }
+    
+    
+    
     //根据类别帅选查找
     public function sArticleByClass()
     {
@@ -75,6 +78,10 @@ class ArticleController extends Controller {
         return view("Admin.Article.articlelist",$res_data);
         //dump($input_data);
     }
+    
+    
+    
+    
     //添加文章(这个函数是添加文章到当前专题)
     public function AddArticleToSubject2(AdminPowerFunc $adminPowerFunc,LogFunc $logFunc,BaseFunc $base)
     {

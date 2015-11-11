@@ -1,7 +1,7 @@
 @extends("User.Article.base")
 @section("main")
 
-<div class="col-sm-8">
+<div class="col-sm-10">
     <div class="panel panel-default">
         <div class="panel-body">
 
@@ -26,12 +26,15 @@
             </div>
             <div class="col-sm-6 form-group">
                 <label >文章排序</label>
-                <input type="text" class="form-control" placeholder="" id="a_sort" >
+                <input type="number" class="form-control" placeholder="" id="a_sort" >
 
             </div>
 
             <div class="col-sm-12 form-group" >
-                <a id="submit" class="btn btn-default">提交</a>  
+                <a id="submit" class="btn btn-primary">提交</a>  
+                 <a type="button" class="btn btn-default" data-toggle="modal" data-target="#change_">
+                    选择文章封面
+                </a> 
             </div>
 
             <div class="col-sm-12">
@@ -52,11 +55,9 @@
 </div>
 
 
-<div class="col-sm-2">
+<div >
 
-    <a type="button" class="btn btn-default" data-toggle="modal" data-target="#change_">
-        选择文章封面
-    </a> Session::put("image.image_id", null); //zc
+   
     <!-- Modal -->
     <div class="modal fade" id="change_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

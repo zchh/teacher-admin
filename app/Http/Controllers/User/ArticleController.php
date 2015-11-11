@@ -15,9 +15,53 @@ class ArticleController extends Controller
 
     public function sArticle(ArticleFunc $atcFunc)
     {
-        $articleData = $atcFunc->getUserArticle(session("user.user_id"));
-        $inputData["articleData"] = $articleData;
         session(["nowPage"=>"/user_sArticle"]);
+        
+        //获取传来的class和sort并传入视图，方便生成分类和排序的链接
+        $sort = Request::input("sort","article_id");
+        $class = Request::input("class",NULL) ;
+        $key = Request::input("key",NULL) ;
+        $inputData["key"] = $key;
+        $inputData["sort"] = $sort;
+        $inputData["class"] = $class;
+        $pageLimit = 2;
+        
+        
+        if( $class!= NULL) //有类的情况
+        {
+             $inputData["articleData"] = DB::table("base_article")
+                     ->where("article_user","=",session("user.user_id"))
+                     ->where("article_class","=",$class)
+                     ->where("article_title","like","%".$key."%")
+                     ->leftJoin("base_article_class","class_id","=","article_class")
+                     ->orderBy($sort,"desc")
+                     ->paginate($pageLimit);
+             $inputData["pageGui"] = $inputData["articleData"]->appends(['sort' =>$sort, "class"=>$class,"key"=>$key])
+                     ->render();
+        }
+        else        //无类的情况
+        {
+            $inputData["articleData"]  = DB::table("base_article")
+                     ->where("article_user","=",session("user.user_id"))
+                     ->where("article_title","like","%".$key."%")
+                     ->leftJoin("base_article_class","class_id","=","article_class")
+                     ->orderBy($sort,"desc")
+                     ->paginate($pageLimit);
+             $inputData["pageGui"]= $inputData["articleData"]->appends(['sort' =>$sort,"key"=>$key])
+                     ->render();
+           
+        }
+        
+        
+        
+       $inputData["nowPage"]=$inputData["articleData"]->currentPage(); 
+       $inputData["allPage"]=(int)($inputData["articleData"]->total()/$pageLimit)+1; 
+        
+        
+        //分类数据
+        $inputData["classData"]  = DB::table("base_article_class")->where("class_user","=",session("user.user_id"))
+                ->get();
+        
         return view("User.Article.sArticle",$inputData);
     }
     public function aArticle(ArticleFunc $atcFunc,  BaseFunc $baseFunc)
@@ -118,7 +162,7 @@ class ArticleController extends Controller
         $inputData["articleDetail"] = $atcFunc->getArticleDetail($articleId);
         
         
-        
+        session(["image.image_id"=>$inputData["articleDetail"]->article_image]);//保存一个当前文章图片id，在模态框可以显示出来
         return view("User.Article.uArticle",$inputData);
         
     }
@@ -130,10 +174,10 @@ class ArticleController extends Controller
     public function _uArticle(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc) 
    {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
-            $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
-            return redirect()->back();
+            return response()->json(['status' => false, 'message' => '<p class="text-danger">失败，请检查你的权限</p>']);
+           
         }
         $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
           if(session("image.image_id") != null)  //zc
@@ -159,7 +203,7 @@ class ArticleController extends Controller
 
             Session::put("image.image_id", null); //zc
 
-
+            //dump($_POST);
             return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
         }
         else

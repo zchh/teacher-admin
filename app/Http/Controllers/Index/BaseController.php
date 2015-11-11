@@ -139,6 +139,9 @@ class BaseController extends Controller {
     }
     
     
+    
+    
+    
     //用户侧栏组件
     private function userSider($user_id)
     {
@@ -151,7 +154,7 @@ class BaseController extends Controller {
          return view("Index.User.userSider",$viewData);
     }
     
-    //一个推荐文章的板块
+    //一个推荐文章类的板块
     private function displayArticleClassBar($class_id,$num = 5)
     {
         $viewData["classData"] = DB::table("base_display_class")->where("class_id","=",$class_id)->first();

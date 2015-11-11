@@ -23,6 +23,7 @@ class BaseServiceProvider extends ServiceProvider {
         include __DIR__.'\class\ImageFunc.php';
         include __DIR__.'\class\AdminPowerFunc.php';
         include __DIR__.'\class\UserPowerFunc.php';
+        include __DIR__.'\class\PageDivide.php';
         
         
     }
@@ -36,7 +37,7 @@ class BaseServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->app->bind("Base",function(){
-            return new test();
+            //return new test();
         });
     }
 
