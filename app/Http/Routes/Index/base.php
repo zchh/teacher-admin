@@ -24,16 +24,4 @@ Route::get("/index_moreSubject/{subject_id}","Index\BaseController@moreSubject")
 //查看类别
 Route::get("/index_sDisplayArticleClass/{class_id}","Index\BaseController@sDisplayArticleClass");
 
-//测试
-Route::get("/power_check_demo",function(\GirdPlugins\Base\AdminPowerFunc $adminFunc,  GirdPlugins\Base\UserPowerFunc $userFunc)
-{
-    dump($userFunc->getUserPower(1));
-    dump($userFunc->checkUserPower(4));
-    dump($adminFunc->getAdminPower(1));
-    dump($adminFunc->checkAdminPower(4));
-   
-    
-});
-Route::get("/mail_demo","Index\BaseController@mailTest");
-
 ?>

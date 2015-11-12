@@ -212,13 +212,5 @@ class BaseController extends Controller {
     }
     
     
-    public function mailTest(mailFunc $mailFunc)
-    {
-        $mailFunc->userCheckMail("714114216@qq.com", "王钧泰", "Link____sasdsa", $recvTitle=NULL);
-
-       
-    }
-
-    
 
 }
