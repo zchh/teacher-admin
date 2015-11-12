@@ -48,7 +48,7 @@
                             <button type="submit" class="btn btn-default " >搜索</button>
                             @if($key!=NULL)
                             <div class="pull-right" style="padding-top: 5px;padding-left: 5px">
-                                <a href="/user_sArticle?class={{$class}}&sort={{$sort}}&key=" class="label label-primary" style="display: block;height:60%;margin-left:5px；float:left">
+                                <a href="/user_sArticle?class={{$class}}&sort={{$sort}}&key=" class="label label-primary" style="display: block;height:60%;margin-left:5px;float:left">
                                     当前搜索 ：{{$key}}
                                     <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                                 </a>

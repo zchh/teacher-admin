@@ -75,6 +75,8 @@ class BaseController extends Controller {
        Session::flush();
        $baseFunc->setRedirectMessage(true, "登出成功", NULL, "/admin_login");
    }
+   
+ 
 
   
 }

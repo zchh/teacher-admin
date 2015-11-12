@@ -15,9 +15,10 @@ return [
 	*/
 
 	'mailgun' => [
-		'domain' => '',
-		'secret' => '',
-	],
+            'domain' => '',
+            'secret' => "",
+        ],
+
 
 	'mandrill' => [
 		'secret' => '',

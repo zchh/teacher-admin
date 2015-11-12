@@ -17,14 +17,15 @@ class BaseServiceProvider extends ServiceProvider {
         //require __DIR__ . '/../vendor/autoload.php';
         //include __DIR__."router.php";
         //Route::get("/test_1",  "App\Http\Controllers\TestController@test");
-        include __DIR__.'\class\BaseFunc.php';
-        include __DIR__.'\class\LogFunc.php';
-        include __DIR__.'\class\ArticleFunc.php';
-        include __DIR__.'\class\ImageFunc.php';
-        include __DIR__.'\class\AdminPowerFunc.php';
-        include __DIR__.'\class\UserPowerFunc.php';
-        include __DIR__.'\class\PageDivide.php';
-        
+        include __DIR__.'\class\BaseFunc.php';      //基础函数
+        include __DIR__.'\class\LogFunc.php';       //记录函数  
+        include __DIR__.'\class\ArticleFunc.php';   //文章函数
+        include __DIR__.'\class\ImageFunc.php';     //图片媒体函数
+        include __DIR__.'\class\AdminPowerFunc.php';//管理员去哪弦函数
+        include __DIR__.'\class\UserPowerFunc.php'; //用户权限函数
+        include __DIR__.'\class\PageDivide.php';    //分页函数
+        include __DIR__.'\class\MailFunc.php';      //邮件函数
+        include __DIR__.'\class\SecureFunc.php';    //安全函数
         
     }
     

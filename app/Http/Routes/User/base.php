@@ -1,10 +1,6 @@
 <?php
 
 
-
-
-
-
 //用户前台相关页面
 Route::get("/user_login","User\BaseController@login");
 Route::get("/user_logout","User\BaseController@logout");
@@ -16,7 +12,10 @@ Route::post("/_user_register","User\BaseController@_register");//处理注册数
 Route::get("/user_register","User\BaseController@register");        //交由张池完成 10/31
 Route::post("/_user_register","User\BaseController@_register");     //交由张池完成 10/31
 
-
+//安全相关函数 11/12
+Route::get("/user_checkMailUrl","User\SecureController@checkMailUrl");//注册验证链接
+Route::get("/user_sendMailUrl","User\SecureController@sendMailUrl");//发送测试demo 见控制器
+//end
 
 
 Route::group(['middleware' => ['LoginUserCheck']],function()
@@ -133,5 +132,6 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
      Route::post("/user_uFocus","User\FocusController@uFocus");//修改备注
      //wyf#######################################################
 });
+
 
 ?>

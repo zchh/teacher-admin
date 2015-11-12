@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use GirdPlugins\Base\ArticleFunc;   //张池增加
+
+use GirdPlugins\Base\mailFunc;
 class BaseController extends Controller {
     public function index()  
     {
@@ -209,6 +211,13 @@ class BaseController extends Controller {
         return view("Index.Gui.sidebarClass",$viewData);
     }
     
+    
+    public function mailTest(mailFunc $mailFunc)
+    {
+        $mailFunc->userCheckMail("714114216@qq.com", "王钧泰", "Link____sasdsa", $recvTitle=NULL);
+
+       
+    }
 
     
 
