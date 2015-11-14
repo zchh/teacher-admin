@@ -548,6 +548,7 @@ class ArticleController extends Controller
     }
     
 
+
     public function moreCollect($collect_id)
     { 
         $moreCollect=DB::table('base_collect_relation')
@@ -577,6 +578,7 @@ class ArticleController extends Controller
 
 
     //处理文章评论的函数（在这里评论提交的表单是默认为是头条评论，也就是relation_parent=0）
+
 
 
 }
