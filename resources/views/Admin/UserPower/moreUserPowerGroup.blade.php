@@ -1,6 +1,32 @@
 @extends("Admin.UserPower.base")
 @section("main")
-
+<script type="text/javascript">
+    $(function(){
+        //用户在添加权限到当前权限组的时候可以一键全选
+        $("#CheckedAllPower").click(function(){
+            if(this.checked)
+            {
+                //$("input[name='newsletter']").attr("checked", true);
+                $("[name='power_id_array[]']").prop("checked",true);
+            }
+            else
+            {
+                $("[name='power_id_array[]']").prop("checked",false);
+            }
+        });
+        //用户在添加用户到当前权限组的时候可以一键全选
+        $("#CheckedAllUser").click(function(){
+           if(this.checked)
+           {
+               $("[name='user_id_array[]']").prop("checked",true);
+           }
+           else
+           {
+               $("[name='user_id_array[]']").prop("checked",false);
+           }
+        });
+    });
+</script>
 <div class="col-sm-10">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -115,7 +141,7 @@
                             </div>
                             <form action="/admin_addPowerToUserPowerGroup" method="post">
                                 <div class="modal-body">            
-
+                                    <input type="checkbox" id="CheckedAllPower"><b>全选/全不选</b>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="group_id" value="{{$group_data_by_id[0]->group_id}}">
                                     @foreach($all_power_data as $all_power)
@@ -144,7 +170,8 @@
                                 <h4 class="modal-title" id="myModalLabel">请选择要添加的用户</h4>
                             </div>
                             <form action="/admin_addUserToUserPowerGroup" method="post">
-                                <div class="modal-body">                                            
+                                <div class="modal-body">   
+                                    <input type="checkbox" id="CheckedAllUser"><b>全选/全不选</b>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="group_id" value="{{$group_data_by_id[0]->group_id}}">
                                     @foreach($all_user_data as $all_user)

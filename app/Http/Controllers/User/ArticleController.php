@@ -61,7 +61,7 @@ class ArticleController extends Controller
         //分类数据
         $inputData["classData"]  = DB::table("base_article_class")->where("class_user","=",session("user.user_id"))
                 ->get();
-        
+
         return view("User.Article.sArticle",$inputData);
     }
     public function aArticle(ArticleFunc $atcFunc,  BaseFunc $baseFunc)
@@ -547,7 +547,6 @@ class ArticleController extends Controller
         return redirect()->back();
     }
     
-
 
     public function moreCollect($collect_id)
     { 

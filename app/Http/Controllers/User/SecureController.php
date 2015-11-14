@@ -73,6 +73,7 @@ class SecureController extends Controller {
     public function sendMailUrl()
     {
         $this->mailFunc->sendUserCheckMail("714114216@qq.com","王钧泰", 1);
+
     }
     
     

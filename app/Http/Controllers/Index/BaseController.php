@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use GirdPlugins\Base\ArticleFunc;   //张池增加
 
-use GirdPlugins\Base\mailFunc;
 class BaseController extends Controller {
     public function index()  
     {
@@ -17,10 +16,7 @@ class BaseController extends Controller {
         $inputData["indexRecommendArticle"] = $this->indexRecommendArticle();
         $inputData["displaySidebarClass"] = $this->sidebarClass();
         return view("Index.index",$inputData);
-    }
-
-    
-    
+    } 
     //从前端输入框获得一个名字为key的输入框，key 就是输入的文章名
    //用此文章名，要打印出关于此文章的所有信息的一个框
   //其中包括查看详情，点击则可以进入详情页面
@@ -140,11 +136,6 @@ class BaseController extends Controller {
         $viewData["indexRecommendArticle"] = $this->indexRecommendArticle();
         return view("Index.sDisplayArticleClass", $viewData);
     }
-    
-    
-    
-    
-    
     //用户侧栏组件
     private function userSider($user_id)
     {
@@ -158,6 +149,7 @@ class BaseController extends Controller {
     }
     
     //一个推荐文章类的板块
+
 
     private function displayArticleClassBar($class_id,$num = 5)
     {
@@ -201,8 +193,6 @@ class BaseController extends Controller {
                 ->orderBy("display_sort","desc")->skip(0)->take($num)->get();
         return view("Index.Gui.indexRecommendArticle",$viewData);
     }
-    
-    
     //侧栏类别组件  需要一个单独的按类查找的页面
     private function sidebarClass()
     {
@@ -210,7 +200,7 @@ class BaseController extends Controller {
                ->orderBy("class_sort","desc")->get();
         return view("Index.Gui.sidebarClass",$viewData);
     }
-    
-    
+
+
 
 }

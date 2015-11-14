@@ -1,10 +1,33 @@
 @extends("Admin.Article.base")
 @section("main")
+<script type="text/javascript">
+    $(function() {
+        /*$("#CheckedAllArticle").toggle(
+         function () {
+         $("[name='article_id_array[]']").prop("checked",true);
+         },
+         function () {
+         $("[name='article_id_array[]']").prop("checked",false);
+         }
+         ); */
+        var i = 0;
+        $("#CheckedAllArticle").click(function() {
+            if (i == 0)
+            {
+                //alert("ok");
+                $("[name='article_id_array[]']").prop("checked", true);
+                i = 1;
+            }
+            else
+            {
+                $("[name='article_id_array[]']").prop("checked", false);
+                i = 0;
+            }
+        });
+    });
+</script>
 
-
-
-
-<!-- Modal -->
+<!-- Modal文章添加 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -19,6 +42,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">选择文章</label>
                         <div class="col-sm-10">
+                            <button type="button" id="CheckedAllArticle" class="btn btn-primary btn-xs">全选/全不选</button>
                             @foreach($all_article_data as $all_article)
                             @if(!in_array($all_article->article_id,$article_ids))
                             <h4><input type="checkbox" name="article_id_array[]"  value="{{$all_article->article_id}}" > {{$all_article->article_id}} : {{$all_article->article_title}}</input></h4>
@@ -43,15 +67,14 @@
     <hr>
 </div>
 
-<div class="col-sm-7">
-    <table class="table table-hover">
+<div class="col-sm-8">
+    <table class="table table-hover table-bordered">
         <thead>
             <tr>
-                <th>文章ID</th>
+                <th>ID</th>
                 <th>文章创建日期</th>
                 <th>文章修改日期</th>
-                <th>文章主题</th>
-                <th>文章介绍</th>
+                <th>主题</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -62,13 +85,33 @@
                 <td>{{ $data->article_create_date }}</td>
                 <td>{{ $data->article_update_date }}</td>
                 <td>{{ $data->article_title }}</td>
-                <td>{{ $data->article_intro }}</td>
                 @if($article_by_subject[0]->article_id != null)
-                <td><a class="btn btn-danger btn-sm" href="/admin_RemoveArticleToSubject/{{ $data->subject_id }}/{{ $data->article_id }}" class="btn btn-danger">[移除该文章]</a></td>
-                @else
-                <td></td>
-                @endif
-            </tr>
+                <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{$data->article_id}}">
+                        移除
+                    </button>
+                </td>
+                <!-- Modal文章删除 -->
+        <div class="modal fade" id="delete{{$data->article_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">警告！</h4>
+                    </div>
+                    <div class="modal-body">
+                       你确定从当前专题要移除此文章吗？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <a class="btn btn-danger btn-sm" href="/admin_RemoveArticleToSubject/{{ $data->subject_id }}/{{ $data->article_id }}" class="btn btn-danger">[移除该文章]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @else
+        <td></td>
+        @endif
+        </tr>
         </tbody>
         @endforeach
     </table>

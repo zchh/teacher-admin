@@ -13,13 +13,14 @@ class UserFunc
      *
      * @return Bool
      */
-    //用户注册功能
+    //用户注册功能  
     public function addUser($input_data)
     {
         
         $input_data['user_group'] = 1;
         $input_data['user_password'] = md5($input_data['user_password']);
         $input_data['user_create_date'] = date("Y-m-d H:i:s");
+        $input_data['user_true'] = false;
         //判断此用户是否注册过
         if(DB::table("base_user")->where("user_username","=",$input_data['user_username'])->get())
         {
@@ -34,18 +35,12 @@ class UserFunc
             $subject_array['subject_create_date'] = date("Y-m-d H:i:s");
             $subject_array['subject_user'] = $user_id;
             $subject_id = DB::table("base_article_subject")->insertGetId($subject_array);
-            //给注册用户添加一篇默认文章类别
-            $class_id = DB::table("base_article_class")->insertGetId([
-                "class_user"=>$user_id,
-                "class_create_date"=>date("Y-m-d H:i:s"),
-                "class_name"=>"默认"
-            ]);
-            //给注册用户添加一片默认文章
+            //给注册用户添加一片默认文章(顺便关联一个默认类)
             $article_id = DB::table("base_article")->insertGetId([
                 "article_create_date"=>date("Y-m-d H:i:s"),
                 "article_user"=>$user_id,
                 "article_title"=>"php开发",
-                "article_class"=>$class_id
+                "article_class"=>1
             ]);
             //把专题与文章关联起来
             DB::table("base_article_re_subject")->insert([
@@ -53,7 +48,8 @@ class UserFunc
                 "relation_article"=>$article_id
             ]);
             DB::commit();
-            return true;
+            return $user_id;
+
         }
         else
         {

@@ -16,61 +16,36 @@ class ArticleController extends Controller {
     public function sArticle()
     {
         session(["now_address" => "/admin_sArticle"]);
-        //查询所有的文章并分页显示
+
+        //获取传来的class和sort并传入视图，方便生成分类和排序的链接
+        $sort = Request::input("sort","article_id");
+        $key = Request::input("key",NULL) ;
+        $input_data["key"] = $key;
+        $input_data["sort"] = $sort;
+        $pageLimit = 5;
+        
+
         $input_data['article_data'] = DB::table("base_article")
                 ->leftJoin("base_article_re_subject","article_id","=","relation_article")
                 ->leftJoin("base_article_subject","relation_subject","=","subject_id")
-                ->paginate(3);
-        //dump($input_data);
+                ->leftJoin("base_display_article_recommend","recommend_article","=","article_id")
+                ->where("article_title","like","%".$key."%")
+                ->orderBy($sort,"desc")
+                ->paginate($pageLimit);
+        $input_data["pageGui"]= $input_data["article_data"]->appends(['sort' =>$sort,"key"=>$key])
+                     ->render();  //分页数据
+        //dump($input_data);exit();
+        $input_data['now_page'] = $input_data['article_data']->currentPage();//得到当前页
+        $input_data['all_page'] = (int)($input_data['article_data']->total()/$pageLimit)+1;//得到一共有多少页
+        
         $input_data['subject_data']=DB::table("base_article_subject")->get();
         $input_data['label_data']=DB::table("base_article_label")->get();
         $input_data['class_data']=DB::table("base_article_class")->get();
+        $input_data["recommend_class"] = DB::table("base_display_class")->get();
         return view("Admin.Article.articlelist",$input_data);
     }
-    //根据输入框关键字查找
-    public function sArticleByCondition()     
-    { 
-        $input_data=Request::only("article_title");
-        $res_data['article_data']=DB::table("base_article")
-                ->leftJoin("base_article_re_subject","article_id","=","relation_article")
-                ->leftJoin("base_article_subject","relation_subject","=","subject_id")
-                ->where("article_title","like","%".$input_data["article_title"]."%")
-                ->paginate(3);
-        //专题信息
-        $res_data['subject_data']=DB::table("base_article_subject")->get();
-        $res_data['label_data']=DB::table("base_article_label")->get();
-        $res_data['class_data']=DB::table("base_article_class")->get();
-        return view("Admin.Article.articlelist",$res_data);
-        //dump($data_by_condition);
-    }
-    //根据类别帅选查找
-    public function sArticleByClass()
-    {
-        $input_data = Request::get("class_name");
-        //dump($input_data);
-        $res_data[]=array();
-        if($input_data == "all")
-        {
-            //查找所有的文章
-            $res_data['article_data'] = DB::table("base_article")
-                    ->leftJoin("base_article_re_subject","article_id","=","relation_article")
-                    ->leftJoin("base_article_subject","relation_subject","=","subject_id")
-                    ->paginate(3);
-        }
-        else
-        {
-            $res_data['article_data'] = DB::table("base_article")
-                    ->leftJoin("base_article_re_subject","article_id","=","relation_article")
-                    ->leftJoin("base_article_subject","relation_subject","=","subject_id")
-                    ->where("article_class","=",$input_data)
-                    ->paginate(3);
-        }
-        $res_data['subject_data']=DB::table("base_article_subject")->get();
-        $res_data['label_data']=DB::table("base_article_label")->get();
-        $res_data['class_data']=DB::table("base_article_class")->get();
-        return view("Admin.Article.articlelist",$res_data);
-        //dump($input_data);
-    }
+    
+    
     //添加文章(这个函数是添加文章到当前专题)
     public function AddArticleToSubject2(AdminPowerFunc $adminPowerFunc,LogFunc $logFunc,BaseFunc $base)
     {
@@ -82,8 +57,11 @@ class ArticleController extends Controller {
             return redirect()->back();
         }
         $input_data = Request::only("subject_id","article_id_array");
+        //dump($input_data);exit();
         foreach ($input_data['article_id_array'] as $article_id) 
+        //for($i=0;$i<count($input_data['article_id_array']);$i++)
         {
+            //dump($article_id);
             if(DB::table("base_article_re_subject")->where("relation_article","=",$article_id)
                 ->get())//判断文章是否已有专题
                 {
@@ -92,8 +70,6 @@ class ArticleController extends Controller {
                         ->update(["relation_subject"=>$input_data['subject_id']])
                         )
                     {
-                        //并入专题成功，提示跳转
-                        $base->setRedirectMessage(true, "并入专题成功", null, null);
                         //在添加文章到专题之后添加此记录
                         $log_array["log_level"]=3;
                         $log_array["log_title"]="更新操作";
@@ -102,7 +78,6 @@ class ArticleController extends Controller {
                         $log_array["log_admin"]=session("admin.admin_id");
                         $logFunc->addLog($log_array);
                         DB::commit();
-                        return redirect()->back();
                     }
                     else
                     {
@@ -117,8 +92,6 @@ class ArticleController extends Controller {
                     DB::beginTransaction();
                     if(DB::table("base_article_re_subject")->insert(["relation_subject"=>$input_data['subject_id'], "relation_article"=>$article_id]))
                     {
-                        //成功
-                        $base->setRedirectMessage(true, "并入专题成功", null, null);
                         //在添加文章到专题之后添加此记录
                         $log_array["log_level"]=3;
                         $log_array["log_title"]="添加操作";
@@ -127,7 +100,6 @@ class ArticleController extends Controller {
                         $log_array["log_admin"]=session("admin.admin_id");
                         $logFunc->addLog($log_array);
                         DB::commit();
-                        return redirect()->back();
                     }
                     else
                     {
@@ -137,7 +109,9 @@ class ArticleController extends Controller {
                     }
                 }
         }
-        
+        //并入专题成功，提示跳转
+        $base->setRedirectMessage(true, "并入专题成功", null, null);
+        return redirect()->back();
     }
     //接收表单把文章并入到一个专题
     public function AddArticleToSubject(AdminPowerFunc $adminPowerFunc,LogFunc $logFunc,BaseFunc $base)
@@ -255,7 +229,10 @@ class ArticleController extends Controller {
     {
         session(["now_address" => "/admin_sSubject"]);
         //查找文章专题并分页显示
-        $input_data['subject_data'] = DB::table('base_article_subject')->get();
+        $input_data['subject_data'] = DB::table('base_article_subject')
+                ->leftJoin("base_display_subject_recommend","recommend_subject","=","subject_id")
+                ->get();  //dump($input_data);
+        $input_data["recommend_class"] = DB::table("base_display_class")->get();
         return view("Admin.Article.subjectlist",$input_data);
     }
     //(进行更新)

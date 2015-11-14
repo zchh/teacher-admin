@@ -205,7 +205,7 @@
                                                     <div class="form-group">
                                                       <label >类别名</label>
                                                      <input type="hidden"name="_token"value="{{ csrf_token() }}">
-                                                      <input type="text" class="form-control" name="class_name"placeholder="修改" value="{{$data->class_name}}">
+                                                      <input type="text" class="form-control" name="class_name" placeholder="修改" value="{{$data->class_name}}">
                                                       <input type="hidden" class="form-control" name="class_id" value="{{$data->class_id}}">
                                                     </div>
 

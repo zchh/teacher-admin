@@ -248,6 +248,7 @@ return [
         "rule"=>['required','digits:10'],
         "message"=>"类别ID不能为空"
     ],
+
     "label_name"=>[     //添加标签
         "rule"=>['required','string'],
         "message"=>"标签名称不能为空"
@@ -299,3 +300,5 @@ return [
     ],
     //#########################################################
 ];
+
+

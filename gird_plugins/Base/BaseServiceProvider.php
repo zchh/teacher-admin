@@ -26,6 +26,7 @@ class BaseServiceProvider extends ServiceProvider {
         include __DIR__.'\class\PageDivide.php';    //分页函数
         include __DIR__.'\class\MailFunc.php';      //邮件函数
         include __DIR__.'\class\SecureFunc.php';    //安全函数
+
         
     }
     

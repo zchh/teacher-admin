@@ -1,6 +1,4 @@
 <?php
-
-
 //用户前台相关页面
 Route::get("/user_login","User\BaseController@login");
 Route::get("/user_logout","User\BaseController@logout");
@@ -41,6 +39,8 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     
     
     //用户文章  完成
+    
+    
     Route::get("/user_sArticle","User\ArticleController@sArticle");
     Route::get("/user_dArticle/{article_id}","User\ArticleController@dArticle");
 
@@ -132,6 +132,8 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
      Route::post("/user_uFocus","User\FocusController@uFocus");//修改备注
      //wyf#######################################################
 });
+
+
 
 
 ?>
