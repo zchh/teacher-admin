@@ -74,8 +74,7 @@ class ArticleController extends Controller
         ["article_title","article_intro","article_class","article_sort"],
                 "submitForm", "_user_aArticle",true);*/
         
-       
-       
+      
         return view("User.Article.aArticle",$inputData);
         
     }

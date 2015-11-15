@@ -60,8 +60,8 @@
    
     <!-- Modal -->
     <div class="modal fade" id="change_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog" role="document" style="width:800px">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">选择文章封面</h4>
@@ -118,12 +118,17 @@
 <script>
 $(document).ready(function() {
     $('#show_message').hide();
-    var ue = UE.getEditor('article_detail',{
-        toolbar:[
-            ['fullscreen', 'source', 'undo', 'redo', 'bold']
-        ]
-    });
+    var ue = UE.getEditor('article_detail');
     ue.ready(function() {
+        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+        
+        UE.Editor.prototype.getActionUrl = function(action) {
+            if (action == 'uploadimage' ) {
+                return 'http://127.0.0.6/putImage';
+            } else {
+                return this._bkGetActionUrl.call(this, action);
+            }
+        }
 
         $("#submit").click(function() {
 
@@ -159,6 +164,8 @@ $(document).ready(function() {
         });
 
     });
+    
+
 
 
 });

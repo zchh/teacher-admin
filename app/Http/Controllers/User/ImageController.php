@@ -24,7 +24,7 @@ class ImageController extends Controller {
 
     public function aImage(BaseFunc $baseFunc, LogFunc $logFunc, UserPowerFunc $UserPowerFunc) {   //增加图片
 
-        dump(Request::all());
+        //dump(Request::all());
         if (!request::hasFile('image_file')) {
 
             $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
@@ -39,16 +39,16 @@ class ImageController extends Controller {
 
 
             //移动文件到指定目录
-            $path = $_SERVER['DOCUMENT_ROOT'] . "/file/";  //存贮文件的绝对路径
+            $path = $_SERVER['DOCUMENT_ROOT'] .config("my_config.image_upload_dir"). session("user.user_id")."/";  //存贮文件的绝对路径
             $name = date('YmdHis') . session("user.user_id") . rand(1000, 9999) . "." . $file->getClientOriginalExtension();  //自动生成路径
 
 
-            Request::file('image_file')->move($path, $name);  //
+            Request::file('image_file')->move($path, $name);  //移动
             //把文件相关数据插入数据库
             $input_data["image_name"] = $_POST["image_name"];  //改文件名1
             $input_data["image_format"] = $file->getClientOriginalExtension();   //文件格式
             $input_data["image_intro"] = $_POST["image_intro"];
-            $input_data["image_path"] = "/file/" . $name;  //绝对路径
+            $input_data["image_path"] = $path.$name;  //绝对路径
             $input_data["image_user"] = session("user.user_id");
 
             //操作记录
@@ -104,7 +104,7 @@ class ImageController extends Controller {
         }
         //2.删文件里的  
         if ($image_id == $getId) {
-            if (unlink($_SERVER['DOCUMENT_ROOT'] . $getPath)) { //unlink是删除里面的路径
+            if (unlink($getPath)) { //unlink是删除里面的路径
                 DB::commit();     //提交事务：
                 $baseFunc->setRedirectMessage(true, "删除文件成功", NULL);
                 $logFunc->insertLog($log_array);    //插入操作记录
@@ -144,11 +144,11 @@ class ImageController extends Controller {
     }
 
     public function sImageInFrame() {
-        $inputData["image"] = DB::table('base_image')->where("image_user", "=", session("user.user_id"))->get();    //传递图片过去以供用户选择文章封面，zc
+        $inputData["image"] = DB::table('base_image')->where("image_user", "=", session("user.user_id"))->simplePaginate(6);    //传递图片过去以供用户选择文章封面，zc
         $nowChoseImageId = session("image.image_id");
         if ($nowChoseImageId != NULL) {
             $nowChoseImageData = DB::table("base_image")->where("image_id", "=", $nowChoseImageId)->first();
-            $inputData["nowChoseImageSrc"] = $nowChoseImageData->image_path;
+            $inputData["nowChoseImageSrc"] = "/getImage/".$nowChoseImageData->image_id;
         } else {
             $inputData["nowChoseImageSrc"] = NULL;
         }

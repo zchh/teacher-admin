@@ -16,9 +16,9 @@
 
                     @foreach($base_image as  $data)
 
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="{{$data -> image_path}}" alt="...">
+                <div class="col-sm-6 col-md-4" style="height:500px">
+                    
+                        <img src="/getImage/{{$data -> image_id}}" alt="..." class="img-responsive img-rounded" style="height:60%">
                         <div class="caption">
                             <h3>{{$data -> image_name}}</h3>
                             <p>{{$data -> image_intro}}</p>
@@ -31,7 +31,7 @@
                                 </a>
                             </p>
                         </div>
-                    </div>
+                    
                 </div>
 
 

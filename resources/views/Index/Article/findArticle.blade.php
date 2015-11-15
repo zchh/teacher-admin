@@ -13,7 +13,7 @@
                                 {{$data->article_intro}}
                             </div>
                             <div class="col-sm-4">
-                                <img src="/Public/2h.jpg" class="img-responsive img-rounded">
+                                <img src="/getImage/{{$data->article_image}}" class="img-responsive img-rounded">
                                     
                             </div>
                             <div class="col-sm-12">

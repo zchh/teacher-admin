@@ -1,29 +1,31 @@
 @extends("base")
 @section("body")
 <div class="clo-xs-12">
-    <div class="col-xs-6">          
+    <div class="col-xs-4">          
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_">
             上传新图片
         </button>
 
     </div>
    
-    <div class="col-xs-6">
+    <div class="col-xs-8">
         @if($nowChoseImageSrc != NULL)
         当前选中的图片   
-             <img src="{{$nowChoseImageSrc}}" alt="..."  width="200" height="200">
+        <img src="{{$nowChoseImageSrc}}" alt="..."  class="img-rounded img-responsive">
 
         @endif
     </div>
+    <div class="col-xs-12" style="height:30px">
+       
+    </div>
     
-    
-    
+    <hr>
     <div class="col-xs-12">
         @foreach($image as $single)
 
-        <div class="col-xs-3">
+        <div class="col-xs-4" style="height:300px">
             <div class="thumbnail">
-                <img src="{{$single -> image_path}}" alt="...">
+                <img src="/getImage/{{$single -> image_id}}" alt="...">
                 <div class="caption">
                     <h5>{{$single -> image_name}}</h5>
                     <p><a type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_{{ $single->image_id}}">
@@ -76,12 +78,13 @@
             </div>
         </div>
 
-
-
-
-
         @endforeach
+        
+        
     </div>
+    <div col-xs-12>
+            <?php echo $image->render();?>
+        </div>
 </div>
 
 

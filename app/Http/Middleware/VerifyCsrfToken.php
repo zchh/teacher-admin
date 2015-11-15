@@ -14,7 +14,18 @@ class VerifyCsrfToken extends BaseVerifier {
 	 */
 	public function handle($request, Closure $next)
 	{
-		return parent::handle($request, $next);
+            $data = config("my_config.special_page");
+            foreach($data as $v)
+            {
+                if($_SERVER["REQUEST_URI"] == $v)
+                {
+                    
+                     return $next($request);
+                }
+            }
+            //echo $_SERVER["REQUEST_URI"] ;
+            
+            return parent::handle($request, $next);
 	}
 
 }

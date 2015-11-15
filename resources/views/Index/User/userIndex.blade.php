@@ -11,7 +11,7 @@
                  background-size:100% 100%;height:300px;border: 1px solid gray;
                  border-radius:10px;	">
                 <div style="margin: 15px auto; width:150px;height:150px">
-                    <img src="{{$userData->image_path}}" class="img-circle" style="margin:auto ;width:100%;height:100%">
+                    <img src="/getImage/{{$userData->image_id}}" class="img-circle" style="margin:auto ;width:100%;height:100%">
                 </div>
                 <div style="width:150px;height:100px;margin:15px auto;" >
                     <h3 style="text-align: center;color:white">{{$userData->user_username}}</h3>
@@ -96,7 +96,7 @@
                                             {{$data->article_intro}}
                                         </div>
                                         <div class="col-sm-4">
-                                            <img src="/Public/2h.jpg" class="img-responsive img-rounded">
+                                            <img src="/getImage/{{$data->article_image}}" class="img-responsive img-rounded">
 
                                         </div>
                                         <div class="col-sm-12">
@@ -123,10 +123,7 @@
                                             <h4>{{$data->subject_name}} </h4><small> | {{$data->subject_create_date}}.</small><br>
                                             {{$data->subject_intro}}
                                         </div>
-                                        <div class="col-sm-4">
-                                            <img src="/Public/2h.jpg" class="img-responsive img-rounded">
-
-                                        </div>
+                                        
                                         <div class="col-sm-12">
                                             <a href="/index_moreSubject/{{$data->subject_id}}" class="btn btn-default  ">查看详情</a>
                                         </div>

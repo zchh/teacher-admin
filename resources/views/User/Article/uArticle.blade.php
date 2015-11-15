@@ -31,21 +31,23 @@
             </div>
 
             <div class="col-sm-6 form-group">
+                <a id="submit" class="btn btn-primary">确认修改</a>  
                 <a type="button" class="btn btn-default" data-toggle="modal" data-target="#change_">
                     选择文章封面
-                </a>                  
+                </a>  
+                
             </div>
 
 
             <!-- Modal -->
-            <div class="modal fade" id="change_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+            <div class="modal fade" id="change_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                <div class="modal-dialog" role="document" style="width:800px">
+                    <div class="modal-content"style="width:800px" >
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">选择文章封面</h4>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body"style="width:800px">
                             <iframe src="/user_sImageInFrame" noresize="noresize" style="width:100%;height:500px" frameborder="0"></iframe>                    
                         </div>
                         <div class="modal-footer">
@@ -60,10 +62,7 @@
 
 
 
-            <div class="col-sm-12 form-group" >
-                <a id="submit" class="btn btn-default">提交</a>  
-            </div>
-
+            
             <div class="col-sm-12">
 
                 <script type="text/javascript" src="/source/ueditor/ueditor.config.js"></script>

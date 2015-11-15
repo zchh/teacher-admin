@@ -8,8 +8,10 @@
             <h1><p class="text-left">{{$articleData -> article_title}}</p></h1>
             <h2><small><p class="text-left">{{$articleData -> article_update_date}}  by <a href="/index_userIndex/{{$articleData -> user_id}}">{{$articleData -> user_username }}</a> </p></small></h2>
             <hr>
-            <?php echo $articleData->article_detail; ?>
-
+            <img src="/getImage/{{$articleData->article_image}}" class="img-responsive img-rounded">
+            <div id="article_detail_div">
+                <?php echo $articleData->article_detail; ?>
+            </div>    
             <hr/>
             <?php echo $replyData; ?>
 
@@ -26,7 +28,12 @@
         </div>
     </div>
 </div>
+<script>
+ 
+ $("#article_detail_div  img").addClass("img-responsive");
 
+
+</script>
 
 
 

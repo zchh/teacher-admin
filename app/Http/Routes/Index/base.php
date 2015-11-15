@@ -29,9 +29,9 @@ Route::get("/index_sDisplayArticleClass/{class_id}","Index\BaseController@sDispl
 
 //图片访问接口
 //获取图片
-Route::get("/getImage/{user_id}/{image_id}","Index\ImageController@getImage");
+Route::get("/getImage/{image_id?}","Index\ImageController@getImage");
 //上传图片，留给UE编辑器
-Route::all("/putImage","Index\ImageController@putImage");
+Route::any("/putImage","Index\ImageController@putImage");
 
 
 ?>
