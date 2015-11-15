@@ -90,10 +90,14 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::post("/user_uLabel","User\ArticleController@uLabel"); //修改标签
     Route::get("/user_dLabel/{label_id}","User\ArticleController@dLabel"); //删除标签
     
-    //收藏夹
-     Route::get("/user_sCollect","User\ArticleController@sCollect");//查看收藏夹
-     Route::post("/user_aCollect","User\ArticleController@aCollect");//添加收藏夹
-     Route::get("/user_moreCollect/{collect_id}","User\ArticleController@moreCollect");//收藏夹详情
+  //收藏夹
+    Route::get("/user_sCollect","User\CollectController@sCollect");//查看收藏夹
+    Route::post("/user_aCollectClass","User\CollectController@aCollectClass");//添加收藏夹
+    Route::post("/user_uCollectClass","User\CollectController@uCollectClass");//修改收藏夹
+    Route::get("/user_dCollectClass/{class_id}","User\CollectController@dCollectClass");//删除收藏夹
+    Route::post("/user_addArticleToCollect","User\CollectController@addArticleToCollect");//收藏文章
+    Route::get("/user_dCollect/{collect_id}","User\CollectController@dCollect");//移除收藏文章
+    Route::post("/user_uCollect","User\CollectController@uCollect");//修改收藏文章
     
 
     //图片管理

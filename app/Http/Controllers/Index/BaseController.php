@@ -104,13 +104,12 @@ class BaseController extends Controller {
     
     public function articleDetail(ArticleFunc $articleFunc, $article_id)
     {
-        
         $viewData["articleData"] = DB::table('base_article')
                   ->where("article_id","=",$article_id)
                   ->leftJoin("base_user","user_id","=","article_user")
                   ->first();
         $viewData["choseData"] =NULL;
-        
+        $viewData["classData"]=DB::table('base_article_collect_class')->get();
         $viewData["replyData"] = $articleFunc->getArticleReply($article_id);
         $viewData["userInfoGui"] = $this->userSider($viewData["articleData"]->article_user);
         return view("Index.Article.articleDetail",$viewData);
