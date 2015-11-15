@@ -24,4 +24,14 @@ Route::get("/index_moreSubject/{subject_id}","Index\BaseController@moreSubject")
 //查看类别
 Route::get("/index_sDisplayArticleClass/{class_id}","Index\BaseController@sDisplayArticleClass");
 
+
+
+
+//图片访问接口
+//获取图片
+Route::get("/getImage/{user_id}/{image_id}","Index\ImageController@getImage");
+//上传图片，留给UE编辑器
+Route::all("/putImage","Index\ImageController@putImage");
+
+
 ?>

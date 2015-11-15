@@ -85,7 +85,7 @@ class ArticleController extends Controller
         if($userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
-            return redirect()->back();
+           
         }
         $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
 
@@ -258,7 +258,7 @@ class ArticleController extends Controller
         if($userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
-            return redirect()->back();
+            //return redirect()->back();
         }
         $subjectData = Request::only("subject_name","subject_intro");
         $subjectId = Request::input("subject_id");

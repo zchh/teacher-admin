@@ -118,7 +118,11 @@
 <script>
 $(document).ready(function() {
     $('#show_message').hide();
-    var ue = UE.getEditor('article_detail');
+    var ue = UE.getEditor('article_detail',{
+        toolbar:[
+            ['fullscreen', 'source', 'undo', 'redo', 'bold']
+        ]
+    });
     ue.ready(function() {
 
         $("#submit").click(function() {
@@ -130,7 +134,6 @@ $(document).ready(function() {
 
                     /*$("#inst").html(data);*/
                     $('#show_message').trigger('click');  //模拟点开模态框
-
                     if (data.status == true)
                     {
                         //$("#return_message").addClass("alert-success");
