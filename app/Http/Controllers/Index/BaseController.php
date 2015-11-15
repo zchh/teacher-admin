@@ -80,14 +80,21 @@ class BaseController extends Controller {
     }
     
     
-    public function sSubject()    //得到所有专题，并列出来
+   public function sSubject()    //得到所有专题，并列出来
     {
-        $inputData['subject']  = DB::table('base_article_subject')->get();
+         $inputData['subject']  = DB::table('base_display_subject_recommend')->join("base_display_class","recommend_class","=","class_id") -> orderBy("recommend_id","desc") -> paginate(10); ;  //合并两表 
+    
         return view("Index.Subject.sSubject",$inputData);
+        
+        
     }
     
    public function moreSubject($subject_id)     //传递满足$subject_id的文章
     {
+       
+       
+       
+       
            $inputData['articleData'] =  DB::table('base_article_re_subject')
                    ->leftJoin("base_article","article_id","=","relation_article")
                    ->where('relation_subject','=',$subject_id)
@@ -97,7 +104,9 @@ class BaseController extends Controller {
                    ->where("subject_id","=",$subject_id)
                    ->first();     
             
-           $inputData["userInfoGui"] = $this->userSider($inputData["subjectData"]->subject_user);;
+           $inputData["userInfoGui"] = $this->userSider($inputData["subjectData"]->subject_user);
+       
+           
            return view("Index.Subject.moreSubject",$inputData);
         
     }
