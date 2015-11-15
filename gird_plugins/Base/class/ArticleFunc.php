@@ -131,7 +131,7 @@ class ArticleFunc
                 ->leftJoin("base_image","user_id","=","image_user")
                 ->get();//先查出该文章的所有节点和关系
 
-        if($replyData == NULL){return NULL;}
+       // if($replyData == NULL){return NULL;}
 
         $rootReply=[];
         foreach($replyData as $key => $data)

@@ -7,7 +7,7 @@
         <div class="form-group">
             <label >详情</label>
             <a id="tips">
-                <textarea class="form-control" name="reply_detail" id="reply_detail"  rows="5" placeholder="ss回复文章"></textarea>
+                <textarea class="form-control" name="reply_detail" id="reply_detail"  rows="5" placeholder="回复文章"></textarea>
             </a>
         </div>
         <button type="submit" class="btn btn-primary">提交</button>

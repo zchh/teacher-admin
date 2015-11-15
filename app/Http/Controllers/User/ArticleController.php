@@ -81,7 +81,7 @@ class ArticleController extends Controller
     public function _aArticle(UserPowerFunc $userPowerFunc,LogFunc $logFunc,ArticleFunc $atcFunc,  BaseFunc $baseFunc)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
 
@@ -129,7 +129,7 @@ class ArticleController extends Controller
     public function dArticle(UserPowerFunc $userPowerFunc,LogFunc $logFunc,$articleId,ArticleFunc $atcFunc,  BaseFunc $baseFunc)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -216,10 +216,10 @@ class ArticleController extends Controller
         session(["nowPage"=>"/user_sSubject"]);
         return view("User.Article.sSubject",$data);
     }
-    public function aSubject(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $base)
+    public function aSubject(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -232,7 +232,7 @@ class ArticleController extends Controller
         if(DB::table("base_article_subject")->insert($subjectData))
         {
             //添加成功，提示跳转
-            $base->setRedirectMessage(true, "添加专题成功！", null, null);
+           $baseFunc->setRedirectMessage(true, "添加专题成功！", null, null);
             $log_array['log_level']=0;
             $log_array['log_title']="添加操作";
             $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."添加了一个专题";
@@ -245,7 +245,7 @@ class ArticleController extends Controller
         else
         {
             //添加失败，提示跳转
-            $base->setRedirectMessage(false, "添加专题失败！", null, null);
+            $baseFunc->setRedirectMessage(false, "添加专题失败！", null, null);
             return redirect()->back();
         }
         //dump($subject_add_data);
@@ -254,7 +254,7 @@ class ArticleController extends Controller
     public function uSubject(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
 
@@ -292,7 +292,7 @@ class ArticleController extends Controller
     public function dSubject(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc,$subject_id)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -337,7 +337,7 @@ class ArticleController extends Controller
     public function addArticleToSubject(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -368,7 +368,7 @@ class ArticleController extends Controller
     public function removeArticleToSubject(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc,$subject_id,$article_id)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -399,7 +399,7 @@ class ArticleController extends Controller
     public function aLabel(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -423,7 +423,7 @@ class ArticleController extends Controller
     public function uLabel(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -448,7 +448,7 @@ class ArticleController extends Controller
     public function dLabel(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc,$label_id)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();

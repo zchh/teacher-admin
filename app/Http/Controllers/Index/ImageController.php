@@ -40,7 +40,7 @@ class ImageController extends Controller {
         else //如果没有图片的，换上一张默认图片
         {
             header("Content-type:image/jpeg");
-            readfile($_SERVER["DOCUMENT_ROOT"]."/file/2015110804393618330.jpg");
+            readfile($_SERVER["DOCUMENT_ROOT"]."/image/default.jpg");
         }
        
     }
