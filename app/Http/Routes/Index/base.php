@@ -27,6 +27,7 @@ Route::get("/index_sDisplayArticleClass/{class_id}","Index\BaseController@sDispl
 
 
 
+
 //图片访问接口
 //获取图片
 Route::get("/getImage/{image_id?}","Index\ImageController@getImage");

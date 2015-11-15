@@ -165,7 +165,37 @@ class BaseFunc {
         }
     }
     
-    
+
+    /**
+     * 获取当前登录用户关注过的所有用户的文章（用户主页）
+     * 
+     * 
+     * @access public
+     * @param string $user_id 用户id
+     *
+     * @return 被关注用户的所有文章数据
+     */
+    public function getArticleByAttentioned($user_id)
+    {
+        //根据传过来的user_id查询他所关注过的用户
+        $attentioned_data = DB::table("base_user_relation")->where("relation_user","=",$user_id)->get();
+        //获取所有的被关注用户的relation_focus
+        $relation_focus_ids = array();
+        foreach ($attentioned_data as $key => $value) 
+        {
+            $relation_focus_ids[] = $value->relation_focus;
+        }
+        $article_data = [];
+        //开始查询文章
+        foreach ($relation_focus_ids as $key => $value)
+        {
+            $article_data[] = DB::table("base_article")->Join("base_user","article_user","=","user_id")
+                    ->where("article_user","=",$value)
+                    ->get();
+        }
+        return $article_data;
+    }
+
     
    
     

@@ -125,11 +125,14 @@ class ArticleFunc
     public function getArticleReply($articleId)
     {
         $replyData = DB::table("base_article_reply")->where("reply_article","=",$articleId)
-                ->join("base_reply_relation","relation_child","=","reply_id")->get();//先查出该文章的所有节点和关系
-        //dump($replyData);
+
+                ->join("base_reply_relation","relation_child","=","reply_id")
+                ->join("base_user","reply_user","=","user_id")
+                ->leftJoin("base_image","user_id","=","image_user")
+                ->get();//先查出该文章的所有节点和关系
+
         if($replyData == NULL){return NULL;}
-        
-        
+
         $rootReply=[];
         foreach($replyData as $key => $data)
         {
@@ -142,7 +145,6 @@ class ArticleFunc
             
         }
         
-        
         $gui="";
         foreach($rootReply as $data)
         {
@@ -152,6 +154,7 @@ class ArticleFunc
             $gui.=view("Base::reply",$inputData);
   
         }
+      
         
         $inputData["article_id"] = $articleId;
         $gui.=view("Base::aReply",$inputData);

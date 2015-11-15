@@ -74,7 +74,7 @@ class ArticleController extends Controller
         ["article_title","article_intro","article_class","article_sort"],
                 "submitForm", "_user_aArticle",true);*/
         
-      
+
         return view("User.Article.aArticle",$inputData);
         
     }
@@ -84,7 +84,7 @@ class ArticleController extends Controller
         if($userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
-           
+
         }
         $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
 
@@ -257,7 +257,7 @@ class ArticleController extends Controller
         if($userPowerFunc->checkUserPower($powerId))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
-            //return redirect()->back();
+
         }
         $subjectData = Request::only("subject_name","subject_intro");
         $subjectId = Request::input("subject_id");
@@ -576,7 +576,6 @@ class ArticleController extends Controller
 
 
     //处理文章评论的函数（在这里评论提交的表单是默认为是头条评论，也就是relation_parent=0）
-
 
 
 }

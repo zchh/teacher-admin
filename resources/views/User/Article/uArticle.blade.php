@@ -31,6 +31,7 @@
             </div>
 
             <div class="col-sm-6 form-group">
+
                 <a id="submit" class="btn btn-primary">确认修改</a>  
                 <a type="button" class="btn btn-default" data-toggle="modal" data-target="#change_">
                     选择文章封面
@@ -60,9 +61,6 @@
 
 
 
-
-
-            
             <div class="col-sm-12">
 
                 <script type="text/javascript" src="/source/ueditor/ueditor.config.js"></script>

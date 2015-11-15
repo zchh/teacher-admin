@@ -5,7 +5,6 @@
 @foreach($articleData  as $data)
 @if($data -> article_id == $article_id)
 
-
 <div class="col-sm-8">
     <div class="panel panel-default">
         <div class="panel-body">

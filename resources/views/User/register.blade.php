@@ -20,13 +20,13 @@
                         <div class="form-group">
                             <label for="inputPassword" class="col-sm-2 control-label" style="text-align: center;font-family: 微软雅黑;color: #646464">用户名：</label>
                             <div class="col-sm-8">
-                                <input type="text" name="user_username" class="form-control" id="user_username" placeholder="用户名">
+                                <input type="text" name="user_username" class="form-control required" minlength="2" id="user_username" placeholder="用户名">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword" class="col-sm-2 control-label" style="text-align: center;font-family: 微软雅黑;color: #646464">昵 &nbsp;&nbsp;称：</label>
                             <div class="col-sm-8">
-                                <input type="text" name="user_nickname" class="form-control" id="user_nickname" placeholder="用户昵称">
+                                <input type="text" name="user_nickname" class="form-control required" minlength="2" id="user_nickname" placeholder="用户昵称">
                             </div>
                         </div>
                         <div class="form-group">
@@ -102,7 +102,7 @@
                                 setTimeout(arguments.callee, 1000); // 每秒减小一次
                             }
                         })();
-                        setTimeout('window.location = "/admin_login";', 5000);
+                        setTimeout('window.location = "/user_login";', 5000);
                     }
                     else
                     {

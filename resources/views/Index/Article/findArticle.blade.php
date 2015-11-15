@@ -14,7 +14,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <img src="/getImage/{{$data->article_image}}" class="img-responsive img-rounded">
-                                    
+                                  
                             </div>
                             <div class="col-sm-12">
                             <a href="/index_articleDetail/{{$data->article_id}}" class="btn btn-default btn-xs pull-right">查看详情</a>

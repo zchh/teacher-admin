@@ -29,6 +29,7 @@
                     <li><a href="/admin_sArticle">文章</a></li>
                     <li><a href="#">图片库</a></li>
 
+
                     <li><a href="/admin_displayIndex" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         网站管理<span class="caret"></span>
                         </a>      
@@ -50,6 +51,8 @@
                         <li><a href="/admin_sReply">查看评论信息</a></li>
                     </ul>  
                     </li>
+
+                   
 
                     <li><a href="/admin_sMessage" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                          消息箱<span class="caret"></span>

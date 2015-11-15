@@ -123,7 +123,7 @@
                                             <h4>{{$data->subject_name}} </h4><small> | {{$data->subject_create_date}}.</small><br>
                                             {{$data->subject_intro}}
                                         </div>
-                                        
+
                                         <div class="col-sm-12">
                                             <a href="/index_moreSubject/{{$data->subject_id}}" class="btn btn-default  ">查看详情</a>
                                         </div>

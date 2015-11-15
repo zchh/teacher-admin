@@ -24,7 +24,7 @@ class ImageController extends Controller {
 
     public function aImage(BaseFunc $baseFunc, LogFunc $logFunc, UserPowerFunc $UserPowerFunc) {   //增加图片
 
-        //dump(Request::all());
+
         if (!request::hasFile('image_file')) {
 
             $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
@@ -105,7 +105,7 @@ class ImageController extends Controller {
         //2.删文件里的  
         if ($image_id == $getId) {
             if (unlink($getPath)) { //unlink是删除里面的路径
-                DB::commit();     //提交事务：
+               DB::commit();     //提交事务：
                 $baseFunc->setRedirectMessage(true, "删除文件成功", NULL);
                 $logFunc->insertLog($log_array);    //插入操作记录
                 return redirect()->back();  //跳回上一页

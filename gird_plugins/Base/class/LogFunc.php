@@ -4,7 +4,6 @@ namespace GirdPlugins\Base;
 
 use \Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-
 class LogFunc
 {
         
@@ -88,13 +87,17 @@ class LogFunc
         }
     }
 
-    
-    
-     /*
-     * 基于管理员id去查记录,使用者需传入$log_admin(用户id)
-     * 操作base_log表
-     * 成功返回base_log表的该管理员记录
-     * 失败返回null
+
+
+
+    /*
+     * 基于管理员id查询记录
+     * @access public
+     * @param $log_admin
+     * @return array
+
+
+
      */
 
     public function selectLogByAdmin($log_admin) {                //zc

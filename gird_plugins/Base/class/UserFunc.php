@@ -13,7 +13,11 @@ class UserFunc
      *
      * @return Bool
      */
-    //用户注册功能  
+
+    //用户注册功能
+
+    
+    
     public function addUser($input_data)
     {
         
@@ -49,7 +53,6 @@ class UserFunc
             ]);
             DB::commit();
             return $user_id;
-
         }
         else
         {

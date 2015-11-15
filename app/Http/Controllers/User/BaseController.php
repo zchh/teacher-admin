@@ -45,8 +45,13 @@ class BaseController extends Controller {
 
     public function _register(LogFunc $logFunc,UserFunc $userFunc,BaseFunc $baseFunc,MailFunc $mailFunc)
     {
-        $input_data = Request::only("user_username","user_nickname","user_password","user_sex","user_intro");
+        $input_data = Request::only("user_username","user_nickname","user_password","user_sex","user_intro","user_email");
+        //dump($input_data);exit();
         $email = Request::only("user_email");
+        if($email == null)
+        {
+            return response()->json(['status' => false, 'message' => '注册失败，请重新填写注册信息']);
+        }
         DB::beginTransaction();
         if($user_id = $userFunc->addUser($input_data) != false)
         {
@@ -74,38 +79,18 @@ class BaseController extends Controller {
         }
         //dump($input_data);
     }
-    /*public function _register(LogFunc $logFunc,UserFunc $userFunc,BaseFunc $baseFunc,MailFunc $mailFunc)
-    {
-        $input_data = Request::only("user_username","user_nickname","user_password","user_sex","user_intro");
-        $email = Request::only("user_email");
-        DB::beginTransaction();
-        if($user_id = $userFunc->addUser($input_data) != false)
-        {
-            //注册成功
-            //注册成功后向该用户发送电子邮件
-            $mailFunc->sendUserCheckMail($email['user_email'], $input_data['user_nickname'], $user_id);
-            //注册成功后添加日志
-            $logFunc->addLog([
-                "log_level"=>0,
-                "log_title"=>$input_data['user_username']."注册了此网站",
-                "log_detail"=>$input_data['user_username']."注册了此网站",
-                "log_admin"=>session("user.user_id")
-            ]);
-            DB::commit();
-            $baseFunc->setRedirectMessage(true, "注册成功,以跳转到登录页面", null, "/user_login");
-        }
-        else
-        {
-            //注册失败
-            $baseFunc->setRedirectMessage(false, "注册失败,用户名已存在，请重新注册！", null, "/user_register");
-        }
-        //dump($input_data);
-    }*/
+    
+  public function index(BaseFunc $baseFunc)   //用户主页
 
-  public function index()
   {
       //dump(session("user"));
-      return view("User.index");
+
+      $user_id = session("user.user_id"); //获取当前登录用户的id,传给BaseController来获取他所关注的人的所有文章
+      //调用接口获取被关注用户的所有文章
+      $input_data['article_attentioned_data'] = $baseFunc->getArticleByAttentioned($user_id);
+      //dump($input_data);
+      return view("User.index",$input_data);
+
      
   }
    public function logout(BaseFunc $baseFunc)
