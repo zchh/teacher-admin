@@ -36,7 +36,7 @@ class BaseController extends Controller {
     }
     public function index()
     {
-        return view("admin.index");
+        return view("Admin.index");
         
     }
     public function logout(BaseFunc $baseFunc)

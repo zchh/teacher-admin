@@ -70,7 +70,8 @@ class ImageController extends Controller {
             $input_data["image_name"] = $_POST["image_name"];  //改文件名1
             $input_data["image_format"] = $file->getClientOriginalExtension();   //文件格式
             $input_data["image_intro"] = $_POST["image_intro"];
-            $input_data["image_class"] = $_POST["image_class"];
+            if(isset($_POST["image_class"])){$input_data["image_class"] = $_POST["image_class"];}
+            
             $input_data["image_path"] = $path.$name;  //绝对路径
             $input_data["image_user"] = session("user.user_id");
 

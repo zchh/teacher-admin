@@ -26,7 +26,7 @@ return [
         "message"=>"分类不能大于30个字符"
         ],
     "class_id"=>[ 
-        "rule"=>["integer"],
+        "rule"=>["integer","required"],
         ],
       
     //推荐专题
@@ -100,12 +100,16 @@ return [
     //zhangchi#######################################################################################
     
     "image_name" => [                                   //修改/添加图片名
-        "rule" => ['max:15', "required"],
+        "rule" => ['max:16', "required"],
         "message" => "图片名不能为空且字数不能超过15个"
     ],
     "image_intro" => [                                   ///添加/修改图片就介绍
         "rule" => ['max:34', "required"],
         "message" => "图片介绍不能为空且字数不能超过34个"
+    ],
+    "image_class" => [
+        "rule" => ["int","required"],
+        "message" => "图片需要归入一个类别，请创建一个图片类别"
     ],
     
      "message_recv_user" => [                                   ///添加信息接收者

@@ -110,6 +110,7 @@
                         <input type="text" class="form-control" name="image_name">                              
                     </div>
                     <div class="form-group">
+                        <label >图片分类</label>
                          <select class="form-control" name="image_class">
                             @foreach($imageClassData as $data)
                                 <option value = "{{$data->class_id}}">{{$data->class_name}}</option>
