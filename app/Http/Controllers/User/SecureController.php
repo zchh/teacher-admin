@@ -26,7 +26,7 @@ class SecureController extends Controller {
        
         if(session("user.user_status")==true)
         {
-            $baseFunc->setRedirectMessage(true, "你已经登陆", NULL, "/user_index");
+            $baseFunc->setRedirectMessage(true, "已经激活成功", NULL, "/user_index");
             exit();
         }
         
@@ -42,7 +42,6 @@ class SecureController extends Controller {
               
               $this->secureFunc->setUserActivate(session("secure.secure_user"));
               DB::table("base_user_secure")->where("secure_key","=",$key)->delete();
-              
              /*在这里应该把登陆的的事情都干了
               */
               

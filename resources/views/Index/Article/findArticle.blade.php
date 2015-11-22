@@ -3,7 +3,7 @@
 @section("main")
 
       <div class="col-sm-10 col-sm-offset-1">
-        <div class="col-sm-9">
+        <div class="col-sm-12">
              @foreach($articleData as $data)
              <div class="col-sm-6">
                     <div class="panel panel-default">

@@ -8,8 +8,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
 
-            <h2 class="sub-header">当前专题：{{$moreSubject[0]->subject_name}} | <button type="button" class="btn  btn-primary" data-toggle="modal" data-target="#add_article_{{$moreSubject[0]->subject_id}}">添加文章</button></h2>
-            <div class="modal fade" id="add_article_{{$moreSubject[0]->subject_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <h2 class="sub-header">当前专题：{{$subjectDetail->subject_name}} | <button type="button" class="btn  btn-primary" data-toggle="modal" data-target="#add_article_{{$subjectDetail->subject_id}}">添加文章</button></h2>
+            <div class="modal fade" id="add_article_{{$subjectDetail->subject_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -20,12 +20,12 @@
                             <div class="modal-body">            
 
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="subject_id" value="{{$moreSubject[0]->subject_id}}">   
-                                @foreach($checkArticle as $value1)   
-                                @if(!in_array($value1->article_id,$article_ids))
-                                <h4><input type="checkbox" name="article_id_array[]"  value="{{$value1->article_id}}" > {{$value1->article_title}}</input></h4>
-                                @endif
-                                @endforeach       
+                                <input type="hidden" name="subject_id" value="{{$subjectDetail->subject_id}}">   
+                                @foreach($canSelectArticle as $data)
+                                    @if($data->relation_id ==NULL)
+                                    <h4><input type="checkbox" name="article_id_array[]"  value="{{$data->article_id}}" > {{$data->article_title}}</input></h4>
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="modal-footer">
                                 <button  class="btn btn-primary " type="submit">添加</button>
@@ -39,25 +39,32 @@
 
             <hr>
 
-            <div class="col-sm-7">
-                <table class="table">
+            <div class="col-sm-12">
+                <table class="table table-hover table-bordered table-responsive">
                     <thead>
                         <tr>
                             <th>现有文章</th>
                             <th>操作</th>
                         </tr>
                     </thead>
-                    @foreach($moreSubject as $data)
-                    @if($data->relation_subject!=NULL)
+                    <?php 
+                    $len = sizeof($subjectArticle);
+                    foreach($subjectArticle as $key=>$data)
+                    {
+                        
+                        
+                    ?>
+                   
+                   
                     <tbody>
                         <tr>
-                            <td>{{ $data->article_title }}</td>
-                            <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#del_{{$data->subject_id}}">
+                            <td><a href="/index_articleDetail/{{ $data->article_id }}">{{ $data->article_title }}</a></td>
+                            <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#del_a_{{$subjectDetail->subject_id}}">
                                     移除
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="del_{{$data->subject_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal fade" id="del_a_{{$subjectDetail->subject_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -69,33 +76,49 @@
                                                 将要移除该文章！
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="/user_removeArticleToSubject/{{ $data->subject_id }}/{{ $data->article_id }}" class="btn btn-danger btn-sm">移除</a>
+                                                <a href="/user_removeArticleToSubject/{{$subjectDetail->subject_id}}/{{ $data->article_id }}" class="btn btn-danger btn-sm">移除</a>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
                                             </div>
 
                                         </div>
                                     </div>
-                                </div></td>      
+                                </div>
+                                @if($key != 0)
+                                <a href="/user_setSubjectArticleSort/{{ $data->relation_id }}/1" class="btn btn-default btn-sm" >
+                                    上移
+                                </a>
+                                @endif
+                                 @if($key != $len-1)
+                                <a href="/user_setSubjectArticleSort/{{ $data->relation_id }}/0" class="btn btn-default btn-sm" >
+                                    下移
+                                </a>
+                                 @endif
+                            
+                            </td>      
                         </tr>
                     </tbody>
 
-                    @endif
-                    @endforeach
+                    <?php }?>
                 </table>
             </div>
 
 
-            <div class="col-sm-3 ">
-                <div class="panel panel-default ">
-                    <div class="panel-body ">
-                        <h3 class="container">专题介绍</h3>
-                        <hr>
-                        @foreach($moreSubject as $data)
-                        <h4 class="container">{{ $data->subject_intro }}</h4>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+           
+        </div>
+    </div>
+</div>
+
+ <div class="col-sm-2 ">
+    <div class="panel panel-default ">
+        <div class="panel-body ">
+            <h3 class="container">专题介绍</h3>
+            <hr>
+            {{$subjectDetail->subject_intro}}
+            <hr>
+            创建时间：<br>{{$subjectDetail->subject_create_date}}<br>
+            修改时间：<br>{{$subjectDetail->subject_create_date}}<br>
+            点击量：{{$subjectDetail->subject_click}}
+
         </div>
     </div>
 </div>

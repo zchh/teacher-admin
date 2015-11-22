@@ -1,10 +1,10 @@
-@extends("User.Article.base")
+@extends("User.base")
 @section("main")
 
 
 
 
-<div class="col-sm-8">
+<div class="col-sm-8 col-sm-offset-2">
     <div class="panel panel-default">
         <div class="panel-body">
             <h2>我关注的人</h2>

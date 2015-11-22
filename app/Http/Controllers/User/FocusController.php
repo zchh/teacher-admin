@@ -13,6 +13,7 @@ class FocusController extends Controller
 {
     public function sFocus()
     {
+        session(["nowPage"=>"/user_sFocus"]);
         $data['focusData']=DB::table('base_user_relation')
                 ->leftJoin("base_user","user_id","=","relation_focus")
                 ->get();
@@ -20,8 +21,9 @@ class FocusController extends Controller
     }
     public function aFocus(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $base)
     {
+        //dump(session("user"));exit();
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $base->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -55,7 +57,7 @@ class FocusController extends Controller
     public function uFocus(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $base)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $base->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();
@@ -82,7 +84,7 @@ class FocusController extends Controller
     public function dFocus(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $base,$relation_id)
     {
         $powerId=10;
-        if($userPowerFunc->checkUserPower($powerId))
+        if(!$userPowerFunc->checkUserPower($powerId))
         {
             $base->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
             return redirect()->back();

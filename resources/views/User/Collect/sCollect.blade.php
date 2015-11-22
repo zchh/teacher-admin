@@ -23,7 +23,7 @@
                     @foreach($collectData as $data)
                     <tr>
                         <td>{{$data->article_id}}</td>
-                        <td>{{$data->article_title }}</td>
+                        <td><a href="/index_articleDetail/{{ $data->article_id }}">{{ $data->article_title }}</a></td>
                         <td>{{$data->article_create_date}}</td>
                         <td>{{$data->user_nickname}}</td>
                         <td>{{$data->class_name}}</td>
@@ -64,7 +64,7 @@
                             </div>   
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#del_re_{{$data->collect_id}}">
-                                移出推荐
+                                取消收藏
                             </button>
                             <!-- Modal -->
                             <div class="modal fade" id="del_re_{{$data->collect_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

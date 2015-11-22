@@ -5,7 +5,7 @@
             <div class="col-sm-10">
                 <div class="media-left">
                     <a href="#">
-                        <img style="width: 50px; height: 50px;border-radius:50%" class="media-object" src="{{$reply_data->image_path}}" alt="...">
+                        <img style="width: 50px; height: 50px;border-radius:50%" class="media-object" src="/getImage/{{$reply_data->user_image}}" alt="用户头像">
                     </a>
                 </div>
                 <div class="media-body">
@@ -23,17 +23,8 @@
         </div>
     </div>
     <hr/>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
-    <div class="col-sm-12"></div>
+
+
     <?php echo $son ?>
 </div>
 

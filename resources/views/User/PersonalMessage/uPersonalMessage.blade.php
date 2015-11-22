@@ -4,7 +4,14 @@
 <div class="col-sm-8">
     <div class="panel panel-default">
         <div class="panel-body">
-
+            <div >
+                <div style="width:200px;height:200px;margin: auto;" >
+                    <img src="/getImage/{{ $personalMessage->user_image}}" class="img-rounded" style="width:200px;height:200px;border: 1px solid gray">
+                </div>
+                
+            </div>
+            <div class="col-sm-12">
+                <br>
             <form action="/_user_uPersonalMessage" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
                 <div class="col-sm-6 form-group">
@@ -19,10 +26,6 @@
                     </select>
                 </div>
                 <div class="col-sm-6 form-group">
-                    <label >密码</label>
-                    <input type="text" class="form-control"  name="user_password" value="{{ $personalMessage->user_password}}">
-                </div>
-                <div class="col-sm-6 form-group">
                     <label>年龄</label>
                     <input type="text" class="form-control"name="user_age" value="{{ $personalMessage->user_age}}">
 
@@ -35,7 +38,8 @@
                 <div class="col-sm-12 form-group">
                     <a type="button" class="btn btn-default" data-toggle="modal" data-target="#change_">
                         选择头像
-                    </a>                  
+                    </a>   
+                    <input type="submit" class="btn btn-default" value="提交">
                 </div>
 
 
@@ -59,14 +63,11 @@
 
 
 
-                <div class="col-sm-12 form-group" >
-                    <input type="submit" class="btn btn-default" value="提交">
-                </div>
 
             </form>
 
 
-
+            </div>
 
         </div>   
     </div>

@@ -16,7 +16,7 @@ class ImageController extends Controller {
         if($image_id == 0)
         {
             header("Content-type:image/jpeg");
-            readfile($_SERVER["DOCUMENT_ROOT"]."/file/2015110804393618330.jpg");
+            readfile($_SERVER["DOCUMENT_ROOT"]."/image/default.jpg");
         }
         $imageData = DB::table("base_image")
                 ->where("image_id","=",$image_id)

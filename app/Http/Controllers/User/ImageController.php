@@ -16,8 +16,30 @@ class ImageController extends Controller {
 
     public function sImage() {
         session(["nowPage" => "/user_sImage"]);
-        $combine['base_image'] = DB::table('base_image')    //为了获得图片用户，要合并两张表
-                        ->join('base_user', 'base_image.image_user', '=', 'base_user.user_id')->paginate(6); //分页，两条记录一页
+        $class_id = Request::input("class_id",NULL);
+        if($class_id == NULL)
+        {
+            $combine['base_image'] = DB::table('base_image')    //为了获得图片用户，要合并两张表
+                ->where("image_user","=",session("user.user_id"))
+                ->join('base_user', 'base_image.image_user', '=', 'base_user.user_id')
+                ->orderBy("image_id","desc")
+                ->paginate(9); //分页，两条记录一页
+            $combine["nowClass"] = "所有分类";
+        
+        }
+        else
+        {
+             $combine['base_image'] = DB::table('base_image')    //为了获得图片用户，要合并两张表
+                ->where("image_user","=",session("user.user_id"))
+                ->where("image_class","=",$class_id)
+                ->join('base_user', 'base_image.image_user', '=', 'base_user.user_id')
+                ->orderBy("image_id","desc")
+                ->paginate(9); //分页，两条记录一页
+             $combine["nowClass"] = DB::table("base_image_class")->where("class_id","=",$class_id)->first()->class_name;
+           
+        }
+         $combine["imageClassData"] = DB::table("base_image_class")
+               ->where("class_user","=",session("user.user_id"))->get();
        
         return view("User.Image.sImage", $combine);
     }
@@ -48,6 +70,7 @@ class ImageController extends Controller {
             $input_data["image_name"] = $_POST["image_name"];  //改文件名1
             $input_data["image_format"] = $file->getClientOriginalExtension();   //文件格式
             $input_data["image_intro"] = $_POST["image_intro"];
+            $input_data["image_class"] = $_POST["image_class"];
             $input_data["image_path"] = $path.$name;  //绝对路径
             $input_data["image_user"] = session("user.user_id");
 
@@ -117,7 +140,7 @@ class ImageController extends Controller {
     }
 
     public function uImage(BaseFunc $baseFunc, LogFunc $logFunc, UserPowerFunc $UserPowerFunc) {
-        $inputData = Request::only("image_id", "image_intro", "image_name");
+        $inputData = Request::only("image_id", "image_intro", "image_name","image_class");
         $userId = session("user.user_id");    //提取用户id
         //记录操作
         $log_array["log_level"] = 0;
@@ -133,18 +156,24 @@ class ImageController extends Controller {
             $baseFunc->setRedirectMessage(false, "此用户无权修改此文件", NULL, "/user_sImage");
         }
         if (!$UserPowerFunc->checkUserPower(7)) {           //权限验证
+            $baseFunc->setRedirectMessage(false, "此用户无权修改此文件", NULL);
             return redirect()->back();  //跳回上一页     
         }
-        $count = DB::table('base_image')->where('image_user', '=', $userId)->where('image_id', '=', $inputData["image_id"])->update(['image_intro' => $inputData["image_intro"], 'image_name' => $inputData["image_name"]]);   //修改图片介绍
+        $count = DB::table('base_image')->where('image_user', '=', $userId)
+                ->where('image_id', '=', $inputData["image_id"])
+                ->update(['image_intro' => $inputData["image_intro"], 'image_name' => $inputData["image_name"],"image_class" => $inputData["image_class"]]);   //修改图片介绍
         if ($count != 0) {
             $logFunc->insertLog($log_array);    //插入操作记录
         }
 
-        $baseFunc->setRedirectMessage(true, "修改文件成功", NULL, "/user_sImage");
+        $baseFunc->setRedirectMessage(true, "修改文件成功", NULL);
+        return redirect()->back();
     }
 
     public function sImageInFrame() {
         $inputData["image"] = DB::table('base_image')->where("image_user", "=", session("user.user_id"))->simplePaginate(6);    //传递图片过去以供用户选择文章封面，zc
+        $inputData["imageClassData"] = DB::table("base_image_class")
+               ->where("class_user","=",session("user.user_id"))->get();
         $nowChoseImageId = session("image.image_id");
         if ($nowChoseImageId != NULL) {
             $nowChoseImageData = DB::table("base_image")->where("image_id", "=", $nowChoseImageId)->first();
@@ -174,6 +203,62 @@ class ImageController extends Controller {
             session(["image" => $inputData]);
         }
         return redirect()->back();
+    }
+    
+    
+    /*添加图片类别*/
+    public function aImageClass(BaseFunc $baseFunc)
+    {
+        $insert_data = Request::only("class_name");
+        $insert_data["class_user"] = session("user.user_id");
+        $insert_data["class_create_date"] = date('Y-m-d H:i:s');
+        if(false!=DB::table("base_image_class")->insert($insert_data))
+        {
+            $baseFunc->setRedirectMessage(true, "添加成功", NULL);
+             return redirect()->back();
+            
+        }
+        else 
+        {
+             $baseFunc->setRedirectMessage(false, "添加出错", NULL);
+             return redirect()->back();
+        }
+       
+    }
+    
+    public function uImageClass(BaseFunc $baseFunc)
+    {
+        $insert_data = Request::only("class_name","class_id");
+        if(false!=DB::table("base_image_class")->where("class_id","=",$insert_data["class_id"])
+                ->update($insert_data))
+        {
+             $baseFunc->setRedirectMessage(true, "修改成功", NULL);
+             return redirect()->back();
+            
+        }
+        else 
+        {
+             $baseFunc->setRedirectMessage(false, "修改出错", NULL);
+             return redirect()->back();
+        }
+        
+    }
+    
+    public function dImageClass($class_id,BaseFunc $baseFunc)
+    {
+       
+       if(false!=DB::table("base_image_class")->where("class_id","=",$class_id)->delete()) 
+        {
+             $baseFunc->setRedirectMessage(true, "删除成功", NULL);
+             return redirect()->back();
+            
+        }
+        else 
+        {
+             $baseFunc->setRedirectMessage(false, "删除出错", NULL);
+             return redirect()->back();
+        }
+        
     }
 
 }

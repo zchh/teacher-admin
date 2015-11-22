@@ -6,8 +6,12 @@
         <div class="panel-body">
 
             <h1><p class="text-left">{{$articleData -> article_title}}</p></h1>
-            <h2><small><p class="text-left">{{$articleData -> article_update_date}}  by <a href="/index_userIndex/{{$articleData -> user_id}}">{{$articleData -> user_username }}</a> </p></small></h2>
-            
+            <h2><small><p class="text-left">{{$articleData -> article_update_date}}  by 
+                        <a href="/index_userIndex/{{$articleData -> user_id}}">{{$articleData -> user_nickname }}</a>|
+                                   
+                             | <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{$articleData->article_reply}}
+                       </p></small></h2>
+        @if($collectStatus != true)
         <button class="btn  btn-primary "  data-toggle="modal" data-target="#add" type="button">点击收藏</button></h2>              
             <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
@@ -35,13 +39,19 @@
                     </div>
                 </div>
             </div>
+        @endif
         <hr>
-            <img src="/getImage/{{$articleData->article_image}}" class="img-responsive img-rounded">
-            <div id="article_detail_div">
+        <div class="col-sm-8 col-sm-offset-2"><img src="/getImage/{{$articleData->article_image}}" class="img-responsive img-rounded"></div>
+        <div class="col-sm-2"></div>
+        
+        <div id="article_detail_div" class="col-sm-12">
+                <blockquote>
+                    <p>简介：<?php echo $articleData->article_intro; ?></p>
+                  </blockquote>
                 <?php echo $articleData->article_detail; ?>
-            </div>    
-            <hr/>
-            <?php echo $replyData; ?>
+        </div>    
+        <hr>
+        <?php echo $replyData; ?>
 
 
         </div>
@@ -52,7 +62,7 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            特殊推荐表
+           <?php echo $sidebarRecommendGui;?>
         </div>
     </div>
 </div>

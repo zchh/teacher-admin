@@ -11,10 +11,16 @@ class BaseController extends Controller {
     public function index()  
     {
         $inputData['articleData'] = DB::table("base_article")->get();
-        $inputData["displayArticleGui"] = $this->displayArticleClassBar(1);
+      
         $inputData["newArticle"] = $this->newArticle();
         $inputData["indexRecommendArticle"] = $this->indexRecommendArticle();
         $inputData["displaySidebarClass"] = $this->sidebarClass();
+        
+        /*分类文章概览*/
+        /*$inputData["displayArticleClassGui1"] = $this->displayArticleClassBar(1);
+        $inputData["displayArticleClassGui2"] = $this->displayArticleClassBar(2);
+        $inputData["displayArticleClassGui3"] = $this->displayArticleClassBar(3);*/
+        
         return view("Index.index",$inputData);
     } 
     //从前端输入框获得一个名字为key的输入框，key 就是输入的文章名
@@ -38,6 +44,7 @@ class BaseController extends Controller {
                     ->simplePaginate(10);
         }
         */
+        
         if($results  ==  NULL){return redirect()->back();}
         
        // $inputData['article'] = DB::table('base_article')-> where('article_title','=','') ->first();
@@ -62,51 +69,67 @@ class BaseController extends Controller {
             ->leftJoin("base_image","image_id","=","user_image")
                 ->leftJoin("base_user_relation","relation_focus","=","user_id")
                     ->first();//提取一条记录,获得用户昵称
-
-
-        
+                    
         //获得当前用户的所有文章
         $inputData['articleData'] = DB::table('base_article')-> where('article_user','=', $user_id)->
-                orderBy("article_id","desc")->get();
+                orderBy("article_id","desc")->simplePaginate(10);
         //获取当前用户的专题
         $inputData["subjectData"] = DB::table("base_article_subject")-> where('subject_user','=', $user_id)->
-                orderBy("subject_id","desc")->get();
+                orderBy("subject_id","desc")->simplePaginate(10);
+        //获取图片
+        $inputData["imageData"] = DB::table("base_image")->where("image_user","=",$user_id)->simplePaginate(9);
 
-
-        //dump($inputData);
         return view("Index.User.userIndex",$inputData);
         
         
     }
     
     
-   public function sSubject()    //得到所有专题，并列出来
+   public function sSubject($class_id = 0)    //得到所有专题，并列出来
     {
-         $inputData['subject']  = DB::table('base_display_subject_recommend')->join("base_display_class","recommend_class","=","class_id") -> orderBy("recommend_id","desc") -> paginate(10); ;  //合并两表 
+       if($class_id == 0)
+       {
+           $inputData['subject']  = DB::table('base_display_subject_recommend')
+                 ->join("base_display_class","recommend_class","=","class_id") 
+                 ->orderBy("recommend_id","desc")
+                 ->join("base_article_subject","subject_id","=","recommend_subject")
+                 ->join("base_user","user_id","=","subject_user")
+                 -> paginate(10);
+           $inputData["class_name"] = "全部专题";
+       }
+       else 
+       {
+           $inputData['subject']  = DB::table('base_display_subject_recommend')
+                 ->where("recommend_class","=",$class_id)
+                 ->join("base_display_class","recommend_class","=","class_id") 
+                 ->orderBy("recommend_id","desc")
+                 ->join("base_article_subject","subject_id","=","recommend_subject")
+                 ->join("base_user","user_id","=","subject_user")
+                 -> paginate(10);
+           
+           $inputData["class_name"] = DB::table("base_display_class")->where("class_id","=",$class_id)->first()->class_name;
+       }
+         
+         
+         $inputData['siderGui'] = $this->sidebarClass("index_sSubject");
     
         return view("Index.Subject.sSubject",$inputData);
-        
-        
     }
     
    public function moreSubject($subject_id)     //传递满足$subject_id的文章
     {
-       
-       
-       
-       
            $inputData['articleData'] =  DB::table('base_article_re_subject')
                    ->leftJoin("base_article","article_id","=","relation_article")
                    ->where('relation_subject','=',$subject_id)
                    ->orderBy("relation_sort")->get();//提取包含文章多个id
-          // $article_id = $subject -> relation_subject;
+          
            $inputData['subjectData'] =  DB::table('base_article_subject')
                    ->where("subject_id","=",$subject_id)
                    ->first();     
             
            $inputData["userInfoGui"] = $this->userSider($inputData["subjectData"]->subject_user);
        
-           
+           DB::table("base_article_subject")->where("subject_id","=",$subject_id)->increment('subject_click');
            return view("Index.Subject.moreSubject",$inputData);
         
     }
@@ -117,23 +140,57 @@ class BaseController extends Controller {
                   ->where("article_id","=",$article_id)
                   ->leftJoin("base_user","user_id","=","article_user")
                   ->first();
+        $collectStatus = DB::table("base_article_collect")
+                ->where("collect_user","=",session("user.user_id"))
+                ->where("collect_article_id","=",$article_id)
+                ->first();
+        $collectStatus!=NULL?$viewData["collectStatus"]=true:$viewData["collectStatus"]=false;
+        
+        DB::table("base_article")->where("article_id","=",$article_id)->increment('article_click');
         $viewData["choseData"] =NULL;
         $viewData["classData"]=DB::table('base_article_collect_class')->get();
         $viewData["replyData"] = $articleFunc->getArticleReply($article_id);
         $viewData["userInfoGui"] = $this->userSider($viewData["articleData"]->article_user);
+        $viewData["sidebarRecommendGui"] = $this->sidebarRecommendArticle();
         return view("Index.Article.articleDetail",$viewData);
        
     }
 
-
-    public function sDisplayArticleClass($class_id)
+    /*按类别查看文章*/
+    public function sDisplayArticleClass($class_id = 0)
     {
-        $viewData["classData"] = DB::table("base_display_class")->where("class_id","=",$class_id)->get();
-        $viewData["articleData"] = DB::table("base_display_article_recommend")
-            ->where("recommend_class","=",$class_id)
+                
+        $viewData["classData"] = DB::table("base_display_class")->get();
+        if($class_id == 0)
+        {
+           $viewData["articleData"] = DB::table("base_display_article_recommend")
             ->leftJoin("base_article","article_id","=","recommend_article")
+                ->join("base_user","user_id","=","article_user")
             ->orderBy("article_id","desc")
             ->simplePaginate(15);
+           $viewData["nowClassName"] = "所有文章";
+           $viewData["nowClassId"] = NULL;
+            
+        }
+        else
+        {
+            $viewData["articleData"] = DB::table("base_display_article_recommend")
+                ->where("recommend_class","=",$class_id)
+                ->leftJoin("base_article","article_id","=","recommend_article")
+                    ->join("base_user","user_id","=","article_user")
+                ->orderBy("article_id","desc")
+                ->simplePaginate(15);
+                foreach($viewData["classData"] as $data)
+                {
+                    if($data->class_id == $class_id)
+                    {
+                        $viewData["nowClassName"] = $data->class_name;
+                        $viewData["nowClassId"] = $data->class_id;
+                        break;
+                    }
+                }
+        }
+     
        /* $viewData["subjectData"] = DB::table("base_display_subject_recommend")
             ->where("recommend_class","=",$class_id)
             ->leftJoin("base_article","article_id","=","recommend_article")
@@ -141,30 +198,44 @@ class BaseController extends Controller {
 
 
         $viewData["articleClassBar"] =$this->sidebarClass();
-        $viewData["indexRecommendArticle"] = $this->indexRecommendArticle();
+        $viewData["indexRecommendArticle"] = $this->sidebarRecommendArticle();
         return view("Index.sDisplayArticleClass", $viewData);
     }
+    
+    
+    /*各种组件模块*/
+    
+    
+    
+    
     //用户侧栏组件
     private function userSider($user_id)
     {
         $viewData["userData"] =  DB::table('base_user')
                 ->leftJoin("base_user_relation","relation_focus","=","user_id")
                   ->where("user_id","=",$user_id)
-               ->leftJoin("base_image","image_id","=","user_image")
+                ->leftJoin("base_image","image_id","=","user_image")
                   //->leftJoin("base_article","user_id","=","article_user")
                   ->first();
          return view("Index.User.userSider",$viewData);
     }
     
-    //一个推荐文章类的板块
+    
 
-
+    //显示类别的页面
+    public function sClass()
+    {
+        //DB::table()->get();
+    }
+    
+    //显示一个文章类的概览
     private function displayArticleClassBar($class_id,$num = 5)
     {
         $viewData["classData"] = DB::table("base_display_class")->where("class_id","=",$class_id)->first();
         $viewData["articleData"] = DB::table("base_display_article_recommend")
                 ->where("recommend_class","=",$class_id)
                 ->leftJoin("base_article","article_id","=","recommend_article")
+                ->join("base_user","user_id","=","article_user")
                 ->skip(0)->take($num)
                 //->orderBy("recommend_sort","desc")
                 ->get();
@@ -176,6 +247,7 @@ class BaseController extends Controller {
         $viewData["classData"] = DB::table("base_display_class")->where("class_id","=",$class_id)->first();
         $viewData["subjectData"] = DB::table("base_display_subject_recommend")
                 ->where("recommend_class","=",$class_id)
+                 ->join("base_user","user_id","=","article_user")
                 ->leftJoin("base_subject","subject_id","=","recommend_subject")
                 ->skip(0)->take($num)
                 //->orderBy("recommend_sort","desc")
@@ -189,6 +261,7 @@ class BaseController extends Controller {
         $viewData["articleData"] = DB::table("base_article")
                 ->orderBy("article_id","desc")
                 ->skip(0)->take($num)
+                 ->join("base_user","user_id","=","article_user")
                 ->get();
         return view("Index.Gui.newArticle",$viewData);
     }
@@ -197,16 +270,29 @@ class BaseController extends Controller {
     private function indexRecommendArticle($num = 5)
     {
         $viewData["indexData"] = DB::table("base_index_display")
+                ->where("display_location","=",0)
                 ->leftJoin("base_article","article_id","=","display_article_id")
+                  ->join("base_user","user_id","=","article_user")
                 ->orderBy("display_sort","desc")->skip(0)->take($num)->get();
         return view("Index.Gui.indexRecommendArticle",$viewData);
     }
     //侧栏类别组件  需要一个单独的按类查找的页面
-    private function sidebarClass()
+    private function sidebarClass($url = "index_sDisplayArticleClass")
     {
         $viewData["classData"] = DB::table("base_display_class")
                ->orderBy("class_sort","desc")->get();
+        $viewData["url"] = $url;
         return view("Index.Gui.sidebarClass",$viewData);
+    }
+    //侧栏推荐文章
+    private function sidebarRecommendArticle($num = 5)
+    {
+         $viewData["displayData"] = DB::table("base_index_display")
+                 ->where("display_location","=",2)
+               ->leftJoin("base_article","article_id","=","display_article_id")
+                   ->join("base_user","user_id","=","article_user")
+                ->orderBy("display_sort","desc")->skip(0)->take($num)->get();
+        return view("Index.Gui.sidebarRecommendArticle",$viewData);
     }
 
 

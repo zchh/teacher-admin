@@ -4,14 +4,15 @@
     <div class="panel-body">
         <img src="/getImage/{{$userData->image_id}}" class="text-center img-circle img-responsive" style="width:80%;height:100%;left: 10%;position:relative">
         <hr/>
-        <h4 style='margin: auto'>{{$userData->user_username}}</h4>
+        <h4 style='margin: auto'>{{$userData->user_nickname}}</h4>
         <hr>
         <small>{{$userData->user_intro}}</small>
         <hr>
         <a  class="btn btn-default btn-sm" href="/index_userIndex/{{$userData->user_id}}" aria-label="Left Align">
             <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span>  个人主页
         </a> 
-        @if($userData->relation_focus==$userData->user_id)
+        @if(  session("user.user_status")!=false)
+         @if($userData->relation_focus==$userData->user_id )
         <button class="btn btn-default btn-sm"  data-toggle="modal" data-target="#del_{{$userData->relation_id}}" aria-label="Left Align" >取消关注</button>
         <!-- Modal -->
         <div class="modal fade" id="del_{{$userData->relation_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -57,6 +58,7 @@
             </div>
         </div>
 
+        @endif
         @endif
     </div>
 </div>

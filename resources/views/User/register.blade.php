@@ -1,10 +1,5 @@
 @extends("Index.base")
 @section("main")
-<style>
-    #back{
-        background-image: url('/image/5.jpg');
-    }
-</style>
 <div class="col-sm-6 col-sm-offset-3">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -14,51 +9,48 @@
                         用户注册
                     </h2> <hr/>
                 </div>
-                <div class="col-sm-12" style="text-align: center">
-                    <form id="form_register" class="form-horizontal">
+                <div class="col-sm-12" >
+                    <form id="form_register">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
-                            <label for="inputPassword" class="col-sm-2 control-label" style="text-align: center;font-family: 微软雅黑;color: #646464">用户名：</label>
-                            <div class="col-sm-8">
+                            <label>用户名：</label>
+                           
                                 <input type="text" name="user_username" class="form-control required" minlength="2" id="user_username" placeholder="用户名">
-                            </div>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-sm-2 control-label" style="text-align: center;font-family: 微软雅黑;color: #646464">昵 &nbsp;&nbsp;称：</label>
-                            <div class="col-sm-8">
+                            <label >昵称：</label>
+                           
                                 <input type="text" name="user_nickname" class="form-control required" minlength="2" id="user_nickname" placeholder="用户昵称">
-                            </div>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-sm-2 control-label" style="text-align: center;font-family: 微软雅黑;color: #646464">密 &nbsp;&nbsp;码：</label>
-                            <div class="col-sm-8">
+                            <label>密码：</label>
+                           
                                 <input type="password" name="user_password" class="form-control" id="user_password" placeholder="Password">
-                            </div>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-sm-2 control-label" style="text-align: center;font-family: 微软雅黑;color: #646464">性 &nbsp;&nbsp;别：</label>
-                            <div class="col-sm-8">
+                            <label>性别：</label>
+                            
                                 <input type="radio" name="user_sex" id="user_sex" value="男" aria-label="...">男
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               
                                 <input type="radio" name="user_sex" id="user_sex" value="女" aria-label="...">女
-                            </div>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-sm-2 control-label" style="text-align: center;font-family: 微软雅黑;color: #646464">介 &nbsp;&nbsp;绍：</label>
-                            <div class="col-sm-8">
-                                <textarea name="user_intro" class="form-control" rows="3" placeholder="用户介绍"></textarea>
-                            </div>
+                            <label>介绍：</label>
+                            
+                                <textarea name="user_intro" id="user_intro" class="form-control" rows="3" placeholder="用户介绍"></textarea>
+                           
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-sm-2 control-label" style="text-align: center;font-family: 微软雅黑;color: #646464">邮 &nbsp;&nbsp;箱：</label>
-                            <div class="col-sm-8">
-                                <input type="text" name="user_email" class="form-control" id="inputPassword" placeholder="邮箱">
-                            </div>
+                            <label>邮箱：</label>
+                           
+                                <input type="text" name="user_email" class="form-control" id="user_email" placeholder="邮箱">
+                           
                         </div>
-                        <div class="col-sm-6 col-sm-offset-7">
+                        <div class="col-sm-12" style="text-align:center">
                             <a id="sub" class="btn btn-default btn-sm">提交</a>
                         </div>
                     </form>
@@ -75,39 +67,35 @@
 
 <script type="text/javascript">
     $(function() {
-        $("#kuang").hide();
+        $("#kuang").hide(50);
         $("#sub").click(function() {
+            $("#sub").hide();
+            $("#sss").html("<p style='font-size:18px;font-family:微软雅黑;text-align:center'>已发送注册信息，马上就好</p>");
+            $("#kuang").show(1000);
             $.ajax({
                 'type': 'post',
                 'url': "/_user_register",
                 'data': {
-                    "user_username": $("input[name='user_username']").val(),
-                    "user_nickname": $("input[name='user_nickname']").val(),
-                    "user_password": $("input[name='user_password']").val(),
-                    "user_sex": $("input[name='user_sex']").val(),
-                    "user_intro": $("textarea[name='user_intro']").val(),
-                    "user_email": $("input[name='user_email']").val()
+                    "user_username": $("#user_username").val(),
+                    "user_nickname": $("#user_nickname").val(),
+                    "user_password": $("#user_password").val(),
+                    "user_sex": $("#user_sex").val(),
+                    "user_intro": $("#user_intro").val(),
+                    "user_email": $("#user_email").val()
                 },
                 'success': function(msg) {
                     if (msg.status == true)
                     {
-                        $("#kuang").show(500);
+                        //$("#kuang").show(500);
                         $("#sss").html(msg.message);
-                        var $txt = $('#myspan');
-                        (function() {
-
-                            var v = parseInt($txt.html());
-                            if (v > 0) {
-                                $txt.html(--v);
-                                setTimeout(arguments.callee, 1000); // 每秒减小一次
-                            }
-                        })();
-                        setTimeout('window.location = "/user_login";', 5000);
+                        
+                        setTimeout('window.location = "/user_login";', 1000);
                     }
                     else
                     {
-                        $("#kuang").show(500);
+                        //$("#kuang").show(500);
                         $("#sss").html(msg.message);
+                        $("#sub").show(50);
                     }
                 }
             });

@@ -1,4 +1,4 @@
-@extends("User.Reply.base")
+@extends("User.Article.base")
 @section("main")
 
 
@@ -25,7 +25,7 @@
                         <td>{{$data->reply_id}}</td>
                         <td>{{$data->user_username}}</td>
                         <td>{{$data->reply_create_date}}</td>
-                        <td>{{$data->article_title}}</td>
+                        <td><a href="/index_articleDetail/{{ $data->article_id }}">{{ $data->article_title }}</a></td>
                         <td>{{$data->reply_detail}}</td>
                         <td>
 
@@ -57,13 +57,10 @@
                     @endforeach
                 </tbody>
             </table>
+             <?php echo $reply_data->render();?>
 
 
         </div></div></div>
-
-<div class="col-sm-8 col-md-offset-2" >
-    <?php echo $reply_data->render(); ?>  
-</div>
 
 @stop
 

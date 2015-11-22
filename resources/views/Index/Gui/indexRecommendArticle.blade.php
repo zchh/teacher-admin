@@ -3,20 +3,25 @@
 
   <div class="panel-body">
       <h2>热门推荐</h2>
-  </div>
+ 
 
-  <!-- Table -->
-  <table class="table table-hover">
-      @foreach($indexData as $data)
-      <tr>
-          <td> 
-              <a href="/index_articleDetail/{{$data->article_id}}">
-                  {{$data->article_title}}
-              </a><small>{{$data->article_create_date}}</small>
-          </td>
+
+      
+      @foreach($indexData  as $data)
+   
+      <div class="col-sm-12 article_bar" style="margin-top: 5px;padding: 5px;border: 2px solid #EDEDED;border-radius: 10px"> 
+          <div class="col-sm-8" style="padding: 1px">
+                <a href="/index_articleDetail/{{$data->article_id}}">
+                {{$data->article_title}}
+                </a><br><small>{{$data->article_create_date}} | 作者：{{$data->user_nickname}}</small><br>
+          <small><?php echo $data->article_intro; ?></small>
+
+            </div>
+            <div class="col-sm-4" style="padding: 1px;height:100px">
+                <img src="/getImage/{{$data->article_image}}" style="height:100%;width:100%"class="img-rounded">
+            </div>
           
-         
-      </tr> 
+      </div>
       @endforeach
-  </table>
+      </div> 
 </div>

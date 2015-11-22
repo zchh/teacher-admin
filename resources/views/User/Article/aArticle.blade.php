@@ -24,11 +24,14 @@
                 <input type="text" class="form-control" placeholder="" id="a_intro">
 
             </div>
+            <?php
+            /*
             <div class="col-sm-6 form-group">
                 <label >文章排序</label>
                 <input type="number" class="form-control" placeholder="" id="a_sort" >
 
-            </div>
+            </div>*/
+                    ?>
 
             <div class="col-sm-12 form-group" >
                 <a id="submit" class="btn btn-primary">提交</a>  
@@ -124,12 +127,11 @@ $(document).ready(function() {
         
         UE.Editor.prototype.getActionUrl = function(action) {
             if (action == 'uploadimage' ) {
-                return 'http://127.0.0.6/putImage';
+                return '{{config("my_config.website_url")}}/putImage';
             } else {
                 return this._bkGetActionUrl.call(this, action);
             }
         }
-
         $("#submit").click(function() {
 
             $.ajax({
@@ -156,7 +158,7 @@ $(document).ready(function() {
                     "article_title": $("#a_title").val(),
                     "article_intro": $("#a_intro").val(),
                     "article_class": $("#a_class").val(),
-                    "article_sort": $("#a_sort").val(),
+                    /*"article_sort": $("#a_sort").val(),*/
                     "article_detail": ue.getContent()
                 }
             });

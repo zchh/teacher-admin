@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/source/bootstrap/css/bootstrap-theme.min.css">
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="/source/js/jquery-1.9.1.min.js"></script>
-<script src="/jquery-validation-1.14.0/dist/jquery.validate.js"></script>
+
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/source/bootstrap/js/bootstrap.min.js"></script>
 

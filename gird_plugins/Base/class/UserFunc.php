@@ -35,22 +35,22 @@ class UserFunc
         {
             
             //如果注册成功，再给用户一个默认专题
-            $subject_array['subject_name'] = $input_data['user_username']."的专题";
+            /*$subject_array['subject_name'] = $input_data['user_username']."的专题";
             $subject_array['subject_create_date'] = date("Y-m-d H:i:s");
             $subject_array['subject_user'] = $user_id;
-            $subject_id = DB::table("base_article_subject")->insertGetId($subject_array);
+            $subject_id = DB::table("base_article_subject")->insertGetId($subject_array);*/
             //给注册用户添加一片默认文章(顺便关联一个默认类)
-            $article_id = DB::table("base_article")->insertGetId([
+            /*$article_id = DB::table("base_article")->insertGetId([
                 "article_create_date"=>date("Y-m-d H:i:s"),
                 "article_user"=>$user_id,
                 "article_title"=>"php开发",
                 "article_class"=>1
-            ]);
+            ]);*/
             //把专题与文章关联起来
-            DB::table("base_article_re_subject")->insert([
+            /*DB::table("base_article_re_subject")->insert([
                 "relation_subject"=>$subject_id,
                 "relation_article"=>$article_id
-            ]);
+            ]);*/
             DB::commit();
             return $user_id;
         }

@@ -11,8 +11,10 @@ use GirdPlugins\Base\LogFunc;
 use GirdPlugins\Base\MailFunc;
 
 class BaseController extends Controller {
-  public function login()
+  public function login(BaseFunc $baseFunc)
   {
+      
+      if( session("user.user_status") ){$baseFunc->setRedirectMessage(true, "你已经登陆，自动跳转到主页", NULL, "/user_index");}
       return view("User.login");
   }
   public function _login(BaseFunc $baseFunc,  UserPowerFunc $powerFunc )
@@ -20,16 +22,30 @@ class BaseController extends Controller {
         $inputData = Request::only("user_username","user_password");
         
         $userData = $baseFunc->loginUserCheck($inputData["user_username"],$inputData["user_password"]);
-        if($userData != false)
+        if($userData != false )
         {
+            //if($userData->user_true == false){$baseFunc->setRedirectMessage(false, "用户未激活", NULL, "/user_login");}
             $sessionInitData["user_status"] = true;
             $sessionInitData["user_id"] = $userData->user_id;
             $sessionInitData["user_nickname"] = $userData->user_nickname;
             $sessionInitData["user_group"] = $userData->user_group;
+            $sessionInitData["user_image"] = $userData->user_image;
             $sessionInitData["user_power"] = $powerFunc->getUserPower($userData->user_id);
             session(["user"=>$sessionInitData]);//session结构请见ReadMe文档
+
+
+            //查看登录前是否有页面请求
+            if(session("redirect.status",NULL) != NULL)
+            {
+                $url = session("redirect.url");
+                session(["redirect" => null]);
+                $baseFunc->setRedirectMessage(true, "登陆成功,继续操作", NULL, $url);
+            }
+            else
+            {
+                $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/user_index");
+            }
             
-            $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/user_index");
         }
         else
         {
@@ -41,23 +57,26 @@ class BaseController extends Controller {
     {
         return view("User.register");
     }
-    //处理注册数据
+    
+    
 
+    //处理注册数据 
     public function _register(LogFunc $logFunc,UserFunc $userFunc,BaseFunc $baseFunc,MailFunc $mailFunc)
     {
+        
         $input_data = Request::only("user_username","user_nickname","user_password","user_sex","user_intro","user_email");
-        //dump($input_data);exit();
+       // dump($input_data);exit();
         $email = Request::only("user_email");
         if($email == null)
         {
-            return response()->json(['status' => false, 'message' => '注册失败，请重新填写注册信息']);
+            return response()->json(['status' => false, 'message' => '注册失败，邮箱不能为空，请重新填写注册信息']);
         }
         DB::beginTransaction();
         if($user_id = $userFunc->addUser($input_data) != false)
         {
             //注册成功
             //注册成功后向该用户发送电子邮件
-            $mailFunc->sendUserCheckMail($email['user_email'], $input_data['user_nickname'], $user_id);
+            //$mailFunc->sendUserCheckMail($email['user_email'], $input_data['user_nickname'], $user_id);邮箱暂不可用
             //注册成功后添加日志
             $logFunc->addLog([
                 "log_level"=>0,
@@ -67,15 +86,15 @@ class BaseController extends Controller {
             ]);
             DB::commit();
             return response()->json(['status' => true, 'message' => "<p style='font-size:18px;font-family:微软雅黑'>"
-                . "恭喜{$input_data['user_username']},您已注册成功"
+                . "{$input_data['user_username']},您已注册成功"
             . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                    . "系统将在<font color='black' size='3'><span id='myspan'>5</span></font>秒后为你跳转</p>"]);
+                    . "即将跳转"]);
             //$baseFunc->setRedirectMessage(true, "注册成功,以跳转到登录页面", null, "/user_login");
         }
         else
         {
             //注册失败
-            return response()->json(['status' => false, 'message' => '注册失败，请重新填写注册信息']);
+            return response()->json(['status' => false, 'message' => '注册失败，用户名已被占用，请重新填写注册信息']);
         }
         //dump($input_data);
     }
@@ -96,10 +115,7 @@ class BaseController extends Controller {
    public function logout(BaseFunc $baseFunc)
    {
        Session::flush();
-       $baseFunc->setRedirectMessage(true, "登出成功", NULL, "/admin_login");
+       $baseFunc->setRedirectMessage(true, "登出成功", NULL, "/user_login");
    }
-   
- 
 
-  
 }

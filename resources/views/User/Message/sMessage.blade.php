@@ -13,19 +13,23 @@
                     <tr>
                         <th>消息标题</th>
                         <th>消息创建时期</th>
-                        <th>消息接收者</th>
+                        
                         <th>消息内容</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    <?php ?>
                     @foreach ($base_message as $single)   
-                    @if ($send_user == $single -> message_send_user)
+                  
+                    @if($single->message_read == 0 )
+                    <tr class="warning">
+                    @else
                     <tr>
+                    @endif
                         <td>{{$single -> message_title}}</td>
                         <td>{{$single -> message_create_date}}</td>
-                        <td>{{$single -> user_username }}</td>
+                        
                           <td>
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#select_{{$single -> message_id}}">
                                查看详情
@@ -71,8 +75,8 @@
                                         </div>
                                         <div class="modal-body">
                                               <blockquote>
-                                                   <p>{{$single -> message_data}}</p>
-                                                  </blockquote>          
+                                                   <?php echo $single -> message_data; ?>
+                                              </blockquote>          
                                         </div>
                                         <div class="modal-footer">
                                            
@@ -87,14 +91,15 @@
 
                         </td>
                     </tr>
-                    @endif
+                   
                     @endforeach
                 </tbody>
             </table>
 
 
         </div></div></div>
-
+<?php
+/*
 <div class="col-sm-2">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -133,8 +138,8 @@
         </div>
     </div>
 </div>
-
-
+*/
+?>
 <div class="col-sm-8 col-md-offset-2" >
     <?php echo $base_message->render(); ?>  
 

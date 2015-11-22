@@ -110,9 +110,18 @@
                         <input type="text" class="form-control" name="image_name">                              
                     </div>
                     <div class="form-group">
+                         <select class="form-control" name="image_class">
+                            @foreach($imageClassData as $data)
+                                <option value = "{{$data->class_id}}">{{$data->class_name}}</option>
+                            @endforeach
+
+                        </select>                    
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputFile">请输入你对上传图片的描述</label>
                         <textarea class="form-control" rows="2" name="image_intro"></textarea>                              
                     </div>
+                    
 
             </div>
             <div class="modal-footer">

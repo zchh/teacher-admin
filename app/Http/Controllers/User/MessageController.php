@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
@@ -20,9 +19,24 @@ class MessageController extends Controller {
         //从数据库提取数据，为获得发送方和接收方，需要合并三张表
         //用户发送给用户
         //管理员发送给用户
-        $combine['base_message'] = DB::table('base_message')->join('base_user', 'message_recv_user', '=', 'user_id')->paginate(2);
+        
+        $combine['base_message'] = DB::table('base_message')
+                ->where("message_recv_user","=",session("user.user_id"))
+                ->orderBy("message_read")
+                ->orderBy("message_id","desc")
+                ->paginate(12);
         $combine['send_user'] = session("user.user_id");  //获取用户发送方id
-
+        
+        //标记为已读
+        foreach ($combine["base_message"] as $data)
+        {
+            if($data->message_read == 0)
+            {
+                DB::table("base_message")->where("message_id","=",$data->message_id)->update(["message_read" => 1]);
+            }
+        }
+        
+        //dump($combine['base_message']);
 
         return view("User.Message.sMessage", $combine);
     }

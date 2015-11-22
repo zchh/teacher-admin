@@ -14,6 +14,7 @@ use GirdPlugins\Base\UserPowerFunc;      //zc
 class PersonalMessageController extends Controller {
 
     public function uPersonalMessage() {
+        session(["nowPage"=>"/user_sPersonalMessage"]);
         $userId = session("user.user_id");
         $inputData["personalMessage"] = DB::table('base_user')->where('user_id', '=', $userId)->first();
         return view("User.PersonalMessage.uPersonalMessage", $inputData);
@@ -29,7 +30,7 @@ class PersonalMessageController extends Controller {
         $log_array["log_user"] = session("user.user_id");
 
         //获取表单信息
-        $personalMessageData = Request::only("user_nickname", "user_password", "user_age", "user_intro", "user_sex");
+        $personalMessageData = Request::only("user_nickname", "user_age", "user_intro", "user_sex");
         $personalMessageData["user_update_date"] = date('Y-m-d H:i:s');
         $userId = session("user.user_id");
 

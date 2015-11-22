@@ -1,7 +1,7 @@
-@extends("base")
+@extends("Index.base")
 
 @section("body")
-    <img src="/image/2h.jpg" style="height:100%;width:100%;z-index:0;position:fixed">
+    
     <div class="container-fluid">
 		
 		
@@ -32,4 +32,6 @@
                       </div>
                 </div>
         </div>
+@stop
+@section("footer")
 @stop

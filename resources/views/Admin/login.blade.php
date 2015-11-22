@@ -1,7 +1,7 @@
-@extends("base")
+@extends("Index.base")
 
 @section("body")
-    <img src="/image/2h.jpg" style="height:100%;width:100%;z-index:0;position:fixed">
+    
     <div class="container-fluid">
 		
 		
@@ -19,11 +19,11 @@
                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
-                                                <label>留言人</label>
+                                                <label>管理员</label>
                                                 <input type="text" class="form-control" name="admin_username" placeholder="管理员用户名">
                                         </div>
                                         <div class="form-group">
-                                                <label>详情</label>
+                                                <label>密码</label>
                                                 <input type="password" class="form-control" name="admin_password" placeholder="管理员密码">
                                         </div>
 
@@ -32,4 +32,6 @@
                       </div>
                 </div>
         </div>
+@stop
+@section("footer")
 @stop

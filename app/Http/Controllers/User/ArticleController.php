@@ -10,9 +10,6 @@ use GirdPlugins\Base\LogFunc;
 use GirdPlugins\Base\UserPowerFunc;
 class ArticleController extends Controller 
 {
-
-
-
     public function sArticle(ArticleFunc $atcFunc)
     {
         session(["nowPage"=>"/user_sArticle"]);
@@ -86,7 +83,7 @@ class ArticleController extends Controller
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
 
         }
-        $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
+        $articleData = Request::only("article_title","article_intro","article_class"/*,"article_sort"*/,"article_detail");
 
 
         DB::beginTransaction();
@@ -101,9 +98,6 @@ class ArticleController extends Controller
 
         if(true == $atcFunc->addArticle($articleData))
         {
-
-
-
             $log_array['log_level']=0;
             $log_array['log_title']="添加操作";
             $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."添加了一篇文章";
@@ -111,19 +105,14 @@ class ArticleController extends Controller
             $log_array['log_user']=session("user.user_id");
             $logFunc->addLog($log_array);
             DB::commit();
-
+            Session::put("image.image_id", null); 
 
             return response()->json(['status' => true, 'message' => '<p class="text-success">添加成功，即将跳转</p>']);
 
         }
         else
         {
-
-
-           return response()->json(['status' =>false, 'message' => '<p class="text-success">添加失败，即将跳转</p>']);
-
-
-           
+           return response()->json(['status' =>false, 'message' => '<p class="text-success">添加失败，即将跳转</p>']); 
         }        
     }
     public function dArticle(UserPowerFunc $userPowerFunc,LogFunc $logFunc,$articleId,ArticleFunc $atcFunc,  BaseFunc $baseFunc)
@@ -178,7 +167,7 @@ class ArticleController extends Controller
             return response()->json(['status' => false, 'message' => '<p class="text-danger">失败，请检查你的权限</p>']);
            
         }
-        $articleData = Request::only("article_title","article_intro","article_class","article_sort","article_detail");
+        $articleData = Request::only("article_title","article_intro","article_class"/*,"article_sort"*/,"article_detail");
           if(session("image.image_id") != null)  //zc
         {
              $articleData["article_image"] = session("image.image_id");   //传递文章封面ID
@@ -212,7 +201,7 @@ class ArticleController extends Controller
     }
     public function sSubject()
     {
-        $data["subjectData"]=DB::table("base_article_subject")->get();
+        $data["subjectData"]=DB::table("base_article_subject")->where("subject_user","=",session("user.user_id"))->get();
         session(["nowPage"=>"/user_sSubject"]);
         return view("User.Article.sSubject",$data);
     }
@@ -228,6 +217,7 @@ class ArticleController extends Controller
         $subjectData['subject_create_date']=date("Y-m-d H:i:s");
         $subjectData['subject_update_date']=date("Y-m-d H:i:s");
         $subjectData['subject_user']=session("user.user_id");
+        $subjectData['subject_click']=0;
         DB::beginTransaction();
         if(DB::table("base_article_subject")->insert($subjectData))
         {
@@ -316,7 +306,7 @@ class ArticleController extends Controller
     public function moreSubject($subject_id)
     {
          //获取当前专题下的所有文章信息
-        $moreSubject = DB::table("base_article_subject")
+        /*$moreSubject = DB::table("base_article_subject")
                 ->leftJoin("base_article_re_subject","subject_id","=","relation_subject")
                 ->leftJoin("base_article","relation_article","=","article_id")
                 ->where("subject_id","=",$subject_id)
@@ -330,7 +320,22 @@ class ArticleController extends Controller
             $article_ids[]=$value->article_id;
         }
        
-        $inputData['article_ids']=$article_ids;
+        $inputData['article_ids']=$article_ids;*/
+        $inputData["subjectDetail"] = DB::table("base_article_subject")
+                ->where("subject_id","=",$subject_id)
+                ->where("subject_user","=",session("user.user_id"))
+                ->first();
+        $inputData["subjectArticle"] = DB::table("base_article_re_subject")
+                ->where("relation_subject","=",$subject_id)
+                ->leftJoin("base_article","article_id","=","relation_article")
+                ->orderBy("relation_sort")
+                ->orderBy("relation_id","desc")
+                ->get();
+        $inputData["canSelectArticle"] = DB::table("base_article")
+                ->where("article_user","=",session("user.user_id"))
+                ->leftJoin("base_article_re_subject","relation_article","=","article_id")
+                ->get();
+        //dump($inputData["canSelectArticle"]);
         return view("User.Article.moreSubject",$inputData);
     }
     
@@ -349,9 +354,27 @@ class ArticleController extends Controller
           return redirect()->back();
         }
         DB::beginTransaction();
+        
+        /*查询当前排序*/
+        $sort = DB::table("base_article_re_subject")
+                    ->where("relation_subject","=",$postData["subject_id"])
+                    ->orderBy("relation_sort","desc")
+                    ->first();
+        if($sort!=NULL)
+        {
+            $sort = $sort->relation_sort+1;
+        }
+        else
+        {
+            $sort = 0;
+        }
+        
+        
         foreach ($postData["article_id_array"] as $data) 
         {
-          DB::table("base_article_re_subject")->insert(["relation_article" => $data, "relation_subject" => $postData["subject_id"]]);
+            ;
+            DB::table("base_article_re_subject")->insert(["relation_article" => $data, "relation_subject" => $postData["subject_id"],
+                  "relation_sort"=>$sort++]);
         }
         $baseFunc->setRedirectMessage(true, "添加文章成功！", NULL, NULL);
         $log_array['log_level']=0;
@@ -377,7 +400,7 @@ class ArticleController extends Controller
         DB::table("base_article_re_subject")
                 ->where("relation_subject","=",$subject_id)
                 ->where("relation_article","=",$article_id)
-                ->update(["relation_subject"=>null]);
+                ->delete();
         $baseFunc->setRedirectMessage(true, "移除文章成功！", null, null);
         $log_array['log_level']=0;
             $log_array['log_title']="移除操作";
@@ -388,6 +411,68 @@ class ArticleController extends Controller
             DB::commit();
         return redirect()->back();
     }
+    
+    public function setSubjectArticleSort($relation_id,$up,  BaseFunc $baseFunc)/*$up标识提升1 还是减少0*/
+    {
+        $nowRelationData = DB::table("base_article_re_subject") -> where("relation_id","=",$relation_id) ->first();
+        if($nowRelationData == NULL){$baseFunc->setRedirectMessage(fase, "无效的移动，没有这一条文章的信息", null, null);return redirect()->back();}
+        
+        $subjectRelation = DB::table("base_article_re_subject") ->orderBy("relation_sort")
+                -> where("relation_subject","=",$nowRelationData->relation_subject)
+                -> get();
+        
+        $index=null;
+        foreach($subjectRelation as $key => $data)
+        {
+            if($data -> relation_id == $relation_id)
+            {
+                $index = $key;
+                break;
+            }
+        }
+        
+        if($up == 1)//如果是上升
+        {
+            if(!isset($subjectRelation[$key-1]))
+            {
+                $baseFunc->setRedirectMessage(false, "无效的移动，条目不足", null, null);return redirect()->back();
+            }
+            $nowSort = $subjectRelation[$key]->relation_sort;
+            $newSort = $subjectRelation[$key-1]->relation_sort;
+            DB::beginTransaction();
+            DB::table("base_article_re_subject")
+                    ->where("relation_id","=",$subjectRelation[$key-1]->relation_id)
+                    ->update(["relation_sort"=>$nowSort]);
+            DB::table("base_article_re_subject")
+                    ->where("relation_id","=",$subjectRelation[$key]->relation_id)
+                    ->update(["relation_sort"=>$newSort]);
+            DB::commit();
+            $baseFunc->setRedirectMessage(true, "完成", null, null);return redirect()->back();
+        }
+        else {
+            
+            if(!isset($subjectRelation[$key+1]))
+            {
+                $baseFunc->setRedirectMessage(false, "无效的移动,条目不足", null, null);return redirect()->back();
+            }
+            $nowSort = $subjectRelation[$key]->relation_sort;
+            $newSort = $subjectRelation[$key+1]->relation_sort;
+            DB::beginTransaction();
+            DB::table("base_article_re_subject")
+                    ->where("relation_id","=",$subjectRelation[$key+1]->relation_id)
+                    ->update(["relation_sort"=>$nowSort]);
+            DB::table("base_article_re_subject")
+                    ->where("relation_id","=",$subjectRelation[$key]->relation_id)
+                    ->update(["relation_sort"=>$newSort]);
+            DB::commit();
+            $baseFunc->setRedirectMessage(true, "完成", null, null);return redirect()->back();
+        }
+    }
+    
+    
+    
+    
+    
 
     public function sLabel()
     {

@@ -75,7 +75,7 @@
                                     @foreach($articleData as  $data)
                                     <tr>
                                         <td>{{ $data->article_id}}</td>
-                                        <td>{{ $data->article_title }}</td>
+                                        <td><a href="/index_articleDetail/{{ $data->article_id }}">{{ $data->article_title }}</a></td>
                                         <td>{{ $data->article_create_date }}</td>
                                         <td>{{ $data->article_update_date }}</td>
                                         <td>{{ $data->class_name }}</td>

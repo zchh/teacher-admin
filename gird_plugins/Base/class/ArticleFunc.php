@@ -42,10 +42,21 @@ class ArticleFunc
         $articleDataDump["article_sort"]=0;
         $articleDataDump["article_click"]=0;
         $articleDataDump["article_star"]=0;
+        $articleDataDump["article_reply"]=0;
         $articleData = array_merge($articleDataDump,$articleData);
         
-        $value = DB::table("base_article")->insert($articleData);
-        return $value;
+        $value = DB::table("base_article")->insertGetId($articleData);
+        if($value!=0)
+        {
+            //这里加了把所有新写入得文章都默认加入推荐
+            
+            return $value;
+        }
+        else
+        {
+            return $value;
+        }
+        
         //dump($articleData);
 
         
@@ -128,11 +139,10 @@ class ArticleFunc
 
                 ->join("base_reply_relation","relation_child","=","reply_id")
                 ->join("base_user","reply_user","=","user_id")
-                ->leftJoin("base_image","user_id","=","image_user")
+               //->join("base_image","user_image","=","image_id")
                 ->get();//先查出该文章的所有节点和关系
 
-       // if($replyData == NULL){return NULL;}
-
+       
         $rootReply=[];
         foreach($replyData as $key => $data)
         {
@@ -144,6 +154,8 @@ class ArticleFunc
             }
             
         }
+       
+        
         
         $gui="";
         foreach($rootReply as $data)

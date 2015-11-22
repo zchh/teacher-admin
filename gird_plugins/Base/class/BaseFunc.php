@@ -177,6 +177,14 @@ class BaseFunc {
      */
     public function getArticleByAttentioned($user_id)
     {
+        
+        $data = DB::table("base_article")->join("base_user_relation","relation_focus","=","article_user")
+                ->join("base_user","user_id","=","article_user")
+                ->where("relation_user","=",$user_id)->orderBy("article_id","desc")
+                ->simplePaginate(10);
+        return $data;
+        
+        /*;
         //根据传过来的user_id查询他所关注过的用户
         $attentioned_data = DB::table("base_user_relation")->where("relation_user","=",$user_id)->get();
         //获取所有的被关注用户的relation_focus
@@ -194,6 +202,8 @@ class BaseFunc {
                     ->get();
         }
         return $article_data;
+         * 
+         */
     }
 
     

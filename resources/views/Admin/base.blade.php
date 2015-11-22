@@ -24,10 +24,18 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                    <li><a href="/admin_sAdmin">管理员权限</a></li>
-                    <li><a href="/admin_sUser">用户权限</a></li>
+                    <li><a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                     权限<span class="caret"></span>
+                     </a>      
+                     <ul class="dropdown-menu" >
+                        <li><a href="/admin_sAdmin">管理员权限</a></li>
+                        <li><a href="/admin_sUser">用户权限</a></li>
+
+                     </ul>  
+                    </li>
+                    
                     <li><a href="/admin_sArticle">文章</a></li>
-                    <li><a href="#">图片库</a></li>
+                   
 
 
                     <li><a href="/admin_displayIndex" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -40,10 +48,6 @@
                             
                         </ul>  
                     </li>
-
-
-
-                    <li><a href="#">文件库</a></li>
                     <li><a href="/admin_sReply" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                          用户评论<span class="caret"></span>
                         </a>      
@@ -51,17 +55,8 @@
                         <li><a href="/admin_sReply">查看评论信息</a></li>
                     </ul>  
                     </li>
-
+                    <li><a href="/admin_sMessage">查看消息</a></li>
                    
-
-                    <li><a href="/admin_sMessage" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                         消息箱<span class="caret"></span>
-                        </a>      
-                    <ul class="dropdown-menu" >
-                        <li><a href="/admin_sMessage">查看消息</a></li>
-                        <li><a href="/admin_aMessage">添加消息</a></li>
-                    </ul>  
-                    </li>
 
 
                   </ul>

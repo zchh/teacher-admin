@@ -6,13 +6,13 @@ Route::post("/_user_login","User\BaseController@_login");
 Route::get("/user_register","User\BaseController@register");//用户注册页面
 Route::post("/_user_register","User\BaseController@_register");//处理注册数据
 
-//用户注册 10/31
+/*//用户注册 10/31
 Route::get("/user_register","User\BaseController@register");        //交由张池完成 10/31
-Route::post("/_user_register","User\BaseController@_register");     //交由张池完成 10/31
+Route::post("/_user_register","User\BaseController@_register");     //交由张池完成 10/31*/
 
 //安全相关函数 11/12
 Route::get("/user_checkMailUrl","User\SecureController@checkMailUrl");//注册验证链接
-Route::get("/user_sendMailUrl","User\SecureController@sendMailUrl");//发送测试demo 见控制器
+//Route::get("/user_sendMailUrl","User\SecureController@sendMailUrl");//发送测试demo 见控制器
 //end
 
 
@@ -27,15 +27,6 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::get("/user_sInfo","User\BaseController@sInfo");          //用户信息
     Route::post("/_user_uInfo","User\BaseController@_sInfo");       //修改用户信息
     
-    
-    
-    //关注人10/31   wjt
-    /*
-    Route::get("/user_sFocus","User\FriendController@sFocus");                       //查看关注人
-    Route::get("/user_aFocus/{id}","User\FriendController@aFocus");                 //添加关注人
-    Route::get("/user_dFocus/{id}","User\FriendController@dFocus");                  //删除关注人
-    Route::get("/user_sFocusArticle","User\FriendController@sFocusArticle");        //查看关注人有哪些动态
-    */
     
     
     //用户文章  完成
@@ -82,6 +73,7 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::post("/user_addArticleToSubject","User\ArticleController@addArticleToSubject");//从专题添加文章
     Route::get("/user_removeArticleToSubject/{subject_id}/{article_id}","User\ArticleController@removeArticleToSubject");//从专题移出文章
     Route::get("/user_updatePositionInSubject","User\ArticleController@updatePositionInSubjec");//修改文章在专题的位置
+    Route::get("/user_setSubjectArticleSort/{relation_id}/{up}","User\ArticleController@setSubjectArticleSort");
     
     
     //标签
@@ -106,8 +98,9 @@ Route::group(['middleware' => ['LoginUserCheck']],function()
     Route::post("/user_aImage","User\ImageController@aImage"); //增加图片
     Route::get("/user_dImage/{image_id}","User\ImageController@dImage");
     Route::get("/user_uImage","User\ImageController@uImage");
-    
-    
+    Route::post("/user_aImageClass","User\ImageController@aImageClass");
+    Route::post("/user_uImageClass","User\ImageController@uImageClass");
+    Route::get("/user_dImageClass/{class_id}","User\ImageController@dImageClass");
     
 
     //消息

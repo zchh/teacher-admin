@@ -19,17 +19,14 @@ return [
         "rule"=>["integer"],
         
         ],
-    "article_id"=>[ 
-        "rule"=>["integer"],
-        
-        ],
+   
      //文章推荐类别
     "class_name"=>[ 
         "rule"=>["alpha_num","max:30"],
         "message"=>"分类不能大于30个字符"
         ],
     "class_id"=>[ 
-        "rule"=>["integer","max:10"],
+        "rule"=>["integer"],
         ],
       
     //推荐专题
@@ -37,6 +34,10 @@ return [
         "rule"=>["integer","max:10"],
         
         ],
+    'reply_detail' => [
+        "rule" => ["required","min:5"],
+        "message" => "评论需要大于五个字符"
+    ],
     
      //11/11
     "article_title"=>[ 
@@ -53,7 +54,7 @@ return [
         "rule"=>["numeric"],
         ],
     "article_sort" =>[
-        "rule" =>["integer","max:100"],//,"min:150"测试ajax验证专用
+        "rule" =>["integer","max:150"],//,"min:150"测试ajax验证专用
         "message"=>"请确保排序为数字，且最大不超过100"
     ],
      "article_detail" =>[
@@ -71,41 +72,24 @@ return [
     
     //***********************************wyf
    "admin_username"=>[
-       "rule"=>['alpha_dash'],
-       "message"=>"用户名仅允许字母、数字、破折号（-）以及底线（_）"
+       "rule"=>['alpha_dash',"required"],
+       "message"=>"用户名必填 仅允许字母、数字、破折号（-）以及底线（_）"
    ],
     "admin_nickname"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"昵称仅允许字母、数字、破折号（-）以及底线（_）"
+        "rule"=>['alpha_dash',"required"],
+        "message"=>"昵称必填 仅允许字母、数字、破折号（-）以及底线（_）"
     ],
     "admin_password"=>[
-        "rule"=>['alpha_dash'],
+        "rule"=>['alpha_dash',"required"],
         "message"=>"密码仅允许字母、数字、破折号（-）以及底线（_）"
     ],
-    "group_name"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"权限组名称仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "class_name"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"类别名称仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "lable_name"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"标签名称仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
+    
+   
     "subject_name"=>[
         "rule"=>['alpha_dash'],
         "message"=>"专题名称仅允许字母、数字、破折号（-）以及底线（_）"
     ],
-    "subject_intro"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"专题介绍仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "relation_focus"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"专题介绍仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
+    
     //*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
  
     
@@ -114,10 +98,7 @@ return [
     
    
     //zhangchi#######################################################################################
-    "class_name" => [                                         //添加/修改类名
-        "rule" => ['max:15', "required"],
-        "message" => "类名不能为空且字数不能超过15个"
-    ],
+    
     "image_name" => [                                   //修改/添加图片名
         "rule" => ['max:15', "required"],
         "message" => "图片名不能为空且字数不能超过15个"
@@ -147,18 +128,6 @@ return [
         "rule" => ['max:15', "required"],
         "message" => "昵称不能为空，且字数不能超过15"
     ],
-    
-     "user_sex" => [                                   //修改个人信息的性别
-        "rule" => ['max:2', "required"],
-        "message" => "性别不能为空，且字数不能超过2"
-    ],
-     "user_password" => [                                   //修改个人信息的密码
-        "rule" => ["alpha_dash"],
-        "message" => "仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-
-
-    
 
      "user_age" => [                                   //修改个人信息的年龄
         "rule" => ['integer', "required"],
@@ -166,11 +135,7 @@ return [
     ],
 
     
-     "user_intro" => [                                   //修改个人信息的简介
-        "rule" => ['max:34', "required"],
-        "message" => "简介不能为空，且不能超过34个字"
-    ],
-        
+  
     
 
 
@@ -186,44 +151,6 @@ return [
    
 
     
-
-    //***********************************wyf**************************************************
-   "admin_username"=>[
-       "rule"=>['alpha_dash'],
-       "message"=>"用户名仅允许字母、数字、破折号（-）以及底线（_）"
-   ],
-    "admin_nickname"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"昵称仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "admin_password"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"密码仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "group_name"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"权限组名称仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "class_name"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"类别名称仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "lable_name"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"标签名称仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "subject_name"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"专题名称仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-    "subject_intro"=>[
-        "rule"=>['alpha_dash'],
-        "message"=>"专题介绍仅允许字母、数字、破折号（-）以及底线（_）"
-    ],
-
-
-    
-    //***********************************wyf end&*************************************************
 
     
 
@@ -243,14 +170,8 @@ return [
         "rule"=>['required','array'],
         "message"=>"选项框不能为空",
     ],
-    "class_name"=>[     //添加类别
-        "rule"=>['required','string'],
-        "message"=>"类别名称不能为空"
-    ],
-    "class_id"=>[       //类别修改
-        "rule"=>['required','digits:10'],
-        "message"=>"类别ID不能为空"
-    ],
+   
+    
 
     "label_name"=>[     //添加标签
         "rule"=>['required','string'],
@@ -277,10 +198,7 @@ return [
         "rule"=>['required','max:50'],
         "message"=>"用户名不能为空"
     ],
-    "user_nickname"=>[       //添加用户（用户昵称）
-        "rule"=>['max:50'],
-        "message"=>"用户昵称长度不能超过50"
-    ],
+   
     "user_password"=>[       //添加用户（用户密码）
         "rule"=>['required','max:50'],
         "message"=>"密码为必填项"

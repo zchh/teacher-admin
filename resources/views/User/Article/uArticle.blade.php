@@ -24,11 +24,13 @@
                 <input type="text" class="form-control" placeholder="" id="a_intro" value="{{$articleDetail->article_intro}}">
 
             </div>
+            <?php/*
             <div class="col-sm-6 form-group">
                 <label >文章排序</label>
                 <input type="number" class="form-control" placeholder="" id="a_sort" value="{{$articleDetail->article_sort}}">
 
-            </div>
+            </div>*/
+                ?>
 
             <div class="col-sm-6 form-group">
 
@@ -107,9 +109,17 @@
 
 <script>
         $(document).ready(function(){
-$('#show_message').hide();
+        $('#show_message').hide();
         var ue = UE.getEditor('article_detail');
         ue.ready(function() {
+        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+        UE.Editor.prototype.getActionUrl = function(action) {
+            if (action == 'uploadimage' ) {
+                return '{{config("my_config.website_url")}}/putImage';
+            } else {
+                return this._bkGetActionUrl.call(this, action);
+            }
+        }
 
         $.ajax({
         type:"post",
@@ -149,7 +159,7 @@ type:"post",
         "article_title":$("#a_title").val(),
                 "article_intro":$("#a_intro").val(),
                 "article_class":$("#a_class").val(),
-                "article_sort":$("#a_sort").val(),
+                /*"article_sort":$("#a_sort").val(),*/
                 "article_id":{{$articleDetail -> article_id}},
                 "article_detail":ue.getContent()
       }

@@ -19,7 +19,7 @@ class ReplyController extends Controller
     {
         //需要传入两个参数
         //文章名  父评论
-        //dump($_POST);
+        //dump($_POST);exit();
         $recvData = Request::only("reply_article","reply_detail");
         $recvData["reply_create_date"] = date('Y-m-d H:i:s');
         $recvData["reply_user"] = session("user.user_id");
@@ -27,11 +27,38 @@ class ReplyController extends Controller
         DB::beginTransaction();
 
         $return_id = DB::table("base_article_reply")->insertGetId($recvData);
+        if(Request::input("reply_parent",null) != null)
+        {
+            $relationData["relation_parent"] = Request::input("reply_parent");
+        }
         
-        $relationData["relation_parent"] = Request::input("reply_parent");
         $relationData["relation_child"] = $return_id;
+        
+        if(empty($relationData["relation_parent"]))
+        {
+            $parent = DB::table("base_article")
+                    ->where("article_id","=",$recvData["reply_article"])
+                    
+                    ->first();
+            $parent = $parent->article_user;
+        }
+        else
+        {
+            $parent = DB::table("base_article_reply")->where("reply_id","=",$relationData["relation_parent"])->first()->reply_user;
+        }
+        
         if(DB::table("base_reply_relation")->insert($relationData))
         {
+            DB::table('base_article')->where("article_id","=",$recvData["reply_article"])->increment('article_reply');
+            DB::table("base_message")->insert(["message_send_admin"=>1,
+                "message_recv_user"=>$parent,
+                "message_title"=>session("user.user_nickname")." 评论了你，快去看看吧",
+                "message_create_date"=>  date('Y-m-d H:i:s') ,
+                "message_read"=>0,
+                "message_data"=>"".session("user.user_nickname")." 评论了你 <br>链接"
+                . " <a href='/index_articleDetail/".$recvData["reply_article"]."'>点击跳转</a>"
+                . "<br>内容如下<br>".$recvData["reply_detail"]
+                   ]);
             $baseFunc->setRedirectMessage(true, "添加评论成功", NULL);
             //在专题内移除文章之后添加此记录
             $log_array["log_level"]=2;
@@ -72,7 +99,7 @@ class ReplyController extends Controller
         //链表查询，查询当前用户的所有评论
         $input_data['reply_data'] = DB::table("base_article_reply")->leftJoin("base_article","reply_article","=","article_id")
                 ->leftJoin("base_user","article_id","=","user_id")
-                ->orderBy("reply_create_date","desc")->paginate(3);
+                ->orderBy("reply_create_date","desc")->paginate(10);
         //$input_data['reply_data_by_articleId'] = $this->tree($reply_data,$pid=null);
         //dump($input_data);
         return view("User.Reply.sReply",$input_data);
