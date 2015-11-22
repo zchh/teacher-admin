@@ -20,14 +20,15 @@
 
                                         <div class="form-group">
                                                 <label>登录名</label>
-                                                <input type="text" class="form-control" name="user_username" placeholder="用户名 test">
+                                                <input type="text" class="form-control" name="user_username" placeholder="用户名 ">
                                         </div>
                                         <div class="form-group">
                                                 <label>密码</label>
-                                                <input type="password" class="form-control" name="user_password" placeholder="管用户密码 123">
+                                                <input type="password" class="form-control" name="user_password" placeholder="用户密码 ">
                                         </div>
 
-                                        <button type="submit" class="btn btn-default">提交</button>
+                                        <button type="submit" class="btn btn-primary">登陆</button>
+                                        <a href="/user_register" class="btn btn-success">注册</a>
                                 </form>
                       </div>
                 </div>

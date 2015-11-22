@@ -24,13 +24,7 @@
                 <input type="text" class="form-control" placeholder="" id="a_intro" value="{{$articleDetail->article_intro}}">
 
             </div>
-            <?php/*
-            <div class="col-sm-6 form-group">
-                <label >文章排序</label>
-                <input type="number" class="form-control" placeholder="" id="a_sort" value="{{$articleDetail->article_sort}}">
-
-            </div>*/
-                ?>
+           
 
             <div class="col-sm-6 form-group">
 

@@ -95,8 +95,13 @@
                 </li>
                   <li>
                     <a href="/index_userIndex/{{session("user.user_id")}}">个人主页</a>
+                    
                 </li>
-
+                <li>
+                    <a href="/user_uPersonalMessage">信息</a>
+                    
+                </li>
+                    
             </ul>
          </div>
    </div>
