@@ -19,7 +19,7 @@
 		],
 		"psr-4": {
 			"App\\": "app/",
-            "GirdPlugins\\": "gird_plugins/"
+                "GirdPlugins\\": "gird_plugins/" 
 
 
 		}
