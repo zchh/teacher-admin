@@ -31,6 +31,7 @@ class MailFunc
     {     
         if($recvTitle == NULL)
         {
+
              $recvTitle.="用户操作验证链接，来自于 ".config("my_config.mail_head_name");
         }
        
