@@ -20,7 +20,6 @@ class BaseController extends Controller {
         /*$inputData["displayArticleClassGui1"] = $this->displayArticleClassBar(1);
         $inputData["displayArticleClassGui2"] = $this->displayArticleClassBar(2);
         $inputData["displayArticleClassGui3"] = $this->displayArticleClassBar(3);*/
-        
         return view("Index.index",$inputData);
     } 
     //从前端输入框获得一个名字为key的输入框，key 就是输入的文章名
