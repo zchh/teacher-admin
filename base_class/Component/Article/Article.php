@@ -11,6 +11,7 @@ namespace BaseClass\Component\Article;
 
 class Article
 {
+
     private $info;
     private $reply_list;
 
