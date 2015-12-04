@@ -35,11 +35,11 @@ class RouteTest extends \PHPUnit_Framework_TestCase
     public function getValidParameters()
     {
         return array(
-            array('value', '/Blog', 'getPath'),
+            array('value', '/Article', 'getPath'),
             array('requirements', array('_method' => 'GET'), 'getRequirements'),
             array('options', array('compiler_class' => 'RouteCompiler'), 'getOptions'),
             array('name', 'blog_index', 'getName'),
-            array('defaults', array('_controller' => 'MyBlogBundle:Blog:index'), 'getDefaults'),
+            array('defaults', array('_controller' => 'MyBlogBundle:Article:index'), 'getDefaults'),
             array('schemes', array('https'), 'getSchemes'),
             array('methods', array('GET', 'POST'), 'getMethods'),
             array('host', array('{locale}.example.com'), 'getHost'),
@@ -54,7 +54,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
     {
         $this->iniSet('error_reporting', -1 & ~E_USER_DEPRECATED);
 
-        $route = new Route(array('value' => '/Blog'));
-        $this->assertEquals($route->getPattern(), '/Blog');
+        $route = new Route(array('value' => '/Article'));
+        $this->assertEquals($route->getPattern(), '/Article');
     }
 }

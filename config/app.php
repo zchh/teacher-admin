@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'debug' => false,//env('APP_DEBUG'),
+	'debug' => true,//env('APP_DEBUG'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -145,12 +145,12 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
             
-                /*
-                
-                 *
-                 * private service provider                  */
-                 'GirdPlugins\Base\BaseServiceProvider',
-            
+		/*
+
+		 *
+		 * private service provider                  */
+		 'GirdPlugins\Base\BaseServiceProvider',
+		 'BaseClass\BaseClassServiceProvider'
 	],
 
 	/*

@@ -34,9 +34,9 @@ use Symfony\Component\Config\Loader\LoaderResolverInterface;
  * Here is an example of how you should be able to use it:
  *
  *     /**
- *      * @Route("/Blog")
+ *      * @Route("/Article")
  *      * /
- *     class Blog
+ *     class Article
  *     {
  *         /**
  *          * @Route("/", name="blog_index")

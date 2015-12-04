@@ -42,7 +42,7 @@ class XmlFileLoaderTest extends \PHPUnit_Framework_TestCase
         foreach ($identicalRoutes as $route) {
             $this->assertSame('/blog/{slug}', $route->getPath());
             $this->assertSame('{locale}.example.com', $route->getHost());
-            $this->assertSame('MyBundle:Blog:show', $route->getDefault('_controller'));
+            $this->assertSame('MyBundle:Article:show', $route->getDefault('_controller'));
             $this->assertSame('\w+', $route->getRequirement('locale'));
             $this->assertSame('RouteCompiler', $route->getOption('compiler_class'));
             $this->assertEquals(array('GET', 'POST', 'PUT', 'OPTIONS'), $route->getMethods());
@@ -61,7 +61,7 @@ class XmlFileLoaderTest extends \PHPUnit_Framework_TestCase
         $route = $routeCollection->get('blog_show');
         $this->assertSame('/blog/{slug}', $route->getPath());
         $this->assertSame('{_locale}.example.com', $route->getHost());
-        $this->assertSame('MyBundle:Blog:show', $route->getDefault('_controller'));
+        $this->assertSame('MyBundle:Article:show', $route->getDefault('_controller'));
         $this->assertSame('\w+', $route->getRequirement('slug'));
         $this->assertSame('en|fr|de', $route->getRequirement('_locale'));
         $this->assertNull($route->getDefault('slug'));

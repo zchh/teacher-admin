@@ -38,7 +38,7 @@ class PhpFileLoaderTest extends \PHPUnit_Framework_TestCase
 
         foreach ($routes as $route) {
             $this->assertSame('/blog/{slug}', $route->getPath());
-            $this->assertSame('MyBlogBundle:Blog:show', $route->getDefault('_controller'));
+            $this->assertSame('MyBlogBundle:Article:show', $route->getDefault('_controller'));
             $this->assertSame('{locale}.example.com', $route->getHost());
             $this->assertSame('RouteCompiler', $route->getOption('compiler_class'));
             $this->assertEquals(array('GET', 'POST', 'PUT', 'OPTIONS'), $route->getMethods());
@@ -57,7 +57,7 @@ class PhpFileLoaderTest extends \PHPUnit_Framework_TestCase
 
         foreach ($routes as $route) {
             $this->assertSame('/prefix/blog/{slug}', $route->getPath());
-            $this->assertSame('MyBlogBundle:Blog:show', $route->getDefault('_controller'));
+            $this->assertSame('MyBlogBundle:Article:show', $route->getDefault('_controller'));
             $this->assertSame('{locale}.example.com', $route->getHost());
             $this->assertSame('RouteCompiler', $route->getOption('compiler_class'));
             $this->assertEquals(array('GET', 'POST', 'PUT', 'OPTIONS'), $route->getMethods());
