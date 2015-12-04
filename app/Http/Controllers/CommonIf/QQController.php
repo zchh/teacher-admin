@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
  */
 class QQController extends Controller
 {
-    public function if_qq()
+    public function index()
     {
         return view("base");
     }
