@@ -2,7 +2,7 @@
 @section("head")
 
 <head>
-    <meta property="qc:admins" content="153466227365131456375716711" />
+    <meta property="qc:admins" content="153466272762437746376" />
 
 
 <meta charset="UTF-8">
