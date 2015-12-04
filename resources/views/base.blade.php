@@ -16,7 +16,7 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/source/bootstrap/js/bootstrap.min.js"></script>
-
+<meta property="qc:admins" content="153466227365131456375716711" />
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 

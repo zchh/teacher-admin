@@ -33,4 +33,8 @@ Route::get("/getImage/{image_id?}","Index\ImageController@getImage");
 Route::any("/putImage","Index\ImageController@putImage");
 
 
+
+/*三方接口*/
+Route::get("/if_qq","CommonIf\QQController@if_qq");
+
 ?>
