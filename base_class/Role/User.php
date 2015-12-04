@@ -7,7 +7,7 @@
  */
 
 namespace BaseClass\Role;
-
+use BaseClass\Component\Article\Article;
 
 class User
 {
@@ -20,14 +20,19 @@ class User
 
 
 
-    /*----------------基本操作函数--------------*/
+    /*-------------------------*/
     static function addUser($info_array)
     {
-        echo "创建用户";
+        echo "huhihi";
     }
+
+    /**
+     * @param $info_array 鐧婚檰淇℃伅鏁扮粍
+     * @return User
+     */
     static function login($info_array)
     {
-
+        return new User(1);
     }
 
 
@@ -51,7 +56,7 @@ class User
 
 
 
-    /*----------从数据库同步相关信息-------------*/
+    /*--------------------*/
     public function syncBaseInfo()
     {
 
@@ -59,7 +64,7 @@ class User
 
     public function syncArticleInfo()
     {
-
+        Article::getMoreByUser($this->info->user_id);
     }
 
     public function syncSubjectInfo()
