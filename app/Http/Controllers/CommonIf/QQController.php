@@ -11,6 +11,6 @@ class QQController extends Controller
 {
     public function if_qq()
     {
-
+        return view("base");
     }
 }
