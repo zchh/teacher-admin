@@ -31,21 +31,19 @@ class QQTest extends Controller
             $data = $qqFunc->qq_callback($code, $state);
             if($data != false)
             {
-                dump($data);
                 //把返回来的token和openID存入数据库
                 $input_data = DB::table("base_token")->where("access_token","=",$data['access_token'])
                     ->where("openID","=",$data['openID'])->first();
                 if(empty($input_data))
                 {
-                    dump($data);
                     $base_data['access_token'] = $data['access_token'];
                     $base_data['openID'] = $data['openID'];
                     $base_data['token_create_date'] = date("Y-m-d H:i:s");
                     DB::table("base_token")->insert($base_data);
                 }
                 $user_data = User::qqLogin($data['access_token'], $data['openID']);
-                dump($user_data);
-                if ($user_data != false && $user_data != true)
+                //dump($user_data);
+                if ($user_data === true)
                 {
                     //echo '登录成功,系统已经为你自动注册';
                     //dump($user_data);
@@ -53,16 +51,7 @@ class QQTest extends Controller
                     $baseFunc->setRedirectMessage(true,"系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料！<a href='#'>www.baidu.com</a>",null,"/user_index");
                     //echo "<script language='javascript'>alert('系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料!');window.location.href='/user_index';</script>";
                 }
-                else
-                {
-                    //dump($user_data);
-                    //echo '你已经绑定，登录成功';
-                    if( session("user.user_status") )
-                    {
-                        $baseFunc = new BaseFunc();
-                        $baseFunc->setRedirectMessage(true, "登录成功！", null, "/user_index");
-                    }
-                }
+
             }
         }
     }
