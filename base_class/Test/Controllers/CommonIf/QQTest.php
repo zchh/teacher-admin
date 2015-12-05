@@ -31,13 +31,13 @@ class QQTest extends Controller
             $data = $qqFunc->qq_callback($code, $state);
             if($data != false)
             {
-                dump($data);
-                exit();
                 //把返回来的token和openID存入数据库
                 $input_data = DB::table("base_token")->where("access_token","=",$data['access_token'])
                     ->where("openID","=",$data['openID'])->first();
                 if(empty($input_data))
                 {
+                    dump($data);
+                    exit();
                     $base_data['access_token'] = $data['access_token'];
                     $base_data['openID'] = $data['openID'];
                     $base_data['token_create_date'] = date("Y-m-d H:i:s");
@@ -62,10 +62,6 @@ class QQTest extends Controller
                         $baseFunc->setRedirectMessage(true, "登录成功！", null, "/user_index");
                     }
                 }
-            }
-            else
-            {
-                dump($code);
             }
         }
     }
