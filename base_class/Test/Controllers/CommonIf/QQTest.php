@@ -44,7 +44,7 @@ class QQTest extends Controller
                 }
                 else
                 {
-                    return view("User.index");
+                    dump($user_data);
                 }
             }
         }
