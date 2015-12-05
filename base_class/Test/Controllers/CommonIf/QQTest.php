@@ -8,8 +8,9 @@
 
 namespace BaseClass\Test\Controllers\CommonIf;
 use BaseClass\Test\Controllers\CommonIf\QQFunc;
-
+use BaseClass\Role\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class QQTest extends Controller
 {
@@ -19,14 +20,17 @@ class QQTest extends Controller
         //return view("User.login");
     }
     //回调函数
-    public function syntony(QQFunc $qqFunc)
+    public function syntony(QQFunc $qqFunc,User $user)
     {
         if(!empty($_GET['code']))
         {
             $code = $_GET['code'];
             $state = $_GET['state'];
-            $user = $qqFunc->qq_callback($code, $state);
-            dump($user);
+            if($data = $qqFunc->qq_callback($code, $state) != false)
+            {
+
+                dump($data);
+            }
         }
     }
     public function aa()

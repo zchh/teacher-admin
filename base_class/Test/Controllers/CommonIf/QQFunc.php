@@ -28,16 +28,14 @@ class QQFunc
     public function qq_login()
     {
         //1：获取Authorization Code
-
-            //state参数用于防止CSRF攻击，成功授权后回调时会原样带回
-            $state = md5(uniqid(rand(), TRUE));
-            session(['state'=>$state]);
-            //拼接URL
-        //https://graph.qq.com/oauth/show?which=Login&display=pc&response_type=code&client_id=101275342&redirect_uri=http%3A%2F%2Fwww.jtcool.com%2Fif_qq&state=6f0872476f1b3f6fdc9462d27e138134
-            $dialog_url = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id="
-                . $this->app_id . "&redirect_uri=" . urlencode($this->my_url) . "&state="
-                . session('state');
-            echo("<script> top.location.href='" . $dialog_url . "'</script>");
+        //state参数用于防止CSRF攻击，成功授权后回调时会原样带回
+        $state = md5(uniqid(rand(), TRUE));
+        session(['state'=>$state]);
+        //拼接URL
+        $dialog_url = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id="
+            . $this->app_id . "&redirect_uri=" . urlencode($this->my_url) . "&state="
+            . session('state');
+        echo("<script> top.location.href='" . $dialog_url . "'</script>");
 
     }
     //2：通过Authorization Code获取Access Token
@@ -93,7 +91,7 @@ class QQFunc
                 return false;
             }
             $user = json_decode($str);
-            $params['openID'] = $user;
+            $params['openID'] = $user->openid;
             if (isset($user->error))
             {
                 /*echo "<h3>error:</h3>" . $user->error;

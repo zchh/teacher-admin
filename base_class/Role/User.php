@@ -20,12 +20,16 @@ class User
 
 
 
-    /*----------------»ù±¾²Ù×÷º¯Êý--------------*/
+    /*----------------ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--------------*/
     static function addUser($info_array)
     {
-        echo "´´½¨ÓÃ»§";
+
     }
     static function login($info_array)
+    {
+
+    }
+    static function qqLogin($acs_token, $open_id)
     {
 
     }
@@ -51,7 +55,7 @@ class User
 
 
 
-    /*----------´ÓÊý¾Ý¿âÍ¬²½Ïà¹ØÐÅÏ¢-------------*/
+    /*----------ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢-------------*/
     public function syncBaseInfo()
     {
 
