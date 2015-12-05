@@ -29,6 +29,8 @@ class QQTest extends Controller
             $code = $_GET['code'];
             $state = $_GET['state'];
             $data = $qqFunc->qq_callback($code, $state);
+            dump($data);
+            exit();
             if($data != false)
             {
                 //把返回来的token和openID存入数据库
