@@ -50,9 +50,17 @@ class QQFunc
                 . "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($this->my_url)
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
             $response = file_get_contents($token_url);
-            $deng = strpos($response, "=");//第一次=出现
-            $kuo = strpos($response, "&");//第一次&出现
-            $access_token = substr($response,$deng+1,$kuo - $deng -1);
+            $access_token = '';
+            if(empty($response))
+            {
+                $deng = strpos($response, "=");//第一次=出现
+                $kuo = strpos($response, "&");//第一次&出现
+                $access_token.= substr($response, $deng + 1, $kuo - $deng - 1);
+            }
+            else
+            {
+                return false;
+            }
             //dump($access_token);
             /*if (strpos($response, "callback") !== false)
             {
@@ -72,7 +80,7 @@ class QQFunc
             $params = array();
             parse_str($response, $params);
             $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=$access_token";
-            $params['access_token'];
+            $params['access_token'] = $access_token;
             $str  = file_get_contents($graph_url);
             if (strpos($str, "callback") !== false)
             {
@@ -80,20 +88,25 @@ class QQFunc
                 $rpos = strrpos($str, ")");//括号最后一次出现的位置
                 $str  = substr($str, $lpos + 1, $rpos - $lpos -1);
             }
+            else
+            {
+                return false;
+            }
             $user = json_decode($str);
-            //dump($user);
+            $params['openID'] = $user;
             if (isset($user->error))
             {
-                echo "<h3>error:</h3>" . $user->error;
+                /*echo "<h3>error:</h3>" . $user->error;
                 echo "<h3>msg  :</h3>" . $user->error_description;
-                exit;
+                exit;*/
+                return false;
             }
-            return $user;
+            return $params;
             //echo("Hello " . $user->openid);
         }
         else
         {
-            echo("The state does not match. You may be a victim of CSRF.");
+            return false;
         }
     }
 }
