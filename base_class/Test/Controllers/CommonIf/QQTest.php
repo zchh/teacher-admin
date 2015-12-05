@@ -12,6 +12,7 @@ use BaseClass\Role\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use GirdPlugins\Base\BaseFunc;
+use Illuminate\Support\Facades\Session;
 
 class QQTest extends Controller
 {
@@ -53,8 +54,11 @@ class QQTest extends Controller
                 {
                     //dump($user_data);
                     //echo '你已经绑定，登录成功';
-                    $baseFunc = new BaseFunc();
-                    $baseFunc->setRedirectMessage(true, "登录成功！", null, "/user_index");
+                    if( session("user.user_status") )
+                    {
+                        $baseFunc = new BaseFunc();
+                        $baseFunc->setRedirectMessage(true, "登录成功！", null, "/user_index");
+                    }
                 }
             }
         }

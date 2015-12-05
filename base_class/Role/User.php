@@ -8,6 +8,7 @@
 
 namespace BaseClass\Role;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class User
 {
@@ -44,7 +45,7 @@ class User
             $sessionInitData["user_status"] = true;
             $sessionInitData["user_id"] = $user_data['user_id'];
             $sessionInitData["user_username"] = $user_data['user_username'];
-            session(["user"=>$sessionInitData]);//session结构请见ReadMe文档
+            session(["user"=>$sessionInitData]);
 
             $user_id = $user_data['user_id'];
             DB::table("base_token")->where("access_token","=",$acs_token)
