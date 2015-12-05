@@ -50,7 +50,10 @@ class QQFunc
                 . "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($this->my_url)
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
             $response = file_get_contents($token_url);
-            dump($response);
+            $deng = strpos($response, "=");//第一次=出现
+            $kuo = strpos($response, "&");//第一次&出现
+            $access_token = substr($response,$deng+1,$kuo - $deng -1);
+            dump($access_token);
             if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");//第一次出现
