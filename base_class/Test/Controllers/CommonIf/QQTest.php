@@ -25,7 +25,8 @@ class QQTest extends Controller
         {
             $code = $_GET['code'];
             $state = $_GET['state'];
-            $qqFunc->qq_callback($code, $state);
+            $user = $qqFunc->qq_callback($code, $state);
+            dump($user);
         }
     }
     public function aa()

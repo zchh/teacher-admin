@@ -53,8 +53,8 @@ class QQFunc
             $deng = strpos($response, "=");//第一次=出现
             $kuo = strpos($response, "&");//第一次&出现
             $access_token = substr($response,$deng+1,$kuo - $deng -1);
-            dump($access_token);
-            if (strpos($response, "callback") !== false)
+            //dump($access_token);
+            /*if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");//第一次出现
                 $rpos = strrpos($response, ")");//最后一次
@@ -66,7 +66,7 @@ class QQFunc
                     echo "<h3>msg  :</h3>" . $msg->error_description;
                     exit;
                 }
-            }
+            }*/
 
             //Step3：使用Access Token来获取用户的OpenID
             $params = array();
@@ -81,14 +81,15 @@ class QQFunc
                 $str  = substr($str, $lpos + 1, $rpos - $lpos -1);
             }
             $user = json_decode($str);
-            dump($user);
+            //dump($user);
             if (isset($user->error))
             {
                 echo "<h3>error:</h3>" . $user->error;
                 echo "<h3>msg  :</h3>" . $user->error_description;
                 exit;
             }
-            echo("Hello " . $user->openid);
+            return $user;
+            //echo("Hello " . $user->openid);
         }
         else
         {
