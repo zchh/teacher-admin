@@ -29,6 +29,7 @@
 
                                         <button type="submit" class="btn btn-primary">登陆</button>
                                         <a href="/user_register" class="btn btn-success">注册</a>
+                                        <span><a href="/test_qqTest"><img src="/image/qq.png"></a></span>
                                 </form>
                       </div>
                 </div>

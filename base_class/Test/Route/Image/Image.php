@@ -7,3 +7,6 @@
  */
 $__BasePrefix = "BaseClass\\Test\\Controllers\\Image\\";
 Route::get("test_imageTest",$__BasePrefix."ImageTest@test");
+
+$__BasePrefix = "BaseClass\\Test\\Controllers\\Article\\";
+Route::get("test_articleTest",$__BasePrefix."ArticleTest@test");
