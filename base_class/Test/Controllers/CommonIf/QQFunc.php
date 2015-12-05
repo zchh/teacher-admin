@@ -41,13 +41,10 @@ class QQFunc
 
     }
 
-    public function qq_callback()
+    public function qq_callback($code,$state)
     {
-        //89C05EF73A436326C0A9EF5150E6AC8E
-        //AEF9C9003E8A2F215DA7A793476660BC
-        $code = $_REQUEST["code"];
-        //Step2：通过Authorization Code获取Access Token
-        if($_REQUEST['state'] == $_SESSION['state'])
+        //2：通过Authorization Code获取Access Token
+        if($state == session('state'))
         {
             //拼接URL
             $token_url = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&"
@@ -69,7 +66,7 @@ class QQFunc
             }
 
             //Step3：使用Access Token来获取用户的OpenID
-            $params = array();
+            /*$params = array();
             parse_str($response, $params);
             $graph_url = "https://graph.qq.com/oauth2.0/me?access_token= ";
             $params['access_token'];
@@ -87,12 +84,13 @@ class QQFunc
                 echo "<h3>msg  :</h3>" . $user->error_description;
                 exit;
             }
-            echo("Hello " . $user->openid);
+            echo("Hello " . $user->openid);*/
         }
         else
         {
             echo("The state does not match. You may be a victim of CSRF.");
         }
+        return $msg;
     }
 
-   }
+}

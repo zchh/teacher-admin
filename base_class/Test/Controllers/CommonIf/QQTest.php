@@ -19,10 +19,11 @@ class QQTest extends Controller
         //return view("User.login");
     }
     //回调函数
-    public function syntony()
+    public function syntony(QQFunc $qqFunc)
     {
         $code = $_GET["code"];
         $state = $_GET['state'];
-        dump($code);
+        $msg = $qqFunc->qq_callback($code,$state);
+        dump($msg);
     }
 }
