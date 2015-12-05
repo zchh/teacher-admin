@@ -49,7 +49,8 @@ class QQFunc
             $token_url = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&"
                 . "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($this->my_url)
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
-            $response = file_get_contents($token_url);
+            echo("<script> top.location.href='" . $token_url . "'</script>");
+            /*$response = file_get_contents($token_url);
             if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");//第一次出现
@@ -62,7 +63,7 @@ class QQFunc
                     echo "<h3>msg  :</h3>" . $msg->error_description;
                     exit;
                 }
-            }
+            }*/
         }
         else
         {
