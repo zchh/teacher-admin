@@ -7,5 +7,5 @@
  */
 $__BasePrefix = "BaseClass\\Test\\Controllers\\CommonIf\\";
 Route::get("/test_qqTest",$__BasePrefix."QQTest@test");
-Route::get("/if_QQ",$__BasePrefix."QQTest@syntony");
+Route::get("/if_qq",$__BasePrefix."QQTest@syntony");
 
