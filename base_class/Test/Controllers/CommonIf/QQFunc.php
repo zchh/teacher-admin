@@ -53,6 +53,7 @@ class QQFunc
             $response = file_get_contents($token_url);
             $lpos = strpos($response, "&");
             $access_token = substr($response, 13, $lpos -1);
+            dump($response);
             dump($access_token);
             if (strpos($response, "callback") !== false)
             {
@@ -74,14 +75,14 @@ class QQFunc
             $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=$access_token";
             $params['access_token'];
             $str  = file_get_contents($graph_url);
-            dump($str);
             if (strpos($str, "callback") !== false)
             {
-                $lpos = strpos($str, "(");
-                $rpos = strrpos($str, ")");
+                $lpos = strpos($str, "(");//括号第一次出现位置
+                $rpos = strrpos($str, ")");//括号最后一次出现的位置
                 $str  = substr($str, $lpos + 1, $rpos - $lpos -1);
             }
             $user = json_decode($str);
+            dump($user);
             if (isset($user->error))
             {
                 echo "<h3>error:</h3>" . $user->error;
