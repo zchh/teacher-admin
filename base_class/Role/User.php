@@ -57,7 +57,7 @@ class User
         {
             $sessionInitData["user_status"] = true;
             session(["user"=>$sessionInitData]);
-            dump($_SESSION);
+            //dump($_SESSION);
             return true;
         }
     }
