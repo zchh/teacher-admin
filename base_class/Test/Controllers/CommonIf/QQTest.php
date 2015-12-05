@@ -8,7 +8,7 @@
 
 namespace BaseClass\Test\Controllers\CommonIf;
 use BaseClass\Test\Controllers\CommonIf\QQFunc;
-
+use BaseClass\Role\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
