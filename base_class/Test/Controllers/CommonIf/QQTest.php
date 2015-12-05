@@ -46,7 +46,7 @@ class QQTest extends Controller
                     //echo '登录成功,系统已经为你自动注册';
                     //dump($user_data);
                     $baseFunc = new BaseFunc();
-                    $baseFunc->setRedirectMessage(true,"系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料！<a href='#'>www.baidu.com</a>",null,"/");
+                    $baseFunc->setRedirectMessage(true,"系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料！<a href='#'>www.baidu.com</a>",null,"/user_index");
                     //echo "<script language='javascript'>alert('系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料!');window.location.href='/user_index';</script>";
                 }
                 else
@@ -54,7 +54,7 @@ class QQTest extends Controller
                     //dump($user_data);
                     //echo '你已经绑定，登录成功';
                     $baseFunc = new BaseFunc();
-                    $baseFunc->setRedirectMessage(true, "登录成功！", null, "/");
+                    $baseFunc->setRedirectMessage(true, "登录成功！", null, "/user_index");
                 }
             }
         }

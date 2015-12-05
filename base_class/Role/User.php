@@ -40,7 +40,12 @@ class User
         {
             //为空，说明没有绑定用户id此时应该直接注册一个，调用qqRegister将返回一个用户id，这时在更新一下base_token表进行绑定
             $user_data = User::qqRegister();
-            //session(["user.user_status"=>true]);
+
+            $sessionInitData["user_status"] = true;
+            $sessionInitData["user_id"] = $user_data['user_id'];
+            $sessionInitData["user_username"] = $user_data['user_username'];
+            session(["user"=>$sessionInitData]);//session结构请见ReadMe文档
+
             $user_id = $user_data['user_id'];
             DB::table("base_token")->where("access_token","=",$acs_token)
                 ->where("openID","=",$open_id)
