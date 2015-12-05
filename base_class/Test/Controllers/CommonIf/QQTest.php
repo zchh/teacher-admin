@@ -6,8 +6,8 @@
  * Time: 15:35
  */
 
-namespace BaseClass\Test\Controllers\CommonIf;
-use BaseClass\Test\Controllers\CommonIf\QQFunc;
+namespace BaseClass\Test\Controllers\CommonIf;//改
+use BaseClass\Test\Controllers\CommonIf\QQFunc;//改
 use BaseClass\Role\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
