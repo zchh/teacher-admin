@@ -47,6 +47,8 @@ class User
             $sessionInitData["user_username"] = $user_data['user_username'];
             session(["user"=>$sessionInitData]);
 
+            dump($_SESSION);
+            exit();
             $user_id = $user_data['user_id'];
             DB::table("base_token")->where("access_token","=",$acs_token)
                 ->where("openID","=",$open_id)
