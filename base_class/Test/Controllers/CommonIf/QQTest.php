@@ -20,7 +20,7 @@ class QQTest extends Controller
         //return view("User.login");
     }
     //回调函数
-    public function syntony(QQFunc $qqFunc)
+    public function syntony(QQFunc $qqFunc,User $user)
     {
         if(!empty($_GET['code']))
         {
