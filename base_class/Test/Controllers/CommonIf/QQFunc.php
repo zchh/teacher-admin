@@ -51,7 +51,7 @@ class QQFunc
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
             $response = file_get_contents($token_url);
             $access_token = '';
-            if(empty($response))
+            if(!empty($response))
             {
                 $deng = strpos($response, "=");//第一次=出现
                 $kuo = strpos($response, "&");//第一次&出现
