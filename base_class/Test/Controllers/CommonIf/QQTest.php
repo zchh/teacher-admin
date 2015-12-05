@@ -23,7 +23,11 @@ class QQTest extends Controller
     {
         $code = $_GET["code"];
         $state = $_GET['state'];
-        $msg = $qqFunc->qq_callback($code,$state);
-        dump($msg);
+        if(!empty($code))
+        {
+            $qqFunc->qq_callback($code, $state);
+        }
+        $access_token = $_GET['access_token'];
+        dump($access_token);
     }
 }

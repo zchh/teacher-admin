@@ -40,10 +40,9 @@ class QQFunc
             echo("<script> top.location.href='" . $dialog_url . "'</script>");
 
     }
-
+    //2：通过Authorization Code获取Access Token
     public function qq_callback($code,$state)
     {
-        //2：通过Authorization Code获取Access Token
         if($state == session('state'))
         {
             //拼接URL
@@ -51,10 +50,6 @@ class QQFunc
                 . "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($this->my_url)
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
             $response = file_get_contents($token_url);
-            $lpos = strpos($response, "&");
-            $access_token = substr($response, 13, $lpos -1);
-            dump($response);
-            dump($access_token);
             if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");//第一次出现
@@ -68,32 +63,34 @@ class QQFunc
                     exit;
                 }
             }
-
-            //Step3：使用Access Token来获取用户的OpenID
-            $params = array();
-            parse_str($response, $params);
-            $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=$access_token";
-            $params['access_token'];
-            $str  = file_get_contents($graph_url);
-            if (strpos($str, "callback") !== false)
-            {
-                $lpos = strpos($str, "(");//括号第一次出现位置
-                $rpos = strrpos($str, ")");//括号最后一次出现的位置
-                $str  = substr($str, $lpos + 1, $rpos - $lpos -1);
-            }
-            $user = json_decode($str);
-            dump($user);
-            if (isset($user->error))
-            {
-                echo "<h3>error:</h3>" . $user->error;
-                echo "<h3>msg  :</h3>" . $user->error_description;
-                exit;
-            }
-            echo("Hello " . $user->openid);
         }
         else
         {
             echo("The state does not match. You may be a victim of CSRF.");
         }
+    }
+    //Step3：使用Access Token来获取用户的OpenID
+    public function getOpenID()
+    {
+        $params = array();
+        parse_str($response, $params);
+        $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=$access_token";
+        $params['access_token'];
+        $str  = file_get_contents($graph_url);
+        if (strpos($str, "callback") !== false)
+        {
+            $lpos = strpos($str, "(");//括号第一次出现位置
+            $rpos = strrpos($str, ")");//括号最后一次出现的位置
+            $str  = substr($str, $lpos + 1, $rpos - $lpos -1);
+        }
+        $user = json_decode($str);
+        dump($user);
+        if (isset($user->error))
+        {
+            echo "<h3>error:</h3>" . $user->error;
+            echo "<h3>msg  :</h3>" . $user->error_description;
+            exit;
+        }
+        echo("Hello " . $user->openid);
     }
 }
