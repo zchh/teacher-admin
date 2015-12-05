@@ -60,7 +60,7 @@ return [
 			'database'  => 'base_cms',
 
 			'username'  => "root",// 'cookie',
-			'password'  => "",//'123456',
+			'password'  => "q2338006",//'123456',
 
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
