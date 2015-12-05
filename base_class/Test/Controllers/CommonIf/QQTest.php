@@ -31,13 +31,17 @@ class QQTest extends Controller
             if($data != false)
             {
                 //把返回来的token和openID存入数据库
-                $base_data['access_token'] = $data['access_token'];
-                $base_data['openID'] = $data['openID'];
-                $base_data['token_create_date'] = date("Y-m-d H:i:s");
-                DB::table("base_token")->insert($base_data);
-                $user_data = User::qqLogin($data['access_token'],$data['openID']);
-                if($user_data != false && $user_data != true)
+                $input_data = DB::table("base_token")->where("access_token","=",$data['access_token'])
+                    ->where("openID","=",$data['openID'])->first();
+                if(empty($input_data))
                 {
+                    $base_data['access_token'] = $data['access_token'];
+                    $base_data['openID'] = $data['openID'];
+                    $base_data['token_create_date'] = date("Y-m-d H:i:s");
+                    DB::table("base_token")->insert($base_data);
+                }
+                $user_data = User::qqLogin($data['access_token'], $data['openID']);
+                if ($user_data != false && $user_data != true) {
                     dump($user_data);
                     //$baseFunc = new BaseFunc();
                     //$baseFunc->setRedirectMessage(true,"系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料！<a href='#'></a>",null,"/user_index");
