@@ -20,7 +20,7 @@ class LoginUserCheck {
 	 */
 	public function handle($request, Closure $next)
 	{
-	    /*if(session("user.user_status")==true)
+	    if(session("user.user_status")==true)
 	    {
                
                return $next($request);    
@@ -41,7 +41,7 @@ class LoginUserCheck {
                 }
                
 	       
-	    }*/
+	    }
 		
 	}
 

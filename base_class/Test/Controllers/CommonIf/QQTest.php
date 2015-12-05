@@ -54,7 +54,7 @@ class QQTest extends Controller
                     //dump($user_data);
                     //echo '你已经绑定，登录成功';
                     $baseFunc = new BaseFunc();
-                    $baseFunc->setRedirectMessage(true, "登录成功！", null, "/user_index");
+                    $baseFunc->setRedirectMessage(true, "登录成功！", null, "/user_register");
                 }
             }
         }
