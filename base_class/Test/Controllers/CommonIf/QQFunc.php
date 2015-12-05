@@ -49,8 +49,8 @@ class QQFunc
             $token_url = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&"
                 . "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($this->my_url)
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
-            echo("<script> top.location.href='" . $token_url . "'</script>");
-            /*$response = file_get_contents($token_url);
+            $response = file_get_contents($token_url);
+            dump($response);
             if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");//第一次出现
@@ -63,35 +63,33 @@ class QQFunc
                     echo "<h3>msg  :</h3>" . $msg->error_description;
                     exit;
                 }
-            }*/
+            }
+
+            //Step3：使用Access Token来获取用户的OpenID
+            $params = array();
+            parse_str($response, $params);
+            $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=$access_token";
+            $params['access_token'];
+            $str  = file_get_contents($graph_url);
+            if (strpos($str, "callback") !== false)
+            {
+                $lpos = strpos($str, "(");//括号第一次出现位置
+                $rpos = strrpos($str, ")");//括号最后一次出现的位置
+                $str  = substr($str, $lpos + 1, $rpos - $lpos -1);
+            }
+            $user = json_decode($str);
+            dump($user);
+            if (isset($user->error))
+            {
+                echo "<h3>error:</h3>" . $user->error;
+                echo "<h3>msg  :</h3>" . $user->error_description;
+                exit;
+            }
+            echo("Hello " . $user->openid);
         }
         else
         {
             echo("The state does not match. You may be a victim of CSRF.");
         }
-    }
-    //Step3：使用Access Token来获取用户的OpenID
-    public function getOpenID($access_token)
-    {
-        $params = array();
-        //parse_str($response, $params);
-        $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=$access_token";
-        $params['access_token'];
-        $str  = file_get_contents($graph_url);
-        if (strpos($str, "callback") !== false)
-        {
-            $lpos = strpos($str, "(");//括号第一次出现位置
-            $rpos = strrpos($str, ")");//括号最后一次出现的位置
-            $str  = substr($str, $lpos + 1, $rpos - $lpos -1);
-        }
-        $user = json_decode($str);
-        dump($user);
-        if (isset($user->error))
-        {
-            echo "<h3>error:</h3>" . $user->error;
-            echo "<h3>msg  :</h3>" . $user->error_description;
-            exit;
-        }
-        echo("Hello " . $user->openid);
     }
 }
