@@ -32,7 +32,7 @@ class QQTest extends Controller
         if(!empty($_GET['access_token']))
         {
             $access_token = $_GET['access_token'];
-            dump($access_token);
+            //dump($access_token);
             //$qqFunc->getOpenID($access_token);
         }
     }
