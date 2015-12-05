@@ -41,14 +41,17 @@ class QQTest extends Controller
                     DB::table("base_token")->insert($base_data);
                 }
                 $user_data = User::qqLogin($data['access_token'], $data['openID']);
-                if ($user_data != false && $user_data != true) {
-                    dump($user_data);
+                if ($user_data != false && $user_data != true)
+                {
+                    echo '登录成功,系统已经为你自动注册';
+                    //dump($user_data);
                     //$baseFunc = new BaseFunc();
-                    //$baseFunc->setRedirectMessage(true,"系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料！<a href='#'></a>",null,"/user_index");
+                    //$baseFunc->setRedirectMessage(true,"系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料！<a href='#'>www.baidu.com</a>",null,"/user_index");
                 }
                 else
                 {
-                    dump($user_data);
+                    //dump($user_data);
+                    echo '你已经绑定，登录成功';
                 }
             }
         }
