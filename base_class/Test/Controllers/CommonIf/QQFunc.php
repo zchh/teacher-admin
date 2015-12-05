@@ -51,13 +51,13 @@ class QQFunc
                 . "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($this->my_url)
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
             $response = file_get_contents($token_url);
-            dump($response);
             if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");
                 $rpos = strrpos($response, ")");
                 $response  = substr($response, $lpos + 1, $rpos - $lpos -1);
                 $msg = json_decode($response);
+                dump($msg);
                 if (isset($msg->error))
                 {
                     echo "<h3>error:</h3>" . $msg->error;
