@@ -70,10 +70,10 @@ class QQFunc
         }
     }
     //Step3：使用Access Token来获取用户的OpenID
-    public function getOpenID()
+    public function getOpenID($access_token)
     {
         $params = array();
-        parse_str($response, $params);
+        //parse_str($response, $params);
         $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=$access_token";
         $params['access_token'];
         $str  = file_get_contents($graph_url);

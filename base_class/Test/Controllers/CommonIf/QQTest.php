@@ -21,13 +21,17 @@ class QQTest extends Controller
     //回调函数
     public function syntony(QQFunc $qqFunc)
     {
+        $access_token = $_GET['access_token'];
         $code = $_GET["code"];
         $state = $_GET['state'];
         if(!empty($code))
         {
             $qqFunc->qq_callback($code, $state);
         }
-        $access_token = $_GET['access_token'];
+        if(!empty($access_token))
+        {
+            $qqFunc->getOpenID($access_token);
+        }
         dump($access_token);
     }
 }
