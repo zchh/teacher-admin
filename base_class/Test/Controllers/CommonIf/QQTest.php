@@ -43,16 +43,18 @@ class QQTest extends Controller
                 $user_data = User::qqLogin($data['access_token'], $data['openID']);
                 if ($user_data != false && $user_data != true)
                 {
-                    echo '登录成功,系统已经为你自动注册';
+                    //echo '登录成功,系统已经为你自动注册';
                     //dump($user_data);
-                    //$baseFunc = new BaseFunc();
-                    //$baseFunc->setRedirectMessage(true,"系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料！<a href='#'>www.baidu.com</a>",null,"/user_index");
+                    $baseFunc = new BaseFunc();
+                    $baseFunc->setRedirectMessage(true,"系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料！<a href='#'>www.baidu.com</a>",null,"/user_index");
+                    //echo "<script language='javascript'>alert('系统已自动为你注册，为了你的个人信息安全请及时修改密码和个人资料!');window.location.href='/user_index';</script>";
                 }
                 else
                 {
                     //dump($user_data);
-                    echo '你已经绑定，登录成功';
-
+                    //echo '你已经绑定，登录成功';
+                    $baseFunc = new BaseFunc();
+                    $baseFunc->setRedirectMessage(true,"登录成功！",null,"/user_index");
                 }
             }
         }
