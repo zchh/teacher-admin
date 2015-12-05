@@ -51,6 +51,7 @@ class QQFunc
                 . "client_id=" . $this->app_id . "&redirect_uri=" . urlencode($this->my_url)
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
             $response = file_get_contents($token_url);
+            dump($response);
             if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");
@@ -63,7 +64,6 @@ class QQFunc
                     echo "<h3>msg  :</h3>" . $msg->error_description;
                     exit;
                 }
-                return $msg;
             }
 
             //Step3：使用Access Token来获取用户的OpenID
