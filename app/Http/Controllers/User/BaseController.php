@@ -13,7 +13,6 @@ use GirdPlugins\Base\MailFunc;
 class BaseController extends Controller {
   public function login(BaseFunc $baseFunc)
   {
-      
       if( session("user.user_status") ){$baseFunc->setRedirectMessage(true, "你已经登陆，自动跳转到主页", NULL, "/user_index");}
       return view("User.login");
   }
