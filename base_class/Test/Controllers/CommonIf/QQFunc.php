@@ -63,6 +63,7 @@ class QQFunc
                     echo "<h3>msg  :</h3>" . $msg->error_description;
                     exit;
                 }
+                return $msg;
             }
 
             //Step3：使用Access Token来获取用户的OpenID
@@ -90,7 +91,5 @@ class QQFunc
         {
             echo("The state does not match. You may be a victim of CSRF.");
         }
-        return $msg;
     }
-
 }
