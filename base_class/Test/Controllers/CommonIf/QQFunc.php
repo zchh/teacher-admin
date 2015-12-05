@@ -52,9 +52,8 @@ class QQFunc
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
             $response = file_get_contents($token_url);
             $msg = json_decode($response);
-            $access_token = substr($response,13,44);
+            dump($response);
             dump($msg);
-            dump($access_token);
             if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");
