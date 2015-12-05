@@ -52,10 +52,8 @@ class QQFunc
                 . "&client_secret=" . $this->app_secret . "&code=" . $code;
             $response = file_get_contents($token_url);
             $lpos = strpos($response, "&");
-            $response = substr($response, 0, $lpos -1);
-            $msg = json_decode($response);
-            dump($response);
-            dump($msg);
+            $access_token = substr($response, 13, $lpos -1);
+            dump($access_token);
             if (strpos($response, "callback") !== false)
             {
                 $lpos = strpos($response, "(");//第一次出现
@@ -71,11 +69,12 @@ class QQFunc
             }
 
             //Step3：使用Access Token来获取用户的OpenID
-            /*$params = array();
+            $params = array();
             parse_str($response, $params);
-            $graph_url = "https://graph.qq.com/oauth2.0/me?access_token= ";
+            $graph_url = "https://graph.qq.com/oauth2.0/me?access_token=$access_token";
             $params['access_token'];
             $str  = file_get_contents($graph_url);
+            dump($str);
             if (strpos($str, "callback") !== false)
             {
                 $lpos = strpos($str, "(");
@@ -89,7 +88,7 @@ class QQFunc
                 echo "<h3>msg  :</h3>" . $user->error_description;
                 exit;
             }
-            echo("Hello " . $user->openid);*/
+            echo("Hello " . $user->openid);
         }
         else
         {
