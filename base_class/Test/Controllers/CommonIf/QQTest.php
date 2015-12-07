@@ -53,7 +53,7 @@ class QQTest extends Controller
                 else
                 {
                     $baseFunc = new BaseFunc();
-                    $baseFunc->setRedirectMessage(true,"登录成功",null,"/user_index");
+                    $baseFunc->setRedirectMessage(true,"登录成功，并已绑定",null,"/user_index");
                 }
             }
         }
