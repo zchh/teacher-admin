@@ -30,6 +30,7 @@ class User
     {
 
     }
+
     static function qqLogin($acs_token, $open_id)
     {
         //从三方接口回调函数那传过来的$acs_token，看看此条由用户进行QQ登录返回的记录绑定用户没有
