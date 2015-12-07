@@ -6,9 +6,9 @@
  * Time: 15:35
  */
 
-namespace BaseClass\Test\Controllers\CommonIf;//改
-use BaseClass\Test\Controllers\CommonIf\QQFunc;//改
-use BaseClass\Role\User;
+namespace App\Http\Controllers\CommonIf;//改
+use App\Http\Controllers\CommonIf\QQFunc;//改
+use GirdPlugins\Base\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use GirdPlugins\Base\BaseFunc;

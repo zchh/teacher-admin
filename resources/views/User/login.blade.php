@@ -31,6 +31,7 @@
                                             <a href="/user_register" class="btn btn-success">注册</a></div>
                                             <div style="margin-left:220px;"><span>其他账号登录：<a href="/test_qqTest"><img height="30px" width="30px" src="/image/qq1.png"></a></span></div>
                                       </div>
+
                                 </form>
                       </div>
                 </div>

@@ -6,7 +6,7 @@
  * Time: 16:26
  */
 
-namespace BaseClass\Test\Controllers\CommonIf;//改
+namespace App\Http\Controllers\CommonIf;//改
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 

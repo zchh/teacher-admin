@@ -35,5 +35,7 @@ Route::any("/putImage","Index\ImageController@putImage");
 
 
 /*三方接口*/
+Route::get("/test_qqTest","CommonIf\QQTest@test");
+Route::get("/if_qq","CommonIf\QQTest@syntony");
 
 ?>
