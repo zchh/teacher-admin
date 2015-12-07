@@ -17,4 +17,8 @@ class ArticleTest extends Controller
     {
         echo "Article test";
     }
+    public function angularTest()
+    {
+        return view("User.ngArticle.base");
+    }
 }
