@@ -50,7 +50,7 @@
         <script src="/webapp/bower_components/angular/angular.min.js"></script>
         <script src="/webapp/bower_components/angular-messages/angular-messages.min.js"></script>
         <script src="/webapp/bower_components/angular-route/angular-route.min.js"></script>
-
+        <script src="/webapp/bower_components/angular-animate/angular-anumate.min.js"></script>
         <script src="/webapp/scripts/app.js"></script>
         <script src="/webapp/scripts/directive/headerMsg.js"></script>
 
