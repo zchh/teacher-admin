@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Session;
+use GirdPlugins\Base\LogFunc;
 
 class QQTest extends Controller
 {
@@ -39,6 +40,13 @@ class QQTest extends Controller
                     $base_data['openID'] = $data['openID'];
                     $base_data['token_create_date'] = date("Y-m-d H:i:s");
                     DB::table("base_token")->insert($base_data);
+                    //这里从QQ服务器返回来的数据要以日志的形式存入数据库，便于查找错误
+                    $logFunc = new LogFunc();
+                    $log_array["log_level"] = 3;
+                    $log_array["log_title"] = "qq登录";
+                    $log_array["log_detail"] = "用户在登录之后将返回一个accass_token和一个openID，一个用户是唯一的";
+                    $log_array["log_data"] = "access_token:".$data['access_token']."openID:".$data['openID']."返回日期:".date("Y-m-d H:i:s");
+                    $logFunc->insertLog($log_array);
                 }
                 $user_data = User::qqLogin($data['access_token'], $data['openID']);
                 //dump($user_data);
