@@ -1,8 +1,8 @@
-@extends("User.AngularJs.base")
+@extends("User.ng_base")
 
-@section
 
-@section("body")
+
+@section("main")
 
 
 

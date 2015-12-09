@@ -33,6 +33,6 @@ class ArticleTest extends Controller
     }
     public function angularTest()
     {
-        return view("User.ngArticle.base");
+        return view("User.ngArticle.article");
     }
 }
