@@ -47,6 +47,7 @@ class QQTest extends Controller
                     $log_array["log_detail"] = "用户在登录之后将返回一个accass_token和一个openID，一个用户是唯一的";
                     $log_array["log_data"] = "access_token:".$data['access_token']."openID:".$data['openID']."返回日期:".date("Y-m-d H:i:s");
                     $logFunc->insertLog($log_array);
+
                 }
                 $user_data = User::qqLogin($data['access_token'], $data['openID']);
                 //dump($user_data);
