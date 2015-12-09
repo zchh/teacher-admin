@@ -18,43 +18,43 @@ class AdminPowerGroup
     static function  add()
     {}
 
-    //°´ÕÕÈ¨ÏŞ×éÀ´³õÊ¼»¯
+    //æŒ‰ç…§æƒé™ç»„æ¥åˆå§‹åŒ–
     public function __construct($group_id)
     {
 
     }
 
-    //³õÊ¼»¯ĞÅÏ¢£¬¹¹Ôìº¯ÊıÓ¦¸ÃÍ¨¹ıÕâ¸öº¯Êı»ñÈ¡µ½ĞÅÏ¢
+    //åˆå§‹åŒ–ä¿¡æ¯ï¼Œæ„é€ å‡½æ•°åº”è¯¥é€šè¿‡è¿™ä¸ªå‡½æ•°è·å–åˆ°ä¿¡æ¯
     public function syncBaseInfo($group_id)
     {
 
     }
 
 
-    //Ìí¼ÓÒ»¸öÈ¨ÏŞµ½¸Ã×é
+    //æ·»åŠ ä¸€ä¸ªæƒé™åˆ°è¯¥ç»„
     public function addPower($power_id)
     {
 
     }
-    //É¾³ıÒ»¸öÈ¨ÏŞ
+    //åˆ é™¤ä¸€ä¸ªæƒé™
     public function removePower($power_id)
     {
 
     }
 
-    //Ìí¼ÓÒ»¸öÈËÔ±
+    //æ·»åŠ ä¸€ä¸ªäººå‘˜
     public function addUser($admin_id)
     {
 
     }
 
-    //É¾³ıÒ»¸öÈËÔ±
+    //åˆ é™¤ä¸€ä¸ªäººå‘˜
     public function removeUser($admin_id)
     {
 
     }
 
-    //¸üĞÂÈ¨ÏŞ×éĞÅÏ¢
+    //æ›´æ–°æƒé™ç»„ä¿¡æ¯
     public function updateInfo($info_array)
     {
 
