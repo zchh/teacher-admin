@@ -26,31 +26,32 @@ class Article
          * |-sort   排序
          * |-search 搜索关键字
          * |-user   特殊用户（如果不设置会检查是否有管理员权限，通过后查询所有用户）
-         * |-reverse 是否逆转排序即倒序(默认正序)
+         * |-desc   是否逆转排序即倒序(默认正序)
          * |-subject 专题限制
          * |*/
         $query = DB::table("base_article");
 
 
-        //每页条数
+        //起始条数
         if ( isset($query_limit["start"])  )
         { $query = $query->skip($query_limit["start"]);}
 
         //每页条数
-        isset($query_limit["num"])?
-            $query = $query->take($query_limit["num"]):
-            $query = $query->take(config("my_config.default_num_page"));
-
-        //筛选类别
-        if ( isset($query_limit["class"])  )
+        if(isset($query_limit["num"]))
         {
-            $query = $query->where("article_class","=",$query_limit["class"]);
+            if($query_limit["num"]==0){return [];}
+            $query = $query->take($query_limit["num"]);
         }
+        else
+        {
+            $query = $query->take(config("my_config.default_num_page"));
+        }
+        //dump($query_limit);
 
         //排序
         if(  isset($query_limit["sort"])  )
         {
-            if(true==$query_limit["reverse"])
+            if(true==$query_limit["desc"])
             {
                 $query = $query->orderBy($query_limit["sort"],"desc");
             }
@@ -62,7 +63,7 @@ class Article
         }
         else
         {
-            if(isset($query_limit["reverse"])  && true == $query_limit["reverse"])
+            if(isset($query_limit["desc"])  && true == $query_limit["reverse"])
             {
                 $query = $query->orderBy("article_id","desc");
             }
@@ -71,13 +72,6 @@ class Article
                 $query = $query->orderBy("article_id");
             }
         }
-
-        //关键字
-        if ( isset($query_limit["search"])  )
-        {
-            $query = $query->where("article_title","like","%".$query_limit["search"]."%");
-        }
-
         //按用户查找
         if ( isset($query_limit["user"]) )
         {
@@ -100,6 +94,11 @@ class Article
             if(!AdminPowerGroup::checkAdminPower(6)){return false;};
         }
 
+        //关键字
+        if ( isset($query_limit["search"])  )
+        {
+            $query = $query->where("article_title","like","%".$query_limit["search"]."%");
+        }
         //专题限制
         if(isset($query_limit["subject"]))
         {
@@ -107,6 +106,11 @@ class Article
             ->join("base_article_subject","relation_subject","=","subject_id")
                 ->where("subject_id","=",$query_limit["subject"]);
 
+        }
+        //筛选类别
+        if ( isset($query_limit["class"])  )
+        {
+            $query = $query->where("article_class","=",$query_limit["class"]);
         }
 
         //关联到类

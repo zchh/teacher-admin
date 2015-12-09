@@ -17,6 +17,8 @@
     Route::post("/api_aArticle", "Api\ArticleController@aArticle");//
     Route::post("/api_uArticle", "Api\ArticleController@uArticle");//
     Route::post("/api_dArticle", "Api\ArticleController@dArticle");//
+    Route::post("/api_sArticleClass","Api\ArticleController@sArticleClass");
+
 
 
     //专题的增删改查

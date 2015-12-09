@@ -19,14 +19,19 @@ class ArticleTest extends Controller
         //测试 是否能按照用户查找
         session(["user"=>["user_id"=>1]]);
         $data["start"] = 1;
-        $data["num"] = 1;
+        $data["num"] = 0;
         $data["user"] = 1;
         dump(Article::select($data));
 
         //测试 是否能自由查找
         $data=null;
         $data["user"] = 1;
-        $data["search"] = "机";
+        $data["search"] = "p";
+        dump(Article::select($data));
+        //
+        $data=null;
+        $data["num"] = 0;
+
         dump(Article::select($data));
 
         //管理员查找依赖管理员，暂无

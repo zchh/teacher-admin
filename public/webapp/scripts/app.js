@@ -3,6 +3,8 @@
  */
 $app = angular.module("baseCms",[])
 $app.run(function($rootScope){
-    $rootScope.showHeaderMsg = "这是第一次哦"
+    $rootScope.headerMsg={}
+
+    //$rootScope.showHeaderMsg = "这是第一次哦"
 })
 

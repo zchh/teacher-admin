@@ -1,8 +1,9 @@
 
 <!DOCTYPE html >
+<head>
 @section("head")
 
-    <head>
+
         <meta charset="UTF-8">
         <title>@yield("title",config("my_config.title_name"))</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +28,13 @@
                 }
             });
         </script>
-    </head>
-@show
 
+
+@show
+</head>
 <body ng-app="baseCms">
 @section("message")
-   <div  header-msg  p-msg="@{{showHeaderMsg}}" p-status="@{{showHeaderMsg}}" p-auto-hide="true"></div>
+   <div  header-msg  p-msg="@{{headerMsg.msg}}" p-status="@{{headerMsg.status}}" p-auto-hide="true"></div>
 @show
 
 
