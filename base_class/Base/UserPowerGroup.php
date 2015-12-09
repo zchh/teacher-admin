@@ -17,43 +17,43 @@ class UserPowerGroup
     {}
 
 
-    //°´ÕÕÈ¨ÏŞ×éÀ´³õÊ¼»¯
+    //ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
     public function __construct($group_id)
     {
 
     }
 
 
-    //³õÊ¼»¯ĞÅÏ¢£¬¹¹Ôìº¯ÊıÓ¦¸ÃÍ¨¹ıÕâ¸öº¯Êı»ñÈ¡µ½ĞÅÏ¢
+    //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½Ó¦ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ï¢
     public function syncBaseInfo($group_id)
     {
 
     }
 
-    //Ìí¼ÓÒ»¸öÈ¨ÏŞµ½¸Ã×é
+    //ï¿½ï¿½ï¿½Ò»ï¿½ï¿½È¨ï¿½Şµï¿½ï¿½ï¿½ï¿½ï¿½
     public function addPower($power_id)
     {
 
     }
-    //É¾³ıÒ»¸öÈ¨ÏŞ
+    //É¾ï¿½ï¿½Ò»ï¿½ï¿½È¨ï¿½ï¿½
     public function removePower($power_id)
     {
 
     }
 
-    //Ìí¼ÓÒ»¸öÈËÔ±
+    //ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ô±
     public function addUser($user_id)
     {
 
     }
 
-    //É¾³ıÒ»¸öÈËÔ±
+    //É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ô±
     public function removeUser($user_id)
     {
 
     }
 
-    //¸üĞÂÈ¨ÏŞ×éĞÅÏ¢
+    //ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
     public function updateInfo($info_array)
     {
 
@@ -62,4 +62,56 @@ class UserPowerGroup
     {
 
     }
+
+    /**
+     * ç”¨æˆ·æƒé™è·å–
+     * @access public
+     * @return Bool
+     */
+    public function loadUserPowerToSession()
+    {
+
+
+        $powerData = DB::table("base_user_re_power")->where("relation_group","=",$this->info->group_id)->get();
+
+        $returnData=[];
+        foreach($powerData as $data)
+        {
+            $returnData[]=$data->relation_power;
+        }
+
+
+        Session::push('user.user_power', $returnData);
+
+
+        return $returnData;
+
+    }
+
+    /**
+     * ç”¨æˆ·æƒé™æ£€æŸ¥
+     *
+     *
+     * @access public
+     * @param int $powerId æƒé™id
+     *
+     * @return boolï¼›
+     */
+    static function checkUserPower($powerId)
+    {
+        $powerData = session("user.user_power");
+        if($powerData == NULL)
+        {
+            return false;
+        }
+        foreach($powerData as $data)
+        {
+            if($data == $powerId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

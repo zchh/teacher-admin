@@ -18,43 +18,43 @@ class AdminPowerGroup
     static function  add()
     {}
 
-    //°´ÕÕÈ¨ÏŞ×éÀ´³õÊ¼»¯
+    //ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
     public function __construct($group_id)
     {
 
     }
 
-    //³õÊ¼»¯ĞÅÏ¢£¬¹¹Ôìº¯ÊıÓ¦¸ÃÍ¨¹ıÕâ¸öº¯Êı»ñÈ¡µ½ĞÅÏ¢
+    //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½Ó¦ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ï¢
     public function syncBaseInfo($group_id)
     {
 
     }
 
 
-    //Ìí¼ÓÒ»¸öÈ¨ÏŞµ½¸Ã×é
+    //ï¿½ï¿½ï¿½Ò»ï¿½ï¿½È¨ï¿½Şµï¿½ï¿½ï¿½ï¿½ï¿½
     public function addPower($power_id)
     {
 
     }
-    //É¾³ıÒ»¸öÈ¨ÏŞ
+    //É¾ï¿½ï¿½Ò»ï¿½ï¿½È¨ï¿½ï¿½
     public function removePower($power_id)
     {
 
     }
 
-    //Ìí¼ÓÒ»¸öÈËÔ±
+    //ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ô±
     public function addUser($admin_id)
     {
 
     }
 
-    //É¾³ıÒ»¸öÈËÔ±
+    //É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ô±
     public function removeUser($admin_id)
     {
 
     }
 
-    //¸üĞÂÈ¨ÏŞ×éĞÅÏ¢
+    //ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
     public function updateInfo($info_array)
     {
 
@@ -62,5 +62,55 @@ class AdminPowerGroup
     public function delete()
     {
 
+    }
+
+
+    /**
+     * ç®¡ç†å‘˜æƒé™è·å–
+     *
+     *
+     * @access public
+     * @return Array è¿”å›æƒé™æ•°ç»„
+     */
+    public function loadAdminPowerToSession()
+    {
+
+        $powerData = DB::table("base_admin_re_power")->where("relation_group_id","=",$this->info->group_id)->get();
+        //dump($powerData);
+        $returnData=[];
+        foreach($powerData as $data)
+        {
+            $returnData[] = $data->relation_power_id;
+        }
+        Session::push('admin.admin_power', $returnData);
+
+
+        return $returnData;
+    }
+
+    /**
+     * ç®¡ç†å‘˜æƒé™æ£€æŸ¥
+     *
+     *
+     * @access public
+     * @param int powerId æƒé™ID
+     *
+     * @return è‹¥æˆåŠŸï¼Œè¿”å›ç”¨æˆ·ä¿¡æ¯ï¼Œå¤±è´¥è¿”å›falseï¼›
+     */
+    static function checkAdminPower($powerId)
+    {
+        $powerData = session("admin.admin_power");
+        if($powerData == NULL)
+        {
+            return false;
+        }
+        foreach($powerData as $data)
+        {
+            if($data == $powerId)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
