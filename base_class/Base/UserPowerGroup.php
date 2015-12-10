@@ -43,6 +43,7 @@ class UserPowerGroup
             ->insertGetId(["group_name"=>"$group_name"]);
         return new UserPowerGroup($group_id);
 
+
     }
 
 
