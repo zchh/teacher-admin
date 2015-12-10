@@ -23,13 +23,20 @@ class User
     /*----------------������������--------------*/
     static function addUser($info_array)
     {
-        echo "增添用户成功";
+
     }
     static function login($info_array)
     {
 
     }
+    static function qqLogin($acs_token, $open_id)
+    {
 
+    }
+    static function qqRegister()
+    {
+
+    }
 
 
 

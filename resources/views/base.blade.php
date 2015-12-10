@@ -2,6 +2,9 @@
 @section("head")
 
 <head>
+    <meta property="qc:admins" content="153466272762437746375" />
+
+
 <meta charset="UTF-8">
 <title>@yield("title",config("my_config.title_name"))</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
