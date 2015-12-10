@@ -54,13 +54,13 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      =>  '114.215.156.124',//"114.215.156.124",
+			'host'      =>  '127.0.0.1',//"114.215.156.124",
 
 
 			'database'  => 'base_cms',
 
 			'username'  => "root",// 'cookie',
-			'password'  => "q2338006",//'123456',
+			'password'  => "",//'123456',
 
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
