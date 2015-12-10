@@ -74,6 +74,7 @@ class ArticleClass
         DB::table('base_article_class')
             ->where('class_id','=',$this->class_id)
             ->update($info_array);
+        $this->syncBaseInfo();
     }
     /**
      * 删除文章类别

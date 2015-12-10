@@ -60,7 +60,7 @@ class Article
         $info_array['article_reply']=0;
         DB::table('base_article')
             ->insert($info_array);
-//        echo 123;
+
     }
 
     /**
@@ -109,6 +109,7 @@ class Article
         DB::table('base_article')
             ->where('article_id','=',$this->article_id)
             ->update($info_array);
+        $this->syncBaseInfo();
     }
     /**
      * 删除article
