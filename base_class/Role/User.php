@@ -7,7 +7,7 @@
  */
 
 namespace BaseClass\Role;
-
+use BaseClass\Component\Article\Article;
 
 class User
 {
@@ -20,11 +20,16 @@ class User
 
 
 
-    /*----------------������������--------------*/
+    /*-------------------------*/
     static function addUser($info_array)
     {
-
+        echo "huhihi";
     }
+
+    /**
+     * @param $info_array 登陆信息数组
+     * @return User
+     */
     static function login($info_array)
     {
 
@@ -58,7 +63,7 @@ class User
 
 
 
-    /*----------�����ݿ�ͬ�������Ϣ-------------*/
+    /*--------------------*/
     public function syncBaseInfo()
     {
 

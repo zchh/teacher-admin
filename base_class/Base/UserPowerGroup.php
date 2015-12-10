@@ -176,4 +176,56 @@ class UserPowerGroup
             ->delete();
 
     }
+
+    /**
+     * 用户权限获取
+     * @access public
+     * @return Bool
+     */
+    public function loadUserPowerToSession()
+    {
+
+
+        $powerData = DB::table("base_user_re_power")->where("relation_group","=",$this->info->group_id)->get();
+
+        $returnData=[];
+        foreach($powerData as $data)
+        {
+            $returnData[]=$data->relation_power;
+        }
+
+
+        Session::push('user.user_power', $returnData);
+
+
+        return $returnData;
+
+    }
+
+    /**
+     * 用户权限检查
+     *
+     *
+     * @access public
+     * @param int $powerId 权限id
+     *
+     * @return bool；
+     */
+    static function checkUserPower($powerId)
+    {
+        $powerData = session("user.user_power");
+        if($powerData == NULL)
+        {
+            return false;
+        }
+        foreach($powerData as $data)
+        {
+            if($data == $powerId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

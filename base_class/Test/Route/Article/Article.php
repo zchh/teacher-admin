@@ -7,6 +7,11 @@
  * Time: 16:26
  */
 $__BasePrefix = "BaseClass\\Test\\Controllers\\Article\\";
+Route::get("test_articleTest",$__BasePrefix."ArticleTest@test");
+
+Route::get("test_angularTest",$__BasePrefix."ArticleTest@angularTest");
+
+
 Route::get("test_getMoreByUserTest",$__BasePrefix."ArticleTest@getMoreByUserTest");
 Route::get("test_getMoreBySubjectTest",$__BasePrefix."ArticleTest@getMoreBySubjectTest");
 Route::get("test_addTest",$__BasePrefix."ArticleTest@addTest");

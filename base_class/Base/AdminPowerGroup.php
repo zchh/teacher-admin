@@ -63,4 +63,54 @@ class AdminPowerGroup
     {
 
     }
+
+
+    /**
+     * 管理员权限获取
+     *
+     *
+     * @access public
+     * @return Array 返回权限数组
+     */
+    public function loadAdminPowerToSession()
+    {
+
+        $powerData = DB::table("base_admin_re_power")->where("relation_group_id","=",$this->info->group_id)->get();
+        //dump($powerData);
+        $returnData=[];
+        foreach($powerData as $data)
+        {
+            $returnData[] = $data->relation_power_id;
+        }
+        Session::push('admin.admin_power', $returnData);
+
+
+        return $returnData;
+    }
+
+    /**
+     * 管理员权限检查
+     *
+     *
+     * @access public
+     * @param int powerId 权限ID
+     *
+     * @return 若成功，返回用户信息，失败返回false；
+     */
+    static function checkAdminPower($powerId)
+    {
+        $powerData = session("admin.admin_power");
+        if($powerData == NULL)
+        {
+            return false;
+        }
+        foreach($powerData as $data)
+        {
+            if($data == $powerId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
