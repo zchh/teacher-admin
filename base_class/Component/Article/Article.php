@@ -165,7 +165,6 @@ class Article
         return $return_data;
 
 
-
     }
 
     static function add($info_array)
