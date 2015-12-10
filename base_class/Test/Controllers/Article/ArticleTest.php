@@ -10,11 +10,52 @@ namespace BaseClass\Test\Controllers\Article;
 
 
 use App\Http\Controllers\Controller;
-
+use BaseClass\Component\Article\Article;
 class ArticleTest extends Controller
 {
-    public function test()
+    public function getMoreByUserTest()
     {
-        echo "Article test";
+        $article=Article::getMoreByUser(1);
+        dump($article);
+    }
+    public function getMoreBySubjectTest()
+    {
+        $subject = Article::getMoreBySubject(1);
+        dump($subject);
+    }
+    public function addTest()
+    {
+        $inputData['article_user']=1;
+        $inputData['article_title']="hello word";
+        $inputData['article_intro']="hello hello word";
+        $inputData['article_class']=1;
+        $inputData['article_detail']="abcdefg";
+        Article::add($inputData);
+    }
+    public function syncBaseInfoTest()
+    {
+        $a = new Article(1);
+        $article = $a->syncBaseInfo();
+        dump($article);
+    }
+    public function syncReplyInfoTest()
+    {
+        $a = new Article(1);
+        $reply=$a->syncReplyInfo();
+        dump($reply);
+    }
+    public function updateTest()
+    {
+        $a = new Article(1);
+        $inputData['article_title']="hello word2222";
+        $inputData['article_intro']="hello hello word2";
+        $inputData['article_detail']="abcdefghijk222";
+        $a->update($inputData);
+        dump($a);
+    }
+    public function deleteTest()
+    {
+        $a = new Article(20);
+        $a->delete();
     }
 }
