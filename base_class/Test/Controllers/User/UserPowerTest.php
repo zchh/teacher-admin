@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 
-class UserTest extends Controller
+class UserPowerTest extends Controller
 {
     //测试构造函数，创建用户的函数
     public function addTest()

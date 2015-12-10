@@ -26,6 +26,8 @@ class UserPowerGroup
      */
     private $info;
 
+    private $group_id;
+
     //创建一个用户组
     /**
      * @param $group_name
@@ -51,8 +53,9 @@ class UserPowerGroup
      */
     public function __construct($group_id)
     {
-
+        $this->group_id = $group_id;
          $this->syncBaseInfo($group_id);
+
     }
 
 
@@ -61,8 +64,10 @@ class UserPowerGroup
      * @param $group_id
      * @return bool
      */
-    public function syncBaseInfo($group_id)
+    public function syncBaseInfo()
     {
+        $group_id = $this->group_id;
+
         if(DB::table("base_user_group")->where("group_id",$group_id)->first() == NULL)
         {
             return false;
@@ -83,11 +88,11 @@ class UserPowerGroup
             ->where("user_group","=","$group_id")
             ->get();
         foreach($userData as $Data)
-            {
+        {
             $this->user_list[] = $Data->user_id;
-            }
+        }
 
-       //拿到基本信息
+        //拿到基本信息
         $this->info =DB::table("base_user_group")
             ->where("group_id","=","$group_id")
             ->first();
@@ -111,6 +116,7 @@ class UserPowerGroup
         $relation["relation_power"]=$power_id;
         $relation["relation_group"]=$this->info->group_id;
         DB::table("base_user_re_power")->insert($relation);
+        $this->syncBaseInfo();
     }
     //删除一个权限
     /**
@@ -122,6 +128,7 @@ class UserPowerGroup
             ->where("relation_power","=","$power_id")
             ->where("relation_group","=",$this->info->group_id)
             ->delete();
+        $this->syncBaseInfo();
     }
 
     //增加一个用户
@@ -138,6 +145,7 @@ class UserPowerGroup
         DB::table("base_user")
             ->where("user_id","=","$user_id")
             ->update(["user_group"=>$this->info->group_id]);
+        $this->syncBaseInfo();
     }
 
     //删除一个用户
@@ -153,6 +161,7 @@ class UserPowerGroup
         DB::table("base_user")
             ->where("user_id","=","$user_id")
             ->update(["user_group"=>null]);
+        $this->syncBaseInfo();
     }
 
     //删除这个用户组
