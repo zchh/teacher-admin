@@ -5,7 +5,12 @@ $app.factory("ArticleService",["$http",function($http){
 
     var articleData = {};
     var classData = {};
-    var limit = {num:0};
+    var limit = {
+        num:5,  //每页条数
+        user:0,//传入0，可以自动判断session
+        start:0//开始点
+
+    };
     var sArticle = function(limitData)
     {
         if(undefined == limitData){limitData = limit}

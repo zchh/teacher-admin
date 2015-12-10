@@ -29,20 +29,8 @@ class ArticleController extends Controller
          * |-reverse 是否逆转排序即倒序
          * |*/
         $articleArray = Article::select(Request::input("query_limit"));
-        if($articleArray!==false)
-        {
-            $return_data["status"] = true;
-            $return_data["message"] = "成功获取到数据";
-            $return_data["data"] = $articleArray;
-            return response()->json($return_data);
-        }
-        else
-        {
-            $return_data["status"] = false;
-            $return_data["message"] = "获取数据失败，没有权限";
+        return response()->json($articleArray);
 
-            return response()->json($return_data);
-        }
 
 
     }
@@ -69,22 +57,17 @@ class ArticleController extends Controller
          * |-start  开始
          * |-desc 是否倒序列
          *
-         */
-        $classArray = ArticleClass::select(Request::input("query_limit"));
-        if($classArray!==false)
-        {
-            $return_data["status"] = true;
-            $return_data["message"] = "成功获取到数据";
-            $return_data["data"] = $classArray;
-            return response()->json($return_data);
-        }
-        else
-        {
-            $return_data["status"] = false;
-            $return_data["message"] = "获取数据失败，没有权限";
+         *
 
-            return response()->json($return_data);
-        }
+        * $return_data
+        * |-status 是否成功
+        * |-message 消息
+        * |-data   数据 DB返回的二维结构
+         * */
+
+        $articleArray = ArticleClass::select(Request::input("query_limit"));
+        return response()->json($articleArray);
+
     }
 
 }

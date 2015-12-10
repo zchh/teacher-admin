@@ -11,12 +11,13 @@ namespace BaseClass\Test\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use BaseClass\Component\Article\Article;
+use BaseClass\Component\Article\ArticleClass;
 
 class ArticleTest extends Controller
 {
     public function test()
     {
-        //测试 是否能按照用户查找
+        /*//测试 是否能按照用户查找
         session(["user"=>["user_id"=>1]]);
         $data["start"] = 1;
         $data["num"] = 0;
@@ -32,9 +33,12 @@ class ArticleTest extends Controller
         $data=null;
         $data["num"] = 0;
 
-        dump(Article::select($data));
+        dump(Article::select($data));*/
 
         //管理员查找依赖管理员，暂无
+        dump(session("user"));dump(session("admin"));
+        $data["user"] = 0;
+        dump(ArticleClass::select($data));
     }
     public function angularTest()
     {
