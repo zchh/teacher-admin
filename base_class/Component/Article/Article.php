@@ -180,6 +180,9 @@ class Article
         $info_array['article_click']=0;
         $info_array['article_star']=0;
         $info_array['article_reply']=0;
+        if(!isset($info_array['article_user'])){
+            $info_array['article_user'] = session("user.user_id");
+        }
         return DB::table('base_article')
             ->insert($info_array);
 
