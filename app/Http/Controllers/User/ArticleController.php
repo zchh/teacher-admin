@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
+use BaseClass\Component\Article\ArticleClass;
 use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +11,7 @@ use GirdPlugins\Base\LogFunc;
 use GirdPlugins\Base\UserPowerFunc;
 class ArticleController extends Controller 
 {
-    public function sArticle(ArticleFunc $atcFunc)
+    public function sArticle()
     {
         session(["nowPage"=>"/user_sArticle"]);
         return view("User.ngArticle.article");
@@ -67,15 +68,13 @@ class ArticleController extends Controller
         return view("User.Article.sArticle",$inputData);*/
 
     }
-    public function aArticle(ArticleFunc $atcFunc,  BaseFunc $baseFunc)
+    public function aArticle(BaseFunc $baseFunc)
     {
         
         session(["nowPage"=>"/user_aArticle"]);
-        //dump(session("nowPage"));
-        $inputData["articleClass"] = $atcFunc->getUserClass(session("user.user_id"));
-        /*$inputData["ajaxRequest"] = $baseFunc->requestAjax(
-        ["article_title","article_intro","article_class","article_sort"],
-                "submitForm", "_user_aArticle",true);*/
+
+        $inputData["articleClass"] = ArticleClass::getMoreByUser(session("user.user_id"));
+
         
 
         return view("User.Article.aArticle",$inputData);

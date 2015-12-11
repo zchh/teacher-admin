@@ -160,7 +160,6 @@ class ArticleClass
     static function getMoreByUser($user_id)
     {
         $article_class = DB::table('base_article_class')
-            ->join('base_user','user_id','=','class_user')
             ->where('class_user','=',$user_id)
             ->get();
         return $article_class;
