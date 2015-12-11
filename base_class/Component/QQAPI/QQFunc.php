@@ -6,7 +6,7 @@
  * Time: 16:26
  */
 
-namespace App\Http\Controllers\CommonIf;//改
+namespace BaseClass\Component\QQAPI;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
