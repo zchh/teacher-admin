@@ -13,7 +13,7 @@ use BaseClass\Base\AdminPowerGroup;
 class Article
 {
 
-    private $info;
+    public $info;
     private $reply_list;
 
     /**
@@ -49,7 +49,7 @@ class Article
         //排序
         if(  isset($query_limit["sort"])  )
         {
-            if(true==$query_limit["desc"])
+            if(isset($query_limit["desc"]) &&true==$query_limit["desc"])
             {
                 $query = $query->orderBy($query_limit["sort"],"desc");
             }
@@ -61,7 +61,7 @@ class Article
         }
         else
         {
-            if(isset($query_limit["desc"])  && true == $query_limit["reverse"])
+            if(isset($query_limit["desc"])  && true==$query_limit["desc"])
             {
                 $query = $query->orderBy("article_id","desc");
             }

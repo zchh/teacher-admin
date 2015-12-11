@@ -12,6 +12,9 @@ $app.directive("headerMsg",function(){
             pAutoHide:"@"
         },
         controller:function($scope,$timeout){
+            $scope.hide =function(){
+                $scope.pStatus=false;
+            }
             if($scope.pAutoHide != false)
             {
                 $timeout(function(){$scope.pStatus=false;},2000);

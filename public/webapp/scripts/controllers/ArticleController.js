@@ -1,7 +1,8 @@
 /**
  * Created by Rag_Panda on 2015/12/7.
  */
-$app.controller("ArticleController",function($scope,ArticleService,$http){
+
+$articleController = $app.controller("ArticleController",function($scope,$http,$location){
 
 
     /*
@@ -16,22 +17,57 @@ $app.controller("ArticleController",function($scope,ArticleService,$http){
 
 
     $scope.nowStatus={};
-    $scope.nowStatus.url = "/sArticle";
-    $scope.nowStatus.title = "查看所有文章"
 
+    $scope.nowStatus.title = "查看所有文章";
+   // $location.path("/sArticle");
+
+
+
+
+});
+
+
+//项目路由
+$articleController.config(["$routeProvider",function($routeProvider){
+    $routeProvider.when("/",{
+        templateUrl:'/webapp/views/Article/sArticle.html',
+        controller:'sArticleController'
+    });
+
+    /*$routeProvider.when("/aArticle",{
+        templateUrl:'/webapp/views/Article/aArticle.html',
+        controller:'aArticleController'
+    });*/
+}]);
+
+
+
+$articleController.controller("sArticleController",function($scope,$http){
     //----------------------文章服务----------------------
+
+
     $scope.article = {};
-    $scope.article = ArticleService;
     $scope.article.articleData = {};//文章数据
     $scope.article.total = null ;   //总条数
     $scope.article.nowPage = null ; //当前页数
     $scope.article.totalPage = null ;   //总页数
+    $scope.article.limit = {
+        num:5,  //每页条数
+        user:0,//传入0，可以自动判断session
+        start:0,//开始点
 
+    };
 
     //刷新文章数据
     $scope.article.flushArticle = function(){
-        $scope.article.sArticle().success(function(response){
+        $http.post("/api_sArticle",{query_limit:$scope.article.limit}).success(function(response){
 
+            if(response.status!=true)
+            {
+                $scope.headerMsg.msg = response.message;
+                $scope.headerMsg.status = true;
+                return ;
+            }
             $scope.article.articleData = response.data;
             $scope.article.total = response.total;
             $scope.article.nowPage = parseInt($scope.article.limit.start/$scope.article.limit.num +1);
@@ -40,6 +76,7 @@ $app.controller("ArticleController",function($scope,ArticleService,$http){
             {
                 $scope.article.totalPage += 1;
             }
+
 
         }).error(function(response){
             $scope.showHeaderMsg = "与服务器通讯失败";
@@ -51,19 +88,32 @@ $app.controller("ArticleController",function($scope,ArticleService,$http){
 
     //刷新类的数据
     $scope.article.flushClass = function (){
-        $scope.article.sClass().success(function(response){
+        $http.post("/api_sArticleClass",{query_limit:$scope.article.limit}).success(function(response){
 
+            if(response.status!=true)
+            {
+                $scope.headerMsg.msg = response.message;
+                $scope.headerMsg.status = true;
+                return ;
+            }
             $scope.article.classData = response.data;
 
         }).error(function(response){
-            $scope.showHeaderMsg = "与服务器通讯失败";
+            $scope.headerMsg.msg  = "与服务器通讯失败";
             $scope.headerMsg.status = true;
         });
     };
+
+
+    //改变条件
     $scope.article.changeLimit=function(limit,value) {
         $scope.article.limit[limit] = value;
         $scope.article.flushArticle();
 
+    };
+    $scope.article.sortDesc=function(){
+        $scope.article.limit["desc"] = !$scope.article.limit["desc"];
+        $scope.article.flushArticle();
     };
 
     //下一页
@@ -81,9 +131,57 @@ $app.controller("ArticleController",function($scope,ArticleService,$http){
         $scope.article.flushArticle();
     };
     //----------------------------end--------------------------------
+
+
+    $scope.article.articleGroup = [];
+    $scope.article.opGroup = function(articleId){
+
+            for (var i = 0; i < $scope.article.articleGroup.length; i++)
+            {
+                if ($scope.article.articleGroup[i] == articleId){
+                    $scope.article.articleGroup.splice(i,1);
+                    return;
+                }
+            }
+        $scope.article.articleGroup.push(articleId);
+
+    }
+    $scope.article.delete = function(article_id)
+    {
+        $http.post("/api_dArticle",{article_id:article_id}).success(function(response){
+            $scope.article.flushArticle();
+            $scope.headerMsg.msg = response.message;
+            $scope.headerMsg.status = true;
+
+        });
+
+    }
+    $scope.article.deleteGroup = function()
+    {
+
+        for(var i = 0; i < $scope.article.articleGroup.length;i++)
+        {
+            $http.post("/api_dArticle",{article_id:$scope.article.articleGroup[i]}).success(function(response){
+
+
+            });
+        }
+
+
+        $scope.article.flushArticle();
+        $scope.headerMsg.msg  = "已执行";
+        $scope.headerMsg.status = true;
+
+    }
+
     //$scope.article.changeLimit("num",3);
     $scope.article.flushArticle();
     $scope.article.flushClass();
-
+    $scope.headerMsg.msg  = "已执行";
+    $scope.headerMsg.status = true;
 });
-
+/*
+$articleController.controller("aArticleController",function($scope,$http){
+    $scope.articleData = {} ;
+    var  ue = UE.getEditor('article_detail');
+});*/

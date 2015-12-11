@@ -34,6 +34,7 @@
 </head>
 <body ng-app="baseCms">
 @section("message")
+
    <div  header-msg  p-msg="@{{headerMsg.msg}}" p-status="@{{headerMsg.status}}" p-auto-hide="true"></div>
 @show
 
@@ -48,7 +49,7 @@
 
 
 </body>
-    @section("js")
+    @section("ngJs")
         <script src="/webapp/bower_components/angular/angular.min.js"></script>
 
         <script src="/webapp/bower_components/angular-messages/angular-messages.min.js"></script>

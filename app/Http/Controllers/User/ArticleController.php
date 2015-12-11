@@ -13,6 +13,11 @@ class ArticleController extends Controller
     public function sArticle(ArticleFunc $atcFunc)
     {
         session(["nowPage"=>"/user_sArticle"]);
+        return view("User.ngArticle.article");
+
+
+        //老版代码
+        /*session(["nowPage"=>"/user_sArticle"]);
         
         //获取传来的class和sort并传入视图，方便生成分类和排序的链接
         $sort = Request::input("sort","article_id");
@@ -59,7 +64,8 @@ class ArticleController extends Controller
         $inputData["classData"]  = DB::table("base_article_class")->where("class_user","=",session("user.user_id"))
                 ->get();
 
-        return view("User.Article.sArticle",$inputData);
+        return view("User.Article.sArticle",$inputData);*/
+
     }
     public function aArticle(ArticleFunc $atcFunc,  BaseFunc $baseFunc)
     {
@@ -144,9 +150,7 @@ class ArticleController extends Controller
     {
         session(["nowPage"=>"/user_uArticle"]);
         $inputData["articleClass"] = $atcFunc->getUserClass(session("user.user_id"));
-        $inputData["ajaxRequest"] = $baseFunc->requestAjax(
-        ["article_title","article_intro","article_class","article_sort","article_detail"],
-                "submitForm", "/_user_uArticle",true);
+
         $inputData["articleDetail"] = $atcFunc->getArticleDetail($articleId);
         
         

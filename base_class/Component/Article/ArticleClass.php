@@ -66,7 +66,7 @@ class ArticleClass
         //排序
         if(  isset($query_limit["sort"])  )
         {
-            if(true==$query_limit["desc"])
+            if(isset($query_limit["desc"])  && true==$query_limit["desc"])
             {
                 $query = $query->orderBy($query_limit["sort"],"desc");
             }
@@ -78,7 +78,7 @@ class ArticleClass
         }
         else
         {
-            if(isset($query_limit["desc"])  && true == $query_limit["reverse"])
+            if(isset($query_limit["desc"])  && true==$query_limit["desc"])
             {
                 $query = $query->orderBy("class_id","desc");
             }

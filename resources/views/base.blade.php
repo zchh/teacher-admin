@@ -33,7 +33,7 @@ $.ajaxSetup({
 </head>
 @show
 
-<body>
+<body ng-app="baseCms">
  @section("message")
         @if(session('__Ajax_RedirectFunc_status') == true)
             <div>
@@ -61,6 +61,7 @@ $.ajaxSetup({
             @endif
 @show
 
+
     
 @section("body")
    
@@ -72,5 +73,10 @@ $.ajaxSetup({
 
 
 </body>
+
+@section("ngJs")
+
+
+@show
 
 </html>

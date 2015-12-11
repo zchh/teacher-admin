@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use BaseClass\Component\Article\Article;
 use BaseClass\Component\Article\ArticleClass;
+use BaseClass\Role\User;
 use Illuminate\Support\Facades\Request;
 
 class ArticleController extends Controller
@@ -40,7 +41,17 @@ class ArticleController extends Controller
     }
     public function dArticle()
     {
-
+        $article_id = Request::input("article_id");
+        $article = new Article($article_id);
+        if($article->info->article_user == session("user.user_id"))
+        {
+            $article->delete();
+            return response()->json(["status"=>true,"message"=>"完成删除"]);
+        }
+        else
+        {
+            return response()->json(["status"=>false,"message"=>"无法删除"]);
+        }
     }
     public function uArticle()
     {
