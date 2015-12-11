@@ -7,8 +7,8 @@
  */
 
 namespace App\Http\Controllers\CommonIf;//改
-use App\Http\Controllers\CommonIf\QQFunc;//改
-use GirdPlugins\Base\User;
+use BaseClass\Component\QQAPI\QQFunc;
+use BaseClass\Component\QQAPI\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use GirdPlugins\Base\BaseFunc;

@@ -6,7 +6,7 @@
  * Time: 13:56
  */
 
-namespace GirdPlugins\Base;
+namespace BaseClass\Component\QQAPI;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
