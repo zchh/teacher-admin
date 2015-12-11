@@ -84,9 +84,6 @@ $(document).ready(function(){
     $("#article_detail_div  img").addClass("img-responsive");
 });
 
-
-
-
 </script>
 
 
