@@ -180,7 +180,7 @@ class Article
         $info_array['article_click']=0;
         $info_array['article_star']=0;
         $info_array['article_reply']=0;
-        DB::table('base_article')
+        return DB::table('base_article')
             ->insert($info_array);
 
     }
@@ -228,10 +228,11 @@ class Article
     public function update($info_array)
     {
         $info_array['article_update_date']=date("Y-m-d H:i:s");
-        DB::table('base_article')
+        $result = DB::table('base_article')
             ->where('article_id','=',$this->article_id)
             ->update($info_array);
         $this->syncBaseInfo();
+        return $result;
     }
     /**
      * 删除article
@@ -239,7 +240,7 @@ class Article
      */
     public function delete()
     {
-        DB::table('base_article')
+        return DB::table('base_article')
             ->where('article_id','=',$this->article_id)
             ->delete();
     }

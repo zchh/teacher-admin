@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
+use BaseClass\Base\UserPowerGroup;
+use BaseClass\Component\Article\Article;
 use BaseClass\Component\Article\ArticleClass;
 use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Request;
@@ -80,10 +82,10 @@ class ArticleController extends Controller
         return view("User.Article.aArticle",$inputData);
         
     }
-    public function _aArticle(UserPowerFunc $userPowerFunc,LogFunc $logFunc,ArticleFunc $atcFunc,  BaseFunc $baseFunc)
+    public function _aArticle(BaseFunc $baseFunc)
     {
-        $powerId=10;
-        if(!$userPowerFunc->checkUserPower($powerId))
+
+        if(!UserPowerGroup::checkUserPower(10))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
 
@@ -91,28 +93,18 @@ class ArticleController extends Controller
         $articleData = Request::only("article_title","article_intro","article_class"/*,"article_sort"*/,"article_detail");
 
 
-        DB::beginTransaction();
+
 
         //插入封面图
         if(session("image.image_id") != null)
         {
              $articleData["article_image"] = session("image.image_id");   //传递文章封面ID
         }
-         
 
-
-        if(true == $atcFunc->addArticle($articleData))
+        if(true == Article::add($articleData))
         {
-            $log_array['log_level']=0;
-            $log_array['log_title']="添加操作";
-            $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."添加了一篇文章";
-            $log_array['log_data']="添加";
-            $log_array['log_user']=session("user.user_id");
-            $logFunc->addLog($log_array);
-            DB::commit();
             Session::put("image.image_id", null); 
-
-            return response()->json(['status' => true, 'message' => '<p class="text-success">添加成功，即将跳转</p>']);
+                return response()->json(['status' => true, 'message' => '<p class="text-success">添加成功，即将跳转</p>']);
 
         }
         else
@@ -120,88 +112,78 @@ class ArticleController extends Controller
            return response()->json(['status' =>false, 'message' => '<p class="text-success">添加失败，即将跳转</p>']); 
         }        
     }
-    public function dArticle(UserPowerFunc $userPowerFunc,LogFunc $logFunc,$articleId,ArticleFunc $atcFunc,  BaseFunc $baseFunc)
+
+
+    public function dArticle($articleId,  BaseFunc $baseFunc)
     {
-        $powerId=10;
-        if(!$userPowerFunc->checkUserPower($powerId))
+        if(!UserPowerGroup::checkUserPower(10))
         {
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
-            return redirect()->back();
+
         }
-        DB::beginTransaction();
-        if($atcFunc->deleteUserArticle(session("user.user_id"),$articleId))
+        $articleObj =  new Article($articleId);
+        if($articleObj ->delete())
         {
-            $log_array['log_level']=0;
-            $log_array['log_title']="删除操作";
-            $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."删除了一篇文章";
-            $log_array['log_data']="删除";
-            $log_array['log_user']=session("user.user_id");
-            $logFunc->addLog($log_array);
-            DB::commit();
             $baseFunc->setRedirectMessage(true, "成功删除", NULL,"/user_sArticle");
         }
         else
         {
             $baseFunc->setRedirectMessage(false, "删除失败", NULL,"/user_sArticle");
         }
-    }
-    public function uArticle($articleId,ArticleFunc $atcFunc,  BaseFunc $baseFunc)
-    {
-        session(["nowPage"=>"/user_uArticle"]);
-        $inputData["articleClass"] = $atcFunc->getUserClass(session("user.user_id"));
 
-        $inputData["articleDetail"] = $atcFunc->getArticleDetail($articleId);
+    }
+    public function uArticle($articleId,  BaseFunc $baseFunc)
+    {
+
+
+        session(["nowPage"=>"/user_uArticle"]);
+        $inputData["articleClass"] = ArticleClass::getMoreByUser(session("user.user_id"));
+        $articleObj = new Article($articleId);
+        $inputData["articleDetail"] = $articleObj->info;
+
         
         
         session(["image.image_id"=>$inputData["articleDetail"]->article_image]);//保存一个当前文章图片id，在模态框可以显示出来
         return view("User.Article.uArticle",$inputData);
         
     }
-    public function ajax_getNowArticleDetail(ArticleFunc $atcFunc)
+    public function ajax_getNowArticleDetail()
     {
         $data = Request::only("article_id");
-        echo $atcFunc->getArticleDetail( $data["article_id"])->article_detail;
+        $articleObj = new Article($data["article_id"]);
+
+        echo $articleObj->info->article_detail;
     }
     public function _uArticle(UserPowerFunc $userPowerFunc,LogFunc $logFunc,BaseFunc $baseFunc) 
    {
-        $powerId=10;
-        if(!$userPowerFunc->checkUserPower($powerId))
-        {
-            return response()->json(['status' => false, 'message' => '<p class="text-danger">失败，请检查你的权限</p>']);
-           
-        }
-        $articleData = Request::only("article_title","article_intro","article_class"/*,"article_sort"*/,"article_detail");
-          if(session("image.image_id") != null)  //zc
+
+       if(!UserPowerGroup::checkUserPower(10))
+       {
+           $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
+
+       }
+        $articleData = Request::only("article_title","article_intro","article_class","article_detail");
+       if(session("image.image_id") != null)  //zc
         {
              $articleData["article_image"] = session("image.image_id");   //传递文章封面ID
         }
 
         $articleId = Request::input("article_id");
-        DB::beginTransaction();
-        if(DB::table("base_article")->where("article_id","=",$articleId)
-                ->where("article_user","=",session("user.user_id"))
-                ->update($articleData))
+        $articleObj = new Article($articleId);
+        if(false!==$articleObj->update($articleData))
         {
-
-
-            $log_array['log_level']=0;
-            $log_array['log_title']="修改操作";
-            $log_array['log_detail']=date("Y-m-d H:i:s").session('user.user_nickname')."修改了一篇文章";
-            $log_array['log_data']="修改";
-            $log_array['log_user']=session("user.user_id");
-            $logFunc->addLog($log_array);
-            DB::commit();
-
             Session::put("image.image_id", null); //zc
 
-            //dump($_POST);
             return response()->json(['status' => true, 'message' => '<p class="text-success">修改成功，即将跳转</p>']);
         }
         else
         {
-            return response()->json(['status' => false, 'message' => '<p class="text-danger">失败，请检查</p>']);
+            return response()->json(['status' => false, 'message' => '<p class="text-danger">失败，无法写入数据库</p>']);
         }
     }
+
+
+    //----重构修改到此 王钧泰 2015 12/11
     public function sSubject()
     {
         $data["subjectData"]=DB::table("base_article_subject")->where("subject_user","=",session("user.user_id"))->get();
@@ -553,6 +535,13 @@ class ArticleController extends Controller
         return redirect()->back();
     }
 
+
+    //以下代码注释，测试是否可以安全移出  2015 12/11
+    /*public function aArticleImage()          //张池增加，添加修改文章时的选择图片界面
+   {
+       return("User.Article.aArticleImage");
+   }*/
+    /*
     public function readAllArticle()
     {
 
@@ -603,9 +592,9 @@ class ArticleController extends Controller
          
          
     }
+    */
 
-
-    
+    /*
     public function sCollect()
     {
         session(["nowPage"=>"/user_sCollect"]); 
@@ -649,7 +638,7 @@ class ArticleController extends Controller
                 ->get();    
         return view("User.Article.moreCollect",$data);
     }
-
+    */
 
 
     public function aArticleImage()          //张池增加
