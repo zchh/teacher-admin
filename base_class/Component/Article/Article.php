@@ -29,7 +29,7 @@ class Article
          * |-class  类别
          * |-sort   排序
          * |-search 搜索关键字
-         * |-user   特殊用户（如果不设置会检查是否有管理员权限，通过后查询所有用户,设为0则直接查当前用户）
+         * |-user   用户筛选（如果不设置查看所有文章）
          * |-desc   是否逆转排序即倒序(默认正序)
          * |-subject 专题限制
          * |*/
@@ -71,43 +71,12 @@ class Article
             }
         }
         //按用户查找
-        if ( isset($query_limit["user"]) )
+        if(isset($query_limit["user"]))
         {
-            if($query_limit["user"] === 0 && session("user.user_id",0)!==null)    //如果限制用户id为0 且有session  这种情况是查询当前用户
-            {
-                $query_limit["user"] = session("user.user_id");
-            }
-            else //限制id不为0 说明确定用户
-            {
-                if($query_limit["user"]!==session("user.user_id",null))
-                    //如果是查看的别人的也需要验证管理员权限
-                {
-
-                    if(!AdminPowerGroup::checkAdminPower(6)){
-                        $return_data["status"] = false;
-                        $return_data["message"] = "你没有权限查看";
-                        return $return_data;
-                    };
-                    $query = $query->where("article_user","=",$query_limit["user"]);
-                }
-                //查看自己的验证session通过即可
-                else
-                {
-
-                    $query = $query->where("article_user","=",$query_limit["user"]);
-                }
-            }
-
-
-        }//如果没有表示用户，就要显示所有的用户，那么需要检查是否有权限
-        else
-        {
-            if(!AdminPowerGroup::checkAdminPower(6)){
-                $return_data["status"] = false;
-                $return_data["message"] = "你没有权限查看";
-                return $return_data;
-            };
+            $query = $query->where("article_user","=",$query_limit["user"]);
         }
+
+
 
 
         //关键字

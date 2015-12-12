@@ -90,7 +90,7 @@ class ArticleController extends Controller
             $baseFunc->setRedirectMessage(false, "你没有权限进行此操作，请联系超级管理员", NULL, NULL);
 
         }
-        $articleData = Request::only("article_title","article_intro","article_class"/*,"article_sort"*/,"article_detail");
+        $articleData = Request::only("article_title","article_intro","article_class","article_detail");
 
 
 
