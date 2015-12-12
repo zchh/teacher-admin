@@ -22,7 +22,7 @@ class BaseFunc {
      * @param string $redirect  如果需要顺便跳转到某个页面，可以将其url填入，如果为空，则忽略不跳转
      * @return NULL/直接跳转
      */
-    public function setRedirectMessage($status, $message, $plugin, $redirect = NULL) {
+    public function setRedirectMessage($status, $message, $plugin=NULL, $redirect = NULL) {
          if (Request::ajax()) 
         {//如果是ajax请求
             //

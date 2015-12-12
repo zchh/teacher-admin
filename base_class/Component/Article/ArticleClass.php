@@ -148,7 +148,7 @@ class ArticleClass
     static function add($info_array)
     {
         $info_array['class_create_date']=date("Y-m-d H:i:s");
-        DB::table('base_article_class')
+        return DB::table('base_article_class')
             ->insert($info_array);
     }
     /**
@@ -157,11 +157,19 @@ class ArticleClass
      * @param $user_id
      * @return array
      */
-    static function getMoreByUser($user_id)
+    static function getMoreByUser($user_id,$render=false)
     {
         $article_class = DB::table('base_article_class')
-            ->where('class_user','=',$user_id)
-            ->get();
+            ->where('class_user','=',$user_id);
+        if ($render == true)
+        {
+            $article_class = $article_class->simplePaginate(10);
+        }
+        else
+        {
+            $article_class = $article_class->get();
+        }
+
         return $article_class;
     }
 
@@ -192,22 +200,40 @@ class ArticleClass
      * @access public
      * @param $info_array
      */
-    public function update($info_array)
+    public function update($info_array,$user_id = NULL)
     {
         $info_array['class_update_date']=date("Y-m-d H:i:s");
-        DB::table('base_article_class')
-            ->where('class_id','=',$this->class_id)
-            ->update($info_array);
+        $r = DB::table('base_article_class')
+            ->where('class_id','=',$this->class_id);
+        if(isset($user_id))
+        {
+            $r = $r->where("class_user","=",$user_id)->update($info_array);;
+        }
+        else
+        {
+            $r = $r->update($info_array);
+        }
+
         $this->syncBaseInfo();
+        return $r;
     }
     /**
      * 删除文章类别
      * @access public
      */
-    public function delete()
+    public function delete($user_id = NULL)
     {
-        DB::table('base_article_class')
-            ->where('class_id','=',$this->class_id)
-            ->delete();
+        $r  = DB::table('base_article_class')
+            ->where('class_id','=',$this->class_id);
+        if(isset($user_id))
+        {
+            return $r->where("class_user","=",$user_id) ->delete();
+        }
+        else
+        {
+            return $r ->delete();
+        }
+
+
     }
 }
