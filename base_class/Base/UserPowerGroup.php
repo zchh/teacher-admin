@@ -69,7 +69,7 @@ class UserPowerGroup
     {
         $group_id = $this->group_id;
 
-        if(DB::table("base_user_group")->where("group_id",$group_id)->first() == NULL)
+        if(DB::table("base_user_group")->where("group_id","=",$group_id)->first() == NULL)
         {
             return false;
         }
@@ -158,6 +158,7 @@ class UserPowerGroup
         $userData=DB::table("base_user")
             ->where("user_id","=","$user_id")
             ->get();
+        if($userData = null){return false;}
 
         DB::table("base_user")
             ->where("user_id","=","$user_id")
