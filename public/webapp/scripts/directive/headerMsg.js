@@ -1,6 +1,12 @@
 /**
  * Created by Rag_Panda on 2015/12/7.
  */
+/*调用方法：
+* header-msg 元素
+* p-status 是否激活显示(不能多次调用，不带排队功能)
+* p-msg 需要显示的信息
+* p-auto-hide 是否自动隐藏
+* */
 $app.directive("headerMsg",function(){
     return {
         restrict:"A",

@@ -150,7 +150,7 @@ $articleController.controller("sArticleController",function($scope,$http){
     {
         $http.post("/api_dArticle",{article_id:article_id}).success(function(response){
             $scope.article.flushArticle();
-            $scope.headerMsg.msg = response.message;
+            $scope.headerMsg.msg = "删除成功";
             $scope.headerMsg.status = true;
 
         });
@@ -177,7 +177,7 @@ $articleController.controller("sArticleController",function($scope,$http){
     //$scope.article.changeLimit("num",3);
     $scope.article.flushArticle();
     $scope.article.flushClass();
-    $scope.headerMsg.msg  = "已执行";
+    $scope.headerMsg.msg  = "已获取数据";
     $scope.headerMsg.status = true;
 });
 /*

@@ -86,7 +86,7 @@
                     <th><span class=" glyphicon glyphicon-link" aria-hidden="true"></span> 操作</th>
                 </tr>
                 <tr ng-repeat="single in article.articleData" class="article_item">
-                    <td ng-bind="single.article_title"></td>
+                    <td ><a href="/index_articleDetail/{{single.article_id}}" ng-bind="single.article_title"></a></td>
                     <td ng-bind="single.class_name"></td>
                     <td ng-bind="single.article_click"></td>
                     <td ng-bind="single.article_create_date"></td>
