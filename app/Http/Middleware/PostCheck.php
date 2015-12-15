@@ -19,7 +19,7 @@ class PostCheck {
 	{
            
 	   $postData = Request::all();
-          
+
            $checkData=[];
            foreach($postData as $key => $data )
            {
@@ -32,18 +32,22 @@ class PostCheck {
            //如果没有符合的验证规则，就跳过
            if($checkData==NULL)
            {
+
                return $next($request);
            }
-           
-           
+
+
            //dump($checkData);dump($checkRule);
            $validator = Validator::make($checkData, $checkRule);
+
            if($validator -> passes())
            {
+               //dump($_POST);exit();
                return $next($request);
            }
            else
            {
+               //dump($_POST);exit();
                $errorData = $validator->failed();
                $defaultMessage= $validator->messages();
                

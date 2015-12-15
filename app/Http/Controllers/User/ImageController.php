@@ -61,7 +61,8 @@ class ImageController extends Controller {
 
 
             //移动文件到指定目录
-            $path = $_SERVER['DOCUMENT_ROOT'] .config("my_config.image_upload_dir"). session("user.user_id")."/";  //存贮文件的绝对路径
+            $storage_path = config("my_config.image_upload_dir"). session("user.user_id")."/";  //存贮文件的绝对路径
+            $path = $_SERVER['DOCUMENT_ROOT'].$storage_path;
             $name = date('YmdHis') . session("user.user_id") . rand(1000, 9999) . "." . $file->getClientOriginalExtension();  //自动生成路径
 
 
@@ -71,8 +72,8 @@ class ImageController extends Controller {
             $input_data["image_format"] = $file->getClientOriginalExtension();   //文件格式
             $input_data["image_intro"] = $_POST["image_intro"];
             if(isset($_POST["image_class"])){$input_data["image_class"] = $_POST["image_class"];}
-            
-            $input_data["image_path"] = $path.$name;  //绝对路径
+
+            $input_data["image_path"] = $storage_path.$name;  //绝对路径
             $input_data["image_user"] = session("user.user_id");
 
             //操作记录

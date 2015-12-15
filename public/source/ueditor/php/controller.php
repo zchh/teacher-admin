@@ -34,9 +34,9 @@ switch ($action) {
         break;
 
     /* 抓取远程文件 */
-    case 'catchimage':
+    /*case 'catchimage':
         $result = include("action_crawler.php");
-        break;
+        break;*/
 
     default:
         $result = json_encode(array(

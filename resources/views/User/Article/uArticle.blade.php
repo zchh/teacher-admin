@@ -111,12 +111,12 @@
         ue.ready(function() {
         UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
         UE.Editor.prototype.getActionUrl = function(action) {
-            if (action == 'uploadimage' ) {
+            if (action == 'uploadimage') {
                 return '{{config("my_config.website_url")}}/putImage';
             } else {
                 return this._bkGetActionUrl.call(this, action);
             }
-        }
+        }//修改上传图片接口
 
         $.ajax({
         type:"post",
