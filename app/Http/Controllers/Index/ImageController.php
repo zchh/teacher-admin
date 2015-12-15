@@ -66,7 +66,7 @@ class ImageController extends Controller {
     public function putImage(BaseFunc $baseFunc, LogFunc $logFunc, UserPowerFunc $UserPowerFunc)
     {
         ob_end_clean();
-        date_default_timezone_set("Asia/chongqing");
+        //date_default_timezone_set("Asia/shanghai");
         error_reporting(E_ERROR);
         header("Content-Type: text/html; charset=utf-8");
         //session(["test"=>date('Y-m-d H:i:s')]);
