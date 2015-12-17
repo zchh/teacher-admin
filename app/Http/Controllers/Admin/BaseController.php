@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use BaseClass\Role\Admin;
 use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,20 +13,13 @@ class BaseController extends Controller {
     {
         return view("Admin.login");
     }
-    public function _login(BaseFunc $baseFunc, AdminPowerFunc $powerFunc )
+    public function _login(BaseFunc $baseFunc)
     {
         $inputData = Request::only("admin_username","admin_password");
-        
-        $userData = $baseFunc->loginAdminCheck($inputData["admin_username"],$inputData["admin_password"]);
+        $userData = Admin::loginAdminCheck($inputData["admin_username"],$inputData["admin_password"]);
         if($userData != false)
         {
-            $sessionInitData["admin_status"] = true;
-            $sessionInitData["admin_id"] = $userData->admin_id;
-            $sessionInitData["admin_nickname"] = $userData->admin_nickname;
-            $sessionInitData["admin_group"] = $userData->admin_group;
-            $sessionInitData["admin_power"] = $powerFunc->getAdminPower($userData->admin_id);
-            
-            session(["admin"=>$sessionInitData]);//session结构请见ReadMe文档
+            Admin::login($userData);
             $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/admin_index");
         }
         else

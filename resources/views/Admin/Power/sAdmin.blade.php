@@ -142,9 +142,11 @@
                 <hr>
 
 
-                <div class="col-sm-4 col-sm-offset-4">
-                    <?php echo $articleData->render(); ?>
-                </div>
+                @if( $paginate == true)
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <?php echo $articleData->render(); ?>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
