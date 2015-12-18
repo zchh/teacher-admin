@@ -74,7 +74,7 @@
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="hidden" name="group_id" value="{{$data->group_id}}">
                                                     <input type="text " id="inputText" class="form-control" name="group_name" placeholder="Group name" value="{{$data->group_name}}" required autofocus>
-
+                                            </div>
                                                     <div class="modal-footer">
                                                         <button  class="btn btn-warning btn-sm" type="submit">修改</button>
                                                             </form>

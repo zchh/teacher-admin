@@ -1,9 +1,33 @@
 @extends("Admin.Power.base")
 
 @section("main")
-
-
-
+    <script type="text/javascript">
+        $(function(){
+            //用户在添加权限到当前权限组的时候可以一键全选
+            $("#CheckedAllPower").click(function(){
+                if(this.checked)
+                {
+                    //$("input[name='newsletter']").attr("checked", true);
+                    $("[name='power_id_array[]']").prop("checked",true);
+                }
+                else
+                {
+                    $("[name='power_id_array[]']").prop("checked",false);
+                }
+            });
+            //用户在添加用户到当前权限组的时候可以一键全选
+            $("#CheckedAllAdmin").click(function(){
+                if(this.checked)
+                {
+                    $("[name='admin_id_array[]']").prop("checked",true);
+                }
+                else
+                {
+                    $("[name='admin_id_array[]']").prop("checked",false);
+                }
+            });
+        });
+    </script>
 
 
 
@@ -124,7 +148,6 @@
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="hidden" name="admin_id" value="{{ $data->admin_id }}">
                                                     将要移除该管理员！
-
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-danger btn-sm" type="submit">移除</button>
@@ -162,6 +185,7 @@
                         <form action="/admin_addPowerToAdminPowerGroup" method="post">
                             <div class="modal-body">
 
+                                <input type="checkbox" id="CheckedAllPower"><b>全选/全不选</b>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="group_id" value="{{$GroupData[0]->group_id}}">
                                 @foreach($checkPower as $value1)
@@ -196,13 +220,12 @@
                         </div>
                         <form action="/admin_addAdminToAdminPowerGroup" method="post">
                             <div class="modal-body">
+
+                                <input type="checkbox" id="CheckedAllAdmin"><b>全选/全不选</b>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="group_id" value="{{$GroupData[0]->group_id}}">
                                 @foreach($checkAdmin as $value2)
-                                    @if($GroupData[0]->group_id == $value2->admin_group)
-                                        <h4><input type="checkbox" value="{{$value2->admin_id}}" name="admin_id_array[]"
-                                                   checked="checked">  {{$value2->admin_username}}</input></h4>
-                                    @else
+                                    @if($GroupData[0]->group_id != $value2->admin_group)
                                         <h4><input type="checkbox" value="{{$value2->admin_id}}"
                                                    name="admin_id_array[]"> {{$value2->admin_username}}</input></h4>
                                     @endif
