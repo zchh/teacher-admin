@@ -11,15 +11,26 @@ namespace BaseClass\Role;
 use BaseClass\Base\AdminPowerGroup;
 use Illuminate\Support\Facades\DB;
 
-
+/**
+ * Class Admin
+ * @package BaseClass\Role
+ */
 class Admin
 {
-    //管理员的一条记录（即一个对象）
-    private $info;
-    //管理员id
+
+    /**
+     * @var管理员的一条记录（即一个对象）
+     */
+    public $info;
+    /**
+     * @var管理员id
+     */
     private $admin_id;
 
-    //参数：数组
+    /**
+     * 参数：数组
+     * @param $userData
+     */
     static function login($userData)
     {
         $sessionInitData["admin_status"] = true;
@@ -33,7 +44,12 @@ class Admin
         session(["admin" => $sessionInitData]);//session结构请见ReadMe文档
     }
 
-    //检测管理员名和密码是否正确
+    /**
+     * 检测管理员名和密码是否正确
+     * @param $user_name
+     * @param $password
+     * @return bool
+     */
     static function loginAdminCheck($user_name, $password)
     {
         $userData = DB::table("base_admin")
@@ -47,6 +63,10 @@ class Admin
         }
     }
 
+    /**
+     * 构造函数
+     * @param $admin_id
+     */
     public function __construct($admin_id)
     {
         $this->admin_id = $admin_id;
@@ -54,6 +74,10 @@ class Admin
         $this->syncBaseInfo();
     }
 
+    /**
+     * 同步信息函数
+     * @return bool
+     */
     public function syncBaseInfo()
     {
         $admin_id = $this->admin_id;
@@ -69,7 +93,11 @@ class Admin
     }
 
 
-    //获取管理员信息（包括其所属的权限组）和所有权限组信息
+    /**
+     * 获取管理员信息（包括其所属的权限组）和所有权限组信息
+     * @param bool|false $page
+     * @return mixed
+     */
     static function getAdmin($page = false)
     {
 
@@ -87,8 +115,10 @@ class Admin
 
     }
 
-
-    //获取该管理员对应的多个权限,把这些权限放进一个数组，作为返回值
+    /**
+     * 获取该管理员对应的多个权限,把这些权限放进一个数组，作为返回值
+     * @return array|bool
+     */
     public function getAdminPower()
     {
 
@@ -106,24 +136,51 @@ class Admin
 
     }
 
+    /**
+     * 添加管理员
+     * @param $input
+     */
     static function addAdmin($input)
     {
-        DB::table("base_admin")->insert($input);
+
+        $data["admin_username"] = DB::table('base_admin')->where("admin_username", "=", $input['admin_username'])->get();
+        if( $data["admin_username"] != null)  //判断此用户是否已经存在
+        {
+            return false;
+        }
+        if(DB::table("base_admin")->insert($input))
+        {
+            return true;
+        }
+        return false;
+
 
     }
 
-
+    /**
+     * 修改管理员
+     * @param $input 数组
+     */
     public function updateAdmin($input)
     {
         $adminId = $this->admin_id;
-        DB::table("base_admin")->where("admin_id", "=", $adminId)->update([
+       $return = DB::table("base_admin")->where("admin_id", "=", $adminId)->update([
             "admin_username" => $input['adminUserName'],
             "admin_nickname" => $input['adminNickName'],
             "admin_group" => $input['adminGroup']
         ]);
+        if($return >= 0)
+        {
+            return true;
+        }
+        return false;
 
     }
 
+    /**
+     * 删除管理员
+     * @return bool
+     */
     public function delete()
     {
         $admin_id = $this->admin_id;

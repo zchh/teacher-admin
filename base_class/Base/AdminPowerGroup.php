@@ -11,9 +11,12 @@ namespace BaseClass\Base;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class AdminPowerGroup
+ * @package BaseClass\Base
+ */
 class AdminPowerGroup
 {
-
     /**
      * @var 权限组id,构造函数的必须参数
      */
@@ -33,20 +36,32 @@ class AdminPowerGroup
      */
     private $info;
 
-    //在权限组中查询管理员
+
+    /**
+     * 在权限组中查询管理员
+     * @param bool|false $page
+     * @return mixed
+     */
     static function getAdminPowerGroup($page = false)
     {
+
+        $data['readPower'] = DB::table("base_admin_re_power")->where("relation_power_id", "=", 4)->get();
         $base_admin_group = DB::table("base_admin_group");
         if ($page) {
             $data["GroupData"] = $base_admin_group->paginate(5);
-            return $data["GroupData"];
+            return $data;
         } else {
             $data["GroupData"] = $base_admin_group->get();
-            return $data["GroupData"];
+            return $data;
         }
     }
 
-//创建一个管理员组
+
+    /**
+     * 创建一个管理员组
+     * @param $group_name
+     * @return AdminPowerGroup|bool
+     */
     static function  add($group_name)
     {
         $groupExisted = DB::table("base_admin_group")
@@ -58,52 +73,66 @@ class AdminPowerGroup
         //不存在，则创建
         $data["group_name"] = $group_name;
         if (DB::table('base_admin_group')->insert($data)) {
-            //获取group_id
-            $group = DB::table("base_admin_group")
-                ->where("group_name", "=", $group_name)
-                ->first(); //查看数据库中是否存在此管理员组
-            if ($group != null) {
-                return new AdminPowerGroup($group->group_id);
-            }
-            return false;
+            return true;
         }
     }
 
-    //删除这个管理员组
+
     /**
+     * 删除这个管理员组
+     * @param $group_name
+     * @param $group_id
+     * @return bool
      *
      */
     static function delete($group_id)
     {
-        if (DB::table("base_admin_group")
+        $first = DB::table("base_admin_group")
             ->where("group_id", "=", $group_id)
-            ->first()
-        ) {
-            DB::table("base_admin_group")
+            ->first();
+        if ($first) {
+           $delete =  DB::table("base_admin_group")
                 ->where("group_id", "=", $group_id)
                 ->delete();
+            if($delete)
+            {
+                return true;
+            }
+            return false;
         } else {
             return false;  //不存在该管理员组
         }
 
     }
 
-    //修改这个管理员组
+
+    /**
+     * 修改这个管理员组
+     * @param $group_name
+     * @param $group_id
+     * @return bool
+     */
     static function update($group_name, $group_id)
     {
-        if (DB::table("base_admin_group")
+        $first = DB::table("base_admin_group")
             ->where("group_id", "=", $group_id)
-            ->first()
-        ) {
-            DB::table("base_admin_group")
+            ->first();
+        if ($first)
+        {
+           $count =  DB::table("base_admin_group")
                 ->where("group_id", "=", $group_id)
                 ->update(["group_name" => $group_name]);
+            return $count;
         } else {
             return false;  //不存在该管理员组
         }
 
     }
 
+    /**
+     * 查询管理权限组详情
+     * @return mixed
+     */
     public function moreAdminPowerGroup()
     {
         //获取该权限组信息
@@ -113,7 +142,7 @@ class AdminPowerGroup
             ->leftJoin("base_admin", "admin_group", "=", "group_id")
             ->where("group_id", "=", $this->group_id)
             ->get();
-        // dump($data);
+
         $data['checkAdmin'] = DB::table("base_admin")->get();
         $data['checkPower'] = DB::table("base_admin_power")->get();
         //连表查询，获取该权限组对应的所有权限
@@ -133,26 +162,31 @@ class AdminPowerGroup
     }
 
 
-    //按照权限组来初始化
+    /**
+     * 按照权限组来初始化
+     * @param $group_id
+     */
     public function __construct($group_id)
     {
         $this->group_id = $group_id;
         $this->syncBaseInfo();
     }
 
-    //初始化信息，构造函数应该通过这个函数获取到信息,同步数据
-    //通过表之间的依赖关系和group_id，来获取其他几个数据成员的值
+    /**
+     * 初始化信息，构造函数应该通过这个函数获取到信息,同步数据
+     * 通过表之间的依赖关系和group_id，来获取其他几个数据成员的值
+     * @return bool
+     */
     public function syncBaseInfo()
     {
         $group_id = $this->group_id;
         if (DB::table("base_admin_group")
                 ->where("group_id", "=", $group_id)
-                ->first() == null
-        ) {
+                ->first() == null) {
             return false;
         }
-        //1.拿到该权限组的所有权限,把一个权限组对应多个权限，获取权限放入数组  $this->power_list[]
 
+        //1.拿到该权限组的所有权限,把一个权限组对应多个权限，获取权限放入数组  $this->power_list[]
         $powerData = DB::table("base_admin_re_power")
             ->where("relation_group_id", "=", $group_id)
             ->get();
@@ -169,9 +203,7 @@ class AdminPowerGroup
             $this->admin_list[] = $Data->admin_id;
         }
 
-
         //3.拿到该权限组的基本信息,获取权限组表为group_id的记录   $this->info
-
         $this->info = DB::table("base_admin_group")
             ->where("group_id", "=", $group_id)
             ->first();
@@ -179,28 +211,47 @@ class AdminPowerGroup
     }
 
 
-    //添加一个权限到该组
-    public function addPower($power_id)
+    /**
+     * 添加一个权限到该组
+     * @param $power_id
+     * @return bool
+     */
+    public function addPower($power_id_array)
     {
 
-        $relationExisted = DB::table("base_admin_re_power")
-            ->where("relation_power_id", "=", $power_id)
-            ->where("relation_group_id", "=", $this->info->group_id)
-            ->get();
-        if ($relationExisted != null) {
-            return false;
+        if($power_id_array== null)
+        {
+            return false;  //没勾选
         }
+        foreach ($power_id_array as $data) {   //$data为admin_id
 
+            $relationExisted = DB::table("base_admin_re_power")
+                ->where("relation_power_id", "=", $data)
+                ->where("relation_group_id", "=", $this->info->group_id)
+                ->first();
+            if ($relationExisted != null) {
+                return false;  //已经有这个权限组对应的这个权限
+            }
 
-        $relation["relation_power_id"] = $power_id;
-        $relation["relation_group_id"] = $this->info->group_id;
-        DB::table("base_admin_re_power")->insert($relation);
-        $this->syncBaseInfo();
+            $relation["relation_power_id"] = $data;
+            $relation["relation_group_id"] = $this->info->group_id;
+            if(DB::table("base_admin_re_power")->insert($relation))
+            {
+                $this->syncBaseInfo();
+                return true;
 
+            }
+
+        }
 
     }
 
-    //移除一个权限（不是删除）
+
+    /**
+     * 移除一个权限（不是删除）
+     * @param $power_id
+     * @return bool
+     */
     public function removePower($power_id)
     {
 
@@ -211,31 +262,57 @@ class AdminPowerGroup
         if ($relationExisted == 0) {
             return false;  //该权限或该权限组不存在
         }
-        $this->syncBaseInfo();
-
-    }
-
-    //添加一个管理员到该权限组（必须存在此管理员才行）
-    public function addAdmin($admin_id)
-    {
-
-        $adminExisted = DB::table("base_admin")
-            ->where("admin_id", "=", $admin_id)
-            ->first();
-        if ($adminExisted == null) {
-            return false;
-        }
-        if (DB::table("base_admin")
-            ->where("admin_id", "=", $admin_id)
-            ->update(["admin_group" => $this->info->group_id])
-        ) {
+        else
+        {
             $this->syncBaseInfo();
+            return true;
+
         }
 
 
     }
 
-    //从该权限组移除一个管理员
+
+    /**
+     * 添加一个管理员到该权限组（必须存在此管理员才行）
+     * @param $admin_id
+     * @return bool
+     */
+    public function addAdmin($admin_id_array)
+    {
+        if($admin_id_array == null)
+        {
+            return false;  //没勾选
+        }
+        foreach ($admin_id_array as $data) {   //$data为admin_id
+
+            $adminExisted = DB::table("base_admin")
+                ->where("admin_id", "=", $data)
+                ->first();
+            if ($adminExisted == null) {
+                return false;
+            }
+
+            $adminUpdate = DB::table("base_admin")
+                ->where("admin_id", "=",$data)
+                ->update(["admin_group" => $this->info->group_id]);
+
+            if ($adminUpdate >= 0)
+             {
+                $this->syncBaseInfo();
+                return true;
+            }
+
+        }
+
+    }
+
+
+    /**
+     * 从该权限组移除一个管理员
+     * @param $admin_id
+     * @return bool
+     */
     static function removeAdmin($admin_id)
     {
         $adminExisted = DB::table("base_admin")
@@ -257,8 +334,6 @@ class AdminPowerGroup
 
     /**
      * 管理员权限获取
-     *
-     *
      * @access public
      * @return Array 返回权限数组
      */
