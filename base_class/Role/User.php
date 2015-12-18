@@ -20,10 +20,10 @@ class User
 
 
 
-    /*----------------基本操作函数--------------*/
+    /*----------------鍩烘湰鎿嶄綔鍑芥暟--------------*/
     static function addUser($info_array)
     {
-        echo "创建用户";
+        echo "鍒涘缓鐢ㄦ埛";
     }
     static function login($info_array)
     {
@@ -51,7 +51,7 @@ class User
 
 
 
-    /*----------从数据库同步相关信息-------------*/
+    /*----------浠庢暟鎹簱鍚屾鐩稿叧淇℃伅-------------*/
     public function syncBaseInfo()
     {
 
