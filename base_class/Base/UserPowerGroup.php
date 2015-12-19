@@ -55,7 +55,7 @@ class UserPowerGroup
     public function __construct($group_id)
     {
         $this->group_id = $group_id;
-         $this->syncBaseInfo($group_id);
+         $this->syncBaseInfo();
 
     }
 
@@ -69,14 +69,14 @@ class UserPowerGroup
     {
         $group_id = $this->group_id;
 
-        if(DB::table("base_user_group")->where("group_id",$group_id)->first() == NULL)
+        if(DB::table("base_user_group")->where("group_id","=",$group_id)->first() == NULL)
         {
             return false;
         }
 
         //拿到权限
        $powerData= DB::table("base_user_re_power")
-            ->where("relation_id","=","$group_id")
+            ->where("relation_group_id","=","$group_id")  //
             ->get();
 
         foreach ($powerData as $value)
@@ -108,7 +108,6 @@ class UserPowerGroup
     public function addPower($power_id)
 
     {
-
         $relationExisted=DB::table("base_user_re_power")
             ->where("relation_power","=",$power_id)
             ->where("relation_group","=",$this->info->group_id)
@@ -137,7 +136,7 @@ class UserPowerGroup
      * @param $user_id
      * @return bool
      */
-    public function addUser($user_id)
+    public function addUser($user_id)   //  创建删除用户时，检测有无此用户
     {
         $userExisted=DB::table("base_user")
             ->where("user_id","=","$user_id")
@@ -153,7 +152,7 @@ class UserPowerGroup
     /**
      * @param $user_id
      */
-    public function removeUser($user_id)
+    public function removeUser($user_id)  //判断
     {
         $userData=DB::table("base_user")
             ->where("user_id","=","$user_id")
