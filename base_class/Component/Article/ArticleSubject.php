@@ -73,8 +73,8 @@ class ArticleSubject
     public function __construct($subject_id)
     {
         $this->subject_id=$subject_id;
-        $this->subject_info = $this->syncBaseInfo();
-        $this->article_info =$this->syncArticleInfo();
+        $this->syncBaseInfo();
+        $this->syncArticleInfo();
 
     }
 
@@ -83,8 +83,7 @@ class ArticleSubject
      */
     public function syncBaseInfo()
     {
-        $subId = $this->subject_id;
-        $subject_info=DB::table("base_article_subject")->where("subject_id","=",$subId)->get();
+        $subject_info=DB::table("base_article_subject")->where("subject_id","=",$this->subject_id)->get();
         if($subject_info)
         {
             $this->subject_info = $subject_info;
@@ -101,11 +100,10 @@ class ArticleSubject
      */
     public function syncArticleInfo()
     {
-        $subId = $this->subject_id;
         $article_info=DB::table("base_article_re_subject")
             ->join("base_article","relation_article","=","article_id")
             ->join("base_article_subject","relation_subject","=","subject_id")
-            ->where("subject_id","=",$subId)
+            ->where("subject_id","=",$this->subject_id)
             ->get();
         if($article_info)
         {
