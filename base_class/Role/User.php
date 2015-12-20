@@ -7,7 +7,7 @@
  */
 
 namespace BaseClass\Role;
-use BaseClass\Component\Article\Article;
+
 use Illuminate\Support\Facades\DB;
 
 class User
@@ -25,11 +25,13 @@ class User
     /*-------------------------*/
     static function addUser($info_array)
     {
+        $info_array["user_create_date"]=date('Y-m-d H:i:s');
+        $info_array["user_update_date"]=date('Y-m-d H:i:s');
         $userExisted=DB::table("base_user")
             ->where("user_username","=","$info_array[user_username]")
             ->pluck("user_username");
         if($userExisted!=null){return false;}
-        $user_id=DB::table(base_user)
+        $user_id=DB::table("base_user")
             ->insertGetId($info_array);
         return new User($user_id);
     }
@@ -42,9 +44,10 @@ class User
     {
         $userData=DB::table("base_user")
             ->where("user_username","=","$info_array[user_username]")
-            ->get("user_username","user_password");
+            ->pluck("user_password");
+
         if($userData==null) {return false;}
-        if($userData[user_password]!=$info_array[user_password]){return false;}
+        if($userData!=$info_array["user_password"]){return false;}
 
         return true;
     }
@@ -63,13 +66,38 @@ class User
     {
        $this->user_id=$user_id;
         $this->syncBaseInfo();
+
+
+        /**
+         * 仅测试时使用
+
+       $this->syncArticleInfo();
+        $this->syncSubjectInfo();
+        $this->syncImageInfo();
+        $this->syncCollectInfo();
+
+         */
     }
     public function logout()
     {
+        Session::flush();
 
+        return null;
     }
-    public function update()
+
+    /**
+     * 修改用户信息*/
+    public function update($info_array)
     {
+        $info_array["user_update_date"]=date('Y-m-d H:i:s');
+         if(DB::table("base_user")->where("user_id","=",$this->user_id)->update($info_array))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     }
 
