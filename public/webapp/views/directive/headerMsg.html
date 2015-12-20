@@ -1,0 +1,34 @@
+<div>
+    <div id="headerMsg" ng-show="pStatus" >
+        {{pMsg}} <label class="pull-right"><a href="" ng-click="hide()">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </a></label>
+    </div>
+    <style>
+        #headerMsg{
+
+            position: fixed;
+            width:40%;
+
+            margin:10px 30%;
+            z-index:100;
+
+            background-color: #F5F5F5;
+            border: solid 0px ;
+            border-radius: 10px;
+
+            font-size: 18px;
+            text-align: center;
+            padding: 5px;
+
+
+
+        }
+        #headerMsg.ng-hide-add{
+            animation: 0.5s bounceOut;
+        }
+        #headerMsg.ng-hide-remove{
+            animation: 0.5s zoomIn;
+        }
+    </style>
+</div>

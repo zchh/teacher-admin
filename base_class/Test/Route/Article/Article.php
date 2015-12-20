@@ -7,10 +7,15 @@
  * Time: 16:26
  */
 $__BasePrefix = "BaseClass\\Test\\Controllers\\Article\\";
-Route::get("test_ArticleGetMoreByUserTest",$__BasePrefix."ArticleTest@getMoreByUserTest");
+Route::get("test_articleTest",$__BasePrefix."ArticleTest@test");
+
+Route::get("test_angularTest",$__BasePrefix."ArticleTest@angularTest");
+
+
+Route::get("test_getMoreByUserTest",$__BasePrefix."ArticleTest@getMoreByUserTest");
 Route::get("test_getMoreBySubjectTest",$__BasePrefix."ArticleTest@getMoreBySubjectTest");
-Route::get("test_ArticleAddTest",$__BasePrefix."ArticleTest@addTest");
-Route::get("test_ArticleSyncBaseInfoTest",$__BasePrefix."ArticleTest@syncBaseInfoTest");
-Route::get("test_ArticleSyncReplyInfoTest",$__BasePrefix."ArticleTest@syncReplyInfoTest");
-Route::get("test_ArticleUpdateTest",$__BasePrefix."ArticleTest@updateTest");
-Route::get("test_ArticleDeleteTest",$__BasePrefix."ArticleTest@deleteTest");
+Route::get("test_addTest",$__BasePrefix."ArticleTest@addTest");
+Route::get("test_syncBaseInfoTest",$__BasePrefix."ArticleTest@syncBaseInfoTest");
+Route::get("test_syncReplyInfoTest",$__BasePrefix."ArticleTest@syncReplyInfoTest");
+Route::get("test_updateTest",$__BasePrefix."ArticleTest@updateTest");
+Route::get("test_deleteTest",$__BasePrefix."ArticleTest@deleteTest");

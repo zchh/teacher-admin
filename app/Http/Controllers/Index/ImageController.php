@@ -34,7 +34,7 @@ class ImageController extends Controller {
             }
             
             header('Content-type: ' . $ctype);
-            readfile($path);
+            readfile($_SERVER['DOCUMENT_ROOT'].$path);
             
         }
         else //如果没有图片的，换上一张默认图片
@@ -66,7 +66,7 @@ class ImageController extends Controller {
     public function putImage(BaseFunc $baseFunc, LogFunc $logFunc, UserPowerFunc $UserPowerFunc)
     {
         ob_end_clean();
-        date_default_timezone_set("Asia/chongqing");
+        //date_default_timezone_set("Asia/shanghai");
         error_reporting(E_ERROR);
         header("Content-Type: text/html; charset=utf-8");
         //session(["test"=>date('Y-m-d H:i:s')]);
@@ -88,7 +88,8 @@ class ImageController extends Controller {
 
 
             //移动文件到指定目录
-            $path = $_SERVER['DOCUMENT_ROOT'] .config("my_config.image_upload_dir"). session("user.user_id")."/";  //存贮文件的绝对路径
+            $storage_path = config("my_config.image_upload_dir"). session("user.user_id")."/";  //存贮文件的绝对路径
+            $path = $_SERVER['DOCUMENT_ROOT'] .$storage_path ;
             $name = date('YmdHis') . session("user.user_id") . rand(1000, 9999) . "." . $file->getClientOriginalExtension();  //自动生成路径
 
 
@@ -97,7 +98,7 @@ class ImageController extends Controller {
             $input_data["image_name"] ="编辑器上传图片".$name;  //改文件名1
             $input_data["image_format"] = $file->getClientOriginalExtension();   //文件格式
             $input_data["image_intro"] = "编辑器上传图片".$name;
-            $input_data["image_path"] = $path.$name;  //绝对路径
+            $input_data["image_path"] = $storage_path.$name;  //绝对路径
             $input_data["image_user"] = session("user.user_id");
 
             //操作记录

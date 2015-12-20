@@ -2,6 +2,7 @@
 @extends("base")
 
 @section("body")
+
 @section("top_nav")
 <link rel="stylesheet" type="text/css" href="/css/Index/index.css">
 <script src="/js/Index/index.js" type="text/javascript"></script>

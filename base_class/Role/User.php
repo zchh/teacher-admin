@@ -7,6 +7,7 @@
  */
 
 namespace BaseClass\Role;
+use BaseClass\Component\Article\Article;
 
 
 class User
@@ -20,16 +21,28 @@ class User
 
 
 
-    /*----------------基本操作函数--------------*/
+    /*-------------------------*/
     static function addUser($info_array)
     {
-        echo "创建用户";
+        echo "huhihi";
     }
+
+    /**
+     * @param $info_array 登陆信息数组
+     * @return User
+     */
     static function login($info_array)
     {
 
     }
+    static function qqLogin($acs_token, $open_id)
+    {
 
+    }
+    static function qqRegister()
+    {
+
+    }
 
 
 
@@ -51,7 +64,7 @@ class User
 
 
 
-    /*----------从数据库同步相关信息-------------*/
+    /*--------------------*/
     public function syncBaseInfo()
     {
 

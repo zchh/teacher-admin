@@ -49,7 +49,8 @@
                     <p>简介：<?php echo $articleData->article_intro; ?></p>
                   </blockquote>
                 <?php echo $articleData->article_detail; ?>
-        </div>    
+        </div>
+
         <hr>
         <?php echo $replyData; ?>
 
@@ -66,10 +67,22 @@
         </div>
     </div>
 </div>
-<script>
- 
- $("#article_detail_div  img").addClass("img-responsive");
 
+
+
+<link rel="stylesheet" href="/source/codehl/styles/default.css">
+<script src="/source/codehl/highlight.pack.js"></script>
+
+
+<script>
+
+
+$(document).ready(function(){
+    $('pre').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+    $("#article_detail_div  img").addClass("img-responsive");
+});
 
 </script>
 

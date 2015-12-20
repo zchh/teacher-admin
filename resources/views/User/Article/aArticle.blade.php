@@ -131,7 +131,7 @@ $(document).ready(function() {
             } else {
                 return this._bkGetActionUrl.call(this, action);
             }
-        }
+        }//将这里改为我们的上传图片接口
         $("#submit").click(function() {
 
             $.ajax({
