@@ -7,54 +7,49 @@
  */
 
 namespace BaseClass\Role;
-use BaseClass\Component\Article\Article;
-
 
 use Illuminate\Support\Facades\DB;
+
 class User
 {
 
-    public $info;
-    public $article_list;
-    public $subject_list;
-    public $image_list;
-    public $collect_list;
+    private $info;
+    private $article_list;
+    private $subject_list;
+    private $image_list;
+    private $collect_list;
     private $user_id;
 
 
 
     /*-------------------------*/
-    static function addUser($user_array)
+    static function addUser($info_array)
     {
-        echo "huhihi";
-        $user_array["user_create_date"]=date('Y-m-d H:i:s');
-        if(DB::table("base_user")->where("user_username","=","$user_array[user_username]")!==NULL){return false;}
-
-        if(DB::table("base_user")->insert($user_array))
-        {
-            echo"添加成功！";
-        }
-        else
-        {
-            echo"添加失败！";
-        }
+        $info_array["user_create_date"]=date('Y-m-d H:i:s');
+        $info_array["user_update_date"]=date('Y-m-d H:i:s');
+        $userExisted=DB::table("base_user")
+            ->where("user_username","=","$info_array[user_username]")
+            ->pluck("user_username");
+        if($userExisted!=null){return false;}
+        $user_id=DB::table("base_user")
+            ->insertGetId($info_array);
+        return new User($user_id);
     }
 
     /**
      * @param $info_array 登陆信息数组
      * @return User
      */
-    static function login($user_array)
+    static function login($info_array)
     {
-        $userData = DB::table("base_user")
-            ->where("user_username", "=","$user_array[user_username]")
-            ->where("user_password", "=", md5("$user_array[user_password]"))
-            ->first();
-        if ($userData != NULL) {
-            return $userData;
-        } else {
-            return false;
-        }
+        $userData=DB::table("base_user")
+            ->where("user_username","=","$info_array[user_username]")
+            ->pluck("user_password");
+
+        if($userData==null) {return false;}
+        if($userData!=$info_array["user_password"]){return false;}
+
+        return true;
     }
     static function qqLogin($acs_token, $open_id)
     {
@@ -69,70 +64,41 @@ class User
 
     public function __construct($user_id)
     {
+       $this->user_id=$user_id;
+        $this->syncBaseInfo();
 
-        $this->user_id = $user_id;
-        $this->syncBaseInfo($user_id);
-        $this->syncArticleInfo($user_id);
-        $this->syncSubjectInfo($user_id);
-        $this->syncImageInfo($user_id);
-        $this->syncCollectInfo($user_id);
-    }
-    public function init()
-    {
-        $id= $this->user_id;
-        $this->syncBaseInfo($id);
-        $this->syncArticleInfo($id);
-        $this->syncSubjectInfo($id);
-        $this->syncImageInfo($id);
-        $this->syncCollectInfo($id);
-    }
 
+        /**
+         * 仅测试时使用
+
+       $this->syncArticleInfo();
+        $this->syncSubjectInfo();
+        $this->syncImageInfo();
+        $this->syncCollectInfo();
+
+         */
+    }
     public function logout()
     {
-        $this->user_id=0;
-        $this->init();
+        Session::flush();
 
+        return true;
     }
-    public function update($user_array)
+
+    /**
+     * 修改用户信息*/
+    public function update($info_array)
     {
-        if(DB::table("base_user")
-                ->where("user_id","=",$this->user_id)
-                ->first() == NULL) {return false;}
+        $info_array["user_update_date"]=date('Y-m-d H:i:s');
+         if(DB::table("base_user")->where("user_id","=",$this->user_id)->update($info_array))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
-        $user_array["user_update_date"]=date('Y-m-d H:i:s');
-
-
-        DB::table("nase_user")->where('user_id', $this->user_id)->update($user_array);
-        /*$this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_username' => $user_array["user_username"]]);
-        $this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_password' => $user_array["user_password"]]);
-        $this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_nickname' => $user_array["user_nickname"]]);
-        $this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_update_date' => $user_array["user_update_date"]]);
-        $this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_age' => $user_array["user_age"]]);
-        $this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_sex' => $user_array["user_sex"]]);
-        $this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_intro' => $user_array["user_intro"]]);
-        $this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_image' => $user_array["user_image"]]);
-        $this->bug_handle_user=DB::table('base_user')
-            ->where('user_id', $this->user_id)
-            ->update(['user_email' => $user_array["user_email"]]);*/
-
-
-        $this->init();
     }
 
     /*---------------end----------------------*/
@@ -143,49 +109,60 @@ class User
     /*--------------------*/
     public function syncBaseInfo()
     {
-        if(DB::table("base_user")->where("user_id","=",$this->user_id)->first() == NULL) {return false;}
-
-        $this->info =DB::table("base_user")
+        if(DB::table("base_user")->where("user_id","=",$this->user_id)->first() == NULL)
+        {
+            return false;
+        }
+        $this->info=DB::table("base_user")
             ->where("user_id","=","$this->user_id")
             ->first();
-
 
     }
 
     public function syncArticleInfo()
     {
-        if(DB::table("base_user")->where("user_id","=",$this->user_id)->first() == NULL) {return false;}
+        if(DB::table("base_article")->where("article_user","=",$this->user_id)->first() == NULL)
+        {
+            return false;
+        }
 
-        $this->article_list =DB::table("base_article")
-            ->where("article_user","=",$this->user_id)
-            ->first();
+        $this->article_list=DB::table("")
+            ->where("article_user","=","$this->user_id")
+            ->get("article_id");
     }
 
     public function syncSubjectInfo()
     {
-        if(DB::table("base_user")->where("user_id","=",$this->user_id)->first() == NULL) {return false;}
-
-        $this->subject_list =DB::table("base_article_subject")
+        if(DB::table("base_article_subject")->where("subject_user","=",$this->user_id)->first() == NULL)
+        {
+            return false;
+        }
+        $this->subject_list=DB::table("base_article_subject")
             ->where("subject_user","=",$this->user_id)
-            ->first();
+            ->get("subject_id");
+
     }
 
     public function syncImageInfo()
     {
-        if(DB::table("base_user")->where("user_id","=",$this->user_id)->first() == NULL) {return false;}
-
-        $this->image_list =DB::table("base_image")
+        if(DB::table("base_image")->where("image_user","=",$this->user_id)->first() == NULL)
+        {
+            return false;
+        }
+        $this->image_list=DB::table("")
             ->where("image_user","=",$this->user_id)
-            ->first();
+            ->get("image_id");
     }
 
     public function syncCollectInfo()
     {
-        if(DB::table("base_user")->where("user_id","=",$this->user_id)->first() == NULL) {return false;}
-
-        $this->collect_list =DB::table("base_article_collect")
+        if(DB::table("base_article_collect")->where("collect_user","=",$this->user_id)->first() == NULL)
+        {
+            return false;
+        }
+        $this->collect_list=DB::table("base_article_collect")
             ->where("collect_user","=",$this->user_id)
-            ->first();
+            ->get("collect_id");
     }
     /*---------------end-------------------*/
 

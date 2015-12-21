@@ -157,6 +157,7 @@ class UserPowerGroup
         $userData=DB::table("base_user")
             ->where("user_id","=","$user_id")
             ->get();
+        if($userData = null){return false;}
 
         DB::table("base_user")
             ->where("user_id","=","$user_id")
