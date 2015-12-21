@@ -8,6 +8,8 @@
 
 namespace BaseClass\Role;
 use BaseClass\Component\Article\Article;
+
+
 use Illuminate\Support\Facades\DB;
 class User
 {
@@ -24,6 +26,7 @@ class User
     /*-------------------------*/
     static function addUser($user_array)
     {
+        echo "huhihi";
         $user_array["user_create_date"]=date('Y-m-d H:i:s');
         if(DB::table("base_user")->where("user_username","=","$user_array[user_username]")!==NULL){return false;}
 
