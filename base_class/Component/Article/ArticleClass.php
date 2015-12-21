@@ -19,6 +19,7 @@ class ArticleClass
 {
     private $info;
 
+    /*按照指定的方式去查找文章类*/
     static function select($query_limit)
     {
         /*

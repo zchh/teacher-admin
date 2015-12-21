@@ -43,10 +43,10 @@ class User
     static function login($info_array)
     {
         $userData=DB::table("base_user")
-            ->where("user_username","=","$info_array[user_username]")
+            ->where("user_username","=",$info_array["user_username"])
             ->pluck("user_password");
 
-        if($userData==null) {return false;}
+        if($userData == null) {return false;}
         if($userData!=$info_array["user_password"]){return false;}
 
         return true;
@@ -164,6 +164,12 @@ class User
             ->where("collect_user","=",$this->user_id)
             ->get("collect_id");
     }
+
+    public function updateSession()
+    {
+
+    }
+
     /*---------------end-------------------*/
 
 

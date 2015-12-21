@@ -11,6 +11,7 @@ use GirdPlugins\Base\ArticleFunc;
 use GirdPlugins\Base\LogFunc;      //zc
 use GirdPlugins\Base\UserPowerFunc;      //zc
 
+
 class PersonalMessageController extends Controller {
 
     public function uPersonalMessage() {

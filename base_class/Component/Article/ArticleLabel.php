@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\DB;
 class ArticleLabel
 {
     //标签id
-    private $label_id;
-    private $info;
+    public $label_id;
+    public $info;
     //文章id
     //private $article_id;
     //专题id
@@ -41,6 +41,8 @@ class ArticleLabel
         $this->info = $info;
         return $info;
     }
+
+
     /**
      * 添加文章标签
      * @access public

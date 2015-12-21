@@ -9,7 +9,7 @@ use GirdPlugins\Base\UserPowerFunc;
 use GirdPlugins\Base\UserFunc;
 use GirdPlugins\Base\LogFunc;
 use GirdPlugins\Base\MailFunc;
-
+use BaseClass\Role\User;
 class BaseController extends Controller {
   public function login(BaseFunc $baseFunc)
   {
