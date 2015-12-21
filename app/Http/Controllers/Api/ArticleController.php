@@ -10,7 +10,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use BaseClass\Component\Article\Article;
 use BaseClass\Component\Article\ArticleClass;
-use BaseClass\Role\User;
 use Illuminate\Support\Facades\Request;
 
 class ArticleController extends Controller
@@ -28,7 +27,14 @@ class ArticleController extends Controller
          * |-search 搜索关键字
          * |-user   特殊用户（不写检查所有用户，会检查是否有管理员权限，也可设置为0自动改成当前session用户）
          * |-reverse 是否逆转排序即倒序
-         * |*/
+         * |
+         *
+         *
+         * $return_data
+         * |-status 是否成功
+         * |-message 消息
+         * |-data   数据 DB返回的二维结构
+         * */
         $query_limit = Request::input("query_limit");
         //如果没有session直接断掉
         if(session("user.user_id",NULL)==NULL)
@@ -59,10 +65,7 @@ class ArticleController extends Controller
 
 
     }
-    public function aArticle()
-    {
 
-    }
     public function dArticle()
     {
         $article_id = Request::input("article_id");
@@ -77,10 +80,8 @@ class ArticleController extends Controller
             return response()->json(["status"=>false,"message"=>"无法删除"]);
         }
     }
-    public function uArticle()
-    {
-
-    }
+    public  function moreArticle()
+    {}
 
     public function sArticleClass()
     {
@@ -90,7 +91,7 @@ class ArticleController extends Controller
          * |-sort   排序方式
          * |-num    每页条数
          * |-start  开始
-         * |-desc 是否倒序列
+         * |-desc   是否倒序列
          *
          *
 
@@ -125,5 +126,8 @@ class ArticleController extends Controller
         return response()->json($articleArray);
 
     }
+
+    public function dArticleClass()
+    {}
 
 }

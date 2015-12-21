@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\DB;
 class User
 {
 
-    private $info;
-    private $article_list;
-    private $subject_list;
-    private $image_list;
-    private $collect_list;
+    public $info;
+    public $article_list;
+    public $subject_list;
+    public $image_list;
+    public $collect_list;
     private $user_id;
 
 
@@ -99,7 +99,8 @@ class User
         $user_array["user_update_date"]=date('Y-m-d H:i:s');
 
 
-        $this->bug_handle_user=DB::table('base_user')
+        DB::table("nase_user")->where('user_id', $this->user_id)->update($user_array);
+        /*$this->bug_handle_user=DB::table('base_user')
             ->where('user_id', $this->user_id)
             ->update(['user_username' => $user_array["user_username"]]);
         $this->bug_handle_user=DB::table('base_user')
@@ -125,7 +126,7 @@ class User
             ->update(['user_image' => $user_array["user_image"]]);
         $this->bug_handle_user=DB::table('base_user')
             ->where('user_id', $this->user_id)
-            ->update(['user_email' => $user_array["user_email"]]);
+            ->update(['user_email' => $user_array["user_email"]]);*/
 
 
         $this->init();

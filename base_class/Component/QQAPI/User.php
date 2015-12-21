@@ -8,28 +8,12 @@
 
 namespace BaseClass\Component\QQAPI;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
+
 
 class User
 {
 
-    private $info;
-    private $article_list;
-    private $subject_list;
-    private $image_list;
-    private $collect_list;
 
-
-
-    /*----------------������������--------------*/
-    static function addUser($info_array)
-    {
-
-    }
-    static function login($info_array)
-    {
-
-    }
 
     static function qqLogin($acs_token, $open_id)
     {
@@ -75,56 +59,6 @@ class User
         $data['user_id'] = DB::table("base_user")->insertGetId($data);
         return $data;
     }
-
-
-
-    public function __construct($user_id)
-    {
-
-    }
-    public function logout()
-    {
-
-    }
-    public function update()
-    {
-
-    }
-
-    /*---------------end----------------------*/
-
-
-
-
-    /*----------�����ݿ�ͬ�������Ϣ-------------*/
-    public function syncBaseInfo()
-    {
-
-    }
-
-    public function syncArticleInfo()
-    {
-
-    }
-
-    public function syncSubjectInfo()
-    {
-
-    }
-
-    public function syncImageInfo()
-    {
-
-    }
-
-    public function syncCollectInfo()
-    {
-
-    }
-    /*---------------end-------------------*/
-
-
-
 
 
 
