@@ -37,16 +37,17 @@ class Message
     }
 
     /**
-     * 查询信息
+     * 查询信息 如没有查询限制则置$query_limit=null
      * @param $query_limit
      * |-send user/admin
      * |-desc(默认asc)
+     * |-size
      * @return $return_data
      * |-status 是否成功 true/false
      * |-message DB返回的二维结构
      * |-num  总条数
      */
-    public function select($query_limit)
+    static function select($query_limit)
     {
 
         $query=DB::table('base_message');
@@ -74,6 +75,11 @@ class Message
 
         $num_query  = clone $query;//克隆出来不适用原来的对象
         $return_data["num"] = $num_query->select(DB::raw('count(*) as num'))->first()->num  ;
+
+        if(!empty($query_limit['size']))//每页条数
+        {
+            $query = $query->take($query_limit['size']);
+        }
 
         $return_data['status'] = true;
         $return_data['message'] = $query->get();

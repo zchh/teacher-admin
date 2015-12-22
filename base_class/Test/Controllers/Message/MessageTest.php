@@ -33,11 +33,10 @@ class MessageTest extends Controller
 
     public function selectTest()
     {
-        $message=new Message(null);
         //$query_limit['send']='admin';
         //$query_limit['desc']=1;
 
-        $data = $message->select(null);
+        $data = Message::select(null);
         dump($data);
     }
 }
