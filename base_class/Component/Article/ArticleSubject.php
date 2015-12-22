@@ -87,7 +87,7 @@ class ArticleSubject
         if($subject_info)
         {
             $this->subject_info = $subject_info;
-            return $subject_info;
+
         }
         else
         {
