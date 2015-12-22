@@ -14,14 +14,14 @@ class MessageTest extends Controller
 {
     public function addTest()
     {
-        $info_array['message_send_user']=20;
+        $info_array['message_send_user']=21;
         $info_array['message_send_admin']=null;
         $info_array['message_recv_user']=null;
-        $info_array['message_recv_admin']=1;
+        $info_array['message_recv_admin']=2;
         $info_array['message_title']="123";
         $info_array['message_data']="hellohellohelllooooooooo";
 
-        Message::add($info_array);
+        dump(Message::add($info_array));
         echo 'hello';
     }
     public function deleteTest()
@@ -33,10 +33,11 @@ class MessageTest extends Controller
 
     public function selectTest()
     {
-        //$query_limit['send']='admin';
-        //$query_limit['desc']=1;
-
-        $data = Message::select(null);
+        $query_limit['send']='admin';
+        $query_limit['desc']=1;
+        //$query_limit['search']='几';
+        $query_limit['size']=5;
+        $data = Message::select($query_limit);
         dump($data);
     }
 }

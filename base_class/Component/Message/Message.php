@@ -15,16 +15,45 @@ class Message
      * 添加信息
      * @access public
      * @param $info_array
-     * 如果发送者不是user 或者 admin，则把message_send_user/message_send_admin设置为空,
-     * message_recv_admin,message_recv_user同理
-     * message_title,message_date 信息标题,内容
+     * |-message_send_user/message_send_admin  发送者（有则传值，无就置null）
+     * |-message_recv_user/message_recv_admin  接收者（同理）
+     * |-message_title 信息标题
+     * |-message_data 信息内容
      */
     static function add($info_array)
     {
         $info_array['message_create_date']=date("Y-m-d H:i:s");
         $info_array['message_read']=0;
-        return DB::table('base_message')
-            ->insert($info_array);
+        if($info_array['message_recv_user'] || $info_array['message_recv_admin'])
+        {
+            if(true == $info_array['message_recv_user'])//接收者是用户
+            {
+                if(DB::table('base_user')->where('user_id','=',$info_array['message_recv_user']))
+                {
+                    return DB::table('base_message')->insert($info_array);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if(true == $info_array['message_recv_admin'])//接收者是管理员
+            {
+                if(DB::table('base_admin')->where('admin_id','=',$info_array['message_recv_admin']))
+                {
+                    return DB::table('base_message')->insert($info_array);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        else//没有信息接收者
+        {
+            return false;
+        }
+
     }
 
     /**
@@ -39,9 +68,10 @@ class Message
     /**
      * 查询信息 如没有查询限制则置$query_limit=null
      * @param $query_limit
-     * |-send user/admin
+     * |-send user/admin 发送者
      * |-desc(默认asc)
-     * |-size
+     * |-size 每页条数
+     * |-search 查找关键字
      * @return $return_data
      * |-status 是否成功 true/false
      * |-message DB返回的二维结构
@@ -52,7 +82,8 @@ class Message
 
         $query=DB::table('base_message');
 
-        if(!empty($query_limit['send']))//根据发送者是用户还是管理员划分
+        //根据发送者是用户还是管理员划分
+        if(!empty($query_limit['send']))
         {
             if($query_limit['send']== 'user')
             {
@@ -64,7 +95,8 @@ class Message
             }
         }
 
-        if(!empty($query_limit['desc']))//排序
+        //排序
+        if(!empty($query_limit['desc']))
         {
             $query = $query->orderBy("message_id",'desc');
         }
@@ -73,10 +105,18 @@ class Message
             $query = $query->orderBy("message_id");
         }
 
+        //关键字
+        if (!empty($query_limit["search"])  )
+        {
+            $query = $query->where("message_title","like","%".$query_limit["search"]."%");
+        }
+
+        //总条数
         $num_query  = clone $query;//克隆出来不适用原来的对象
         $return_data["num"] = $num_query->select(DB::raw('count(*) as num'))->first()->num  ;
 
-        if(!empty($query_limit['size']))//每页条数
+        //每页条数
+        if(!empty($query_limit['size']))
         {
             $query = $query->take($query_limit['size']);
         }
