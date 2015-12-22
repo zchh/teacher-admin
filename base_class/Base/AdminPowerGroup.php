@@ -346,7 +346,8 @@ class AdminPowerGroup
         foreach ($powerData as $data) {
             $returnData[] = $data->relation_power_id;
         }
-        Session::push('admin.admin_power', $returnData);
+        session(['admin.admin_power'=>$returnData]);
+
 
 
         return $returnData;

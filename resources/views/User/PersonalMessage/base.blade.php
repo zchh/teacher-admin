@@ -6,7 +6,7 @@
             <div class="col-sm-2 "style="background-color: #F5F5F5;">
                 <ul class="nav nav-sidebar">
 
-                  <li class="<?php if(session("nowPage")=="/user_sPersonalMessage"){echo "active";}?>"><a href="/user_sPersonalMessage"  id="user_sPersonalMessage">查看个人信息</a></li>
+                  <li class="<?php if(session("nowPage")=="/user_sPersonalMessage"){echo "active";}?>"><a href="/user_uPersonalMessage"  id="user_sPersonalMessage">查看个人信息</a></li>
                   
 
                 </ul>
