@@ -101,9 +101,11 @@ class BaseFunc {
     public function getArticleByAttentioned($user_id)
     {
 
-        $data = DB::table("base_article")->join("base_user_relation", "relation_focus", "=", "article_user")
+        $data = DB::table("base_article")
+            ->join("base_user_relation", "relation_focus", "=", "article_user")
             ->join("base_user", "user_id", "=", "article_user")
-            ->where("relation_user", "=", $user_id)->orderBy("article_id", "desc")
+            ->where("relation_user", "=", $user_id)
+            ->orderBy("article_id", "desc")
             ->simplePaginate(10);
         return $data;
     }

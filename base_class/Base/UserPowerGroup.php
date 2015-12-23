@@ -8,7 +8,7 @@
 
 namespace BaseClass\Base;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Session;
 
 
 class UserPowerGroup
@@ -76,9 +76,8 @@ class UserPowerGroup
 
         //拿到权限
        $powerData= DB::table("base_user_re_power")
-            ->where("relation_group_id","=","$group_id")  //
+            ->where("relation_group","=",$group_id)  //
             ->get();
-
         foreach ($powerData as $value)
         {
             $this->power_list[] = $value->relation_power;
@@ -186,7 +185,10 @@ class UserPowerGroup
     {
 
 
-        $powerData = DB::table("base_user_re_power")->where("relation_group","=",$this->info->group_id)->get();
+
+        $powerData = DB::table("base_user_re_power")
+            ->where("relation_group","=",$this->info->group_id)
+            ->get();
 
         $returnData=[];
         foreach($powerData as $data)
@@ -194,8 +196,9 @@ class UserPowerGroup
             $returnData[]=$data->relation_power;
         }
 
+        session(['user.user_power'=>$returnData]);
 
-        Session::push('user.user_power', $returnData);
+
 
 
         return $returnData;
