@@ -62,8 +62,6 @@ class ArticleController extends Controller
 
         return response()->json($articleArray);
 
-
-
     }
 
     public function dArticle()

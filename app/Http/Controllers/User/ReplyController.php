@@ -38,7 +38,6 @@ class ReplyController extends Controller
         {
             $parent = DB::table("base_article")
                     ->where("article_id","=",$recvData["reply_article"])
-                    
                     ->first();
             $parent = $parent->article_user;
         }

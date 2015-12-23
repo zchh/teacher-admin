@@ -70,6 +70,7 @@ class Article
                 $query = $query->orderBy("article_id");
             }
         }
+
         //按用户查找
         if(isset($query_limit["user"]))
         {
@@ -124,6 +125,7 @@ class Article
         {
             $query = $query->take(config("my_config.default_num_page"));
         }
+
 
         //关联到类
         $query = $query->leftJoin("base_article_class","class_id","=","article_class");

@@ -90,6 +90,7 @@ class PowerController extends Controller
         }
         */
 
+
         $admin = new Admin($admin_id);
        $return = $admin->delete();
         if($return == true)
