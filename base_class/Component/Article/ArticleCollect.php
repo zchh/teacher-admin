@@ -7,10 +7,15 @@
  */
 
 namespace BaseClass\Component\Article;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 class ArticleCollect
 {
+ public $info;
+
+ public $collect_id;
 
    /*
     * 按照条件查询收藏
@@ -26,6 +31,18 @@ class ArticleCollect
      * */
     static function add($info_array)
     {
+      $info_array['collect_create_date']=date('Y-m-d H:i:s',time());
+      $info_array['collect_update_date']=date('Y-m-d H:i:s',time());
+     $info_array['collect_user'] = session("user.user_id");
+      $result=DB::table("base_article_collect")->insertGetId($info_array);
+     if($result)
+     {
+      return  new ArticleCollect($result);
+     }
+     else
+     {
+       return false;
+     }
 
     }
 
@@ -34,6 +51,8 @@ class ArticleCollect
      * */
     public function __construct($collect_id)
     {
+      $this->collect_id=$collect_id;
+     $this->syncBaseInfo();
 
     }
 
@@ -42,7 +61,16 @@ class ArticleCollect
      * */
     public function syncBaseInfo()
     {
-
+     $result=DB::table("base_article_collect")->where('collect_article_id','=',$this->collect_id)->first();
+     if($result)
+     {
+      $this->info=$result;
+        // return $result;
+     }
+     else
+     {
+      return false;
+     }
     }
 
     /*
@@ -51,13 +79,30 @@ class ArticleCollect
      * */
     public function update($info_array)
     {
+         $info_array['collect_update_date']=date('Y-m-d H:i:s',time());
+         if(DB::table("base_article_collect")->where("collect_id","=",$this->collect_id)->update($info_array))
+         {
+          $this->syncBaseInfo();
+          return true;
+         }
+        else
+        {
+         return false;
+        }
 
     }
     /*
      * 删除一个收藏（根据$this->info->collect_id），可选传入user_id,如果存在该字段，应该检测该收藏是不是这个用户的
      * */
-    public function delete($user_id = null)
+    public function remove()
     {
-
+         if(DB::table("base_article_collect")->where('collect_id','=',$this->collect_id)->delete())
+         {
+          return true;
+         }
+         else
+         {
+          return false;
+         }
     }
 }

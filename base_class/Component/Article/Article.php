@@ -25,7 +25,7 @@ class Article
         /*
          * $query_limit
          * |-start  起始
-         * |-num    结束页数
+         * |-num   每页条数
          * |-class  类别
          * |-sort   排序
          * |-search 搜索关键字

@@ -21,8 +21,9 @@
                 <div class="col-sm-6 form-group">
                     <label>性别</label>
                     <select class="form-control" name="user_sex" value="{{ $personalMessage->user_nickname}}">
-                        <option>男</option>
-                        <option>女</option>
+
+                        <option @if($personalMessage->user_sex == "男") selected="selected" @endif>男</option>
+                        <option @if($personalMessage->user_sex == "女") selected="selected" @endif>女</option>
                     </select>
                 </div>
                 <div class="col-sm-6 form-group">

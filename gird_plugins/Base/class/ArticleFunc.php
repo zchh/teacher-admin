@@ -124,7 +124,9 @@ class ArticleFunc
     {
         return DB::table("base_article")->where("article_id","=",$detailId)->first();
     }
-    
+
+
+
     /*
      * 获取一篇文章的评论
      * @access public

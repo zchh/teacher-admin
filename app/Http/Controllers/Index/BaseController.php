@@ -149,7 +149,7 @@ class BaseController extends Controller {
         DB::table("base_article")->where("article_id","=",$article_id)->increment('article_click');
         $viewData["choseData"] =NULL;
         $viewData["classData"]=DB::table('base_article_collect_class')->get();
-        $viewData["replyData"] = $articleFunc->getArticleReply($article_id);
+        $viewData["replyData"] = $articleFunc->getArticleReply($article_id);//我就是评论树的调用！！！
         $viewData["userInfoGui"] = $this->userSider($viewData["articleData"]->article_user);
         $viewData["sidebarRecommendGui"] = $this->sidebarRecommendArticle();
         return view("Index.Article.articleDetail",$viewData);

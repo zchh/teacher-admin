@@ -20,19 +20,9 @@ class BaseController extends Controller {
   {
         $inputData = Request::only("user_username","user_password");
         
-        $userData = $baseFunc->loginUserCheck($inputData["user_username"],$inputData["user_password"]);
-        if($userData != false )
+        $userObj = User::login($inputData);
+        if($userObj != false )
         {
-            //if($userData->user_true == false){$baseFunc->setRedirectMessage(false, "用户未激活", NULL, "/user_login");}
-            $sessionInitData["user_status"] = true;
-            $sessionInitData["user_id"] = $userData->user_id;
-            $sessionInitData["user_nickname"] = $userData->user_nickname;
-            $sessionInitData["user_group"] = $userData->user_group;
-            $sessionInitData["user_image"] = $userData->user_image;
-            $sessionInitData["user_power"] = $powerFunc->getUserPower($userData->user_id);
-            session(["user"=>$sessionInitData]);//session结构请见ReadMe文档
-
-
             //查看登录前是否有页面请求
             if(session("redirect.status",NULL) != NULL)
             {
@@ -70,20 +60,14 @@ class BaseController extends Controller {
         {
             return response()->json(['status' => false, 'message' => '注册失败，邮箱不能为空，请重新填写注册信息']);
         }
-        DB::beginTransaction();
-        if($user_id = $userFunc->addUser($input_data) != false)
+
+        if($user_id = User::addUser($input_data) != false)
         {
             //注册成功
             //注册成功后向该用户发送电子邮件
             //$mailFunc->sendUserCheckMail($email['user_email'], $input_data['user_nickname'], $user_id);邮箱暂不可用
             //注册成功后添加日志
-            $logFunc->addLog([
-                "log_level"=>0,
-                "log_title"=>$input_data['user_username']."注册了此网站",
-                "log_detail"=>$input_data['user_username']."注册了此网站",
-                "log_admin"=>session("user.user_id")
-            ]);
-            DB::commit();
+
             return response()->json(['status' => true, 'message' => "<p style='font-size:18px;font-family:微软雅黑'>"
                 . "{$input_data['user_username']},您已注册成功"
             . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
@@ -98,14 +82,14 @@ class BaseController extends Controller {
         //dump($input_data);
     }
     
-  public function index(BaseFunc $baseFunc)   //用户主页
+  public function index()   //用户主页
 
   {
-      //dump(session("user"));
-
+     // dump(session("user"));
       $user_id = session("user.user_id"); //获取当前登录用户的id,传给BaseController来获取他所关注的人的所有文章
       //调用接口获取被关注用户的所有文章
-      $input_data['article_attentioned_data'] = $baseFunc->getArticleByAttentioned($user_id);
+      $user_obj = new User($user_id);
+      $input_data['article_attentioned_data'] = $user_obj->getArticleByAttentioned($user_id);
       //dump($input_data);
       return view("User.index",$input_data);
 
