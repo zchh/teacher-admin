@@ -11,7 +11,10 @@ namespace BaseClass\Component\Article;
 
 class ArticleReply
 {
+    public function __construct()
+    {
 
+    }
 }
 
 
