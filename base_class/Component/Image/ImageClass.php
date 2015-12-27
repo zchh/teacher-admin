@@ -9,16 +9,28 @@
 namespace BaseClass\Component\Image;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class ImageClass
+ * @package BaseClass\Component\Image
+ */
 class ImageClass
 {
-
-
-    //图片id
+    /**
+     * 图片id
+     * @var
+     */
     private $class_id;
-    //图片表的一条记录
+    /**
+     * 图片表的一条记录
+     * @var
+     */
     public $info;
 
-    /*按照指定的方式去查找图片类*/
+    /**
+     * 按照指定的方式去查找图片类
+     * @param $query_limit
+     * @return mixed
+     */
     static function select($query_limit)
     {
         /*
@@ -133,8 +145,10 @@ class ImageClass
     }
 
 
-
-
+    /**
+     * @param $inputData
+     * @return bool
+     */
     static function add($inputData)
     {
        $data = DB::table('base_image_class')->insert($inputData);
@@ -149,11 +163,18 @@ class ImageClass
 
     }
 
+    /**
+     * @param $class_id
+     */
     public function __construct($class_id)
     {
         $this->class_id=$class_id;
         $this -> syncBaseInfo();
     }
+
+    /**
+     * @return bool
+     */
     public function syncBaseInfo()
     {
         $first =  DB::table('base_image_class')
@@ -171,6 +192,10 @@ class ImageClass
     }
 
 
+    /**
+     * @param $inputData
+     * @return bool
+     */
     public function update($inputData)
     {
         $class_id = $this ->class_id;
@@ -187,11 +212,14 @@ class ImageClass
 
     }
 
-    /*这里应该传入一个user_id 然后比对图片拥有则是不是该用户*/
+    /**
+     * @return bool
+     */
     public function delete()
     {
         $class_id = $this -> class_id;
-       $delete = DB::table("base_image_class")->where("class_id","=",$class_id)->delete();
+        $user = session("user.user_id");
+        $delete = DB::table("base_image_class")->where("class_user","=",$user)->where("class_id","=",$class_id)->delete();
         if($delete != 0)
         {
             return true;

@@ -4,12 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use GirdPlugins\Base\ArticleFunc;
 use GirdPlugins\Base\BaseFunc;
-use GirdPlugins\Base\LogFunc;      //zc
 use GirdPlugins\Base\UserPowerFunc;      //zc
 use BaseClass\Base\UserPowerGroup;  //2015/12/21
 use BaseClass\Component\Image\Image;  //2015/12/21
@@ -211,11 +206,7 @@ class ImageController extends Controller {
     
     public function uImageClass(BaseFunc $baseFunc)
     {
-
-
         $insertData = Request::only("class_name","class_id");
-
-
 
         $imageClass = new ImageClass($insertData["class_id"]);
         $return = $imageClass -> update($insertData);
@@ -250,9 +241,6 @@ class ImageController extends Controller {
             $baseFunc->setRedirectMessage(false, "删除出错", NULL);
             return redirect()->back();
         }
-
-
-
     }
 
 }

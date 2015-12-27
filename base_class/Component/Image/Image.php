@@ -9,7 +9,12 @@
 namespace BaseClass\Component\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
+use BaseClass\Base\UserPowerGroup;
 
+/**
+ * Class Image
+ * @package BaseClass\Component\Image
+ */
 class Image
 {
     /*
@@ -28,12 +33,24 @@ class Image
      *
      * */
 
-    //图片id
+
+    /**
+     * 图片id
+     * @var
+     */
     private $image_id;
-    //图片表的一条记录
+    /**
+     * 图片表的一条记录
+     * @var
+     */
     private $info;
 
-    /*按照指定的方式去查找图片类*/
+
+    /**
+     * 按照指定的方式去查找图片类
+     * @param $query_limit
+     * @return mixed
+     */
     static function select($query_limit)
     {
         /*
@@ -152,8 +169,6 @@ class Image
 
         }
 
-
-
         //获取数据并返回
       //  $classArray = $query ->get();
 
@@ -165,7 +180,11 @@ class Image
     }
 
 
-        static function getMoreByUser($user_id)
+    /**
+     * @param $user_id
+     * @return mixed
+     */
+    static function getMoreByUser($user_id)
     {
         $image = DB::table('base_image')
             ->where('image_user','=',$user_id)
@@ -174,12 +193,16 @@ class Image
     }
 
     //
+    /**
+     * @param $class_id
+     * @return mixed
+     */
     static function getMoreByClass($class_id)
     {
 
         if($class_id == NULL)
         {
-            $combine['base_image'] = DB::table('base_image')    //为了获得图片用户，要合并两张表
+            $combine['base_image'] = DB::table('base_image')
             ->where("image_user","=",session("user.user_id"))
                 ->orderBy("image_id","desc")
                 ->paginate(9); //分页，两条记录一页
@@ -188,7 +211,7 @@ class Image
         }
         else
         {
-            $combine['base_image'] = DB::table('base_image')    //为了获得图片用户，要合并两张表
+            $combine['base_image'] = DB::table('base_image')
             ->where("image_user","=",session("user.user_id"))
                 ->where("image_class","=",$class_id)
                 ->orderBy("image_id","desc")
@@ -202,16 +225,13 @@ class Image
 
 
         return $combine;
-
-        /*
-        $image = DB::table('base_image')
-            ->join('base_image_class','class_id','=','image_class')
-            ->where('class_id','=',$class_id)
-            ->get();
-        return $image;
-        */
     }
 
+    /**
+     * @param $inputData
+     * @param $file
+     * @return bool
+     */
     static function add($inputData,$file)
     {
         //1.文件移动
@@ -235,11 +255,18 @@ class Image
         return false;
     }
 
+    /**
+     * @param $image_id
+     */
     public function __construct($image_id)
     {
         $this->image_id=$image_id;
         $this -> syncBaseInfo();
     }
+
+    /**
+     * @return bool
+     */
     public function syncBaseInfo()
     {
        $first =  DB::table('base_image')
@@ -257,6 +284,10 @@ class Image
     }
 
 
+    /**
+     * @param $inputData
+     * @return bool
+     */
     public function update($inputData)
     {
         $userId = session("user.user_id");    //提取用户id
@@ -278,14 +309,12 @@ class Image
             return false;
         }
         return true;
-        /*
-        DB::table('base_image')
-        ->where('image_id','=',$this->image_id)
-        ->update($info_array);
-        */
     }
 
-    /*这里应该传入一个user_id 然后比对图片拥有则是不是该用户*/
+    /**
+     *
+     * @return bool
+     */
     public function delete()
     {
         $image_id = $this -> image_id;
@@ -316,7 +345,119 @@ class Image
 
     }
 
+    /**
+     * @param $image_id
+     */
+    static function addByUE($image_id)
+    {
+        if($image_id == 0)
+        {
+            header("Content-type:image/jpeg");
+            readfile($_SERVER["DOCUMENT_ROOT"]."/image/default.jpg");
+        }
+        $imageData = DB::table("base_image")
+            ->where("image_id","=",$image_id)
+            ->first();
+        if($imageData!=NULL)
+        {
+            $path =  $imageData->image_path;
+            $format = $imageData->image_format;
+            switch( $format ) {
+                case "gif": $ctype="image/gif"; break;
+                case "png": $ctype="image/png"; break;
+                case "jpeg":
+                case "jpg": $ctype="image/jpeg"; break;
+                default: $ctype="image/jpeg";
+            }
 
+            header('Content-type: ' . $ctype);
+            readfile($_SERVER['DOCUMENT_ROOT'].$path);
+
+        }
+        else //如果没有图片的，换上一张默认图片
+        {
+            header("Content-type:image/jpeg");
+            readfile($_SERVER["DOCUMENT_ROOT"]."/image/default.jpg");
+        }
+
+    }
+
+    /**
+     * @return array
+     */
+    static public function putImageByUE()
+    {
+
+        $data = [];
+
+        if (!request::hasFile('upfile')) {
+
+            $requsetJson = array(
+                "state" => "无文件",          //上传状态，上传成功时必须返回"SUCCESS"
+            );
+            $data["status"] = false;
+            $data["requestJson"] = $requsetJson;
+          //  return $requsetJson;
+            return $data;
+        } else {
+            //从前端提取文件
+            $file = Request::file('upfile');
+
+            //提取文件名
+            $fileName = $file->getClientOriginalName();
+
+
+            //移动文件到指定目录
+            $storage_path = config("my_config.image_upload_dir"). session("user.user_id")."/";  //存贮文件的绝对路径
+            $path = $_SERVER['DOCUMENT_ROOT'] .$storage_path ;
+            $name = date('YmdHis') . session("user.user_id") . rand(1000, 9999) . "." . $file->getClientOriginalExtension();  //自动生成路径
+
+
+            $file->move($path, $name);  //移动
+            //把文件相关数据插入数据库
+            $input_data["image_name"] ="编辑器上传图片".$name;  //改文件名1
+            $input_data["image_format"] = $file->getClientOriginalExtension();   //文件格式
+            $input_data["image_intro"] = "编辑器上传图片".$name;
+            $input_data["image_path"] = $storage_path.$name;  //绝对路径
+            $input_data["image_user"] = session("user.user_id");
+
+
+            if (!UserPowerGroup::checkUserPower(7)) {                    //权限验证
+                $requsetJson = array(
+                    "state" => "无权限",          //上传状态，上传成功时必须返回"SUCCESS"
+                );
+                $data["status"] = false;
+                $data["requestJson"] = $requsetJson;
+                //  return $requsetJson;
+                return $data;
+            }
+            if ($id = DB::table("base_image")->insertGetId($input_data)){
+
+                $requsetJson = array(
+                    "state" => "SUCCESS",          //上传状态，上传成功时必须返回"SUCCESS"
+                    "url" => config("my_config.website_url")."/getImage/".$id,            //返回的地址
+                    "title" => $id ,          //新文件名
+                    "original" => "",       //原始文件名
+                    "type" => ".".$file->getClientOriginalExtension(),            //文件类型
+                    "size" => $file->getClientSize()           //文件大小
+                );
+
+                $data["status"] = true;
+                $data["requestJson"] = $requsetJson;
+                return $data;
+
+            } else {
+                $requsetJson = array(
+                    "state" => "无法插入数据库",          //上传状态，上传成功时必须返回"SUCCESS"
+                );
+                $data["status"] = false;
+                $data["requestJson"] = $requsetJson;
+
+                return $data;
+
+            }
+        }
+    }
 
 
 }

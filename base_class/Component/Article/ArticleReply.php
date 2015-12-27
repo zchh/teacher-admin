@@ -7,179 +7,252 @@
  */
 
 namespace BaseClass\Component\Article;
+use Illuminate\Support\Facades\DB;
 
-
+/**
+ * Class ArticleReply
+ * @package BaseClass\Component\Article
+ */
 class ArticleReply
 {
+
+    /**
+     * @var
+     */
+    private $reply_id;
+
+    /**
+     * @var
+     */
     public $info;
 
     /**
      * 查询 select
      */
-    public function select()
+    static function select($query_limit)
     {
+
+        /*
+       * $limit
+       * |-user   按照用户筛选
+       * |-class_id 按照reply_id筛选
+       * |-sort   排序方式
+       * |-num    每页条数
+       * |-start  开始
+       * |-desc 是否倒序列
+       * |-paginate 是否分页
+       * |-first 是否返回一条记录
+       * |-join_article_and_user 是否和合并base_article表和base_user表
+
+       *
+       * $return_data
+       * |-status 是否成功
+       * |-message 消息
+       * |-data   数据 DB返回的二维结构
+       *
+       */
+        $query = DB::table("base_article_reply");
+
+
+
+        //合并base_article和base_user表
+        if(isset($query_limit["join_article_and_user"]) && $query_limit["join_article_and_user"] == true)
+        {
+            $query = $query -> leftJoin("base_article","reply_article","=","article_id")
+                            -> leftJoin("base_user","article_id","=","user_id");
+        }
+
+
+        //起始条数
+        if ( isset($query_limit["start"]))
+        { $query = $query->skip($query_limit["start"]);}
+
+
+        //每页条数
+        if(isset($query_limit["num"]))
+        {
+            if($query_limit["num"]==0)//如果指定0，直接就不用返回数据了
+            {
+                $return_data["status"] = true;
+                $return_data["message"] = "查看到数据，但数量限制为0";
+                $return_data["data"] = [];
+                return $return_data;
+            }
+            $query = $query->take($query_limit["num"]);
+        }
+        else
+        {
+            $query = $query->take(config("my_config.default_num_page")); //默认数量页面
+        }
+
+
+
+        //排序
+        if(  isset($query_limit["sort"])  )   //按数据库某一字段来排
+        {
+            if(isset($query_limit["desc"])  && true==$query_limit["desc"])
+            {
+                $query = $query->orderBy($query_limit["sort"],"desc");
+            }
+            else
+            {
+                $query = $query->orderBy($query_limit["sort"]);
+            }
+
+        }
+        else
+        {
+            if(isset($query_limit["desc"])  && true==$query_limit["desc"])
+            {
+                $query = $query->orderBy("reply_id","desc");
+            }
+            else
+            {
+                $query = $query->orderBy("reply_id");
+            }
+        }
+
+        //筛选用户
+        if(isset($query_limit["user"]))
+        {
+            $query = $query->where("reply_user","=",$query_limit["user"]);
+        }
+        //筛选reply_id
+        if(isset($query_limit["reply_id"]))
+        {
+            $query = $query -> where("reply_id","=",$query_limit["reply_id"]);
+        }
+
+
+        if(isset($query_limit["first"]) && $query_limit["first"] == true)
+        {
+            $replyArray = $query -> first();
+        }
+        else
+        {
+            //是否分页
+            if(isset($query_limit["paginate"]))
+            {
+                if($query_limit["paginate"] <= 0)
+                {
+                    $replyArray = $query -> get();
+                }
+                else{
+                    $replyArray = $query -> paginate($query_limit["paginate"]);
+                }
+            }
+            else
+            {
+                $replyArray = $query -> get();
+            }
+
+        }
+
+
+        //获取数据并返回
+        //  $classArray = $query ->get();
+
+        $return_data["status"] = true;
+        $return_data["message"] = "成功获取到数据";
+        $return_data["data"] = $replyArray;
+        return $return_data;
 
     }
 
-    //传入reply_id 实例化一条评论的对象
+
+    /**
+     * @param $reply_id
+     * 传入reply_id 实例化一条评论的对象
+     */
     public function __construct($reply_id)
     {
-
+        $this->reply_id=$reply_id;
+        $this -> syncBaseInfo();
     }
 
-    //传入一个数组，添加一条评论
     /**
+     * 传入一个数组，添加一条评论
      * @param $info_array
-     * |-parent   评论的父级 如果是文章的第一层评论，那么插入时不需要有relation_parent属性，（是不需要，不是null）
-     * |-article  评论的依赖文章
-     * |-user     评论的用户
-     * |-detail   评论详情
-     * |-
+     * @return bool
      */
     static function addReply( $info_array)
     {
 
+        $return_id = DB::table("base_article_reply")->insertGetId($info_array);
+        if($return_id == null)
+        {
+            return false;
+
+        }
+        else
+        {
+            return $return_id;
+        }
+
+
     }
 
-    //同步信息
+    /**
+     * 向base_reply_relation表添加记录
+     * @param $info_array
+     * @return bool
+     */
+    static function addRelation($info_array)
+    {
+        $return = DB::table("base_reply_relation")->insert($info_array);
+        if($return == true)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    /**
+     * 同步信息
+     * @return bool
+     */
     public function syncBaseInfo()
     {
+        $replyId = $this -> reply_id;
+        $first =  DB::table('base_article_reply')-> where("reply_id","=",$replyId) ->first();
+        if($first == null)
+        {
+            return false;
+        }
+        else
+        {
+            $this ->info = $first;
+            return true;
+        }
 
     }
 
-    //评论删除
+
+    /**
+     * 评论删除
+     * @return bool
+     */
     public function delete()
     {
-
-    }
-
-
-
-}
-
-/*这个函数是构造一个评论树*/
-class ArticleReplyTree
-{
-    /**
-     * 使用构造函数要传入各种条件，来构造成指定的评论树
-     * @param $limit_info
-     * |-article    根据某一篇文章的评论来生成树
-     * |-           待定
-     * |-
-     *
-     * 构造函数不构造  交给子函数做
-     */
-    public function __construct($limit_info)
-    {
-
-    }
-
-
-    /**
-     * 根据当前文章条件构造树
-     * 返回一个准备好的评论树视图
-     * view("BaseClass::replyTree",$inputData);
-     * */
-    public function buildArticleReplyTree()
-    {
-
-    }
-
-    /**
-     * 构造评论树
-     */
-    public function  &buildReplyTree()
-    {
-
-    }
-
-
-
-}
-
-
-/**
- *
- * 参考
- * 调用实例请见Controllers/Index/BaseController 里面的 articleDetail
- * 调用的了原来的基类来自 gird_plugins/Base/class/ArticleFunc底部
- * 这个函数加载了包自己的视图位于ird_plugins/Base/views/reply（构造的基本图形界面） 和 areply（作为添加评论的窗口）
- *
- *
- * 我已经拷贝这两个视图的代码到新的base_class/views/ 低下
- * 你可以调用这两个视图 类似于 view("BaseClass::replyTree",$inputData);
- * 不懂请问彭亮  他做过这一块
- *
-*
- * 获取一篇文章的评论
- * @access public
- * @param string $articleId  获取的文章ID
- *
- *
- * @return html 界面
- *
-public function getArticleReply($articleId)
-{
-    $replyData = DB::table("base_article_reply")->where("reply_article","=",$articleId)
-
-        ->join("base_reply_relation","relation_child","=","reply_id")
-        ->join("base_user","reply_user","=","user_id")
-        //->join("base_image","user_image","=","image_id")
-        ->get();//先查出该文章的所有节点和关系
-
-
-    $rootReply=[];
-    foreach($replyData as $key => $data)
-    {
-        if($data->relation_parent == NULL)
+        $reply_id = $this -> reply_id;
+        $deleteRelation = DB::table("base_reply_relation")->where("relation_child","=",$reply_id)->delete();
+        $delete =  DB::table("base_article_reply")->where("reply_id","=",$reply_id)->delete();
+        if($deleteRelation > 0 && $delete > 0)
         {
-            $rootReply[] =$data;
-            unset($replyData[$key]);
-
+            return true;
+        }
+        else
+        {
+            return false;
         }
 
     }
 
 
 
-    $gui="";
-    foreach($rootReply as $data)
-    {
-        //$gui .= "<div class='col-sm-12 well'>";//界面html代码
-        $inputData["reply_data"] = $data;
-        $inputData["son"] = &$this->buildReplyTree($data->reply_id, $replyData);
-        $gui.=view("Base::reply",$inputData);
-
-    }
-
-
-    $inputData["article_id"] = $articleId;
-    $gui.=view("Base::aReply",$inputData);
-
-    return $gui;
-
-
 }
-
-private function &buildReplyTree($parent, &$replyData)
-{
-    $gui="";
-    foreach($replyData as $key=>$data)
-    {
-        if($data->relation_parent == $parent )
-        {
-            $inputData["reply_data"] = $data;
-            $inputData["son"] = & $this -> buildReplyTree($data->reply_id, $replyData);
-            $gui.=view("Base::reply",$inputData);
-            unset($replyData[$key]);
-        }
-    }
-
-    return $gui;
-
-}
-
-
-}
-
-*/
