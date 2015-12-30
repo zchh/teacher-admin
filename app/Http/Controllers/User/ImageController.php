@@ -45,6 +45,8 @@ class ImageController extends Controller {
         return view("User.Image.sImage", $combine);
     }
 
+
+
     public function aImage(BaseFunc $baseFunc, UserPowerFunc $UserPowerFunc) {   //增加图片
 
         if (!UserPowerGroup::checkUserPower(7)) {
