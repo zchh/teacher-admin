@@ -13,7 +13,7 @@ class BaseClassServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-
+        $this->loadViewsFrom(__DIR__."/views" , 'BaseClass');
         scanDir(__DIR__."/Test/Route");
     }
     

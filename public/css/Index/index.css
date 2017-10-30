@@ -37,10 +37,10 @@ body{
 
 a {
     color:gray;
-     transition: all 0.5s;
-    -moz-transition: all 0.5s;	/* Firefox 4 */
-    -webkit-transition: all 0.5s;	/* Safari 和 Chrome */
-    -o-transition: all 0.5s;	/* Opera */
+     /*transition: all 0.5s;*/
+    /*-moz-transition: all 0.5s;	/* Firefox 4 */
+    /*-webkit-transition: all 0.5s;	/* Safari 和 Chrome */
+    /*-o-transition: all 0.5s;	/* Opera */
 }
 a:hover {
     color:#3D9244 ;

@@ -1,10 +1,8 @@
 <?php
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
-use GirdPlugins\Base\BaseFunc;
-use Illuminate\Support\Facades\Request;
+use BaseClass\Component\Article\ArticleReplyTree;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use GirdPlugins\Base\ArticleFunc;   //张池增加
 
 class BaseController extends Controller {
@@ -149,7 +147,17 @@ class BaseController extends Controller {
         DB::table("base_article")->where("article_id","=",$article_id)->increment('article_click');
         $viewData["choseData"] =NULL;
         $viewData["classData"]=DB::table('base_article_collect_class')->get();
-        $viewData["replyData"] = $articleFunc->getArticleReply($article_id);
+       // $viewData["replyData"] = $articleFunc->getArticleReply($article_id);//我就是评论树的调用！！！
+        //zc
+          $limit_tree["article_id"] = $article_id;
+          $limit_tree["join_user"] = true;
+          $limit_tree["join_relation"] = true;
+          $tree = new ArticleReplyTree($limit_tree);
+          $viewData["replyData"]  = $tree -> buildArticleReplyTree();
+
+
+        //zc
+
         $viewData["userInfoGui"] = $this->userSider($viewData["articleData"]->article_user);
         $viewData["sidebarRecommendGui"] = $this->sidebarRecommendArticle();
         return view("Index.Article.articleDetail",$viewData);

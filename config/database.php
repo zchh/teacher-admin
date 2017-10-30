@@ -54,7 +54,7 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      =>  'localhost',//"114.215.156.124",
+			'host'      =>  '127.0.0.1',//"114.215.156.124",
 
 
 			'database'  => 'base_cms',

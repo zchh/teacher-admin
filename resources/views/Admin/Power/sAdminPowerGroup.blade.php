@@ -25,6 +25,7 @@
                                 <div class="modal-footer">
                                     <button class="btn btn-sm btn-primary" type="submit">提交</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                </div>
                             </form>
                         </div>
 
@@ -46,17 +47,21 @@
                 </thead>
                 <tbody>
                     <tr class="container">
-                        <?php
-                        foreach ($GroupData as $data) {
-                            ?>
+
+                       @foreach($GroupData as $data)
+
                         <tr class="container">
-                            <td class="container">{{$data->group_id}}</a></td>
+                            <td class="container">{{$data->group_id}}</td>
                             <td class="container">{{$data->group_name}}</td>
                             <td class="container"><!-- Button trigger modal -->
-                                <a href="/admin_moreAdminPowerGroup/{{$data->group_id}}" class="btn btn-info btn-sm" >详情</a>
 
+                                      @foreach($readPower as $single)
+                                           @if($data -> group_id == $single -> relation_group_id)
+                                               <a href="/admin_moreAdminPowerGroup?group_id={{$data->group_id}}" class="btn btn-info btn-sm" >详情</a>
+                                               @endif
+                                       @endforeach
 
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#upd_{{$data->group_id}}" >修改</button>
+                                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#upd_{{$data->group_id}}" >修改</button>
                                 <div class="modal fade" id="upd_{{$data->group_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -69,10 +74,9 @@
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="hidden" name="group_id" value="{{$data->group_id}}">
                                                     <input type="text " id="inputText" class="form-control" name="group_name" placeholder="Group name" value="{{$data->group_name}}" required autofocus>
-
-                                                    </div>
+                                            </div>
                                                     <div class="modal-footer">
-                                                        <button  class="btn btn-warning btn-sm" type="submit">修改</a>
+                                                        <button  class="btn btn-warning btn-sm" type="submit">修改</button>
                                                             </form>
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
                                                     </div>
@@ -98,13 +102,9 @@
                                             </div>
                                         </div>
                                     </div>
-
                             </td>
-
                         </tr>
-                        <?php
-                    }
-                    ?>
+                        @endforeach
                     </tr>
 
 
@@ -112,10 +112,11 @@
             </table>
 
             <hr>
-
+           @if( $paginate == true)
             <div class="col-sm-4 col-sm-offset-4">
                 <?php echo $GroupData->render(); ?>
             </div>
+            @endif
 
         </div>
 

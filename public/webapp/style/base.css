@@ -1,0 +1,9 @@
+.hide_div{
+    opacity: 0; !important;
+}
+.show_div{
+    opacity: 1 !important;
+}
+.none_div{
+    display: none;
+}

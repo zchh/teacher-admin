@@ -14,8 +14,11 @@
                 <select class="form-control" id="a_class" value="{{$articleDetail->article_class}}">
 
                     @foreach($articleClass as $data)
-                    <option value="{{$data->class_id}}">{{$data->class_name}}</option>
-
+                        @if($data->class_id == $articleDetail->article_class)
+                            <option value="{{$data->class_id}}" selected="selected">{{$data->class_name}}</option>
+                        @else
+                            <option value="{{$data->class_id}}" >{{$data->class_name}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -108,12 +111,12 @@
         ue.ready(function() {
         UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
         UE.Editor.prototype.getActionUrl = function(action) {
-            if (action == 'uploadimage' ) {
+            if (action == 'uploadimage') {
                 return '{{config("my_config.website_url")}}/putImage';
             } else {
                 return this._bkGetActionUrl.call(this, action);
             }
-        }
+        }//修改上传图片接口
 
         $.ajax({
         type:"post",

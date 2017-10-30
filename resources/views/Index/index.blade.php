@@ -3,10 +3,7 @@
 @section("main")
     
     <div class="col-sm-10 col-sm-offset-1">
-      
-     
-         
-           
+
            <div class="col-sm-5">
                 <?php echo $indexRecommendArticle;?>
            </div>

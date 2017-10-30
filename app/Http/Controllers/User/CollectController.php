@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
+use BaseClass\Component\Article\ArticleCollect;
+use BaseClass\Component\Article\ArticleCollectClass;
 use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,31 +24,28 @@ class CollectController extends Controller {
         return view("User.Collect.sCollect",$data);
     }
     
-    public function uCollect(LogFunc $logFunc,BaseFunc $baseFunc)
+    public function uCollect(BaseFunc $baseFunc)
     {
-        //dump($_POST);exit();
         $collectId = Request::input('collect_id');
-        $collectClass = Request::input("collect_class");
-        DB::table("base_article_collect")->where("collect_id", "=", $collectId)->update([
-            "collect_class" => $collectClass
-        ]);
+        $collectClass['collect_class'] = Request::input("collect_class");
+        $updateObj=new ArticleCollect($collectId);
+        $updateObj->update($collectClass);
         $baseFunc->setRedirectMessage(true, "修改收藏文章成功！", null, null);
         return redirect()->back();
     }
     
-    public function dCollect(LogFunc $logFunc,BaseFunc $baseFunc,$collectId)
+    public function dCollect(BaseFunc $baseFunc,$collectId)
     {
-        DB::table("base_article_collect")->where("collect_id","=",$collectId)->delete();
+       $removeCollect=new ArticleCollect($collectId);
+        $removeCollect->remove();
         $baseFunc->setRedirectMessage(true, "移除收藏文章成功！", null, null);
         return redirect()->back();
     }
     
     public function aCollectClass(LogFunc $logFunc,BaseFunc $baseFunc)
     {      
-        $input_data=Request::only("class_name");     
-        $input_data['class_create_date']=date("Y-m-d H:i:s");
-        $input_data['class_user']=  session("user.user_id");
-        DB::table("base_article_collect_class")->insert($input_data);
+        $input_data=Request::only("class_name");
+        ArticleCollectClass::add($input_data);
         $baseFunc->setRedirectMessage(true, "添加收藏夹成功！", null, null);
         return redirect()->back();
     }
@@ -55,17 +54,17 @@ class CollectController extends Controller {
     {
 
         $classId = Request::input('class_id');
-        $className = Request::input("class_name");
-        DB::table("base_article_collect_class")->where("class_id", "=", $classId)->update([
-            "class_name" => $className
-        ]);
+        $className['class_name']= Request::input("class_name");
+        $updateCollectClass= new ArticleCollectClass($classId);
+        $updateCollectClass->update($className);
         $baseFunc->setRedirectMessage(true, "修改收藏夹成功！", null, null);
         return redirect()->back();
     }
     
     public function dCollectClass(LogFunc $logFunc,BaseFunc $baseFunc,$classId)
     {
-        DB::table("base_article_collect_class")->where("class_id","=",$classId)->delete();
+        $deleteCollectClass=new ArticleCollectClass($classId);
+        $deleteCollectClass->delete();
         $baseFunc->setRedirectMessage(true, "删除收藏夹成功！", null, null);
         return redirect()->back();
     }
@@ -73,10 +72,7 @@ class CollectController extends Controller {
     public function addArticleToCollect(LogFunc $logFunc,BaseFunc $baseFunc)
     {
         $input_data=Request::only("collect_class","collect_article_id");
-        $input_data['collect_create_date']=date("Y-m-d H:i:s");
-        $input_data['collect_update_date']=date("Y-m-d H:i:s");
-        $input_data['collect_user']=  session("user.user_id");
-        DB::table("base_article_collect")->insert($input_data);
+        ArticleCollect::add($input_data);
         $baseFunc->setRedirectMessage(true, "收藏文章成功！", null, null);
         return redirect()->back();
     }

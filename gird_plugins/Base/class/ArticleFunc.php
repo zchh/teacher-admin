@@ -124,7 +124,9 @@ class ArticleFunc
     {
         return DB::table("base_article")->where("article_id","=",$detailId)->first();
     }
-    
+
+
+
     /*
      * 获取一篇文章的评论
      * @access public
@@ -149,14 +151,13 @@ class ArticleFunc
             if($data->relation_parent == NULL)
             {
                 $rootReply[] =$data;
-                unset($replyData[$key]);  
+                unset($replyData[$key]);//从数组里面移除第一鞥评论
                
             }
             
         }
        
-        
-        
+
         $gui="";
         foreach($rootReply as $data)
         {
@@ -172,8 +173,7 @@ class ArticleFunc
         $gui.=view("Base::aReply",$inputData);
         
         return $gui;
-       
-        
+
     }
     
     private function &buildReplyTree($parent, &$replyData)
@@ -183,10 +183,11 @@ class ArticleFunc
         {
             if($data->relation_parent == $parent )
             {
+                unset($replyData[$key]);
                 $inputData["reply_data"] = $data;
                 $inputData["son"] = & $this -> buildReplyTree($data->reply_id, $replyData);
                 $gui.=view("Base::reply",$inputData);
-                unset($replyData[$key]); 
+
             }
         }
         

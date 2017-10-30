@@ -1,0 +1,47 @@
+
+
+body{
+    padding-top: 50px;
+}
+
+/*
+.horizontal_nav ul{
+
+    height: 100%;
+    display: block;
+
+}
+.horizontal_nav li{
+    display: block;
+    list-style: none;
+    background-color: #008855;
+    height:100%;
+    float: left;
+    padding: 2px;
+
+}
+#header_nav{
+    background-color: whitesmoke;
+    height:40px;
+
+}
+#header_gap{
+    background-color: #E0E0D8;
+    height:100px;
+    margin-bottom: 10px;
+    padding: 20px;
+
+}
+*/
+.article_item.ng-enter{
+    animation: 0.5s zoomIn;
+}
+
+
+
+#articleView.ng-enter{
+    animation: 0.5s zoomIn;
+}
+#articleView.ng-leave{
+    animation: 0.5s zoomOutRight;
+}
