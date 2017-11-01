@@ -182,7 +182,6 @@ class User
             ->where("subject_user","=",$this->user_id)
             ->get("subject_id");
             return true;
-
     }
 
     /**

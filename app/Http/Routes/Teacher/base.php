@@ -1,9 +1,20 @@
 <?php
 
 
+/**
+ * 管理员后台
+ */
+Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                   //管理员登录
+Route::post("/t_check_admin_login","Teacher\AdminController@checkAdminLogin");        //校验登录
 
-Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                 //管理员登录
-Route::post("/t_check_admin_login","Admin\AdminController@checkAdminLogin");        //校验登录
+
+/**
+ * 教师后台
+ */
+Route::get("/t_teacher_login","Teacher\TeacherController@teacherLogin");
+Route::post("/t_check_teacher_login","Teacher\TeacherController@checkTeacherLogin");
+
+
 
 
 

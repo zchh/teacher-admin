@@ -1,0 +1,28 @@
+.navbar-header {
+	width: auto;
+}
+.navbar-nav {
+		float: right;
+}
+.clear {
+	clear: both;
+}
+.p-record {
+	text-align: center;
+}
+.p-record a {
+	color: #03a9f5;
+	font-size: 12px;
+}
+.account-box {
+	height: 195px;
+}
+.recharge-box {
+	padding-top: 24px;
+}
+.login-logo {
+	margin-top: 120px;
+}
+.login-logo img {
+	width: 180px;
+}
