@@ -1,0 +1,104 @@
+
+html { font-size: 14px; }
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background-color: #fff;
+  line-height: 1.42857143;
+  font-family: "Helvetica Neue","Microsoft YaHei", Helvetica, Arial, sans-serif;
+}
+body,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+form{
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4{
+  font-weight: normal;
+}
+h4,
+h5,
+h6{ font-size: 1em;}
+ul,
+ol {
+  padding-left: 0;
+  list-style: none;
+}
+td,
+th,
+input {
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a { text-decoration: none;}
+a:active { outline: none; }
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+input {
+  outline: none;
+}
+button {
+  border: none;
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+.fix{*zoom:1;}
+.fix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.fix:before {
+  content: '';
+  display: table;
+}
+.w-break{
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/************************************************************************************************************************/

@@ -1,0 +1,319 @@
+.main .container .section {
+  padding-top: 40px;
+}
+.main .container .section .base-info .base-info-left,
+.main .container .section .base-info .base-info-mid {
+  float: left;
+}
+.main .container .section .base-info .base-info-right {
+  float: right;
+}
+.main .container .section .base-info .base-info-left {
+  width: 170px;
+}
+.main .container .section .base-info .base-info-mid {
+  width: 680px;
+}
+.main .container .section .base-info .base-info-mid ul {
+  margin-top: 10px;
+}
+.main .container .section .base-info .base-info-mid ul li {
+  float: left;
+  width: 50%;
+  line-height: 38px;
+  font-size: 18px;
+  color: #999;
+}
+.main .container .section .base-info .base-info-mid ul li span {
+  color: #3a3a3a;
+}
+.main .container .section .base-info .base-info-right {
+  width: 270px;
+}
+.main .container .section .base-info .base-info-right .btn-update-info,
+.main .container .section .base-info .base-info-right .btn-quit {
+  float: right;
+  width: 140px;
+  height: 36px;
+  line-height: 36px;
+  border: 1px solid #ff6e00;
+  border-radius: 4px;
+  color: #ff6e00;
+  text-align: center;
+}
+.main .container .section .base-info .base-info-right .btn-update-info:hover,
+.main .container .section .base-info .base-info-right .btn-quit:hover {
+  background-color: #ff6e00;
+  color: #fff;
+}
+.main .container .section .base-info .base-info-right .btn-quit {
+  margin-top: 28px;
+}
+.main .container .section .info-nav {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 1121px;
+  height: 60px;
+  background: #f7f7f7;
+}
+.main .container .section .info-nav ul li {
+  float: left;
+  width: 200px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 20px;
+}
+.main .container .section .info-nav ul li.active a {
+  color: #ff6e00;
+}
+.main .container .section .info-nav ul li a:hover {
+  color: #ff6e00;
+}
+.main .container .section .my-orders {
+  display: none;
+}
+.main .container .section .my-QandA {
+  display: none;
+}
+.main .container .section .my-info {
+  display: none;
+}
+.main .container .section .active {
+  display: block;
+}
+.main .container .section .order {
+  margin-top: 20px;
+  padding: 20px;
+  padding-top: 16px;
+  height: 240px;
+  border: 1px solid #ddd;
+  background: #fbfbfb;
+}
+.main .container .section .order .title {
+  padding-bottom: 8px;
+}
+.main .container .section .order .title a {
+  float: right;
+  color: #ff6e00;
+}
+.main .container .section .order dl dt,
+.main .container .section .order dl dd {
+  float: left;
+}
+.main .container .section .order dl dt {
+  width: 270px;
+}
+.main .container .section .order dl dt img {
+  width: 270px;
+  height: 150px;
+}
+.main .container .section .order dl dd {
+  margin-left: 20px;
+  width: 780px;
+}
+.main .container .section .order dl dd a {
+  line-height: 24px;
+}
+.main .container .section .order dl dd a h3 {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 24px;
+}
+.main .container .section .order dl dd a img {
+  float: right;
+  width: 142px;
+  height: 26px;
+  border: 1px solid #ddd;
+}
+.main .container .section .order dl dd a:hover {
+  color: #ff6e00;
+}
+.main .container .section .order dl dd p {
+  margin-top: 20px;
+  line-height: 24px;
+}
+.main .container .section .order dl dd ul {
+  margin-top: 20px;
+}
+.main .container .section .order dl dd ul li {
+  float: left;
+  margin-left: 30px;
+}
+.main .container .section .order dl dd ul li span {
+  color: #ff6e00;
+}
+.main .container .section .order dl dd ul:before {
+  content: '贷款详情';
+  float: left;
+  padding-left: 6px;
+  width: 66px;
+  height: 20px;
+  background: url(../imgs/order-msg-bg.png) no-repeat;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+}
+.main .container .section .my-QandA .question-control:first-child {
+  margin-top: 20px;
+  border-top: 1px dashed #efefef;
+}
+.main .container .section .my-QandA .question-control {
+  position: relative;
+  padding: 16px 0;
+  padding-left: 30px;
+  padding-right: 220px;
+  border-bottom: 1px dashed #efefef;
+  font-size: 16px;
+}
+.main .container .section .my-QandA .question-control .question {
+  margin-top: 20px;
+  line-height: 22px;
+}
+.main .container .section .my-QandA .question-control .question span {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  color: #999;
+}
+.main .container .section .my-QandA .question-control .question:before {
+  position: absolute;
+  content: '问';
+  margin-left: -30px;
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  font-size: 14px;
+  background: #ff6e00;
+  border-radius: 2px;
+  color: #fff;
+}
+.main .container .section .my-QandA .question-control .replay {
+  margin-top: 20px;
+}
+.main .container .section .my-QandA .question-control .replay:before {
+  position: absolute;
+  content: '答';
+  margin-left: -30px;
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  font-size: 14px;
+  background: #50D9BA;
+  border-radius: 2px;
+  color: #fff;
+}
+.main .container .section .my-info form {
+  margin-top: 10px;
+  text-align: center;
+  /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+}
+.main .container .section .my-info form select {
+  margin-left: 10px;
+  padding-left: 14px;
+  width: 350px;
+  height: 40px;
+  line-height: 40px;
+  color: #999;
+}
+.main .container .section .my-info form select option {
+  color: #3a3a3a;
+}
+.main .container .section .my-info form select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  /*很关键：将默认的select选择框样式清除*/
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url(../imgs/icon-down.png) no-repeat scroll 320px center transparent;
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 14px;
+  /* ie8 hack */
+  background: #fff\9;
+  padding-right: 0px\9;
+}
+.main .container .section .my-info form select::-ms-expand {
+  display: none;
+}
+.main .container .section .my-info form .form-control {
+  float: left;
+  margin-top: 40px;
+  width: 50%;
+  height: 40px;
+  text-align: left;
+}
+.main .container .section .my-info form .form-control label {
+  display: inline-block;
+  width: 100px;
+  line-height: 40px;
+  text-align: right;
+}
+.main .container .section .my-info form .form-control input {
+  margin-left: 10px;
+  padding-left: 14px;
+  width: 350px;
+  height: 38px;
+  line-height: 38px;
+  border: 1px solid #999;
+  border-radius: 2px;
+}
+.main .container .section .my-info form .btn-confirm {
+  margin-top: 60px;
+  width: 240px;
+  height: 42px;
+  font-size: 16px;
+}
+.main .container .section .page {
+  margin: 0 auto;
+  margin-top: 70px;
+  width: 600px;
+  height: 30px;
+}
+.main .container .section .page li {
+  float: left;
+  margin-right: 5px;
+}
+.main .container .section .page li.active a {
+  border-color: transparent;
+  cursor: default;
+}
+.main .container .section .page li a {
+  display: inline-block;
+  line-height: 28px;
+  text-align: center;
+  border: 1px solid #dfdfdf;
+}
+.main .container .section .page li a.a-style-m {
+  width: 62px;
+}
+.main .container .section .page li a.a-style-s {
+  width: 36px;
+}
+.main .container .section .page li a.a-style-jump {
+  float: left;
+  width: 50px;
+}
+.main .container .section .page li .ipt-jump {
+  float: left;
+  width: 46px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #dfdfdf;
+}
+.main .container .section .page li .btn-go {
+  width: 48px;
+  height: 28px;
+  border-radius: 4px;
+  background: #6bc30c;
+  color: #fff;
+}
+.ic__datepicker {
+  margin-left: -368px;
+  margin-top: 50px;
+  border: 1px solid #ddd;
+}

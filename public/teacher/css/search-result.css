@@ -1,0 +1,248 @@
+.main .container .s-search .s-search-nav {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 1121px;
+  height: 60px;
+  background: #f7f7f7;
+}
+.main .container .s-search .s-search-nav ul li {
+  float: left;
+  width: 200px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 20px;
+}
+.main .container .s-search .s-search-nav ul li.active a {
+  color: #ff6e00;
+}
+.main .container .s-search .s-search-nav ul li a:hover {
+  color: #ff6e00;
+}
+.main .container .s-search .produce .order {
+  margin-top: 20px;
+  padding: 20px;
+  height: 190px;
+  background: #fbfbfb;
+  border: 1px solid #ddd;
+}
+.main .container .s-search .produce .order .title {
+  padding-bottom: 8px;
+}
+.main .container .s-search .produce .order .title a {
+  float: right;
+  color: #ff6e00;
+}
+.main .container .s-search .produce .order dl dt,
+.main .container .s-search .produce .order dl dd {
+  float: left;
+}
+.main .container .s-search .produce .order dl dt {
+  width: 270px;
+}
+.main .container .s-search .produce .order dl dt img {
+  width: 270px;
+  height: 150px;
+}
+.main .container .s-search .produce .order dl dd {
+  margin-left: 20px;
+  width: 780px;
+}
+.main .container .s-search .produce .order dl dd a {
+  line-height: 24px;
+}
+.main .container .s-search .produce .order dl dd a h3 {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 24px;
+}
+.main .container .s-search .produce .order dl dd a img {
+  float: right;
+  width: 142px;
+  height: 26px;
+  border: 1px solid #ddd;
+}
+.main .container .s-search .produce .order dl dd a:hover {
+  color: #ff6e00;
+}
+.main .container .s-search .produce .order dl dd p {
+  margin-top: 20px;
+  line-height: 24px;
+}
+.main .container .s-search .produce .order dl dd ul {
+  margin-top: 20px;
+}
+.main .container .s-search .produce .order dl dd ul li {
+  float: left;
+  margin-left: 30px;
+}
+.main .container .s-search .produce .order dl dd ul li span {
+  color: #ff6e00;
+}
+.main .container .s-search .produce .order dl dd ul:before {
+  content: '产品特色';
+  float: left;
+  padding-left: 6px;
+  width: 66px;
+  height: 20px;
+  background: url(../imgs/order-msg-bg.png) no-repeat;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+}
+.main .container .s-search .insure .order {
+  margin-top: 20px;
+  padding: 20px;
+  height: 190px;
+  border: 1px solid #ddd;
+  background: #fbfbfb;
+}
+.main .container .s-search .insure .order dl dt,
+.main .container .s-search .insure .order dl dd {
+  float: left;
+}
+.main .container .s-search .insure .order dl dt {
+  width: 270px;
+}
+.main .container .s-search .insure .order dl dt img {
+  width: 270px;
+  height: 150px;
+}
+.main .container .s-search .insure .order dl dd {
+  margin-left: 20px;
+  width: 780px;
+}
+.main .container .s-search .insure .order dl dd a {
+  line-height: 24px;
+}
+.main .container .s-search .insure .order dl dd a h3 {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 24px;
+}
+.main .container .s-search .insure .order dl dd a img {
+  float: right;
+  width: 142px;
+  height: 26px;
+  border: 1px solid #ddd;
+}
+.main .container .s-search .insure .order dl dd a:hover {
+  color: #ff6e00;
+}
+.main .container .s-search .insure .order dl dd p {
+  margin-top: 20px;
+  line-height: 24px;
+}
+.main .container .s-search .insure .order dl dd ul {
+  margin-top: 20px;
+}
+.main .container .s-search .insure .order dl dd ul li {
+  float: left;
+  margin-right: 30px;
+}
+.main .container .s-search .insure .order dl dd ul li span {
+  color: #ff6e00;
+}
+.main .container .s-search .law {
+  padding-top: 20px;
+}
+.main .container .s-search .law p {
+  font-size: 16px;
+  line-height: 42px;
+}
+.main .container .s-search .law p span {
+  float: right;
+  color: #999;
+}
+.main .container .s-search .law p a:hover {
+  color: #ff6e00;
+}
+.main .container .s-search .law p:before {
+  content: '▪';
+  color: #ff6e00;
+  margin-right: 4px;
+}
+.main .container .s-search .question {
+  padding-top: 20px;
+}
+.main .container .s-search .question p span {
+  float: right;
+  margin-right: 20px;
+  width: 16px;
+  height: 16px;
+}
+.main .container .s-search .question p span.icon-down {
+  background: url(../imgs/icon-down.png) no-repeat;
+}
+.main .container .s-search .question p span.icon-up {
+  background: url(../imgs/icon-up.png) no-repeat;
+}
+.main .container .s-search .question p:before {
+  content: '▪';
+  color: #ff6e00;
+  margin-right: 8px;
+}
+.main .container .s-search .question .question-control > p {
+  cursor: pointer;
+  line-height: 50px;
+}
+.main .container .s-search .question .question-control .collapse {
+  display: none;
+  margin: 16px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+}
+.main .container .s-search .page {
+  margin: 0 auto;
+  margin-top: 70px;
+  width: 600px;
+  height: 30px;
+}
+.main .container .s-search .page li {
+  float: left;
+  margin-right: 5px;
+}
+.main .container .s-search .page li.active a {
+  border-color: transparent;
+  cursor: default;
+}
+.main .container .s-search .page li a {
+  display: inline-block;
+  line-height: 28px;
+  text-align: center;
+  border: 1px solid #dfdfdf;
+}
+.main .container .s-search .page li a.a-style-m {
+  width: 62px;
+}
+.main .container .s-search .page li a.a-style-s {
+  width: 36px;
+}
+.main .container .s-search .page li a.a-style-jump {
+  float: left;
+  width: 50px;
+}
+.main .container .s-search .page li .ipt-jump {
+  float: left;
+  width: 46px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #dfdfdf;
+}
+.main .container .s-search .page li .btn-go {
+  width: 48px;
+  height: 28px;
+  border-radius: 4px;
+  background: #6bc30c;
+  color: #fff;
+}
+.main .container .s-search .produce,
+.main .container .s-search .insure,
+.main .container .s-search .law,
+.main .container .s-search .question {
+  display: none;
+}
+.main .container .s-search .active {
+  display: block;
+}

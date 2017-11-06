@@ -4,8 +4,13 @@
 /**
  * 管理员后台
  */
-Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                   //管理员登录
+Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                    //管理员登录
 Route::post("/t_check_admin_login","Teacher\AdminController@checkAdminLogin");        //校验登录
+Route::get("/t_admin_index","Teacher\AdminController@adminIndex");                    //首页
+Route::get("/t_sTeacher","Teacher\AdminController@searchTeacher");                    //教师
+Route::post("/t_add_teacher","Teacher\AdminController@addTeacher");                    //添加教师
+Route::get("/t_delete_teacher/{teacher_id}","Teacher\AdminController@deleteTeacher");                    //删除教师
+
 
 
 /**

@@ -1,0 +1,59 @@
+.main .container .dialog-forget-psw {
+  padding-top: 30px;
+  height: 500px;
+  background: #fff;
+}
+.main .container .dialog-forget-psw .title {
+  padding: 14px 40px;
+  font-size: 20px;
+  border-bottom: 2px solid #ff6e00;
+}
+.main .container .dialog-forget-psw .title h2 {
+  font-size: 20px;
+}
+.main .container .dialog-forget-psw .forget-psw-fm {
+  margin: 0 auto;
+  padding-top: 30px;
+  width: 460px;
+}
+.main .container .dialog-forget-psw .forget-psw-fm .form-control {
+  height: 60px;
+  line-height: 60px;
+}
+.main .container .dialog-forget-psw .forget-psw-fm .form-control label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+.main .container .dialog-forget-psw .forget-psw-fm .form-control input {
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 310px;
+  height: 44px;
+  line-height: 44px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+.main .container .dialog-forget-psw .forget-psw-fm .form-control input.verification {
+  width: 154px;
+}
+.main .container .dialog-forget-psw .forget-psw-fm .form-control .btn-get-ver {
+  margin-left: 12px;
+  width: 144px;
+  height: 44px;
+  line-height: 44px;
+}
+.main .container .dialog-forget-psw .forget-psw-fm .form-control .btn-commit {
+  margin-left: 10px;
+  width: 310px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 18px;
+}
+.main .container .dialog-forget-psw .forget-psw-fm .form-control .return {
+  margin-left: 76px;
+  text-align: center;
+}
+.main .container .dialog-forget-psw .forget-psw-fm .form-control .return a {
+  color: #ff6e00;
+}

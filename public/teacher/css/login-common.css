@@ -1,0 +1,21 @@
+.header {
+  padding: 16px 0;
+}
+.header .logo {
+  line-height: 68px;
+}
+.header .logo a {
+  float: left;
+}
+.header .welcom {
+  float: left;
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 2px solid #ff6e00;
+  color: #ff6e00;
+  font-size: 1.2em;
+  line-height: 68px;
+}
+.main .container {
+  padding-top: 20px;
+}

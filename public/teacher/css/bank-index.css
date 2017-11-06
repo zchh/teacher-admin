@@ -1,0 +1,47 @@
+.main .container .s-produce .produce-list > li {
+  position: relative;
+  float: left;
+  width: 360px;
+  margin-bottom: 20px;
+}
+.main .container .s-produce .produce-list > li.h-plr20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.main .container .s-produce .produce-list > li .s-produce-modals {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48px;
+  background: #000;
+  opacity: .4;
+  filter: alpha(opacity=40);
+}
+.main .container .s-produce .produce-list > li .s-produce-recommend {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 16px;
+  text-align: left;
+}
+.main .container .s-produce .produce-list > li .s-produce-recommend a {
+  line-height: 48px;
+  color: #fff;
+  font-size: 16px;
+}
+.main .container .s-produce .produce-list > li .s-produce-recommend a .w-break {
+  float: left;
+  width: 240px;
+}
+.main .container .s-produce .produce-list > li .s-produce-recommend a .btn-apply {
+  float: right;
+  margin-top: 10px;
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #ff6e00;
+  border-radius: 2px;
+  color: #fff;
+}

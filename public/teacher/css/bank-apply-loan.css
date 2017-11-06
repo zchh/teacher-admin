@@ -1,0 +1,440 @@
+.main .container {
+
+}
+.main .container .progress-bar-status1 {
+  margin-top: 48px;
+}
+.main .container .btn-next {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+  height: 40px;
+  background: #ff6e00;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 20px;
+}
+.main .container .order {
+  margin-top: 20px;
+  padding: 20px;
+  height: 190px;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+}
+.main .container .order dl dt,
+.main .container .order dl dd {
+  float: left;
+}
+.main .container .order dl dt {
+  width: 270px;
+}
+.main .container .order dl dt img {
+  width: 270px;
+  height: 150px;
+}
+.main .container .order dl dd {
+  margin-left: 20px;
+  width: 780px;
+}
+.main .container .order dl dd a {
+  line-height: 24px;
+}
+.main .container .order dl dd a:hover {
+  color: #ff6e00;
+}
+.main .container .order dl dd a h3 {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 24px;
+}
+.main .container .order dl dd a img {
+  float: right;
+  width: 142px;
+  height: 26px;
+  border: 1px solid #ddd;
+}
+.main .container .order dl dd p {
+  margin-top: 20px;
+  line-height: 24px;
+}
+.main .container .order dl dd ul {
+  margin-top: 20px;
+}
+.main .container .order dl dd ul li {
+  float: left;
+  margin-left: 30px;
+}
+.main .container .order dl dd ul li span {
+  color: #ff6e00;
+}
+.main .container .order dl dd ul:before {
+  content: '产品特色';
+  float: left;
+  padding-left: 6px;
+  width: 66px;
+  height: 20px;
+  background: url(../imgs/order-msg-bg.png) no-repeat;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+}
+.main .container .s-bank-apply-1 .s-left,
+.main .container .s-bank-apply-1 .s-right {
+  float: left;
+  width: 50%;
+  height: 390px;
+  text-align: center;
+}
+.main .container .s-bank-apply-1 .s-left label,
+.main .container .s-bank-apply-1 .s-right label {
+  display: inline-block;
+  padding-top: 280px;
+  height: 300px;
+  width: 180px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.main .container .s-bank-apply-1 .s-left input,
+.main .container .s-bank-apply-1 .s-right input {
+  width: 0;
+  height: 0;
+}
+.main .container .s-bank-apply-1 .loan-type-f,
+.main .container .s-bank-apply-1 .loan-type-f-checked,
+.main .container .s-bank-apply-1 .loan-type-enterprise,
+.main .container .s-bank-apply-1 .loan-type-enterprise-checked {
+  background: no-repeat 0 60px;
+}
+.main .container .s-bank-apply-1 .loan-type {
+  text-align: center;
+}
+.main .container .s-bank-apply-1 .loan-type-enterprise-checked {
+  background-image: url(../imgs/loan-type-enterprise-checked.png);
+}
+.main .container .s-bank-apply-1 .loan-type-enterprise {
+  background-image: url(../imgs/loan-type-enterprise.png);
+}
+.main .container .s-bank-apply-1 .loan-type-f {
+  background-image: url(../imgs/loan-type-f.png);
+}
+.main .container .s-bank-apply-1 .loan-type-f-checked {
+  background-image: url(../imgs/loan-type-f-checked.png);
+}
+.main .container h3 {
+  text-align: left;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 40px;
+}
+.main .container select {
+  margin-left: 10px;
+  padding-left: 18px;
+  width: 350px;
+  height: 40px;
+  line-height: 40px;
+  color: #999;
+  outline: none;
+}
+.main .container select option {
+  padding: 10px;
+  color: #3a3a3a;
+}
+.main .container select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  /*很关键：将默认的select选择框样式清除*/
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url(../imgs/icon-down.png) no-repeat scroll 320px center transparent;
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 14px;
+  /* ie8 hack */
+  background: #fff\9;
+  padding-right: 0px\9;
+}
+.main .container select::-ms-expand {
+  display: none;
+}
+.main .container .base-info {
+  margin-top: 20px;
+  text-align: left;
+}
+.main .container .base-info .base-info-left,
+.main .container .base-info .base-info-right {
+  float: left;
+  width: 50%;
+}
+.main .container .base-info p {
+  margin: 10px 0;
+  line-height: 40px;
+}
+.main .container .base-info label {
+  display: inline-block;
+  width: 140px;
+  line-height: 40px;
+  text-align: right;
+}
+.main .container .base-info .base-info-right label {
+  width: 190px;
+  line-height: 40px;
+}
+.main .container .base-info input {
+  margin-left: 10px;
+  padding-left: 18px;
+  width: 350px;
+  height: 40px;
+  line-height: 40px;
+}
+.main .container .right-info {
+  margin-top: 40px;
+  padding-bottom: 90px;
+  text-align: left;
+}
+.main .container .right-info .right-info-left,
+.main .container .right-info .right-info-right {
+  float: left;
+  width: 50%;
+  line-height: 30px;
+}
+.main .container .right-info .right-info-bottom {
+  clear: both;
+}
+.main .container .right-info .ul-pop {
+  display: none;
+  height: 50px;
+  margin-left: 26px;
+  margin-top: 10px;
+}
+.main .container .right-info .ul-pop li {
+  float: left;
+  margin: 0 4px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  background: #dde5e4;
+  font-size: 14px;
+}
+.main .container .right-info .ul-pop li:hover {
+  cursor: pointer;
+}
+.main .container .right-info .ul-pop li.active {
+  color: #ff6e00;
+  background: #fff;
+  border: 1px solid #ff6e00;
+  border-radius: 1px;
+}
+.main .container .right-info input {
+  width: 16px;
+  height: 16px;
+}
+.main .container .right-info input[type=checkbox] {
+  margin-top: 8px;
+  float: left;
+  -webkit-appearance: none;
+  appearance: none;
+  background: url(../imgs/checkbox.png);
+}
+.main .container .right-info input[type=checkbox]:checked {
+  background: url(../imgs/checkbox-checked.png);
+}
+.main .container .right-info p {
+  margin: 10px 0;
+  line-height: 40px;
+}
+.main .container .right-info label {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 30px;
+}
+.main .container .right-info label:hover {
+  cursor: pointer;
+}
+.main .container .right-info .form-control {
+  position: relative;
+  float: left;
+  width: 186.7px;
+}
+.main .container .right-info .form-control .pop {
+  display: none;
+  position: absolute;
+  top: 36px;
+  left: 2px;
+}
+.main .container .right-info .form-control .pop input {
+  padding: 10px;
+  padding-right: 24px;
+  width: 140px;
+  height: 36px;
+}
+.main .container .right-info .form-control .pop.active {
+  display: block;
+}
+.main .container .right-info .form-control .pop.add-m2:after {
+  content: 'm²';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #ff6e00;
+}
+.main .container .right-info .form-control .pop.add-mu:after {
+  content: '亩';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #ff6e00;
+}
+.main .container .right-info .form-control .pop.add-yuan:after {
+  content: '元';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #ff6e00;
+}
+.main .container .right-info .form-control.others {
+  width: 100px;
+}
+.main .container .shop-conn {
+  margin-bottom: 20px;
+}
+.main .container .shop-conn h3 span {
+  font-size: .75em;
+  color: #999;
+}
+.main .container .shop-conn .shop-conn-left,
+.main .container .shop-conn .shop-conn-right {
+  float: left;
+  width: 50%;
+  text-align: left;
+}
+.main .container .shop-conn p {
+  margin: 10px 0;
+  line-height: 40px;
+}
+.main .container .shop-conn label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}
+.main .container .shop-conn .shop-conn-right label {
+  width: 190px;
+}
+.main .container .shop-conn input {
+  margin-left: 10px;
+  padding-left: 18px;
+  width: 350px;
+  height: 40px;
+  line-height: 40px;
+}
+.main .container .commit p {
+  margin-top: 40px;
+}
+.main .container .commit label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}
+.main .container .commit input {
+  margin-left: 10px;
+  padding-left: 18px;
+  width: 350px;
+  height: 40px;
+  line-height: 40px;
+}
+.main .container .commit .btn-next {
+  display: inline-block;
+  margin-left: 40px;
+  width: 154px;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  background: #000;
+  background: rgba(0, 0, 0, 0.3);
+  filter: alpha(opacity=30);
+}
+.modal-dialog-deal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+  margin-top: -325px;
+  margin-left: -600px;
+  width: 1200px;
+  height: 650px;
+  background: #fff;
+  text-align: center;
+}
+.modal-dialog-deal h3 {
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 80px;
+}
+.modal-dialog-deal .list {
+  margin: 0 auto;
+  padding: 20px;
+  width: 1121px;
+  height: 450px;
+  border: 1px solid #e6e6e6;
+  text-align: left;
+  overflow-y: scroll;
+}
+.modal-dialog-deal .list li {
+  font-size: 16px;
+  line-height: 30px;
+}
+.modal-dialog-deal .list li:before {
+  content: '●';
+}
+.modal-dialog-deal .btn-agree {
+  display: inline-block;
+  margin: 0 auto;
+  margin-top: 34px;
+  width: 300px;
+  height: 40px;
+  background: #ff6e00;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 40px;
+}
+.modal-dialog-success {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+  margin-top: -125px;
+  margin-left: -225px;
+  padding: 44px;
+  width: 450px;
+  height: 250px;
+  background: #fff;
+  text-align: center;
+}
+.modal-dialog-success h3 {
+  font-size: 24px;
+}
+.modal-dialog-success p {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 30px;
+}
+.modal-dialog-success .btn-isee {
+  margin-top: 20px;
+  width: 154px;
+  height: 40px;
+  background: #ff6e00;
+  border-radius: 2px;
+  font-size: 16px;
+  color: #fff;
+}

@@ -1,0 +1,146 @@
+.main .container .s-question .s-question-nav {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 1121px;
+  height: 60px;
+  background: #f7f7f7;
+}
+.main .container .s-question .s-question-nav ul li {
+  float: left;
+  width: 200px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 20px;
+}
+.main .container .s-question .s-question-nav ul li.active a {
+  color: #ff6e00;
+}
+.main .container .s-question .s-question-nav ul li a:hover {
+  color: #ff6e00;
+}
+.main .container .s-question .s-question-nav .btn-ask {
+  float: right;
+  margin-top: 12px;
+  margin-right: 20px;
+  width: 110px;
+  height: 38px;
+  background: #ff6e00;
+  border-radius: 4px;
+  color: #fff;
+}
+.main .container .s-question .s-question-content .active {
+  display: block;
+}
+.main .container .s-question .recommend {
+  display: none;
+}
+.main .container .s-question .person-loan {
+  display: none;
+}
+.main .container .s-question .enterprise {
+  display: none;
+}
+.main .container .s-question .recommend > .question-control:first-child,
+.main .container .s-question .person-loan > .question-control:first-child,
+.main .container .s-question .enterprise > .question-control:first-child {
+  margin-top: 20px;
+  border-top: 1px dashed #efefef;
+}
+.main .container .s-question .question-control {
+  position: relative;
+  padding: 16px 0;
+  padding-left: 30px;
+  padding-right: 220px;
+  border-bottom: 1px dashed #efefef;
+  font-size: 16px;
+}
+.main .container .s-question .question-control .question {
+  margin-top: 20px;
+  line-height: 22px;
+}
+.main .container .s-question .question-control .question span {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  color: #999;
+}
+.main .container .s-question .question-control .question:before {
+  position: absolute;
+  content: '问';
+  margin-left: -30px;
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  font-size: 14px;
+  background: #ff6e00;
+  border-radius: 2px;
+  color: #fff;
+}
+.main .container .s-question .question-control .replay {
+  margin-top: 20px;
+}
+.main .container .s-question .question-control .replay:before {
+  position: absolute;
+  content: '答';
+  margin-left: -30px;
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  font-size: 14px;
+  background: #50D9BA;
+  border-radius: 2px;
+  color: #fff;
+}
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  background: #000;
+  background: rgba(0, 0, 0, 0.3);
+  filter: alpha(opacity=30);
+}
+.modal-dialog-ask {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+  margin-top: -180px;
+  margin-left: -310px;
+  padding: 44px;
+  width: 620px;
+  height: 360px;
+  background: #fff;
+  text-align: center;
+}
+.modal-dialog-ask h3 {
+  font-size: 24px;
+}
+.modal-dialog-ask textarea {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  height: 160px;
+  font-size: 16px;
+  resize: none;
+  overflow-y: auto;
+  font-family: 'Microsoft YaHei';
+}
+.modal-dialog-ask .btn-confirm {
+  margin-top: 20px;
+  width: 154px;
+  height: 40px;
+  background: #ff6e00;
+  border-radius: 2px;
+  font-size: 16px;
+  color: #fff;
+}

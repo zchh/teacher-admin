@@ -1,0 +1,71 @@
+.header .logo {
+  height: 100px;
+}
+.header .search-form .search {
+  width: 220px;
+}
+.header .bank-nav {
+  float: right;
+  width: 360px;
+}
+.header .bank-nav li {
+  float: left;
+  width: 120px;
+  line-height: 100px;
+  font-size: 18px;
+}
+.header .bank-nav li a {
+  padding: 10px 12px;
+  width: 96px;
+  height: 40px;
+  border-radius: 4px;
+}
+.header .bank-nav li a.active,
+.header .bank-nav li a:hover {
+  background: #ff6e00;
+  color: #fff;
+}
+.main .container .section .page {
+  margin: 0 auto;
+  margin-top: 70px;
+  width: 600px;
+  height: 30px;
+}
+.main .container .section .page li {
+  float: left;
+  margin-right: 5px;
+}
+.main .container .section .page li.active a {
+  border-color: transparent;
+  cursor: default;
+}
+.main .container .section .page li a {
+  display: inline-block;
+  line-height: 28px;
+  text-align: center;
+  border: 1px solid #dfdfdf;
+}
+.main .container .section .page li a.a-style-m {
+  width: 62px;
+}
+.main .container .section .page li a.a-style-s {
+  width: 36px;
+}
+.main .container .section .page li a.a-style-jump {
+  float: left;
+  width: 50px;
+}
+.main .container .section .page li .ipt-jump {
+  float: left;
+  width: 46px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #dfdfdf;
+}
+.main .container .section .page li .btn-go {
+  width: 48px;
+  height: 28px;
+  border-radius: 4px;
+  background: #6bc30c;
+  color: #fff;
+}

@@ -1,0 +1,19 @@
+.main .container .article {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+.main .container .article .title {
+  text-align: center;
+}
+.main .container .article .title p {
+  color: #808080;
+}
+.main .container .article .img-container {
+  text-align: center;
+}
+.main .container .article .ti2em {
+  text-indent: 2em;
+}
+.main .container .article .rules {
+  margin-top: 10px;
+}

@@ -1,0 +1,13 @@
+.main .container .s-about .service-net p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.main .container .s-about .service-net p span {
+  color: #ff6e00;
+}
+.main .container .s-about .map {
+  height: 420px;
+}
+.main .container .s-about .map img {
+  max-width: 100%;
+}

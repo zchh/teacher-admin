@@ -1,0 +1,82 @@
+.main .container .regist-dialog {
+  padding: 40px;
+  background-color: #fff;
+}
+.main .container .regist-dialog p {
+  text-align: right;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.main .container .regist-dialog p a {
+  color: #ff6e00;
+}
+.main .container .regist-dialog .regist-fm,
+.main .container .regist-dialog .img-container {
+  float: left;
+  width: 560px;
+}
+.main .container .regist-dialog .regist-fm .form-control {
+  height: 72px;
+  line-height: 72px;
+}
+.main .container .regist-dialog .regist-fm .form-control label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+}
+.main .container .regist-dialog .regist-fm .form-control label.agree {
+  margin-left: 20px;
+  width: 300px;
+}
+.main .container .regist-dialog .regist-fm .form-control label.agree a {
+  color: #ff6e00;
+}
+.main .container .regist-dialog .regist-fm .form-control input {
+  margin-left: 12px;
+  padding-left: 10px;
+  width: 310px;
+  height: 44px;
+  line-height: 44px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+.main .container .regist-dialog .regist-fm .form-control input.verification {
+  width: 154px;
+}
+.main .container .regist-dialog .regist-fm .form-control input.agree-checkbox {
+  padding-left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 0;
+}
+.main .container .regist-dialog .regist-fm .form-control input[type=checkbox] {
+  margin-left: 8px;
+  margin-top: 28px;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: url(../imgs/checkbox.png) no-repeat;
+}
+.main .container .regist-dialog .regist-fm .form-control input[type=checkbox]:checked {
+  background: url(../imgs/checkbox-checked.png) no-repeat;
+}
+.main .container .regist-dialog .regist-fm .form-control .btn-get-ver {
+  margin-left: 8px;
+  width: 144px;
+  height: 44px;
+  line-height: 44px;
+}
+.main .container .regist-dialog .regist-fm .form-control .btn-regist {
+  margin-left: 8px;
+  width: 314px;
+  height: 46px;
+  line-height: 46px;
+  font-size: 18px;
+}
+.main .container .regist-dialog .img-container {
+  margin-top: 10px;
+  text-align: right;
+}

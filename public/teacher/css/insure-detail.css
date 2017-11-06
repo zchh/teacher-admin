@@ -1,0 +1,65 @@
+.main .container .s-insure-detail .order {
+  margin-top: 20px;
+  height: 200px;
+}
+.main .container .s-insure-detail .order dl dt,
+.main .container .s-insure-detail .order dl dd {
+  float: left;
+}
+.main .container .s-insure-detail .order dl dt {
+  width: 360px;
+}
+.main .container .s-insure-detail .order dl dt img {
+  width: 360px;
+  height: 200px;
+}
+.main .container .s-insure-detail .order dl dd {
+  margin-left: 20px;
+  width: 720px;
+}
+.main .container .s-insure-detail .order dl dd a {
+  line-height: 24px;
+}
+.main .container .s-insure-detail .order dl dd a h3 {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 24px;
+}
+.main .container .s-insure-detail .order dl dd a img {
+  float: right;
+  width: 142px;
+  height: 26px;
+}
+.main .container .s-insure-detail .order dl dd p {
+  margin-top: 20px;
+  line-height: 24px;
+}
+.main .container .s-insure-detail .order dl dd ul {
+  margin-top: 20px;
+}
+.main .container .s-insure-detail .order dl dd ul li {
+  float: left;
+  margin-right: 30px;
+  font-size: 16px;
+  color: #999;
+}
+.main .container .s-insure-detail .order dl dd ul li span {
+  color: #ff6e00;
+}
+.main .container .s-insure-detail .title {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.main .container .s-insure-detail h4 {
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+.main .container .s-insure-detail h4::before {
+  content: '';
+  display: inline-block;
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+  background: url(../imgs/h4-before-icon.png);
+}

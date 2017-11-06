@@ -1,0 +1,180 @@
+html,
+body {
+    height: 100%;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+i {
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+#header {
+    background: url(../imgs/register_bg.png) no-repeat;
+    height: 60%;
+    background-size: 100% 100%;
+    background-position: center bottom;
+}
+
+#more {
+    width: 1rem;
+    height: 1rem;
+    background: url(../imgs/wode_xiazai_icon_xiayibu.png);
+    background-size: contain;
+    position: relative;
+    top: 2px;
+    left: 3px;
+}
+
+#header>h1,
+#header>h4 {
+    color: #fff;
+    text-align: center;
+}
+
+#header>h1 {
+    margin: 5px 0 0 0;
+}
+
+#header>h4 {
+    font-weight: 400;
+    margin: 10px 0;
+}
+
+#agreement {
+    display: block;
+    text-align: center;
+}
+
+.row>i {
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+}
+
+.i-number {
+    background: url(../imgs/wode_xiazai_icon_data.png) no-repeat;
+}
+
+.i-password {
+    background: url(../imgs/wode_xiazai_icon_mima.png) no-repeat;
+}
+
+.i-code {
+    background: url(../imgs/wode_xiazai_icon_yanzhengma.png) no-repeat;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40%;
+    padding: 0 5%;
+}
+
+#form>.row>input {
+    font-size: 1rem;
+    position: relative;
+    bottom: 5px;
+    border: none;
+}
+
+.row {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+}
+
+.get-code {
+    font-size: 0.8rem;
+    color: #333;
+    background: none;
+    border: none;
+    border-left: 1px solid #ccc;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.code-row {
+    display: flex;
+    align-items: baseline;
+}
+
+.buttons {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-basis: 2rem;
+}
+
+#submit,
+#download {
+    font-size: 1rem;
+    -webkit-appearance: none;
+    color: #fff;
+    border: none;
+}
+
+#submit {
+    width: 56%;
+    border-radius: 4px;
+    background-color: rgb(0, 170, 243);
+}
+
+#download {
+    width: 40%;
+    border-radius: 4px;
+    background-color: rgb(77, 216, 101);
+    text-align: center;
+}
+
+@media screen and (min-width:320px) and (max-width:359px) {
+    html {
+        font-size: 13px
+    }
+    #header>h4 {
+        margin: 5px 0;
+    }
+}
+
+@media screen and (min-width:360px) and (max-width:375px) {
+    html {
+        font-size: 14px
+    }
+    #header>h1 {
+        margin: 20px 0 0 0;
+    }
+}
+
+@media screen and (min-width:376px) and (max-width:414px) {
+    html {
+        font-size: 15px
+    }
+}
+
+@media screen and (min-width:415px) and (max-width:639px) {
+    html {
+        font-size: 16px
+    }
+}
+@media screen and (min-width:640px){
+    #header>h1 {
+        margin: 30px 0;
+    }
+    #header>h4 {
+        margin: 15px 0;
+    }
+}

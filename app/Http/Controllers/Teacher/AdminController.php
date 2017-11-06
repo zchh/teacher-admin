@@ -37,12 +37,25 @@ class AdminController extends Controller
         $result = Admin::findOne($param);
         if(false == empty($result)){
             if($result->password == md5($inputData['password'])){
-                $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/admin_index");
+                $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/t_admin_index");
             }
         }
         $baseFunc->setRedirectMessage(false, "错误的用户名和密码", NULL, "/t_admin_login");
-
     }
+
+    /**
+     * 首页
+     */
+    public function adminIndex(){
+        return view("Teacher.AdminView.index");
+    }
+
+    /**
+     *
+     */
+
+
+
 
 
 

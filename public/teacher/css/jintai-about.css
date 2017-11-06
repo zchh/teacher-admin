@@ -1,0 +1,15 @@
+.main .container .s-about p {
+  margin-top: 14px;
+}
+.main .container .s-about .img-container {
+  text-align: center;
+}
+.main .container .s-about .img-container img {
+  border: 8px solid #f7f7f7;
+}
+.main .container .s-about .phone {
+  font-size: 20px;
+}
+.main .container .s-about .phone span {
+  color: #ff6e00;
+}

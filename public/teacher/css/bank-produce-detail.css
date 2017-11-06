@@ -1,0 +1,86 @@
+.main .container dl dt,
+.main .container dl dd {
+  float: left;
+}
+.main .container dl dt {
+  width: 360px;
+}
+.main .container dl dd {
+  padding-left: 36px;
+  width: 730px;
+}
+.main .container dl dd h4 {
+  font-size: 24px;
+}
+.main .container dl dd p {
+  margin-top: 20px;
+  color: #999;
+}
+.main .container dl dd ul {
+  margin-top: 16px;
+}
+.main .container dl dd ul li {
+  float: left;
+  margin-right: 20px;
+  height: 30px;
+  line-height: 30px;
+  color: #2ccba7;
+}
+.main .container dl dd ul li i {
+  float: left;
+  padding: 2px 0;
+  font-size: 30px;
+}
+.main .container dl dd ul li span {
+  float: left;
+  margin-left: 12px;
+  padding: 0 18px;
+  font-size: 16px;
+  background: #2ccba7;
+  color: #fff;
+  transform: skew(-12deg);
+}
+.main .container dl dd ul li::before {
+  content: '》';
+  float: left;
+  margin-right: 20px;
+  color: #808080;
+  font-size: 20px;
+}
+.main .container dl dd ul li:first-child::before {
+  content: '';
+}
+.main .container dl dd .btn-apply {
+  margin-top: 34px;
+  width: 140px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+}
+.main .container p {
+  margin-top: 10px;
+}
+.main .container .special-content .col-1-5,
+.main .container .special-content .col-2-5 {
+  float: left;
+}
+.main .container .special-content .col-1-5 {
+  width: 220px;
+}
+.main .container .special-content .col-1-5 p {
+  color: #999;
+}
+.main .container .special-content .col-1-5 p span {
+  color: #ff6e00;
+  font-size: 26px;
+  font-family: 'Arial';
+}
+.main .container .special-content .col-2-5 {
+  width: 440px;
+}
+.main .container .special-content .col-2-5 p {
+  color: #999;
+}
+.main .container .special-content .col-2-5 p span {
+  color: #ff6e00;
+}

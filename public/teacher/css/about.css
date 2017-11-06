@@ -1,0 +1,22 @@
+.main .container .about-zhengxin h4 {
+  margin-top: 34px;
+  font-size: 18px;
+  font-weight: normal;
+}
+.main .container .about-zhengxin p {
+  margin-top: 30px;
+  line-height: 30px;
+}
+.main .container .call-us {
+  margin-top: 34px;
+  border-top: 1px solid #d7d7d7;
+}
+.main .container .call-us h3 {
+  line-height: 90px;
+}
+.main .container .call-us .img-container {
+  margin: 25px 0;
+}
+.main .container .img-container img {
+  width: 100%;
+}

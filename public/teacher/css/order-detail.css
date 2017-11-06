@@ -1,0 +1,137 @@
+.main .container .order-detail .order-title {
+  padding-bottom: 14px;
+}
+.main .container .order-detail .order-title a {
+  float: right;
+  color: #ff6e00;
+}
+.main .container .order-detail .order {
+  padding: 16px;
+  height: 190px;
+  border: 1px solid #ddd;
+  background: #fbfbfb;
+}
+.main .container .order-detail .order dl dt,
+.main .container .order-detail .order dl dd {
+  float: left;
+}
+.main .container .order-detail .order dl dt {
+  width: 270px;
+}
+.main .container .order-detail .order dl dt img {
+  width: 270px;
+  height: 150px;
+}
+.main .container .order-detail .order dl dd {
+  margin-left: 20px;
+  width: 780px;
+}
+.main .container .order-detail .order dl dd a {
+  line-height: 24px;
+}
+.main .container .order-detail .order dl dd a h3 {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 24px;
+}
+.main .container .order-detail .order dl dd a img {
+  float: right;
+  width: 142px;
+  height: 26px;
+  border: 1px solid #ddd;
+}
+.main .container .order-detail .order dl dd p {
+  margin-top: 20px;
+  line-height: 24px;
+}
+.main .container .order-detail .order dl dd ul {
+  margin-top: 20px;
+}
+.main .container .order-detail .order dl dd ul li {
+  float: left;
+  margin-left: 30px;
+  font-size: 16px;
+  color: #999;
+}
+.main .container .order-detail .order dl dd ul li:first-child {
+  margin-left: 0;
+}
+.main .container .order-detail .order dl dd ul li span {
+  color: #ff6e00;
+}
+.main .container .order-detail .order dl dd ul:before {
+  content: '产品特色';
+  float: left;
+  padding-left: 4px;
+  width: 66px;
+  height: 20px;
+  background: url(../imgs/order-msg-bg.png) no-repeat;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+}
+.main .container .order-detail .order-info {
+  margin-top: 30px;
+  border-top: 1px solid #ddd;
+}
+.main .container .order-detail .order-info h3 {
+  font-size: 20px;
+  margin-top: 28px;
+}
+.main .container .order-detail .order-info p {
+  display: inline-block;
+  margin-top: 20px;
+  width: 49%;
+  color: #999;
+}
+.main .container .order-detail .order-info p span {
+  color: #363636;
+}
+.main .container .order-detail .order-info .rights {
+  padding-top: 20px;
+}
+.main .container .order-detail .order-info .rights p {
+  float: left;
+  margin-top: 0;
+  width: 90px;
+  height: 60px;
+}
+.main .container .order-detail .order-info .rights ul {
+  float: left;
+  width: 980px;
+}
+.main .container .order-detail .order-info .rights ul li {
+  display: inline-block;
+  margin-right: 60px;
+  line-height: 30px;
+}
+.main .container .order-detail .shop-conn {
+  margin-top: 20px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+}
+.main .container .order-detail .shop-conn h3 {
+  font-size: 20px;
+}
+.main .container .order-detail .shop-conn p {
+  display: inline-block;
+  margin-top: 20px;
+  width: 49%;
+  color: #999;
+}
+.main .container .order-detail .shop-conn p span {
+  color: #363636;
+}
+.main .container .order-detail .order-time {
+  padding-top: 30px;
+  border-top: 1px solid #d7d7d7;
+}
+.main .container .order-detail .order-time .time {
+  float: left;
+  color: #999;
+}
+.main .container .order-detail .order-time .summary {
+  float: right;
+  font-size: 20px;
+  color: #ff6e00;
+}

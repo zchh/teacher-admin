@@ -1,0 +1,15 @@
+.main .container .section {
+  line-height: 30px;
+}
+.main .container .section .title h3 {
+  text-align: center;
+}
+.main .container .section h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-size: 14px;
+}
+.main .container .section p {
+  font-size: 14px;
+}
