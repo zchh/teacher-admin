@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Teacher;
 use App\Http\Controllers\Controller;
 //use BaseClass\Role\Admin;
+use BaseClass\Component\Image\Image;
 use BaseClass\Teacher\Admin;
 use BaseClass\Teacher\Teacher;
 use GirdPlugins\Base\BaseFunc;
@@ -78,12 +79,58 @@ class AdminController extends Controller
      * 添加教师
      */
     public function addTeacher(BaseFunc $baseFunc){
+
+
+        //处理图片文件
+        if (!request::hasFile('pic')) {
+
+            $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
+
+            return redirect()->back();  //跳回上一页
+        }
+        //从前端提取文件
+        $file = Request::file('pic');
+
+        //获取与前端file无关的数据库量
+        $inputData["image_name"] = $_POST["image_name"];  //改文件名1
+        $inputData["image_intro"] = $_POST["image_intro"];
+        if(isset($_POST["image_class"]))
+        {
+            $inputData["image_class"] = $_POST["image_class"];
+        }
+
+        $return = Image::add($inputData,$file);
+        if($return == true)
+        {
+            $baseFunc->setRedirectMessage(true, "数据插入成功", NULL);
+            return redirect()->back();  //跳回上一页
+        }
+        else
+        {
+            $baseFunc->setRedirectMessage(false, "数据库查找失败", NULL);
+            return redirect()->back();  //跳回上一页
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          $input['name'] = $_POST["name"];
          $input['id_number'] = $_POST['id_number'];
          $input['user_name'] = $_POST['user_name'];
          $input['password'] = md5($_POST['password']);
          $input['sex'] = $_POST['sex'];
-         //$input['pic'] =
          $teacher = Teacher::add($input);
          if(false == empty($teacher)){
              $baseFunc->setRedirectMessage(true, "数据插入成功", NULL, "/t_s_teacher");

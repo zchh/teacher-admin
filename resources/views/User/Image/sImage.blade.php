@@ -269,7 +269,6 @@
                                         @foreach($imageClassData as $data)
                                             <option value = "{{$data->class_id}}">{{$data->class_name}}</option>
                                         @endforeach
-                                        
                                     </select>
                                 </div>
                                 

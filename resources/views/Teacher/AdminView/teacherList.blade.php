@@ -9,7 +9,7 @@
         <div class="col-lg-12">
             <form  class="class=form-inline" role="form" method="post" action="">
                 <div class="form-group" >
-                    <a href="" class="btn btn-ms btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>整体发放优惠券</a>
+                    <a href="" class="btn btn-ms btn-success" role="button" data-toggle="modal" data-target="#new"><span class="glyphicon glyphicon-plus"></span>添加教师</a>
 
 
 
@@ -63,6 +63,69 @@
                 </div>
                 <!-- /.panel-body -->
             </div>
+
+
+
+            <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">添加教师</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="type" value="1">
+                                <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">头像</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control" id="" placeholder="请输入" name="pic" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">教师姓名</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="" placeholder="请输入" name="name" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">身份证号</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="" placeholder="请输入" name="id_number" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">性别</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="sex">
+                                                <option value = "1">男</option>
+                                                <option value = "2">女</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">用户名</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="" placeholder="请输入" name="admin_name" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-3 control-label">密码</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="" placeholder="请输入" name="password" value="">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary" onclick="javascript:return confirm('确定要新增加吗？')">提交</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- /.panel -->
         </div>
