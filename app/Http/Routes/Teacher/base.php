@@ -4,12 +4,33 @@
 /**
  * 管理员后台
  */
-Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                    //管理员登录
-Route::post("/t_check_admin_login","Teacher\AdminController@checkAdminLogin");        //校验登录
-Route::get("/t_admin_index","Teacher\AdminController@adminIndex");                    //首页
-Route::get("/t_sTeacher","Teacher\AdminController@searchTeacher");                    //教师
-Route::post("/t_add_teacher","Teacher\AdminController@addTeacher");                    //添加教师
-Route::get("/t_delete_teacher/{teacher_id}","Teacher\AdminController@deleteTeacher");                    //删除教师
+Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                          //管理员登录
+Route::post("/t_check_admin_login","Teacher\AdminController@checkAdminLogin");              //校验登录
+Route::get("/t_admin_login_out","Teacher\AdminController@adminLoginOut");                  //退出登录
+Route::group(['middleware' => ['TLoginAdminCheck']],function() {
+    Route::get("/t_admin_index", "Teacher\AdminController@adminIndex");                      //首页
+
+    Route::get("/t_s_teacher", "Teacher\AdminController@searchTeacher");                     //教师
+    Route::post("/t_add_teacher", "Teacher\AdminController@addTeacher");                     //添加教师
+    Route::post("/t_edit_teacher", "Teacher\AdminController@editTeacher");                   //添加教师
+    Route::get("/t_delete_teacher/{teacher_id}", "Teacher\AdminController@deleteTeacher");   //删除教师
+
+    Route::get("/t_s_student", "Teacher\AdminController@searchTeacher");                     //教师
+    Route::post("/t_add_student", "Teacher\AdminController@addStudent");                     //添加学生
+    Route::post("/t_edit_student", "Teacher\AdminController@editStudent");                   //编辑学生
+    Route::get("/t_delete_student", "Teacher\AdminController@deleteStudent");                //删除学生
+
+    Route::get("/t_s_class", "Teacher\AdminController@searchClass");                         //班级
+    Route::post("/t_add_class", "Teacher\AdminController@addClass");                         //添加班级
+    Route::post("/t_edit_class", "Teacher\AdminController@editClass");                       //编辑班级
+    Route::get("/t_delete_class", "Teacher\AdminController@deleteClass");                    //删除班级
+
+    Route::get("/t_s_major", "Teacher\AdminController@searchMajor");                         //专业
+    Route::post("/t_add_major", "Teacher\AdminController@addMajor");                         //添加专业
+    Route::post("/t_edit_major", "Teacher\AdminController@editMajor");                       //编辑专业
+    Route::get("/t_delete_major", "Teacher\AdminController@deleteMajor");                    //删除专业
+});
+
 
 
 
@@ -53,8 +74,8 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
 
     Route::post("/admin_uAdmin","Admin\PowerController@uAdmin");//修改某个管理员用户
 
-    
-    
+
+
     /*
     /*
      * 用户级权限组管理功能
@@ -89,14 +110,14 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_dClass/{class_id}","Admin\ArticleController@dClass");  //删除分类
     Route::post("/admin_aClass","Admin\ArticleController@aClass");
     /*
-     * 
+     *
      */
-    
+
     Route::get("/admin_sArticle","Admin\ArticleController@sArticle");   //查看文章(zuo)
 
     Route::get("/admin_sArticleByCondition","Admin\ArticleController@sArticleByCondition");//根据输入框关键字查找
     Route::get("/admin_sArticleByClass","Admin\ArticleController@sArticleByClass");//根据类别帅选查找
-    
+
     Route::get("/admin_aArticle","Admin\ArticleController@aArticle");   //添加文章(zuo)
     //Route::post("/_admin_aArticle","Admin\ArticleController@_aArticle");   //添加文章(zuo)
     Route::post("/admin_aAticleLabel","Admin\ArticleController@aAticleLabel");      //给文章添加标签(zuo)
@@ -123,20 +144,20 @@ Route::group(['middleware' => ['LoginAdminCheck']],function()
     Route::get("/admin_sSubject/{subject_id}","Admin\ArticleController@dSubject");          //删除专题（zuo）
 
     Route::get("/admin_moreSubject/{subject_id}","Admin\ArticleController@moreSubject");           //专题详情(zuo)
-    //Route::post("/admin_uSubject","Admin\ArticleController@_uSubject"); 
+    //Route::post("/admin_uSubject","Admin\ArticleController@_uSubject");
     Route::post("/admin_uSubject","Admin\ArticleController@uSubject");        //修改专题（zuo）
     Route::post("/admin_AddArticleToSubject","Admin\ArticleController@AddArticleToSubject");   //添加一篇文章到专题（zuo）
     Route::post("/admin_AddArticleToSubject2","Admin\ArticleController@AddArticleToSubject2");   //添加一篇文章到专题（zuo）
     Route::get("/admin_RemoveArticleToSubject/{subject_id}/{article_id}","Admin\ArticleController@RemoveArticleToSubject");//从专题移出一篇文章(zuo)
 
-    
+
     Route::get("/admin_sMessage","Admin\MessageController@sMessage"); //查
     Route::post("/admin_aMessage","Admin\MessageController@aMessage");//增
     Route::get("/admin_dMessage/{message_id}","Admin\MessageController@dMessage");//删
     /*
-     * 
+     *
      * 管理员对用户的评论的管理
-     * 
+     *
      */
     Route::get("/admin_sReply","Admin\ReplyController@sReply");  //查看所有评论
     Route::get("/admin_dReply/{reply_id}","Admin\ReplyController@dReply"); //删除评论

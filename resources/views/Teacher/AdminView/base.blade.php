@@ -143,7 +143,7 @@
                 <li><a  data-toggle="modal" data-target="#myModal"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href=""><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
+                <li><a href="/t_admin_login_out"><i class="fa fa-sign-out fa-fw"></i> 退出登录</a>
                 </li>
             </ul>
         </li>
@@ -155,7 +155,7 @@
             <ul class="nav" id="side-menu">
                 <!-- 超级管理员权限-->
                 <li>
-                    <a href="#" class="side-nav-a"><i class="fa fa-user fa-fw fa-m-r"></i>教师管理</a>
+                    <a href="/t_s_teacher" class="side-nav-a"><i class="fa fa-user fa-fw fa-m-r"></i>教师管理</a>
                 </li>
 
                 <li>

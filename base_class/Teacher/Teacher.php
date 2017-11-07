@@ -72,12 +72,20 @@ class Teacher
         return $result;
     }
 
-    public function add($arr){
+    static function getAll(){
+        $result = DB::table("t_teacher")
+            ->orderBy("teacher_id","desc")
+            ->get();
+        return $result;
+    }
+
+    static function add($arr){
+        $arr['create_time'] = new \DateTime('now');
         $id = DB::table("t_teacher")->insertGetId($arr);
         if(false == $id){
-            return false;
+            return null;
         }
-        return new Admin($id);
+        return new Teacher($id);
     }
 
     public function update($arr){

@@ -15,7 +15,7 @@ class LoginAdminCheck {
 	{
 	    if(session("admin.admin_status")==true)
 	    {
-               
+
                return $next($request);
                
 	        

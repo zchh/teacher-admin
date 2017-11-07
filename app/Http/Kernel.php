@@ -25,11 +25,10 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-
-
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
 		"LoginAdminCheck" =>"App\Http\Middleware\LoginAdminCheck",
-		"LoginUserCheck" =>"App\Http\Middleware\LoginUserCheck"
+		"LoginUserCheck" =>"App\Http\Middleware\LoginUserCheck",
+        "TLoginAdminCheck" => "App\Http\Middleware\TLoginAdminCheck"
 	];
 
 }
