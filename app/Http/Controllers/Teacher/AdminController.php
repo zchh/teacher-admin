@@ -7,10 +7,12 @@
  */
 
 namespace App\Http\Controllers\Teacher;
+use App\Http\Config\NumberKey;
 use App\Http\Controllers\Controller;
 //use BaseClass\Role\Admin;
 use BaseClass\Component\Image\Image;
 use BaseClass\Teacher\Admin;
+use BaseClass\Teacher\Pic;
 use BaseClass\Teacher\Teacher;
 use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Request;
@@ -61,17 +63,29 @@ class AdminController extends Controller
      */
     public function adminIndex(){
 
-
-
-
         return view("Teacher.AdminView.index");
     }
 
     /**
      * 教师
      */
-    public function searchTeacher(BaseFunc $baseFunc){
-        $data['teachers'] = Teacher::getAll();
+    public function searchTeacher(){
+        session(["now_address"=>"/admin_sClass"]);
+        $teachers =  Teacher::getAll(10);
+        $arr = array();
+        foreach ($teachers as $teacher) {
+            $single['teacher_id'] = $teacher->teacher_id;
+            $single['name'] = $teacher->name;
+            $single['id_number'] = $teacher->id_number;
+            $single['user_name'] = $teacher->user_name;
+            $single['sex'] = $teacher->sex;
+            $single['sex'] = ($teacher->sex == 1)?'男':'女';
+            $single['create_time'] = $teacher->create_time;
+            $query['id'] = $teacher->pic_id;
+            $single['pic_id'] =  $teacher->pic_id;
+            $arr[] = $single;
+        }
+        $data['arr'] = $arr;
         return view("Teacher.AdminView.teacherList", $data);
     }
 
@@ -79,71 +93,56 @@ class AdminController extends Controller
      * 添加教师
      */
     public function addTeacher(BaseFunc $baseFunc){
-
-
-        //处理图片文件
         if (!request::hasFile('pic')) {
-
             $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
-
             return redirect()->back();  //跳回上一页
         }
-        //从前端提取文件
         $file = Request::file('pic');
-
-        //获取与前端file无关的数据库量
-        $inputData["image_name"] = $_POST["image_name"];  //改文件名1
-        $inputData["image_intro"] = $_POST["image_intro"];
-        if(isset($_POST["image_class"]))
-        {
-            $inputData["image_class"] = $_POST["image_class"];
+        $picId = Pic::addPic(1,$file);
+        if(false == $picId){
+            $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
+            return redirect()->back();  //跳回上一页
         }
-
-        $return = Image::add($inputData,$file);
-        if($return == true)
-        {
+        $inputData['pic_id'] = $picId;
+        $inputData['name'] = $_POST['name'];
+        $inputData['id_number'] = $_POST['id_number'];
+        $inputData['user_name'] = $_POST['user_name'];
+        $inputData['password'] = md5($_POST['password']);
+        $inputData['sex'] = $_POST['sex'];
+        $return = Teacher::add($inputData);
+        if($return == true) {
             $baseFunc->setRedirectMessage(true, "数据插入成功", NULL);
-            return redirect()->back();  //跳回上一页
+        } else {
+            $baseFunc->setRedirectMessage(false, "数据插入失败", NULL);
         }
-        else
-        {
-            $baseFunc->setRedirectMessage(false, "数据库查找失败", NULL);
-            return redirect()->back();  //跳回上一页
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         $input['name'] = $_POST["name"];
-         $input['id_number'] = $_POST['id_number'];
-         $input['user_name'] = $_POST['user_name'];
-         $input['password'] = md5($_POST['password']);
-         $input['sex'] = $_POST['sex'];
-         $teacher = Teacher::add($input);
-         if(false == empty($teacher)){
-             $baseFunc->setRedirectMessage(true, "数据插入成功", NULL, "/t_s_teacher");
-         }else{
-             $baseFunc->setRedirectMessage(false, "数据插入失败", NULL, "/user_sMessage");
-         }
+        return redirect()->back();
     }
 
     /**
      * 编辑教师
      */
-    public function editTeacher(){
-
+    public function editTeacher(BaseFunc $baseFunc){
+        if (request::hasFile('pic')) {
+            $file = Request::file('pic');
+            $picId = Pic::addPic(1,$file);
+            if(false == $picId){
+                $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
+                return redirect()->back();  //跳回上一页
+            }
+            $inputData['pic_id'] = $picId;
+        }
+        $inputData['name'] = $_POST['name'];
+        $inputData['id_number'] = $_POST['id_number'];
+        $inputData['user_name'] = $_POST['user_name'];
+        $inputData['sex'] = $_POST['sex'];
+        $teacher = new Teacher($_POST['teacher_id']);
+        $return = $teacher->update($inputData);
+        if($return == true) {
+            $baseFunc->setRedirectMessage(true, "数据修改成功", NULL);
+        } else {
+            $baseFunc->setRedirectMessage(false, "数据修改失败", NULL);
+        }
+        return redirect()->back();
     }
 
 

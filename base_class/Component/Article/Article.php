@@ -134,8 +134,6 @@ class Article
         $return_data["message"] = "成功获取到数据";
         $return_data["data"] =  $query->get();
         return $return_data;
-
-
     }
 
     /**

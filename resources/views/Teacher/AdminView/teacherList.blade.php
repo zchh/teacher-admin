@@ -36,28 +36,88 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($teachers as $single)
+                            @foreach($arr as $single)
                             <tr>
-                                <td >{{$single->teacher_id}}</td>
-                                <td >{{$single->pic}}</td>
-                                <td >{{$single->name}}</td>
-                                <td >{{$single->id_number}}</td>
-                                <td >{{$single->sex}}</td>
-                                <td >{{$single->user_name}}</td>
-                                <td >{{$single->cteate_time}}</td>
+                                <td >{{$single['teacher_id']}}</td>
                                 <td >
-                                    sss
-                                    {{--<a href="{{ path('admin_warehouse_worker',{'id':entity.id}) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top"--}}
-                                       {{--title="仓库人员"><i  class="fa fa-hand-o-right"></i></a>--}}
-                                    {{--<a href="{{ path('look_goods_manager',{'id':entity.id}) }}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top"--}}
-                                       {{--title="仓库商品"><i  class="fa fa-bars"></i></a>--}}
-                                    {{--<a href="{{ path("del_warehouse",{'id':entity.id, 'page':pageInfo.currentPage, 'param': pageInfo.param}) }}" onclick="javascript:return confirm('确定删除该仓库吗？')"--}}
-                                       {{--data-method="delete" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="删除"><i class="fa fa-trash">删除</i></a>--}}
+                                    <img src="/get_pic/{{$single['pic_id']}}" style="width:100%; max-width: 80px;max-height: 80px;">
                                 </td>
+                                <td >{{$single['name']}}</td>
+                                <td >{{$single['id_number']}}</td>
+                                <td >{{$single['sex']}}</td>
+                                <td >{{$single['user_name']}}</td>
+                                <td >{{$single['create_time']}}</td>
+                                <td >
+                                    <a href=""  data-toggle="modal" data-target="#edit_{{ $single['teacher_id'] }}" class="btn btn-xs btn-primary" data-placement="top"
+                                       title="编辑"><i  class="glyphicon glyphicon-pencil"></i></a>
+                                    <a href="/t_delete_teacher" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top"
+                                       title="删除" onclick="javascript:return confirm('确定删除该专教师吗？')"><i  class="fa fa-trash"></i></a>
+                                </td>
+
+
+                                <div class="modal fade" id="edit_{{ $single['teacher_id'] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">编辑</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-horizontal">
+                                                    <form class="form-horizontal" method="post" action="/t_edit_teacher" enctype="multipart/form-data">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                        <input type="hidden" name="teacher_id" value="{{$single['teacher_id']}}">
+                                                        <div class="form-group">
+                                                            <label for="" class="col-sm-3 control-label">头像</label>
+                                                            <div class="col-sm-9">
+                                                                <img src="/get_pic/{{$single['pic_id']}}" style="width:100%; max-width: 80px;max-height: 80px;">
+                                                                <input type="file" class="form-control" id="" placeholder="请输入" name="pic" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="" class="col-sm-3 control-label">教师姓名</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="" placeholder="请输入" name="name" value="{{$single['name']}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="" class="col-sm-3 control-label">身份证号</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="" placeholder="请输入" name="id_number" value="{{$single['id_number']}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="" class="col-sm-3 control-label">性别</label>
+                                                            <div class="col-sm-9">
+                                                                <select class="form-control" name="sex">
+                                                                    <option value = "1"  @if($single['sex'] == '男') selected="selected"  @endif>男</option>
+                                                                    <option value = "2"  @if($single['sex'] == '女') selected="selected" @endif>女</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="" class="col-sm-3 control-label">用户名</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="" placeholder="请输入" name="user_name" value="{{ $single['user_name'] }}">
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                    <button type="submit" class="btn btn-primary" onclick="javascript:return confirm('确定要添加吗？')">提交</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </tr>
                             @endforeach
                             </tbody>
                         </table>
+
+                        <?php echo $arr->render(); ?>
                     </div>
                     <!-- /.table-responsive -->
                 </div>
@@ -74,7 +134,7 @@
                             <h4 class="modal-title" id="myModalLabel">添加教师</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="/t_add_teacher" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="type" value="1">
                                 <div class="form-group">
@@ -107,7 +167,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-3 control-label">用户名</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="" placeholder="请输入" name="admin_name" value="">
+                                        <input type="text" class="form-control" id="" placeholder="请输入" name="user_name" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">

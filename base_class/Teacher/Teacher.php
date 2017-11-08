@@ -15,8 +15,8 @@ class Teacher
     public $info;
 
 
-    public function __construct($id){
-        $this->id = $id;
+    public function __construct($teacher_id){
+        $this->teacher_id = $teacher_id;
     }
 
     public function syncBaseInfo(){
@@ -72,10 +72,10 @@ class Teacher
         return $result;
     }
 
-    static function getAll(){
+    static function getAll($paginateNumber){
         $result = DB::table("t_teacher")
             ->orderBy("teacher_id","desc")
-            ->get();
+            ->paginate($paginateNumber);
         return $result;
     }
 

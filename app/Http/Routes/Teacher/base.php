@@ -4,10 +4,12 @@
 /**
  * 管理员后台
  */
-Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                          //管理员登录
-Route::post("/t_check_admin_login","Teacher\AdminController@checkAdminLogin");              //校验登录
-Route::get("/t_admin_login_out","Teacher\AdminController@adminLoginOut");                  //退出登录
+Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                           //管理员登录
+Route::post("/t_check_admin_login","Teacher\AdminController@checkAdminLogin");               //校验登录
+Route::get("/t_admin_login_out","Teacher\AdminController@adminLoginOut");                    //退出登录
 Route::group(['middleware' => ['TLoginAdminCheck']],function() {
+    Route::get("/get_pic/{id}", "Teacher\BaseController@getPic");                            //获取图片
+
     Route::get("/t_admin_index", "Teacher\AdminController@adminIndex");                      //首页
 
     Route::get("/t_s_teacher", "Teacher\AdminController@searchTeacher");                     //教师
