@@ -227,50 +227,45 @@ class Pic
     }
 
     /**
-     * @param $image_id
+     * @param $id
      */
-    public function __construct($image_id)
-    {
-        $this->image_id=$image_id;
-        $this -> syncBaseInfo();
+    public function __construct($id){
+        $this->id = $id;
+        $this->syncBaseInfo();
+    }
+
+    public function syncBaseInfo(){
+        $info = DB::table('t_pic')->where('id','=',$this->id)->first();
+        $this->info = $info;
+        return $info;
     }
 
     /**
      *
      * @return bool
      */
-    public function delete()
-    {
-        $image_id = $this -> image_id;
-        $userId = session("user.user_id");    //提取用户id
-        $imageInfo = $this -> info;
-        if($imageInfo == false)
-        {
-            return false;
-        }
-        if($imageInfo -> image_user != $userId)
-        {
+    public function delete(){
+        $info = $this->info;
+        if(false == $info) {
             return false;
         }
         //1.先删除数据库的,用事务回滚，方便之后如果删了还可以恢复。删的同时要把image_id，路径提取出来
         DB::beginTransaction();    //开始事务
-        $count = DB::table('base_image')->where('image_user', '=', $userId)->where('image_id', '=', $image_id)->delete();  //先删数据库的
+        $count = DB::table('t_pic')->where('id', '=', $this->id)->delete();  //先删数据库的
         if ($count == 0) {
             return false;
         }
-
         //2.删文件里的
-        $getPath =  $_SERVER['DOCUMENT_ROOT'].$imageInfo->image_path;  //提取路径
+        $getPath =  $_SERVER['DOCUMENT_ROOT'].$info->path;  //提取路径
         if (unlink($getPath)) { //unlink是删除里面的路径
             DB::commit();     //提交事务：
             return true;
         }
         return false;
-
     }
 
     /**
-     * @param $image_id
+     * @param $id
      */
     static function getPicById($id){
         if($id == 0) {

@@ -8,6 +8,7 @@
 
 namespace BaseClass\Teacher;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class Teacher
 {
@@ -17,6 +18,7 @@ class Teacher
 
     public function __construct($teacher_id){
         $this->teacher_id = $teacher_id;
+        $this->syncBaseInfo();
     }
 
     public function syncBaseInfo(){
@@ -63,11 +65,15 @@ class Teacher
     //查找一条记录
     static function findOne($param){
         $result = null;
+        $table = DB::table('t_teacher');
         if(false == empty($param['user_name'])){
-            $result =  DB::table('t_teacher')->where('user_name','=',$param['user_name'])->first();
+            $result =  $table->where('user_name','=',$param['user_name'])->first();
         }
         if(false == empty($param['password'])){
-            $result =  DB::table('t_teacher')->where('password','=',$param['password'])->first();
+            $result =  $table->where('password','=',$param['password'])->first();
+        }
+        if(false == empty($param['user_name'])){
+            $result =  $table->where('user_name','=',$param['user_name'])->first();
         }
         return $result;
     }
@@ -99,9 +105,6 @@ class Teacher
 
     public function delete(){
         $result =DB::table('t_teacher')->where('teacher_id','=',$this->teacher_id)->delete();
-        if(false == empty($result)){
-            return false;
-        }
-        return true;
+        return $result;
     }
 }

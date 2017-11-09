@@ -159,15 +159,15 @@
                 </li>
 
                 <li>
-                    <a href="#" class="side-nav-a"><i class="fa fa-columns fa-fw fa-m-r"></i>学生管理</a>
+                    <a href="/t_s_student" class="side-nav-a"><i class="fa fa-columns fa-fw fa-m-r"></i>学生管理</a>
                 </li>
 
                 <li>
-                    <a href="#" class="side-nav-a"><i class="fa fa-columns fa-fw fa-m-r"></i>班级管理</a>
+                    <a href="/t_s_class" class="side-nav-a"><i class="fa fa-columns fa-fw fa-m-r"></i>班级管理</a>
                 </li>
 
                 <li>
-                    <a href="#" class="side-nav-a"><i class="fa fa-list-alt fa-fw fa-m-r"></i>专业管理</a>
+                    <a href="/t_s_major" class="side-nav-a"><i class="fa fa-list-alt fa-fw fa-m-r"></i>专业管理</a>
                 </li>
             </ul>
         </div>

@@ -272,12 +272,9 @@ class Image
        $first =  DB::table('base_image')
             ->where('image_id','=',$this->image_id)
             ->first();
-        if($first == null)
-        {
+        if($first == null) {
             return false;
-        }
-        else
-        {
+        } else {
             $this ->info = $first;
             return true;
         }

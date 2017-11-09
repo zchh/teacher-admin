@@ -15,9 +15,9 @@ Route::group(['middleware' => ['TLoginAdminCheck']],function() {
     Route::get("/t_s_teacher", "Teacher\AdminController@searchTeacher");                     //教师
     Route::post("/t_add_teacher", "Teacher\AdminController@addTeacher");                     //添加教师
     Route::post("/t_edit_teacher", "Teacher\AdminController@editTeacher");                   //添加教师
-    Route::get("/t_delete_teacher/{teacher_id}", "Teacher\AdminController@deleteTeacher");   //删除教师
+    Route::get("/t_delete_teacher/{teacher_id}","Teacher\AdminController@deleteTeacher");    //删除教师
 
-    Route::get("/t_s_student", "Teacher\AdminController@searchTeacher");                     //教师
+    Route::get("/t_s_student", "Teacher\AdminController@searchStudent");                     //学生
     Route::post("/t_add_student", "Teacher\AdminController@addStudent");                     //添加学生
     Route::post("/t_edit_student", "Teacher\AdminController@editStudent");                   //编辑学生
     Route::get("/t_delete_student", "Teacher\AdminController@deleteStudent");                //删除学生
