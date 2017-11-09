@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <form  class="class=form-inline" role="form" method="post" action="">
                     <div class="form-group" >
-                        <a href="" class="btn btn-ms btn-success" role="button" data-toggle="modal" data-target="#new"><span class="glyphicon glyphicon-plus"></span>添加班级</a>
+                        <a href="" class="btn btn-ms btn-success" role="button" data-toggle="modal" data-target="#new"><span class="glyphicon glyphicon-plus"></span>添加专业</a>
 
 
 
@@ -52,9 +52,9 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-horizontal">
-                                                            <form class="form-horizontal" method="post" action="/t_edit_class" enctype="multipart/form-data"  onsubmit="return checkEdit(this)">
+                                                            <form class="form-horizontal" method="post" action="/t_edit_major" enctype="multipart/form-data"  onsubmit="return checkEdit(this)">
                                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                <input type="hidden" name="class_id" value="{{$single->major_id}}">
+                                                                <input type="hidden" name="major_id" value="{{$single->major_id}}">
                                                                 <div class="form-group">
                                                                     <label for="" class="col-sm-3 control-label">专业名称</label>
                                                                     <div class="col-sm-9">
@@ -95,11 +95,10 @@
                             <div class="modal-body">
                                 <form class="form-horizontal" method="post" action="/t_add_major" enctype="multipart/form-data"  onsubmit="return checkAdd(this)">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="type" value="1">
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">专业名称</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="" placeholder="请输入" name="major_name" value="{{$single->major_name}}">
+                                            <input type="text" class="form-control" id="" placeholder="请输入" name="major_name" value="">
                                         </div>
                                     </div>
                             </div>

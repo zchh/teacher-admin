@@ -37,10 +37,15 @@ class MajorConfig
         return $result;
     }
 
-    static function getAll($paginateNumber){
-        $result = DB::table("t_major_config")
-            ->orderBy("major_id","desc")
-            ->paginate($paginateNumber);
+    static function getAll($isPaginate=true, $paginateNumber=3){
+        if(true == $isPaginate){
+            $result = DB::table("t_major_config")
+                ->orderBy("major_id","desc")
+                ->paginate($paginateNumber);
+        } else {
+            $result = DB::table("t_major_config")
+                ->get();
+        }
         return $result;
     }
 
@@ -53,7 +58,7 @@ class MajorConfig
     }
 
     public function update($arr){
-        $result = DB::table('t_class_config')->where('class_id','=',$this->student_id)->update($arr);
+        $result = DB::table('t_major_config')->where('major_id','=',$this->major_id)->update($arr);
         if(false == $result){
             return false;
         }
@@ -62,7 +67,7 @@ class MajorConfig
     }
 
     public function delete(){
-        $result =DB::table('t_class_config')->where('class_id','=',$this->student_id)->delete();
+        $result =DB::table('t_major_config')->where('major_id','=',$this->major_id)->delete();
         return $result;
     }
 }

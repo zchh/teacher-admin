@@ -25,12 +25,12 @@ Route::group(['middleware' => ['TLoginAdminCheck']],function() {
     Route::get("/t_s_class", "Teacher\AdminController@searchClass");                         //班级
     Route::post("/t_add_class", "Teacher\AdminController@addClass");                         //添加班级
     Route::post("/t_edit_class", "Teacher\AdminController@editClass");                       //编辑班级
-    Route::get("/t_delete_class", "Teacher\AdminController@deleteClass");                    //删除班级
+    Route::get("/t_delete_class/{class_id}", "Teacher\AdminController@deleteClass");         //删除班级
 
     Route::get("/t_s_major", "Teacher\AdminController@searchMajor");                         //专业
     Route::post("/t_add_major", "Teacher\AdminController@addMajor");                         //添加专业
     Route::post("/t_edit_major", "Teacher\AdminController@editMajor");                       //编辑专业
-    Route::get("/t_delete_major", "Teacher\AdminController@deleteMajor");                    //删除专业
+    Route::get("/t_delete_major/{major_id}", "Teacher\AdminController@deleteMajor");         //删除专业
 });
 
 

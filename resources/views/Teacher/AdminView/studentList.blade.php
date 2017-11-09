@@ -76,7 +76,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-horizontal">
-                                                            <form class="form-horizontal" method="post" action="/t_edit_teacher" enctype="multipart/form-data"  onsubmit="return checkEdit(this)">
+                                                            <form class="form-horizontal" method="post" action="/t_edit_student" enctype="multipart/form-data"  onsubmit="return checkEdit(this)">
                                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                                 <input type="hidden" name="student_id" value="{{$single->student_id}}">
                                                                 <div class="form-group">

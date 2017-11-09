@@ -72,9 +72,9 @@
                                                                 <div class="form-group">
                                                                     <label for="" class="col-sm-3 control-label">专业</label>
                                                                     <div class="col-sm-9">
-                                                                        <select class="form-control" name="sex">
+                                                                        <select class="form-control" name="major_id">
                                                                             @foreach($majorArr as $major)
-                                                                            <option value = "{{$major->$major_id}}"  @if($single->major_id == $major->major_id) selected="selected"  @endif>{{ $major->major_anme }}</option>
+                                                                            <option value="{{ $major->major_id }}" @if($single->major_id == $major->major_id) selected="selected" @endif >{{ $major->major_name }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -123,9 +123,9 @@
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">专业</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="sex">
+                                            <select class="form-control" name="major_id">
                                                 @foreach($majorArr as $major)
-                                                    <option value = "{{$major->major_id}}">{{ $major->major_anme }}</option>
+                                                    <option value = "{{$major->major_id}}">{{ $major->major_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

@@ -203,8 +203,8 @@ class AdminController extends Controller
             return redirect()->back();
         }
         //判断是否已经存在相同学号
-        $param['student_number'] =  $_POST['student_number'];
-        $result = Student::findOne($param);
+        $inputData['student_number'] =  $_POST['student_number'];
+        $result = Student::findOne($inputData);
         if(false == empty($result)){
             $baseFunc->setRedirectMessage(false, "存在相同的用户名", NULL);
             return redirect()->back();
@@ -213,7 +213,6 @@ class AdminController extends Controller
         $inputData['pic_id'] = $picId;
         $inputData['class_id'] = $_POST['class_id'];
         $inputData['name'] = $_POST['name'];
-        $inputData['student_number'] = $_POST['id_number'];
         $inputData['sex'] = $_POST['sex'];
         $return = Student::add($inputData);
         if($return == true) {
@@ -239,8 +238,8 @@ class AdminController extends Controller
             $inputData['pic_id'] = $picId;
         }
         //判断是否已经存在相同学号
-        $param['student_number'] =  $_POST['student_number'];
-        $result = Student::findOne($param);
+        $inputData['student_number'] =  $_POST['student_number'];
+        $result = Student::findOne($inputData);
         if(false == empty($result)){
             $baseFunc->setRedirectMessage(false, "存在相同的用户名", NULL);
             return redirect()->back();
@@ -248,7 +247,6 @@ class AdminController extends Controller
 
         $inputData['class_id'] = $_POST['class_id'];
         $inputData['name'] = $_POST['name'];
-        $inputData['student_number'] = $_POST['id_number'];
         $inputData['sex'] = $_POST['sex'];
         $teacher = new Teacher($_POST['teacher_id']);
         $return = $teacher->update($inputData);
@@ -292,7 +290,7 @@ class AdminController extends Controller
     public function searchClass(){
         session(["now_address"=>"/t_s_class"]);
         $data['arr'] = ClassConfig::getAll(1);
-
+        $data['majorArr'] = MajorConfig::getAll(false);
         return view("Teacher.AdminView.classList", $data);
     }
 
@@ -323,8 +321,8 @@ class AdminController extends Controller
      */
     public function editClass(BaseFunc $baseFunc){
         //判断是否已经存在相同班级名
-        $param['class_name'] =  $_POST['class_name'];
-        $result = ClassConfig::findOne($param);
+        $inputData['class_name'] =  $_POST['class_name'];
+        $result = ClassConfig::findOne($inputData);
         if(false == empty($result)){
             $baseFunc->setRedirectMessage(false, "存在相同的班级名", NULL);
             return redirect()->back();
@@ -349,20 +347,11 @@ class AdminController extends Controller
             $baseFunc->setRedirectMessage(false, "参数错误", NULL);
             return redirect()->back();
         }
-        DB::beginTransaction();
-        $studentObj = new ClassConfig($class_id);
-        $picId = $studentObj->info->pic_id;
-        $result = $studentObj->delete();
-        if(false == $result){
-            $baseFunc->setRedirectMessage(false, "删除失败", NULL);
-            return redirect()->back();
-        }
-        $pic = new Pic($picId);
-        $result = $pic->delete();
+        $classObj = new ClassConfig($class_id);
+        $result = $classObj->delete();
         if(false == $result){
             $baseFunc->setRedirectMessage(false, "删除失败", NULL);
         }
-        DB::commit();
         return redirect()->back();
     }
 
@@ -386,7 +375,7 @@ class AdminController extends Controller
             $baseFunc->setRedirectMessage(false, "存在相同的专业名", NULL);
             return redirect()->back();
         }
-        $return = ClassConfig::add($inputData);
+        $return = MajorConfig::add($inputData);
         if($return == true) {
             $baseFunc->setRedirectMessage(true, "数据插入成功", NULL);
         } else {
@@ -406,7 +395,7 @@ class AdminController extends Controller
             $baseFunc->setRedirectMessage(false, "存在相同的班级名", NULL);
             return redirect()->back();
         }
-        $inputData['major_id'] = $_POST['major_id'];
+        $inputData['major_name'] = $_POST['major_name'];
         $majorObj = new MajorConfig($_POST['major_id']);
         $return = $majorObj->update($inputData);
         if($return == true) {
@@ -421,7 +410,7 @@ class AdminController extends Controller
      * 删除专业
      */
     public function deleteMajor(BaseFunc $baseFunc, $major_id){
-        if(true == empty($class_id)){
+        if(true == empty($major_id)){
             $baseFunc->setRedirectMessage(false, "参数错误", NULL);
             return redirect()->back();
         }

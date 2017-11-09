@@ -22,7 +22,7 @@ class Student
     }
 
     public function syncBaseInfo(){
-        $info = DB::table('t_student')->where('t_student','=',$this->student_id)->first();
+        $info = DB::table('t_student')->where('student_id','=',$this->student_id)->first();
         $this->info = $info;
         return $info;
     }
