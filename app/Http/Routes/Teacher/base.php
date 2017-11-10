@@ -8,6 +8,12 @@ Route::get("/t_admin_login","Teacher\AdminController@adminLogin");              
 Route::post("/t_check_admin_login","Teacher\AdminController@checkAdminLogin");               //校验登录
 Route::get("/t_admin_login_out","Teacher\AdminController@adminLoginOut");                    //退出登录
 Route::group(['middleware' => ['TLoginAdminCheck']],function() {
+
+    Route::post("/t_update_password", "Teacher\AdminController@updatePassword");              //修改密码
+
+    Route::get("/t_admin_info", "Teacher\AdminController@getAdminInfo");                     //获取管理员信息
+    Route::post("/t_edit_admin_info", "Teacher\AdminController@editAdminInfo");              //编辑管理员
+
     Route::get("/get_pic/{id}", "Teacher\BaseController@getPic");                            //获取图片
 
     Route::get("/t_admin_index", "Teacher\AdminController@adminIndex");                      //首页
@@ -20,7 +26,7 @@ Route::group(['middleware' => ['TLoginAdminCheck']],function() {
     Route::get("/t_s_student", "Teacher\AdminController@searchStudent");                     //学生
     Route::post("/t_add_student", "Teacher\AdminController@addStudent");                     //添加学生
     Route::post("/t_edit_student", "Teacher\AdminController@editStudent");                   //编辑学生
-    Route::get("/t_delete_student", "Teacher\AdminController@deleteStudent");                //删除学生
+    Route::get("/t_delete_student/{student_id}", "Teacher\AdminController@deleteStudent");   //删除学生
 
     Route::get("/t_s_class", "Teacher\AdminController@searchClass");                         //班级
     Route::post("/t_add_class", "Teacher\AdminController@addClass");                         //添加班级
@@ -31,6 +37,12 @@ Route::group(['middleware' => ['TLoginAdminCheck']],function() {
     Route::post("/t_add_major", "Teacher\AdminController@addMajor");                         //添加专业
     Route::post("/t_edit_major", "Teacher\AdminController@editMajor");                       //编辑专业
     Route::get("/t_delete_major/{major_id}", "Teacher\AdminController@deleteMajor");         //删除专业
+
+    Route::get("/t_s_admin", "Teacher\AdminController@sAdmin");                              //管理员
+    Route::post("/t_add_admin", "Teacher\AdminController@addAdmin");                         //添加管理员
+    Route::post("/t_edit_admin", "Teacher\AdminController@editAdmin");                       //编辑管理员
+    Route::get("/t_delete_admin/{admin_id}", "Teacher\AdminController@deleteAdmin");         //删除管理员
+
 });
 
 

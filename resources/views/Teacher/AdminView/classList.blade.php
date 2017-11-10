@@ -11,8 +11,6 @@
                     <div class="form-group" >
                         <a href="" class="btn btn-ms btn-success" role="button" data-toggle="modal" data-target="#new"><span class="glyphicon glyphicon-plus"></span>添加班级</a>
 
-
-
                         <input name="keyWords"  type="text" value="" placeholder="请输入仓库名">
                         <button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">搜索</button>
                         <button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">显示全部</button>

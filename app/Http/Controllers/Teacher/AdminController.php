@@ -45,19 +45,79 @@ class AdminController extends Controller
         $result = Admin::findOne($param);
         if(false == empty($result)){
             if($result->password == md5($inputData['password'])){
-                session(["admin" => $result]);
+                $data['admin_id'] = $result->id;
+                $data['admin_name'] = $result->admin_name;
+                session(["admin" => $data]);
                 $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/t_admin_index");
+            }else{
+                $baseFunc->setRedirectMessage(false, "错误的用户名和密码", NULL, "/t_admin_login");
+                return redirect()->back();
             }
         }else{
             $baseFunc->setRedirectMessage(false, "错误的用户名和密码", NULL, "/t_admin_login");
+            return redirect()->back();
         }
     }
 
     /**
+     * 获取管理员信息
+     */
+    public function getAdminInfo(BaseFunc $baseFunc){
+        if(true == empty(session('admin'))){
+            $baseFunc->setRedirectMessage(false, "获取管理员信息失败", NULL, "/t_admin_login");
+        }
+        $adminInfo =  new Admin(session('admin')['admin_id']);
+        $data['adminInfo'] = $adminInfo->info;
+        return view("Teacher.AdminView.adminInfo", $data);
+    }
+
+    /**
+     * 编辑管理员
+     */
+    public function editAdminInfo(BaseFunc $baseFunc){
+        $arr['number'] = $_POST['number'];
+        $arr['admin_name'] = $_POST['admin_name'];
+        $arr['name'] = $_POST['name'];
+        $arr['id_number'] = $_POST['id_number'];
+        $adminObj = new Admin($_POST['id']);
+        $return = $adminObj->update($arr);
+        if(false == $return){
+            $baseFunc->setRedirectMessage(false, "修改管理员失败", NULL, "");
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * 管理员修改密码
+     */
+    public function updatePassword(BaseFunc $baseFunc){
+        if(true == empty(session('admin'))){
+            $baseFunc->setRedirectMessage(false, "修改密码失败", NULL, "/t_admin_login");
+        }
+        $admin = new Admin(session('admin')['admin_id']);
+        if(md5($_POST['old_password']) != $admin->info->password){
+            $baseFunc->setRedirectMessage(false, "原密码错误", NULL, "");
+            return redirect()->back();
+        }
+        if($_POST['new_password_1'] != $_POST['new_password_2']){
+            $baseFunc->setRedirectMessage(false, "两次输入密码不匹配", NULL, "");
+            return redirect()->back();
+        }
+        $arr['password']= md5($_POST['new_password_1']);
+        $return = $admin->update($arr);
+        if(false == $return){
+            $baseFunc->setRedirectMessage(false, "修改密码失败", NULL, "");
+            return redirect()->back();
+        }else{
+            $baseFunc->setRedirectMessage(true, "密码修改成功", NULL, "/t_admin_login");
+        }
+    }
+
+
+    /**
      * 退出登录
      */
-    public function adminLoginOut(BaseFunc $baseFunc)
-    {
+    public function adminLoginOut(BaseFunc $baseFunc){
         Session::flush();
         $baseFunc->setRedirectMessage(true, "登出成功", NULL, "/t_admin_login");
     }
@@ -248,8 +308,8 @@ class AdminController extends Controller
         $inputData['class_id'] = $_POST['class_id'];
         $inputData['name'] = $_POST['name'];
         $inputData['sex'] = $_POST['sex'];
-        $teacher = new Teacher($_POST['teacher_id']);
-        $return = $teacher->update($inputData);
+        $student = new Student($_POST['student_id']);
+        $return = $student->update($inputData);
         if($return == true) {
             $baseFunc->setRedirectMessage(true, "数据修改成功", NULL);
         } else {
@@ -262,7 +322,7 @@ class AdminController extends Controller
      * 删除学生
      */
     public function deleteStudent(BaseFunc $baseFunc, $student_id){
-        if(true == empty($teacher_id)){
+        if(true == empty($student_id)){
             $baseFunc->setRedirectMessage(false, "参数错误", NULL);
             return redirect()->back();
         }
@@ -423,6 +483,99 @@ class AdminController extends Controller
         }
         //删除专业下的类型
         DB::commit();
+        return redirect()->back();
+    }
+
+    /**
+     * 管理员列表
+     */
+    public function sAdmin(){
+        $param['role'] = 2;
+        $data['arr'] = Admin::getAll(1,$param);
+        return view("Teacher.AdminView.adminList", $data);
+    }
+
+    /**
+     * 添加管理员
+     */
+    public function addAdmin(BaseFunc $baseFunc){
+        if (!request::hasFile('pic')) {
+            $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
+            return redirect()->back();
+        }
+        $file = Request::file('pic');
+        $picId = Pic::addPic(3, $file);
+        if(false == $picId){
+            $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
+            return redirect()->back();
+        }
+
+        //判断是否已经存在相同管理员账号
+        $inputData['admin_name'] =  $_POST['admin_name'];
+        $result = Admin::findOne($inputData);
+        if(false == empty($result)){
+            $baseFunc->setRedirectMessage(false, "存在相同的管理员账号", NULL);
+            return redirect()->back();
+        }
+        $inputData['pic_id'] = $picId;
+        $inputData['id_number'] = $_POST['id_number'];
+        $inputData['name'] = $_POST['name'];
+        $inputData['number'] = $_POST['number'];
+        $return = Admin::add($inputData);
+        if($return == true) {
+            $baseFunc->setRedirectMessage(true, "数据插入成功", NULL);
+        } else {
+            $baseFunc->setRedirectMessage(false, "数据插入失败", NULL);
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * 编辑管理员
+     */
+    public function editAdmin(BaseFunc $baseFunc){
+        if (request::hasFile('pic')) {
+            $file = Request::file('pic');
+            $picId = Pic::addPic(3, $file);
+            if(false == $picId){
+                $baseFunc->setRedirectMessage(false, "错误，上传失败", NULL);
+                return redirect()->back();
+            }
+            $inputData['pic_id'] = $picId;
+        }
+        //判断是否已经存在相同管理员账号
+        $inputData['admin_name'] =  $_POST['admin_name'];
+        $result = Admin::findOne($inputData);
+        if(false == empty($result)){
+            $baseFunc->setRedirectMessage(false, "存在相同的管理员账号", NULL);
+            return redirect()->back();
+        }
+        $inputData['id_number'] = $_POST['id_number'];
+        $inputData['name'] = $_POST['name'];
+        $inputData['number'] = $_POST['number'];
+        $adminObj = new Admin($_POST['id']);
+        $return = $adminObj->update($inputData);
+        if($return == true) {
+            $baseFunc->setRedirectMessage(true, "数据修改成功", NULL);
+        } else {
+            $baseFunc->setRedirectMessage(false, "数据修改失败", NULL);
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * 删除管理员
+     */
+    public function deleteAdmin(BaseFunc $baseFunc, $id){
+        if(true == empty($id)){
+            $baseFunc->setRedirectMessage(false, "参数错误", NULL);
+            return redirect()->back();
+        }
+        $adminObj = new Admin($id);
+        $result = $adminObj->delete();
+        if(false == $result){
+            $baseFunc->setRedirectMessage(false, "删除失败", NULL);
+        }
         return redirect()->back();
     }
 

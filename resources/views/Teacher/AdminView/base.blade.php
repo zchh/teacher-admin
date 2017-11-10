@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>酷余后台管理系统</title>
+        <title>管理员后台</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset("teacher/bower_components/bootstrap/dist/css/bootstrap.min.css") }}" rel="stylesheet">
@@ -129,7 +129,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">酷余后台管理系统</a>
+        <a class="navbar-brand" href="#">管理员后台</a>
     </div>
 
     <ul class="nav navbar-top-links navbar-right">
@@ -138,7 +138,7 @@
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href=""><i class="fa fa-user fa-fw"></i> 管理员信息</a>
+                <li><a href="/t_admin_info"><i class="fa fa-user fa-fw"></i> 管理员信息</a>
                 </li>
                 <li><a  data-toggle="modal" data-target="#myModal"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
                 </li>
@@ -157,19 +157,19 @@
                 <li>
                     <a href="/t_s_teacher" class="side-nav-a"><i class="fa fa-user fa-fw fa-m-r"></i>教师管理</a>
                 </li>
-
                 <li>
                     <a href="/t_s_student" class="side-nav-a"><i class="fa fa-columns fa-fw fa-m-r"></i>学生管理</a>
                 </li>
-
                 <li>
                     <a href="/t_s_class" class="side-nav-a"><i class="fa fa-columns fa-fw fa-m-r"></i>班级管理</a>
                 </li>
-
                 <li>
                     <a href="/t_s_major" class="side-nav-a"><i class="fa fa-list-alt fa-fw fa-m-r"></i>专业管理</a>
                 </li>
-            </ul>
+                <li>
+                    <a href="/t_s_admin" class="side-nav-a"><i class="fa fa-list-alt fa-fw fa-m-r"></i>普通管理员管理</a>
+                </li>
+           </ul>
         </div>
     </div>
 @show
@@ -189,27 +189,27 @@
                         <h4 class="modal-title" id="myPwdSetting">修改密码</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="#" class="form-horizontal " id="settingPwdForm" name="settingPwdForm">
+                        <form action="/t_update_password" method="post" class="form-horizontal " id="settingPwdForm" name="settingPwdForm">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">旧密码</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="输入当前密码" required >
+                                    <input type="password" class="form-control" id="oldPassword" name="old_password" placeholder="输入当前密码" required >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">新密码</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="newPassword" name="password" placeholder="输入6到20个字符" required >
+                                    <input type="password" class="form-control" id="newPassword" name="new_password_1" placeholder="输入6到20个字符" required >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">确认密码</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="againPassword" n placeholder="输入6到20个字符"  required >
+                                    <input type="password" class="form-control" id="againPassword" name="new_password_2" placeholder="输入6到20个字符"  required >
                                 </div>
                             </div>
                             <div class="modal-footer noborder">
-                                <button onclick="changePassword(this)" type="button"  class="btn btn-primary " >保存</button>
+                                <button type="submit" class="btn btn-primary " >保存</button>
                             </div>
                         </form>
                     </div>
@@ -255,7 +255,7 @@
             return false;
         }
         $.ajax({
-            url: "",
+            url: "/t_update_password",
             type: "post",
             data: $('#settingPwdForm').serializeArray(),
             cache: false,

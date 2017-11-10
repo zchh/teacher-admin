@@ -13,7 +13,7 @@
 
 
 
-                    <input name="keyWords"  type="text" value="" placeholder="请输入仓库名">
+                    <input name="keyWords"  type="text" value="" placeholder="">
                     <button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">搜索</button>
                     <button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">显示全部</button>
                 </div>

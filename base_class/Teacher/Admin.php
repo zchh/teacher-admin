@@ -17,6 +17,7 @@ class Admin
 
     public function __construct($id){
         $this->id = $id;
+        $this->syncBaseInfo();
     }
 
     public function syncBaseInfo(){
@@ -60,6 +61,19 @@ class Admin
         return $return_data;
     }
 
+    static function getAll($paginateNumber, $param=[]){
+        $query = DB::table("t_admin");
+        if(false == empty($param)){
+            if(false == empty($param['role'])){
+               $query = $query->where('role', '=', $param['role']);
+            }
+        }
+        $result = $query
+            ->orderBy("id","desc")
+            ->paginate($paginateNumber);
+        return $result;
+    }
+
     //查找一条记录
     static function findOne($param){
        $result = null;
@@ -72,7 +86,9 @@ class Admin
        return $result;
     }
 
-    public function add($arr){
+    static function add($arr){
+        $arr['create_time'] = new \DateTime('now');
+        $arr['role'] = 2; //普通管理员
         $id = DB::table("t_admin")->insertGetId($arr);
         if(false == $id){
             return false;
@@ -96,4 +112,7 @@ class Admin
         }
         return true;
     }
+
+
+
 }

@@ -3,13 +3,13 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h4 class="page-header">学生管理</h4>
+                <h4 class="page-header">普通管理员管理</h4>
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-12">
                 <form  class="class=form-inline" role="form" method="post" action="">
                     <div class="form-group" >
-                        <a href="" class="btn btn-ms btn-success" role="button" data-toggle="modal" data-target="#new"><span class="glyphicon glyphicon-plus"></span>添加学生</a>
+                        <a href="" class="btn btn-ms btn-success" role="button" data-toggle="modal" data-target="#new"><span class="glyphicon glyphicon-plus"></span>添加管理员</a>
 
 
 
@@ -27,10 +27,10 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>头像</th>
-                                    <th>学生姓名</th>
-                                    <th>学号</th>
-                                    <th>性别</th>
-                                    <th>所在班级</th>
+                                    <th>姓名</th>
+                                    <th>编号</th>
+                                    <th>身份证号</th>
+                                    <th>用户名</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -38,36 +38,24 @@
                                 <tbody>
                                 @foreach($arr as $single)
                                     <tr>
-                                        <td >{{$single->student_id}}</td>
+                                        <td >{{$single->id}}</td>
                                         <td >
                                             <img src="/get_pic/{{$single->pic_id}}" style="width:100%; max-width: 80px;max-height: 80px;">
                                         </td>
                                         <td >{{$single->name}}</td>
-                                        <td >{{$single->student_number}}</td>
-                                        <td >
-                                            @if($single->sex == '1')
-                                                男
-                                            @else
-                                                女
-                                            @endif
-                                        </td>
-                                        <td >
-                                            @foreach($classArr as $class)
-                                            @if($class->class_id == $single->class_id)
-                                            {{ $class->class_name }}
-                                            @endif
-                                            @endforeach
-                                        </td>
+                                        <td >{{$single->number}}</td>
+                                        <td >{{$single->id_number}}</td>
+                                        <td >{{$single->admin_name}}</td>
                                         <td >{{$single->create_time}}</td>
                                         <td >
-                                            <a href=""  data-toggle="modal" data-target="#edit_{{ $single->student_id }}" class="btn btn-xs btn-primary" data-placement="top"
+                                            <a href=""  data-toggle="modal" data-target="#edit_{{ $single->id }}" class="btn btn-xs btn-primary" data-placement="top"
                                                title="编辑"><i  class="glyphicon glyphicon-pencil"></i></a>
-                                            <a href="/t_delete_student/{{$single->student_id}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top"
-                                               title="删除" onclick="javascript:return confirm('确定删除该专学生吗？')"><i  class="fa fa-trash"></i></a>
+                                            <a href="/t_delete_admin/{{$single->id}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top"
+                                               title="删除" onclick="javascript:return confirm('确定删除该管理员吗？')"><i  class="fa fa-trash"></i></a>
                                         </td>
 
 
-                                        <div class="modal fade" id="edit_{{ $single->student_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:">
+                                        <div class="modal fade" id="edit_{{ $single->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -76,9 +64,9 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-horizontal">
-                                                            <form class="form-horizontal" method="post" action="/t_edit_student" enctype="multipart/form-data"  onsubmit="return checkEdit(this)">
+                                                            <form class="form-horizontal" method="post" action="/t_edit_admin" enctype="multipart/form-data"  onsubmit="return checkEdit(this)">
                                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                <input type="hidden" name="student_id" value="{{$single->student_id}}">
+                                                                <input type="hidden" name="id" value="{{$single->id}}">
                                                                 <div class="form-group">
                                                                     <label for="" class="col-sm-3 control-label">头像</label>
                                                                     <div class="col-sm-9">
@@ -87,42 +75,33 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="" class="col-sm-3 control-label">学生姓名</label>
+                                                                    <label for="" class="col-sm-3 control-label">姓名</label>
                                                                     <div class="col-sm-9">
                                                                         <input type="text" class="form-control" id="" placeholder="请输入" name="name" value="{{$single->name}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="" class="col-sm-3 control-label">学号</label>
+                                                                    <label for="" class="col-sm-3 control-label">用户名</label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" class="form-control" id="" placeholder="请输入" name="student_number" value="{{$single->student_number}}">
+                                                                        <input type="text" class="form-control" id="" placeholder="请输入" name="admin_name" value="{{$single->admin_name}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="" class="col-sm-3 control-label">性别</label>
+                                                                    <label for="" class="col-sm-3 control-label">编号</label>
                                                                     <div class="col-sm-9">
-                                                                        <select class="form-control" name="sex">
-                                                                            <option value = "1"  @if($single->sex == '1') selected="selected"  @endif>男</option>
-                                                                            <option value = "2"  @if($single->sex == '2') selected="selected" @endif>女</option>
-                                                                        </select>
+                                                                        <input type="text" class="form-control" id="" placeholder="请输入" name="number" value="{{$single->number}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="" class="col-sm-3 control-label">所在班级</label>
+                                                                    <label for="" class="col-sm-3 control-label">身份证号</label>
                                                                     <div class="col-sm-9">
-                                                                        <select class="form-control" name="class_id">
-                                                                        @foreach($classArr as $class)
-                                                                            <option value = "{{ $class->class_id }}"  @if($single->class_id ==  $class->class_id) selected="selected"  @endif>
-                                                                              {{ $class->class_name }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                        </select>
+                                                                        <input type="text" class="form-control" id="" placeholder="请输入" name="id_number" value="{{$single->id_number}}">
                                                                     </div>
                                                                 </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                            <button type="submit" class="btn btn-primary" onclick="javascript:return confirm('确定要添加吗？')">提交</button>
+                                                            <button type="submit" class="btn btn-primary" onclick="javascript:return confirm('确定要修改吗？')">提交</button>
                                                         </div>
                                                         </form>
                                                     </div>
@@ -151,9 +130,8 @@
                                 <h4 class="modal-title" id="myModalLabel">添加学生</h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" method="post" action="/t_add_student" enctype="multipart/form-data"  onsubmit="return checkAdd(this)">
+                                <form class="form-horizontal" method="post" action="/t_add_admin" enctype="multipart/form-data"  onsubmit="return checkAdd(this)">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="type" value="1">
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">头像</label>
                                         <div class="col-sm-9">
@@ -167,28 +145,21 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="col-sm-3 control-label">学号</label>
+                                        <label for="" class="col-sm-3 control-label">用户名</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="" placeholder="请输入" name="student_number" value="">
+                                            <input type="text" class="form-control" id="" placeholder="请输入" name="admin_name" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="col-sm-3 control-label">性别</label>
+                                        <label for="" class="col-sm-3 control-label">编号</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="sex">
-                                                <option value = "1">男</option>
-                                                <option value = "2">女</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="" placeholder="请输入" name="number" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="col-sm-3 control-label">所在班级</label>
+                                        <label for="" class="col-sm-3 control-label">身份证号</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="class_id">
-                                            @foreach($classArr as $class)
-                                                <option value = "{{ $class->class_id }}" selected="selected">{{ $class->class_name }}</option>
-                                            @endforeach
-                                            </select>
+                                            <input type="text" class="form-control" id="" placeholder="请输入" name="id_number" value="">
                                         </div>
                                     </div>
                             </div>
@@ -221,19 +192,19 @@
                 form.name.focus();
                 return false;
             }
-            if (form.student_number.value == '') {
-                alert("请输入学号!");
-                form.student_number.focus();
+            if (form.admin_name.value == '') {
+                alert("请输入管理员用户名!");
+                form.admin_name.focus();
                 return false;
             }
-            if (form.sex.value == '') {
-                alert("请输入性别!");
-                form.sex.focus();
+            if (form.number.value == '') {
+                alert("请输入编号!");
+                form.number.focus();
                 return false;
             }
-            if (form.class_id.value == '') {
-                alert("请选择所在班级!");
-                form.class_id.focus();
+            if (form.id_number.value == '') {
+                alert("请输入身份证号!");
+                form.id_number.focus();
                 return false;
             }
         }
@@ -249,19 +220,19 @@
                 form.name.focus();
                 return false;
             }
-            if (form.student_number.value == '') {
-                alert("请输入学号!");
-                form.student_number.focus();
+            if (form.admin_name.value == '') {
+                alert("请输入管理员用户名!");
+                form.admin_name.focus();
                 return false;
             }
-            if (form.sex.value == '') {
-                alert("请输入性别!");
-                form.sex.focus();
+            if (form.number.value == '') {
+                alert("请输入编号!");
+                form.number.focus();
                 return false;
             }
-            if (form.class_id.value == '') {
-                alert("请选择所在班级!");
-                form.class_id.focus();
+            if (form.id_number.value == '') {
+                alert("请输入身份证号!");
+                form.id_number.focus();
                 return false;
             }
         }
