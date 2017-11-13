@@ -63,9 +63,6 @@ class AdminController extends Controller
      * 获取管理员信息
      */
     public function getAdminInfo(BaseFunc $baseFunc){
-        if(true == empty(session('admin'))){
-            $baseFunc->setRedirectMessage(false, "获取管理员信息失败", NULL, "/t_admin_login");
-        }
         $adminInfo =  new Admin(session('admin')['admin_id']);
         $data['adminInfo'] = $adminInfo->info;
         return view("Teacher.AdminView.adminInfo", $data);
@@ -91,9 +88,6 @@ class AdminController extends Controller
      * 管理员修改密码
      */
     public function updatePassword(BaseFunc $baseFunc){
-        if(true == empty(session('admin'))){
-            $baseFunc->setRedirectMessage(false, "修改密码失败", NULL, "/t_admin_login");
-        }
         $admin = new Admin(session('admin')['admin_id']);
         if(md5($_POST['old_password']) != $admin->info->password){
             $baseFunc->setRedirectMessage(false, "原密码错误", NULL, "");

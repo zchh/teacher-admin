@@ -11,12 +11,11 @@ class tLoginTeacherCheck {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
-        if(false == empty(session("admin"))) {
+    public function handle($request, Closure $next){
+        if(false == empty(session("teacher"))) {
             return $next($request);
         } else {
-            return redirect("/t_admin_login");
+            return redirect("/t_teacher_login");
         }
     }
 
