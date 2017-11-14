@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Teacher;
 use App\Http\Controllers\Controller;
 use BaseClass\Role\Admin;
 use BaseClass\Teacher\ClassConfig;
+use BaseClass\Teacher\GradeConfig;
 use BaseClass\Teacher\Teacher;
 use BaseClass\Teacher\TeacherClass;
 use GirdPlugins\Base\BaseFunc;
@@ -91,20 +92,29 @@ class TeacherController extends Controller
      * 获取得扣分配置
      */
     public function getGradeConfig(){
-
+        $data['arr'] = GradeConfig::getAll(false);
+        return view("Teacher.AdminView.teacherList", $data);
     }
 
     /**
      * 增加得扣分配置
      */
-    public function addGradeConfig(){
-
+    public function addGradeConfig(BaseFunc $baseFunc){
+        $arr['type_name'] = $_POST['type_name'];
+        $arr['grade'] = $_POST['grade'];
+        $arr['teacher_id'] = $_POST['teacher_id'];
+        $gradeConfig = GradeConfig::add($arr);
+        if(true == empty($gradeConfig)){
+            $baseFunc->setRedirectMessage(true, "登陆成功", NULL, NULL);
+        }
+        return redirect()->back();
     }
 
     /**
      * 编辑得扣分配置
      */
     public function editGradeConfig(){
+        
 
     }
 

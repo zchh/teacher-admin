@@ -17,6 +17,7 @@ use BaseClass\Teacher\MajorConfig;
 use BaseClass\Teacher\Pic;
 use BaseClass\Teacher\Student;
 use BaseClass\Teacher\Teacher;
+use BaseClass\Teacher\TeacherClass;
 use GirdPlugins\Base\BaseFunc;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
@@ -130,6 +131,7 @@ class AdminController extends Controller
     public function searchTeacher(){
         session(["now_address"=>"/t_s_teacher"]);
         $data['arr'] =  Teacher::getAll(1);
+        $data['classArr'] = ClassConfig::getAll(false);
         return view("Teacher.AdminView.teacherList", $data);
     }
 
@@ -205,6 +207,74 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * 教师绑定班级
+     */
+    public function bindClass(BaseFunc $baseFunc){
+          $data['course_name'] = $_POST['course_name'];
+          $data['class_id'] = $_POST['class_id'];
+          $data['teacher_id'] = $_POST['teacher_id'];
+          $classObj = TeacherClass::add($data);
+          if(true == empty($classObj)){
+              $baseFunc->setRedirectMessage(false, "数据修改失败", NULL);
+          }
+        return redirect()->back();
+    }
+
+    /**
+     * 编辑教师班级
+     */
+    public function editClassConfig(BaseFunc $baseFunc){
+        $id = $_POST['id'];
+        $teacherClassObj = new TeacherClass($id);
+        $arr['class_id'] = $_POST['class_id'];
+        $arr['course_name'] = $_POST['course_name'];
+        $return = $teacherClassObj->update($arr);
+        if(false == $return){
+            $baseFunc->setRedirectMessage(false, "数据修改失败", NULL);
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * 删除教师班级
+     */
+    public function deleteTeacherClass(BaseFunc $baseFunc, $id){
+       $teacherClassObj = new TeacherClass($id);
+       $return = $teacherClassObj->delete();
+       if(false == $return){
+           $baseFunc->setRedirectMessage(false, "数据删除失败", NULL);
+       }
+        return redirect()->back();
+    }
+
+    /**
+     * 获取教师班级
+     */
+    public function sTeacherClass($teacher_id){
+        $param['teacher_id'] = $teacher_id;
+        $teacherClasses = TeacherClass::getAll($param);
+        $arr = array();
+        //教师姓名，教师头像
+        $teacher = new Teacher($teacher_id);
+        $single['teacher_name'] = $teacher->info->name;
+        $single['pic_id'] = $teacher->info->pic_id;
+        $data['teacher'] = $single;
+        //专业，班级，课程
+        foreach ($teacherClasses as $single){
+            $element['id'] = $single->id;
+            $element['class_id'] = $single->class_id;
+            $classConfig = new ClassConfig($single->class_id);
+            $element['class'] = $classConfig->info->class_name;
+            $major = new MajorConfig($classConfig->info->major_id);
+            $element['major_name'] = $major->info->major_name;
+            $element['course_name'] = $single->course_name;
+            $arr[] = $element;
+        }
+        $data['arr'] = $arr;
+        $data['classArr'] = ClassConfig::getAll(false);
+        return view("Teacher.AdminView.teacherClassList", $data);
+    }
 
     /**
      * 删除教师

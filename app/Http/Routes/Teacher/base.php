@@ -14,13 +14,18 @@ Route::group(['middleware' => ['TLoginAdminCheck']],function() {
     Route::get("/t_admin_info", "Teacher\AdminController@getAdminInfo");                     //获取管理员信息
     Route::post("/t_edit_admin_info", "Teacher\AdminController@editAdminInfo");              //编辑管理员
 
+    Route::get("/t_s_teacher_class/{teacher_id}", "Teacher\AdminController@sTeacherClass"); //获取教师班级
+    Route::post("/t_edit_class_config", "Teacher\AdminController@editClassConfig");         //编辑教师班级
+    Route::get("/t_delete_teacher_class/{classConfigId}", "Teacher\AdminController@deleteTeacherClass");    //删除教师班级
+
     Route::get("/get_pic/{id}", "Teacher\BaseController@getPic");                            //获取图片
 
     Route::get("/t_admin_index", "Teacher\AdminController@adminIndex");                      //首页
 
     Route::get("/t_s_teacher", "Teacher\AdminController@searchTeacher");                     //教师
     Route::post("/t_add_teacher", "Teacher\AdminController@addTeacher");                     //添加教师
-    Route::post("/t_edit_teacher", "Teacher\AdminController@editTeacher");                   //添加教师
+    Route::post("/t_edit_teacher", "Teacher\AdminController@editTeacher");                   //编辑教师
+    Route::post("/t_bind_class", "Teacher\AdminController@bindClass");                       //绑定班级
     Route::get("/t_delete_teacher/{teacher_id}","Teacher\AdminController@deleteTeacher");    //删除教师
 
     Route::get("/t_s_student", "Teacher\AdminController@searchStudent");                     //学生
