@@ -37,10 +37,27 @@ class Student
         return $result;
     }
 
-    static function getAll($paginateNumber){
-        $result = DB::table("t_student")
-            ->orderBy("student_id","desc")
-            ->paginate($paginateNumber);
+    static function findAll($param){
+        $result = null;
+        $table = DB::table('t_student');
+        if(false == empty($param['student_number'])){
+            $result =  $table->where('student_number','=',$param['student_number'])->get();
+        }
+        return $result;
+    }
+
+    static function getAll($param=[], $paginateNumber){
+        $table = DB::table("t_student");
+        $result = array();
+        if(true == empty($param)){
+            $result = $table->orderBy("student_id","desc")
+                ->paginate($paginateNumber);
+        }else{
+            if(false == empty($param['class_id'])){
+                $result = $table->where('class_id','=',$param['class_id'])->orderBy("student_id","desc")
+                    ->paginate($paginateNumber);
+            }
+        }
         return $result;
     }
 

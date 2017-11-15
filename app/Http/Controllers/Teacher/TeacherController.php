@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use BaseClass\Role\Admin;
 use BaseClass\Teacher\ClassConfig;
 use BaseClass\Teacher\GradeConfig;
+use BaseClass\Teacher\MajorConfig;
+use BaseClass\Teacher\Student;
 use BaseClass\Teacher\Teacher;
 use BaseClass\Teacher\TeacherClass;
 use GirdPlugins\Base\BaseFunc;
@@ -36,8 +38,6 @@ class TeacherController extends Controller
      */
     public function checkTeacherLogin(BaseFunc $baseFunc){
         $inputData = Request::only("user_name","password");
-       // dump($inputData);
-       // exit;
         $param['user_name'] = $inputData['user_name'];
         $result = Teacher::findOne($param);
         if(false == empty($result)){
@@ -80,11 +80,72 @@ class TeacherController extends Controller
         return view("Teacher.AdminView.teacherList", $data);
     }
 
-
     /**
      * 管理学生
      */
     public function adminStudent(){
+        $param['teacher_id'] = session('teacher')['teacher_id'];
+        $teacherClassArr = TeacherClass::getAll($param);
+        $data['arr'] = $data['classArr'] =array();
+        if(false == empty($teacherClassArr)){
+                unset($param);
+                $param['class_id'] = $teacherClassArr[0]->class_id;
+                $data['arr'] = Student::getAll($param, 1);
+            }
+        foreach ($teacherClassArr as $single){
+            $elem['class_id'] = $single->class_id;
+            $class = new ClassConfig($elem);
+            $elem['class_name'] = $class->info->class_name;
+            $data['classArr'][] = $elem;
+             unset($elem);
+        }
+        $data['gradeConfigArr'] = GradeConfig::getAll(false);
+        $requestParam['class_id'] = null;
+        $data['requestParam'] = $requestParam;
+        return view("Teacher.TeacherView.studentList", $data);
+    }
+
+    /**
+     * 按班级查找学生
+     */
+    public function getStudentByClass()
+    {
+        $requestParam['class_id'] = (false == empty($_POST['class_id']))?$_POST['class_id']:null;
+        $param['teacher_id'] = session('teacher')['teacher_id'];
+        $teacherClassArr = TeacherClass::getAll($param);
+        $data['arr'] = $data['classArr'] =array();
+        if(true == empty($requestParam['class_id'])){
+            if(false == empty($teacherClassArr)){
+                unset($param);
+                $param['class_id'] = $teacherClassArr[0]->class_id;
+                $data['arr'] = Student::getAll($param, 1);
+            }
+        }else{
+            $data['arr'] = Student::getAll($requestParam, 1);
+        }
+        foreach ($teacherClassArr as $single){
+            $elem['class_id'] = $single->class_id;
+            $class = new ClassConfig($elem);
+            $elem['class_name'] = $class->info->class_name;
+            $data['classArr'][] = $elem;
+            unset($elem);
+        }
+        $data['gradeConfigArr'] = GradeConfig::getAll(false);
+        $data['requestParam'] = $requestParam;
+        return view("Teacher.TeacherView.studentList", $data);
+    }
+
+    /**
+     * 打分
+     */
+    public function makeGrade(){
+        $gradeConfig = new GradeConfig($_POST['type_id']);
+        $arr['type_id'] = $_POST['type_id'];
+
+
+        $arr['type_name'] = $gradeConfig->info->type_name;
+        $arr['grade'] = $_POST['grade'];
+
 
     }
 
@@ -93,7 +154,7 @@ class TeacherController extends Controller
      */
     public function getGradeConfig(){
         $data['arr'] = GradeConfig::getAll(false);
-        return view("Teacher.AdminView.teacherList", $data);
+        return view("Teacher.TeacherView.gradeConfigList", $data);
     }
 
     /**
@@ -102,7 +163,7 @@ class TeacherController extends Controller
     public function addGradeConfig(BaseFunc $baseFunc){
         $arr['type_name'] = $_POST['type_name'];
         $arr['grade'] = $_POST['grade'];
-        $arr['teacher_id'] = $_POST['teacher_id'];
+        $arr['teacher_id'] = session('teacher')['teacher_id'];
         $gradeConfig = GradeConfig::add($arr);
         if(true == empty($gradeConfig)){
             $baseFunc->setRedirectMessage(true, "登陆成功", NULL, NULL);
@@ -113,16 +174,27 @@ class TeacherController extends Controller
     /**
      * 编辑得扣分配置
      */
-    public function editGradeConfig(){
-        
-
+    public function editGradeConfig(BaseFunc $baseFunc){
+        $arr['type_name'] = $_POST['type_name'];
+        $arr['grade'] = $_POST['grade'];
+        $gradeConfig = new GradeConfig($_POST['id']);
+        $return = $gradeConfig->update($arr);
+        if(false == $return){
+            $baseFunc->setRedirectMessage(false, "编辑失败", NULL, NULL);
+        }
+        return redirect()->back();
     }
 
     /**
      * 删除得到扣分配置
      */
-    public function deleteGradeConfig($grade_config_id){
-
+    public function deleteGradeConfig(BaseFunc $baseFunc, $grade_config_id){
+        $gradeConfig = new GradeConfig($grade_config_id);
+        $return = $gradeConfig->delete();
+        if(false == $return){
+            $baseFunc->setRedirectMessage(false, "删除失败", NULL, NULL);
+        }
+        return redirect()->back();
     }
 
 

@@ -307,7 +307,7 @@ class AdminController extends Controller
      */
     public function searchStudent(){
         session(["now_address"=>"/t_s_student"]);
-        $data['arr'] = Student::getAll(1);
+        $data['arr'] = Student::getAll(null, 1);
         $data['classArr'] = ClassConfig::getAll(false);
         return view("Teacher.AdminView.studentList", $data);
     }
@@ -330,7 +330,7 @@ class AdminController extends Controller
         $inputData['student_number'] =  $_POST['student_number'];
         $result = Student::findOne($inputData);
         if(false == empty($result)){
-            $baseFunc->setRedirectMessage(false, "存在相同的用户名", NULL);
+            $baseFunc->setRedirectMessage(false, "存在相同的学号", NULL);
             return redirect()->back();
         }
 
@@ -363,9 +363,9 @@ class AdminController extends Controller
         }
         //判断是否已经存在相同学号
         $inputData['student_number'] =  $_POST['student_number'];
-        $result = Student::findOne($inputData);
-        if(false == empty($result)){
-            $baseFunc->setRedirectMessage(false, "存在相同的用户名", NULL);
+        $result = Student::findAll($inputData);
+        if(count($result)>1){
+            $baseFunc->setRedirectMessage(false, "存在相同的学号", NULL);
             return redirect()->back();
         }
 

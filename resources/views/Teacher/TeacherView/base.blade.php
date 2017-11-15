@@ -63,10 +63,10 @@
                                 <a aria-expanded="false" role="button" href=""> 首页</a>
                             </li>
                             <li class="li2">
-                                <a aria-expanded="false" role="button" href="">得/扣分类型配置</a>
+                                <a aria-expanded="false" role="button" href="/t_s_grade_config">得/扣分类型配置</a>
                             </li>
                             <li class="li2">
-                                <a aria-expanded="false" role="button" href="">学生管理</a>
+                                <a aria-expanded="false" role="button" href="/t_admin_student">学生管理</a>
                             </li>
                             <li class="li3">
                                 <a aria-expanded="false" role="button" href=""> 账户管理</a>
