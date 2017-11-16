@@ -9,8 +9,6 @@
                             <h5>学生管理</h5>
                         </div>
                         <div class="ibox-content">
-
-
                             <form class="form-inline" style="margin-top:15px;" action="/t_get_student" method="post">
                                 <div class="form-group">
                                     <label for="exampleInputName2" style="margin-left: 4px;">班级：</label>
@@ -19,6 +17,14 @@
                                         <option name="class_id" value="{{ $single['class_id'] }}" @if($requestParam['class_id'] == $single['class_id']) selected="selected" @endif>{{ $single['class_name'] }}</option>
                                         @endforeach
                                     </select>
+                                    <label for="exampleInputName2" style="margin-left: 4px;">排序：</label>
+                                    <select name="order" class="form-control">
+                                        <option name="order" value="" @if($requestParam['order'] == null) selected="selected" @endif>--</option>
+                                        <option name="order" value="1" @if($requestParam['order'] == 1) selected="selected" @endif>按分数正序</option>
+                                        <option name="order" value="2" @if($requestParam['order'] == 2) selected="selected" @endif>按分数倒序</option>
+                                        <option name="order" value="3" @if($requestParam['order'] == 3) selected="selected" @endif>按学号正序</option>
+                                    </select>
+                                    <input name='keywords' value="{{ $requestParam['keywords'] }}" type="text" class="form-control" id="exampleInputEmail2" placeholder="请输入学号或者学生姓名" style="width:320px;margin-left: 4px;">
                                 </div>
                                 <button type="submit" class="btn btn-primary" style="margin-left: 4px;">确定</button>
                             </form>
@@ -51,7 +57,9 @@
                                             <td>{{ $single->grade }}</td>
                                             <td>
                                                 <a href="#make_grade_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">打分</a>
-                                                <a href="#edit-form_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">查看得分记录</a>
+                                                <a href="/t_get_grade_log/{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">查看得分记录</a>
+                                                <a href="/t_get_grade_log/{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">成绩走势</a>
+                                                <a href="/t_get_grade_log/{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">备注</a>
                                             </td>
 
                                             <div id="make_grade_{{ $single->student_id }}" class="modal fade" aria-hidden="true">
@@ -64,12 +72,12 @@
                                                                     <div class="hr-line-dashed"></div>
                                                                     <div class="form-horizontal">
                                                                         <form role="form" class="form-horizontal" action="/t_make_grade" method="post" onsubmit="checkEditStaff(this)">
-                                                                            <input type="hidden" name="id" value="{{$single->student_id }}">
+                                                                            <input type="hidden" name="student_id" value="{{$single->student_id }}">
                                                                             <div class="form-group">
                                                                                 <label class="col-sm-2 control-label">类型</label>
                                                                                 <div class="col-sm-10">
                                                                                     {{--gradeConfigArr--}}
-                                                                                    <select name="grade" class="form-control">
+                                                                                    <select name="type_id" class="form-control">
                                                                                         @foreach($gradeConfigArr as $single)
                                                                                             <option name="type_id" value="{{ $single->type_id }}">{{ $single->type_name }}{{ $single->grade }}</option>
                                                                                         @endforeach

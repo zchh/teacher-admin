@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use BaseClass\Role\Admin;
 use BaseClass\Teacher\ClassConfig;
 use BaseClass\Teacher\GradeConfig;
+use BaseClass\Teacher\GradeLog;
 use BaseClass\Teacher\MajorConfig;
 use BaseClass\Teacher\Student;
 use BaseClass\Teacher\Teacher;
@@ -57,12 +58,47 @@ class TeacherController extends Controller
     }
 
     /**
+     * 退出登录
+     */
+     public function teacherLoginOut(BaseFunc $baseFunc){
+         Session::flush();
+         $baseFunc->setRedirectMessage(true, "退出登出成功", NULL, "/t_teacher_login");
+     }
+
+    /**
+     * 密码重置界面
+     */
+    public function teacherResetView(){
+        return view("Teacher.TeacherView.setting");
+    }
+
+    /**
+     * 密码重置
+     */
+    public function resetPassword(BaseFunc $baseFunc){
+        $teacher = new Teacher(session('teacher')['teacher_id']);
+        if($teacher->info->password != md5($_POST['oldPassword'])){
+            $baseFunc->setRedirectMessage(false, "原密码输入错误", NULL, NULL);
+            return redirect()->back();
+        }
+      if($_POST['newPassword1'] != $_POST['newPassword2']){
+          $baseFunc->setRedirectMessage(false, "两次输入密码不一致", NULL, NULL);
+          return redirect()->back();
+      }
+      $arr['password'] = md5($_POST['newPassword1']);
+      $return = $teacher->update($arr);
+      if(false == $return){
+          $baseFunc->setRedirectMessage(false, "更新密码失败", NULL, NULL);
+      }
+      return redirect()->back();
+    }
+
+    /**
      * 首页
      */
     public function index(){
         return view("Teacher.TeacherView.index");
     }
-
 
     /**
      * 管理班级
@@ -90,6 +126,8 @@ class TeacherController extends Controller
         if(false == empty($teacherClassArr)){
                 unset($param);
                 $param['class_id'] = $teacherClassArr[0]->class_id;
+                $studentArr = Student::getAll($param, 1);
+                $this->updateGrade($studentArr);
                 $data['arr'] = Student::getAll($param, 1);
             }
         foreach ($teacherClassArr as $single){
@@ -108,8 +146,7 @@ class TeacherController extends Controller
     /**
      * 按班级查找学生
      */
-    public function getStudentByClass()
-    {
+    public function getStudentByClass(){
         $requestParam['class_id'] = (false == empty($_POST['class_id']))?$_POST['class_id']:null;
         $param['teacher_id'] = session('teacher')['teacher_id'];
         $teacherClassArr = TeacherClass::getAll($param);
@@ -118,9 +155,13 @@ class TeacherController extends Controller
             if(false == empty($teacherClassArr)){
                 unset($param);
                 $param['class_id'] = $teacherClassArr[0]->class_id;
+                $studentArr = Student::getAll($param, 1);
+                $this->updateGrade($studentArr);
                 $data['arr'] = Student::getAll($param, 1);
             }
         }else{
+            $studentArr = Student::getAll($requestParam, 1);
+            $this->updateGrade($studentArr);
             $data['arr'] = Student::getAll($requestParam, 1);
         }
         foreach ($teacherClassArr as $single){
@@ -135,18 +176,56 @@ class TeacherController extends Controller
         return view("Teacher.TeacherView.studentList", $data);
     }
 
+    //分数计算更新
+    private function updateGrade($studentArr){
+        foreach ($studentArr as $student){
+             $param['student_id'] = $student->student_id;
+             $gradeLogs = GradeLog::findAll($param);
+             $countGrade = 0;
+             foreach ($gradeLogs as $gradeLog){
+                $countGrade += $gradeLog->grade;
+             }
+             $arr['grade'] = $countGrade;
+             $studentObj = new Student($student->student_id);
+             $studentObj->update($arr);
+        }
+    }
+
     /**
      * 打分
      */
-    public function makeGrade(){
-        $gradeConfig = new GradeConfig($_POST['type_id']);
+    public function makeGrade(BaseFunc $baseFunc){
         $arr['type_id'] = $_POST['type_id'];
-
-
+        $arr['student_id'] = $_POST['student_id'];
+        $gradeConfig = new GradeConfig($_POST['type_id']);
         $arr['type_name'] = $gradeConfig->info->type_name;
-        $arr['grade'] = $_POST['grade'];
+        $arr['grade'] = $gradeConfig->info->grade;
+        $student = new Student($_POST['student_id']);
+        $param['class_id'] = $student->info->class_id;
+        $param['teacher_id'] = $gradeConfig->info->teacher_id;
+        $teacherClass = TeacherClass::findOne($param);
+        $arr['teacher_class_id'] = $teacherClass->id;
+        $teacherClass = GradeLog::add($arr);
+        if(true == empty($teacherClass)){
+            $baseFunc->setRedirectMessage(true, "打分失败", NULL, NULL);
+        }
+        return redirect()->back();
+    }
 
-
+    /**
+     * 获取得分记录
+     */
+    public function getGradeLog($student_id){
+        $param['student_id'] = $student_id;
+        $student = new Student($student_id);
+        $data['studentInfo']['student'] = $student->info;
+        $data['arr'] = GradeLog::getAll($param);
+        unset($param);
+        $param['class_id'] = $student->info->class_id;
+        $param['teacher_id'] = session('teacher')['teacher_id'];
+        $teacherClass = TeacherClass::findOne($param);
+        $data['studentInfo']['course_name'] = $teacherClass->course_name;
+        return view("Teacher.TeacherView.studentGradeLog", $data);
     }
 
     /**

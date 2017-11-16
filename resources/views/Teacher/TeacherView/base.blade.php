@@ -52,7 +52,7 @@
                 <div class="navbar-collapse collapse" id="navbar">
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <a href="">
+                            <a href="/t_teacher_login_out">
                                 <i class="fa fa-sign-out"></i> 退出
                             </a>
                         </li>
@@ -72,7 +72,7 @@
                                 <a aria-expanded="false" role="button" href=""> 账户管理</a>
                             </li>
                             <li class="li4">
-                                <a aria-expanded="false" role="button" href=""> 系统设置</a>
+                                <a aria-expanded="false" role="button" href="/t_teacher_reset"> 系统设置</a>
                             </li>
                         </ul>
                     </div>

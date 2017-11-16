@@ -60,6 +60,15 @@ class AdminController extends Controller
         }
     }
 
+
+    /**
+     * 退出登录
+     */
+    public function adminLoginOut(BaseFunc $baseFunc){
+        Session::flush();
+        $baseFunc->setRedirectMessage(true, "退出登出成功", NULL, "/t_admin_login");
+    }
+
     /**
      * 获取管理员信息
      */
@@ -106,15 +115,6 @@ class AdminController extends Controller
         }else{
             $baseFunc->setRedirectMessage(true, "密码修改成功", NULL, "/t_admin_login");
         }
-    }
-
-
-    /**
-     * 退出登录
-     */
-    public function adminLoginOut(BaseFunc $baseFunc){
-        Session::flush();
-        $baseFunc->setRedirectMessage(true, "登出成功", NULL, "/t_admin_login");
     }
 
     /**

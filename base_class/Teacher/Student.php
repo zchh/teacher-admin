@@ -54,11 +54,24 @@ class Student
                 ->paginate($paginateNumber);
         }else{
             if(false == empty($param['class_id'])){
-                $result = $table->where('class_id','=',$param['class_id'])->orderBy("student_id","desc")
-                    ->paginate($paginateNumber);
+                $result = $table->where('class_id','=',$param['class_id']);
             }
         }
-        return $result;
+        if(false == empty($param['keywords'])){
+            $result->where('student_number', 'like', '%'.$param['keywords'].'%')->orWhere('name', 'like', '%'.$param['keywords'].'%');
+        }
+        if(false == empty($param['order'])){
+            if($param['order'] == '1'){
+                $result->orderBy('grade','asc');
+            }
+            if($param['order'] == '2'){
+                $result->orderBy('grade','desc');
+            }
+            if($param['order'] == '3'){
+                $result->orderBy('student_number','asc');
+            }
+        }
+        return $result->paginate($paginateNumber);
     }
 
     static function add($arr){

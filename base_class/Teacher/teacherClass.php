@@ -32,9 +32,12 @@ class TeacherClass
         $result = null;
         $table = DB::table('t_teacher_class');
         if(false == empty($param['teacher_id'])){
-            $result =  $table->where('teacher_id','=',$param['teacher_id'])->first();
+            $result =  $table->where('teacher_id','=',$param['teacher_id']);
         }
-        return $result;
+       if(false == empty($param['class_id'])){
+            $result = $table->where('class_id', '=', $param['class_id']);
+       }
+        return $result->first();
     }
 
     static function getAll($param=[]){

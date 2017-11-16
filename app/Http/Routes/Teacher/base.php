@@ -4,6 +4,7 @@
 /**
  * 管理员后台
  */
+Route::get("/get_pic/{id}", "Teacher\BaseController@getPic");                               //获取图片
 Route::get("/t_admin_login","Teacher\AdminController@adminLogin");                           //管理员登录
 Route::post("/t_check_admin_login","Teacher\AdminController@checkAdminLogin");               //校验登录
 Route::get("/t_admin_login_out","Teacher\AdminController@adminLoginOut");                    //退出登录
@@ -17,8 +18,6 @@ Route::group(['middleware' => ['TLoginAdminCheck']],function() {
     Route::get("/t_s_teacher_class/{teacher_id}", "Teacher\AdminController@sTeacherClass"); //获取教师班级
     Route::post("/t_edit_class_config", "Teacher\AdminController@editClassConfig");         //编辑教师班级
     Route::get("/t_delete_teacher_class/{classConfigId}", "Teacher\AdminController@deleteTeacherClass");    //删除教师班级
-
-    Route::get("/get_pic/{id}", "Teacher\BaseController@getPic");                            //获取图片
 
     Route::get("/t_admin_index", "Teacher\AdminController@adminIndex");                      //首页
 
@@ -60,12 +59,14 @@ Route::get("/t_teacher_login","Teacher\TeacherController@teacherLogin");
 Route::post("/t_check_teacher_login","Teacher\TeacherController@checkTeacherLogin");
 Route::group(['middleware' => ['TLoginTeacherCheck']],function() {
 
-    Route::get("/t_teacher_index", "Teacher\TeacherController@index");                       //修改密码
+    Route::get("/t_teacher_index", "Teacher\TeacherController@index");       //退出登录
 
-    Route::post("/t_teacher_update_password", "Teacher\TeacherController@updatePassword");   //修改密码
+    Route::get("/t_teacher_login_out", "Teacher\TeacherController@teacherLoginOut");       //退出登录
+    Route::get("/t_teacher_reset", "Teacher\TeacherController@teacherResetView");           //修改密码界面
+    Route::post("/t_teacher_reset_password", "Teacher\TeacherController@resetPassword");   //修改密码
 
     Route::get("/t_admin_student", "Teacher\TeacherController@adminStudent");                //管理学生
-    Route::post("/t_get_student", "Teacher\TeacherController@getStudentByClass");                //管理学生
+    Route::post("/t_get_student", "Teacher\TeacherController@getStudentByClass");            //管理学生
 
     Route::get("/t_teacher_s_class", "Teacher\TeacherController@getClass");                  //班级
 
@@ -73,7 +74,9 @@ Route::group(['middleware' => ['TLoginTeacherCheck']],function() {
     Route::post("/t_add_grade_config", "Teacher\TeacherController@addGradeConfig");           //增加得扣分配置
     Route::post("/t_edit_grade_config", "Teacher\TeacherController@editGradeConfig");         //编辑得扣分配置
     Route::get("/t_delete_grade_config/{id}", "Teacher\TeacherController@deleteGradeConfig"); //删除得扣分配置
+
     Route::post("/t_make_grade", "Teacher\TeacherController@makeGrade");                      //打分
+    Route::get("/t_get_grade_log/{student_id}", "Teacher\TeacherController@getGradeLog");     //获取分数记录
 
 });
 
