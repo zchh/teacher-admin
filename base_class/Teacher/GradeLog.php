@@ -39,10 +39,18 @@ class GradeLog
 
     //查找多条记录
     static function findAll($param){
-        $result = null;
-        $table = DB::table('t_grade_log');
+        $result = DB::table('t_grade_log');
         if(false == empty($param['student_id'])){
-            $result =  $table->where('student_id','=',$param['student_id']);
+            $result = $result->where('student_id','=',$param['student_id']);
+        }
+        if(false == empty($param['teacher_class_id'])){
+            $result = $result->where('teacher_class_id','=',$param['teacher_class_id']);
+        }
+        if(false == empty($param['startDate'])){
+            $result = $result->where('create_time','>=',$param['startDate']);
+        }
+        if(false == empty($param['endDate'])){
+            $result = $result->where('create_time','<=',$param['endDate']);
         }
         return $result->get();
     }

@@ -48,27 +48,22 @@ class Student
 
     static function getAll($param=[], $paginateNumber){
         $table = DB::table("t_student");
-        $result = array();
-        if(true == empty($param)){
-            $result = $table->orderBy("student_id","desc")
-                ->paginate($paginateNumber);
-        }else{
-            if(false == empty($param['class_id'])){
-                $result = $table->where('class_id','=',$param['class_id']);
-            }
+        $result = $table;
+        if(false == empty($param['class_id'])){
+            $result = $result->where('class_id','=',$param['class_id']);
         }
         if(false == empty($param['keywords'])){
-            $result->where('student_number', 'like', '%'.$param['keywords'].'%')->orWhere('name', 'like', '%'.$param['keywords'].'%');
+            $result = $result->where('student_number', 'like', '%'.$param['keywords'].'%')->orWhere('name', 'like', '%'.$param['keywords'].'%');
         }
         if(false == empty($param['order'])){
             if($param['order'] == '1'){
-                $result->orderBy('grade','asc');
+               $result = $result->orderBy('grade','asc');
             }
             if($param['order'] == '2'){
-                $result->orderBy('grade','desc');
+               $result = $result->orderBy('grade','desc');
             }
             if($param['order'] == '3'){
-                $result->orderBy('student_number','asc');
+               $result = $result->orderBy('student_number','asc');
             }
         }
         return $result->paginate($paginateNumber);

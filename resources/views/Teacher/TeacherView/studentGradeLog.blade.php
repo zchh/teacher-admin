@@ -7,10 +7,11 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <h5>学生管理</h5>
-                        </div>
-                        <div>
-                            <p>课程：{{ $studentInfo['course_name'] }} | 学生姓名：{{ $studentInfo['student']->name }} | 学号：{{ $studentInfo['student']->student_number }}</p>
-                            <img src="/get_pic/{{ $studentInfo['student']->pic_id }}" style="width:100%; max-width: 80px;max-height: 80px;">
+                            <br/>
+                            <div>
+                                <h6>课程：{{ $studentInfo['course_name'] }} | 学生姓名：{{ $studentInfo['student']->name }} | 学号：{{ $studentInfo['student']->student_number }}</h6>
+                                <img src="/get_pic/{{ $studentInfo['student']->pic_id }}" style="width:100%; max-width: 80px;max-height: 80px;">
+                            </div>
                         </div>
                         <div class="ibox-content">
                             <div class="table-responsive">

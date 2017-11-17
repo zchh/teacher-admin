@@ -307,7 +307,7 @@ class AdminController extends Controller
      */
     public function searchStudent(){
         session(["now_address"=>"/t_s_student"]);
-        $data['arr'] = Student::getAll(null, 1);
+        $data['arr'] = Student::getAll(null, 3);
         $data['classArr'] = ClassConfig::getAll(false);
         return view("Teacher.AdminView.studentList", $data);
     }

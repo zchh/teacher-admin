@@ -59,14 +59,15 @@ Route::get("/t_teacher_login","Teacher\TeacherController@teacherLogin");
 Route::post("/t_check_teacher_login","Teacher\TeacherController@checkTeacherLogin");
 Route::group(['middleware' => ['TLoginTeacherCheck']],function() {
 
-    Route::get("/t_teacher_index", "Teacher\TeacherController@index");       //退出登录
+    Route::get("/t_teacher_index", "Teacher\TeacherController@index");                     //首页
 
     Route::get("/t_teacher_login_out", "Teacher\TeacherController@teacherLoginOut");       //退出登录
-    Route::get("/t_teacher_reset", "Teacher\TeacherController@teacherResetView");           //修改密码界面
+    Route::get("/t_teacher_reset", "Teacher\TeacherController@teacherResetView");          //修改密码界面
     Route::post("/t_teacher_reset_password", "Teacher\TeacherController@resetPassword");   //修改密码
 
     Route::get("/t_admin_student", "Teacher\TeacherController@adminStudent");                //管理学生
     Route::post("/t_get_student", "Teacher\TeacherController@getStudentByClass");            //管理学生
+    Route::post("/t_make_student_remark", "Teacher\TeacherController@makeStudentRemark");    //备注学生信息
 
     Route::get("/t_teacher_s_class", "Teacher\TeacherController@getClass");                  //班级
 
@@ -77,6 +78,7 @@ Route::group(['middleware' => ['TLoginTeacherCheck']],function() {
 
     Route::post("/t_make_grade", "Teacher\TeacherController@makeGrade");                      //打分
     Route::get("/t_get_grade_log/{student_id}", "Teacher\TeacherController@getGradeLog");     //获取分数记录
+    Route::get("/t_student_grade_trend/{student_id}", "Teacher\TeacherController@studentGradeTrend");   //学生成绩走势
 
 });
 
