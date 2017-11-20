@@ -64,7 +64,7 @@
                                                 <a href="#make_remark_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">备注</a>
                                             </td>
 
-                                            <div id="make_grade_{{ $single->student_id }}" class="modal fade" aria-hidden="true">
+                                            <div id="make_grade_{{ $single->student_id }}" class="modal fade makeGrade" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
@@ -73,7 +73,7 @@
                                                                     <h3 class="m-t-none m-b">打分</h3>
                                                                     <div class="hr-line-dashed"></div>
                                                                     <div class="form-horizontal">
-                                                                        <form role="form" class="form-horizontal" action="/t_make_grade" method="post" onsubmit="checkEditStaff(this)">
+                                                                        <form role="form" class="form-horizontal" action="/t_make_grade" method="post">
                                                                             <input type="hidden" name="student_id" value="{{$single->student_id }}">
                                                                             <div class="form-group">
                                                                                 <label class="col-sm-2 control-label">类型</label>
@@ -101,38 +101,38 @@
                                             </div>
 
 
-                                            {{--<div id="make_remark_{{ $single->student_id }}" class="modal fade" aria-hidden="true">--}}
-                                                {{--<div class="modal-dialog">--}}
-                                                    {{--<div class="modal-content">--}}
-                                                        {{--<div class="modal-body">--}}
-                                                            {{--<div class="row">--}}
-                                                                {{--<div class="col-sm-12">--}}
-                                                                    {{--<h3 class="m-t-none m-b">备注</h3>--}}
-                                                                    {{--<p>姓名：{{ $single->name }} | 学号：{{ $single->student_number }}</p>--}}
-                                                                    {{--<div class="hr-line-dashed"></div>--}}
-                                                                    {{--<div class="form-horizontal">--}}
-                                                                        {{--<form role="form" class="form-horizontal" action="/t_make_student_remark" method="post" onsubmit="checkEditStaff(this)">--}}
-                                                                            {{--<input type="hidden" name="student_id" value="{{ $single->student_id }}">--}}
-                                                                            {{--<div class="form-group">--}}
-                                                                                {{--<label class="col-sm-2 control-label">备注</label>--}}
-                                                                                {{--<div class="col-sm-10">--}}
-                                                                                    {{--<input type="text" placeholder="请输入备注信息" class="form-control" name="remark" value="{{ $single->remark }}" required>--}}
-                                                                                {{--</div>--}}
-                                                                            {{--</div>--}}
-                                                                            {{--<div class="form-group">--}}
-                                                                                {{--<div class="col-sm-4 col-sm-offset-2">--}}
-                                                                                    {{--<button class="btn btn-primary" type="submit">保存</button>--}}
-                                                                                    {{--<button class="btn btn-white" data-dismiss="modal" type="button">取消</button>--}}
-                                                                                {{--</div>--}}
-                                                                            {{--</div>--}}
-                                                                        {{--</form>--}}
-                                                                    {{--</div>--}}
-                                                                {{--</div>--}}
-                                                            {{--</div>--}}
-                                                        {{--</div>--}}
-                                                    {{--</div>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
+                                            <div id="make_remark_{{ $single->student_id }}" class="modal fade makeRemark" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <h3 class="m-t-none m-b">备注</h3>
+                                                                    <p>姓名：{{ $single->name }} | 学号：{{ $single->student_number }}</p>
+                                                                    <div class="hr-line-dashed"></div>
+                                                                    <div class="form-horizontal">
+                                                                        <form role="form" class="form-horizontal" action="/t_make_student_remark" method="post">
+                                                                            <input type="hidden" name="student_id" value="{{ $single->student_id }}">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-2 control-label">备注</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <input type="text" placeholder="请输入备注信息" class="form-control" name="remark" value="{{ $single->remark }}" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="col-sm-4 col-sm-offset-2">
+                                                                                    <button class="btn btn-primary" type="submit">保存</button>
+                                                                                    <button class="btn btn-white" data-dismiss="modal" type="button">取消</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
                                         </tr>
@@ -150,6 +150,15 @@
         </div>
     </div>
 
+    <script>
+        $("#makeGrade").click(function(){
+            $("p").hide();
+        });
+
+        $("#makeRemark").click(function(){
+            $("p").show();
+        });
+    </script>
 
 
 @stop

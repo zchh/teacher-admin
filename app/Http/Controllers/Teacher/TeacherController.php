@@ -238,15 +238,9 @@ class TeacherController extends BaseController
      * 获取得分记录
      */
     public function getGradeLog($student_id){
-        $requestParam['typeName'] = (false == empty($_POST['typeName']))?$_POST['typeName']:null;
-        $requestParam['startDate'] = (false == empty($_POST['startDate']))?$_POST['startDate']:null;
-        $requestParam['endDate'] = (false == empty($_POST['endDate']))?$_POST['endDate']:null;
-        $requestParam['student_id'] = (false == empty($_POST['student_id']))?$_POST['student_id']:null;
         $requestParam['student_id'] = $student_id;
         $student = new Student($student_id);
-        $data['studentInfo']['student'] = $student->info;
-        $data['arr'] = GradeLog::getAll($requestParam);
-        unset($param);
+
         $param['class_id'] = $student->info->class_id;
         $param['teacher_id'] = session('teacher')['teacher_id'];
         $teacherClass = TeacherClass::findOne($param);
@@ -254,13 +248,15 @@ class TeacherController extends BaseController
             $this->alert("暂无数据");
         }
         $data['studentInfo']['course_name'] = $teacherClass->course_name;
-//        $data['requestParam'] = array(
-//            'typeName' => '',
-//            'startDate' => '',
-//            'endDate' => '',
-//            'student_id' => $student_id );
+        $requestParam['teacher_class_id'] = $teacherClass->id;
+        $data['studentInfo']['student'] = $student->info;
+        $data['arr'] = GradeLog::getAll($requestParam);
+        $data['requestParam'] = array(
+            'typeName' => '',
+            'startDate' => '',
+            'endDate' => '',
+            'student_id' => $student_id );
         $data['types'] = GradeConfig::getAll(false);
-        $data['requestParam'] = $requestParam;
         return view("Teacher.TeacherView.studentGradeLog", $data);
     }
 
@@ -274,15 +270,15 @@ class TeacherController extends BaseController
         $requestParam['student_id'] = (false == empty($_POST['student_id']))?$_POST['student_id']:null;
         $data['requestParam'] = $requestParam;
         $student = new Student( $requestParam['student_id']);
-        $data['studentInfo']['student'] = $student->info;
-        $data['arr'] = GradeLog::getAll($requestParam);
-        unset($param);
         $param['class_id'] = $student->info->class_id;
         $param['teacher_id'] = session('teacher')['teacher_id'];
         $teacherClass = TeacherClass::findOne($param);
         if(true == empty($teacherClass)){
             $this->alert("暂无数据");
         }
+        $data['studentInfo']['student'] = $student->info;
+        $requestParam['teacher_class_id'] = $teacherClass->id;
+        $data['arr'] = GradeLog::getAll($requestParam);
         $data['studentInfo']['course_name'] = $teacherClass->course_name;
         $data['types'] = GradeConfig::getAll(false);
         return view("Teacher.TeacherView.studentGradeLog", $data);

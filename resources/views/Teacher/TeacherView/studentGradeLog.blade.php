@@ -19,15 +19,14 @@
                                 <div class="form-group">
                                     <input type="hidden" name="student_id" value="{{ $requestParam['student_id'] }}">
                                     <label for="exampleInputName2">时间：</label>
-                                    <input name="startDate" type="text" class="form-control laydate-icon" id="start" placeholder="请选择开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    <input name="startDate" value="{{ $requestParam['startDate'] }}" type="text" class="form-control laydate-icon" id="start" placeholder="请选择开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
                                     <span style="margin: 0 2px;">-</span>
                                     <input name="endDate" value="{{ $requestParam['endDate'] }}" type="text" class="form-control laydate-icon"  id="end" placeholder="请选择结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
                                     <label for="exampleInputName2" style="margin-left: 4px;">类型：</label>
                                     <select name="typeName" class="form-control">
-                                        <option name="typeName" value="{{ $requestParam['typeName'] }}" @if($requestParam['typeName'] == null) selected="selected" @endif>--</option>
+                                        <option name="typeName" value="" @if($requestParam['typeName'] == null) selected="selected" @endif>--</option>
                                         @foreach($types as $single)
-
-                                        <option name="typeName" value="{{ $requestParam['typeName] }}" @if($requestParam['typeName'] == $single->type_name) selected="selected" @endif>{{ $single->type_name }}</option>
+                                        <option name="typeName" value="{{ $single->type_name }}" @if($requestParam['typeName'] == $single->type_name) selected="selected" @endif>{{ $single->type_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

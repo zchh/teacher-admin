@@ -57,19 +57,21 @@ class GradeLog
 
 
     static function getAll($param=[]){
-        $table = DB::table("t_grade_log");
-        $result = [];
+        $result = DB::table("t_grade_log");
         if(false == empty($param['student_id'])){
-            $result = $table->where('student_id','=',$param['student_id']);
+            $result = $result->where('student_id','=',$param['student_id']);
+        }
+        if(false == empty($param['teacher_class_id'])){
+            $result = $result->where('teacher_class_id','=',$param['teacher_class_id']);
         }
         if(false == empty($param['startDate'])){
-            $result = $table->where('create_time','>=',$param['startDate']);
+            $result = $result->where('create_time','>=',$param['startDate']);
         }
         if(false == empty($param['endDate'])){
-            $result = $table->where('create_time','<=',$param['endDate'].' 23:59:59');
+            $result = $result->where('create_time','<=',$param['endDate'].' 23:59:59');
         }
         if(false == empty($param['typeName'])){
-            $result = $table->where('type_name','=',$param['typeName']);
+            $result = $result->where('type_name','=',$param['typeName']);
         }
         return $result->get();
     }
