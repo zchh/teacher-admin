@@ -14,6 +14,28 @@
                             </div>
                         </div>
                         <div class="ibox-content">
+
+                            <form class="form-inline" style="margin-top:15px;" action="/t_s_grade_log" method="post">
+                                <div class="form-group">
+                                    <input type="hidden" name="student_id" value="{{ $requestParam['student_id'] }}">
+                                    <label for="exampleInputName2">时间：</label>
+                                    <input name="startDate" type="text" class="form-control laydate-icon" id="start" placeholder="请选择开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    <span style="margin: 0 2px;">-</span>
+                                    <input name="endDate" value="{{ $requestParam['endDate'] }}" type="text" class="form-control laydate-icon"  id="end" placeholder="请选择结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    <label for="exampleInputName2" style="margin-left: 4px;">类型：</label>
+                                    <select name="typeName" class="form-control">
+                                        <option name="typeName" value="{{ $requestParam['typeName'] }}" @if($requestParam['typeName'] == null) selected="selected" @endif>--</option>
+                                        @foreach($types as $single)
+
+                                        <option name="typeName" value="{{ $requestParam['typeName] }}" @if($requestParam['typeName'] == $single->type_name) selected="selected" @endif>{{ $single->type_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="margin-left: 4px;">确定</button>
+                            </form>
+
+
+
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
@@ -24,6 +46,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @if($arr != null )
                                     @foreach($arr as $single)
                                         <tr>
                                             <td>{{ $single->type_name }}</td>
@@ -71,6 +94,7 @@
 
                                         </tr>
                                     @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>

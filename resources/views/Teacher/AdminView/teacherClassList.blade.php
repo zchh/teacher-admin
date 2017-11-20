@@ -11,9 +11,9 @@
             <div class="col-lg-12">
                 <form  class="class=form-inline" role="form" method="post" action="">
                     <div class="form-group" >
-                        <input name="keyWords"  type="text" value="" placeholder="请输入仓库名">
-                        <button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">搜索</button>
-                        <button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">显示全部</button>
+                        {{--<input name="keyWords"  type="text" value="" placeholder="请输入仓库名">--}}
+                        {{--<button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">搜索</button>--}}
+                        {{--<button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">显示全部</button>--}}
                     </div>
                 </form>
                 <div class="panel panel-default">

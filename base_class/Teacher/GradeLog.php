@@ -62,6 +62,15 @@ class GradeLog
         if(false == empty($param['student_id'])){
             $result = $table->where('student_id','=',$param['student_id']);
         }
+        if(false == empty($param['startDate'])){
+            $result = $table->where('create_time','>=',$param['startDate']);
+        }
+        if(false == empty($param['endDate'])){
+            $result = $table->where('create_time','<=',$param['endDate'].' 23:59:59');
+        }
+        if(false == empty($param['typeName'])){
+            $result = $table->where('type_name','=',$param['typeName']);
+        }
         return $result->get();
     }
 

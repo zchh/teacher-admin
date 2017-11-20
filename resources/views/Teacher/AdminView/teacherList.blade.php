@@ -11,11 +11,9 @@
                 <div class="form-group" >
                     <a href="" class="btn btn-ms btn-success" role="button" data-toggle="modal" data-target="#new"><span class="glyphicon glyphicon-plus"></span>添加教师</a>
 
-
-
-                    <input name="keyWords"  type="text" value="" placeholder="">
-                    <button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">搜索</button>
-                    <button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">显示全部</button>
+                    {{--<input name="keyWords"  type="text" value="" placeholder="">--}}
+                    {{--<button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">搜索</button>--}}
+                    {{--<button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">显示全部</button>--}}
                 </div>
             </form>
             <div class="panel panel-default">

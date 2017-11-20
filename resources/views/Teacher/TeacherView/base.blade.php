@@ -9,9 +9,12 @@
 <link href="{{ asset('teacher/css/animate.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('teacher/css/style.min862f.css?v=4.1.0') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('teacher/css/add-style.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('teacher/laydate/need/laydate.css') }}"  rel="stylesheet">
+
 <script src="{{ asset('teacher/js/jquery.min.js?v=2.1.4') }}"></script>
 <script src="{{ asset('teacher/js/bootstrap.min.js?v=3.3.6') }}"></script>
 <script src="{{ asset('teacher/js/addjs.js') }}"></script>
+<script src="{{ asset('teacher/laydate/laydate.js') }}"></script>
 @show
 
 @section("message")
@@ -59,18 +62,18 @@
                     </ul>
                     <div class="container">
                         <ul class="nav navbar-nav" id="color-change">
-                            <li class="li1">
-                                <a aria-expanded="false" role="button" href=""> 首页</a>
-                            </li>
+                            {{--<li class="li1">--}}
+                                {{--<a aria-expanded="false" role="button" href=""> 首页</a>--}}
+                            {{--</li>--}}
                             <li class="li2">
                                 <a aria-expanded="false" role="button" href="/t_s_grade_config">得/扣分类型配置</a>
                             </li>
                             <li class="li2">
                                 <a aria-expanded="false" role="button" href="/t_admin_student">学生管理</a>
                             </li>
-                            <li class="li3">
-                                <a aria-expanded="false" role="button" href=""> 账户管理</a>
-                            </li>
+                            {{--<li class="li3">--}}
+                                {{--<a aria-expanded="false" role="button" href=""> 账户管理</a>--}}
+                            {{--</li>--}}
                             <li class="li4">
                                 <a aria-expanded="false" role="button" href="/t_teacher_reset"> 系统设置</a>
                             </li>

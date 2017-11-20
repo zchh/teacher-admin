@@ -78,6 +78,7 @@ Route::group(['middleware' => ['TLoginTeacherCheck']],function() {
 
     Route::post("/t_make_grade", "Teacher\TeacherController@makeGrade");                      //打分
     Route::get("/t_get_grade_log/{student_id}", "Teacher\TeacherController@getGradeLog");     //获取分数记录
+    Route::post("/t_s_grade_log", "Teacher\TeacherController@sGradeLog");                    //获取分数记录
     Route::get("/t_student_grade_trend/{student_id}", "Teacher\TeacherController@studentGradeTrend");   //学生成绩走势
 
 });

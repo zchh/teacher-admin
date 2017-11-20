@@ -40,6 +40,18 @@ class TeacherClass
         return $result->first();
     }
 
+    static function findAll($param){
+        $result = null;
+        $table = DB::table('t_teacher_class');
+        if(false == empty($param['teacher_id'])){
+            $result =  $table->where('teacher_id','=',$param['teacher_id']);
+        }
+        if(false == empty($param['class_id'])){
+            $result = $table->where('class_id', '=', $param['class_id']);
+        }
+        return $result->get();
+    }
+
     static function getAll($param=[]){
         $table = DB::table("t_teacher_class");
         $result = [];

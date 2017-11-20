@@ -13,6 +13,18 @@
                                 <div class="ibox-content">
                                     <form method="post" action="/t_teacher_reset_password" class="form-horizontal" onsubmit="checkReset(this)">
                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">头像</label>
+                                            <div class="col-sm-10">
+                                                <img src="/get_pic/{{$teacher->pic_id}}" style="width:100%; max-width: 80px;max-height: 80px;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">姓名</label>
+                                            <div class="col-sm-10">
+                                                 {{ $teacher->name }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">原密码</label>
                                             <div class="col-sm-10">
                                                 <input type="password" name="oldPassword" placeholder="请输入原登录密码" class="form-control" required>

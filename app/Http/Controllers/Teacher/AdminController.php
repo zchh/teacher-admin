@@ -28,7 +28,7 @@ use Illuminate\Pagination\Paginator;
 /**
  * 管理员
  */
-class AdminController extends Controller
+class AdminController extends BaseController
 {
     /**
      *  登录页面
@@ -265,8 +265,14 @@ class AdminController extends Controller
             $element['id'] = $single->id;
             $element['class_id'] = $single->class_id;
             $classConfig = new ClassConfig($single->class_id);
+            if(true == empty($classConfig->info)){
+                 continue;
+            }
             $element['class'] = $classConfig->info->class_name;
             $major = new MajorConfig($classConfig->info->major_id);
+            if(true == empty($major->info)){
+                continue;
+            }
             $element['major_name'] = $major->info->major_name;
             $element['course_name'] = $single->course_name;
             $arr[] = $element;
@@ -545,7 +551,29 @@ class AdminController extends Controller
             $baseFunc->setRedirectMessage(false, "删除失败", NULL);
             return redirect()->back();
         }
-        //删除专业下的类型
+        //删除专业下的班级
+        $param['major_id'] = $major_id;
+        $classes = ClassConfig::findAll($param);
+        foreach ($classes as $class){
+            $classConfig = new ClassConfig($class->class_id);
+            $return = $classConfig->delete();
+            if(false == $return){
+                $baseFunc->setRedirectMessage(false, "删除失败", NULL);
+                return redirect()->back();
+            }
+            //删除班级下的课程
+            unset($param);
+            $param['class_id'] = $class->class_id;
+            $teacherClasses = TeacherClass::findAll($param);
+            foreach ($teacherClasses as $teacherClass){
+                $teacherClassObj = new TeacherClass($teacherClass->id);
+                $return = $teacherClassObj->delete();
+                if(false ==  $return){
+                    $baseFunc->setRedirectMessage(false, "删除失败", NULL);
+                    return redirect()->back();
+                }
+            }
+        }
         DB::commit();
         return redirect()->back();
     }

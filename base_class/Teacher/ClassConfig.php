@@ -37,6 +37,17 @@ class ClassConfig
         return $result;
     }
 
+    //查找多条
+    static function findAll($param){
+        $result = null;
+        $table = DB::table('t_class_config');
+        if(false == empty($param['major_id'])){
+            $result =  $table->where('major_id','=',$param['major_id'])->get();
+        }
+        return $result;
+
+    }
+
     static function getAll($isPaginate=true ,$paginateNumber=1){
         if(true == $isPaginate){
             $result = DB::table("t_class_config")
