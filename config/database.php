@@ -57,7 +57,7 @@ return [
 			'host'      =>  '127.0.0.1',//"114.215.156.124",
 
 
-			'database'  => 'base_cms',
+			'database'  => 'teacher_admin',
 
 			'username'  => "root",// 'cookie',
 			'password'  => "",//'123456',

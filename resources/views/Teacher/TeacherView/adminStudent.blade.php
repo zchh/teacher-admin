@@ -14,7 +14,7 @@
                                     <label for="exampleInputName2" style="margin-left: 4px;">班级：</label>
                                     <select name="class_id" class="form-control">
                                         @foreach($classArr as $single)
-                                        <option name="class_id" value="{{ $single['class_id'] }}" @if($requestParam['class_id'] == $single['class_id']) selected="selected" @endif>{{ $single['class_name'] }}</option>
+                                            <option name="class_id" value="{{ $single['class_id'] }}" @if($requestParam['class_id'] == $single['class_id']) selected="selected" @endif>{{ $single['class_name'] }}</option>
                                         @endforeach
                                     </select>
                                     <label for="exampleInputName2" style="margin-left: 4px;">排序：</label>
@@ -58,13 +58,13 @@
                                             <td>{{ $single->grade }}</td>
                                             <td>{{ $single->remark }}</td>
                                             <td>
-                                                <a href="#make_grade_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">打分</a>
+                                                <a href="#grade_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">打分</a>
                                                 <a href="/t_get_grade_log/{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">查看得分记录</a>
                                                 <a href="/t_student_grade_trend/{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">成绩走势</a>
-                                                <a href="#make_remark_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">备注</a>
+                                                <a href="#remark_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">备注</a>
                                             </td>
 
-                                            <div id="make_grade_{{ $single->student_id }}" class="modal fade makeGrade" aria-hidden="true">
+                                            <div id="grade_{{ $single->student_id }}" class="modal fade makeGrade" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
@@ -79,8 +79,8 @@
                                                                                 <label class="col-sm-2 control-label">类型</label>
                                                                                 <div class="col-sm-10">
                                                                                     <select name="type_id" class="form-control">
-                                                                                        @foreach($gradeConfigArr as $single)
-                                                                                            <option name="type_id" value="{{ $single->type_id }}">{{ $single->type_name }}{{ $single->grade }}</option>
+                                                                                        @foreach($gradeConfigArr as $grade)
+                                                                                            <option name="type_id" value="{{ $grade->type_id }}">{{ $grade->type_name }}{{ $grade->grade }}</option>
                                                                                         @endforeach
                                                                                     </select>
                                                                                 </div>
@@ -101,22 +101,22 @@
                                             </div>
 
 
-                                            <div id="make_remark_{{ $single->student_id }}" class="modal fade makeRemark" aria-hidden="true">
+                                            <div id="remark_{{$single->student_id}}" class="modal fade makeRemark" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-sm-12">
                                                                     <h3 class="m-t-none m-b">备注</h3>
-                                                                    <p>姓名：{{ $single->name }} | 学号：{{ $single->student_number }}</p>
+                                                                    {{--<p>姓名：{{ $single->name }} | 学号：{{ $single->student_number }}</p>--}}
                                                                     <div class="hr-line-dashed"></div>
                                                                     <div class="form-horizontal">
                                                                         <form role="form" class="form-horizontal" action="/t_make_student_remark" method="post">
-                                                                            <input type="hidden" name="student_id" value="{{ $single->student_id }}">
+                                                                            {{--<input type="hidden" name="student_id" value="{{ $single->student_id }}">--}}
                                                                             <div class="form-group">
                                                                                 <label class="col-sm-2 control-label">备注</label>
                                                                                 <div class="col-sm-10">
-                                                                                    <input type="text" placeholder="请输入备注信息" class="form-control" name="remark" value="{{ $single->remark }}" required>
+                                                                                    {{--<input type="text" placeholder="请输入备注信息" class="form-control" name="remark" value="{{ $single->remark }}" required>--}}
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group">
@@ -150,15 +150,15 @@
         </div>
     </div>
 
-    <script>
-        $("#makeGrade").click(function(){
-            $("p").hide();
-        });
+    {{--<script>--}}
+        {{--$("#makeGrade").click(function(){--}}
+            {{--$("p").hide();--}}
+        {{--});--}}
 
-        $("#makeRemark").click(function(){
-            $("p").show();
-        });
-    </script>
+        {{--$("#makeRemark").click(function(){--}}
+            {{--$("p").show();--}}
+        {{--});--}}
+    {{--</script>--}}
 
 
 @stop

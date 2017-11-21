@@ -150,7 +150,7 @@ class TeacherController extends BaseController
         $requestParam['order'] = null;
         $requestParam['keywords'] = null;
         $data['requestParam'] = $requestParam;
-        return view("Teacher.TeacherView.studentList", $data);
+        return view("Teacher.TeacherView.adminStudent", $data);
     }
 
     /**
@@ -178,7 +178,7 @@ class TeacherController extends BaseController
         };
         $data['gradeConfigArr'] = GradeConfig::getAll(false);
         $data['requestParam'] = $requestParam;
-        return view("Teacher.TeacherView.studentList", $data);
+        return view("Teacher.TeacherView.adminStudent", $data);
     }
 
     //分数计算更新
