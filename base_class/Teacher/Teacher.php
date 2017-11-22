@@ -78,6 +78,23 @@ class Teacher
         return $result;
     }
 
+    //查找多条记录
+    static function findAll($param){
+        $result = null;
+        $table = DB::table('t_teacher');
+        if(false == empty($param['user_name'])){
+            $result =  $table->where('user_name','=',$param['user_name']);
+        }
+        if(false == empty($param['password'])){
+            $result =  $table->where('password','=',$param['password']);
+        }
+        if(false == empty($param['user_name'])){
+            $result =  $table->where('user_name','=',$param['user_name']);
+        }
+        return $result->get();
+    }
+
+
     static function getAll($paginateNumber){
         $result = DB::table("t_teacher")
             ->orderBy("teacher_id","desc")

@@ -36,28 +36,28 @@
                                 <tbody>
                                 @foreach($arr as $single)
                                     <tr>
-                                        <td >{{$single->student_id}}</td>
-                                        <td >
+                                        <td style="vertical-align:middle">{{$single->student_id}}</td>
+                                        <td style="vertical-align:middle">
                                             <img src="/get_pic/{{$single->pic_id}}" style="width:100%; max-width: 80px;max-height: 80px;">
                                         </td>
-                                        <td >{{$single->name}}</td>
-                                        <td >{{$single->student_number}}</td>
-                                        <td >
+                                        <td style="vertical-align:middle">{{$single->name}}</td>
+                                        <td style="vertical-align:middle">{{$single->student_number}}</td>
+                                        <td style="vertical-align:middle">
                                             @if($single->sex == '1')
                                                 男
                                             @else
                                                 女
                                             @endif
                                         </td>
-                                        <td >
+                                        <td style="vertical-align:middle">
                                             @foreach($classArr as $class)
                                             @if($class->class_id == $single->class_id)
                                             {{ $class->class_name }}
                                             @endif
                                             @endforeach
                                         </td>
-                                        <td >{{$single->create_time}}</td>
-                                        <td >
+                                        <td style="vertical-align:middle">{{$single->create_time}}</td>
+                                        <td style="vertical-align:middle">
                                             <a href=""  data-toggle="modal" data-target="#edit_{{ $single->student_id }}" class="btn btn-xs btn-primary" data-placement="top"
                                                title="编辑"><i  class="glyphicon glyphicon-pencil"></i></a>
                                             <a href="/t_delete_student/{{$single->student_id}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top"

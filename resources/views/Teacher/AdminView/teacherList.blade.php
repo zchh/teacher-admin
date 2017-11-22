@@ -36,25 +36,24 @@
                             <tbody>
                             @foreach($arr as $single)
                             <tr>
-                                <td >{{$single->teacher_id}}</td>
-                                <td >
+                                <td style="vertical-align:middle">{{$single->teacher_id}}</td>
+                                <td style="vertical-align:middle">
                                     <img src="/get_pic/{{$single->pic_id}}" style="width:100%; max-width: 80px;max-height: 80px;">
                                 </td>
-                                <td >{{$single->name}}</td>
-                                <td >{{$single->id_number}}</td>
-                                <td >
+                                <td style="vertical-align:middle">{{$single->name}}</td>
+                                <td style="vertical-align:middle">{{$single->id_number}}</td>
+                                <td style="vertical-align:middle">
                                     @if($single->sex == '1')
                                      男
                                     @else
                                      女
                                     @endif
                                 </td>
-                                <td >{{$single->user_name}}</td>
-                                <td >{{$single->create_time}}</td>
-                                <td >
+                                <td style="vertical-align:middle">{{$single->user_name}}</td>
+                                <td style="vertical-align:middle">{{$single->create_time}}</td>
+                                <td style="vertical-align:middle">
                                     <a href=""  data-toggle="modal" data-target="#edit_{{ $single->teacher_id }}" class="btn btn-xs btn-primary" data-placement="top"
                                        title="编辑"><i  class="glyphicon glyphicon-pencil"></i></a>
-                                    <a href="" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#bind_{{ $single->teacher_id }}" data-placement="top" title="班级绑定"><i  class="fa fa-hand-o-right"></i></a>
                                     <a href="/t_s_teacher_class/{{$single->teacher_id}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top"
                                        title="查看教师课程"><i  class="fa fa-bars"></i></a>
                                     <a href="/t_delete_teacher/{{$single->teacher_id}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top"
@@ -117,50 +116,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div class="modal fade" id="bind_{{ $single->teacher_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">班级绑定</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-horizontal">
-                                                    <form class="form-horizontal" method="post" action="/t_bind_class" enctype="multipart/form-data"  onsubmit="return checkEdit(this)">
-                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <input type="hidden" name="teacher_id" value="{{$single->teacher_id}}">
-                                                        <div class="form-group">
-                                                            <label for="" class="col-sm-3 control-label">班级</label>
-                                                            <div class="col-sm-9">
-                                                                <select class="form-control" name="class_id">
-                                                                    @foreach($classArr as $class )
-                                                                    <option value = "{{ $class->class_id  }}">{{ $class->class_name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="" class="col-sm-3 control-label">课程</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="" placeholder="请输入" name="course_name" value="">
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                                    <button type="submit" class="btn btn-primary" onclick="javascript:return confirm('确定要添加吗？')">提交</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
 
                             </tr>
                             @endforeach

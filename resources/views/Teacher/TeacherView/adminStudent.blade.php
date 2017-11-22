@@ -45,26 +45,26 @@
                                     <tbody>
                                     @foreach($arr as $single)
                                         <tr>
-                                            <td><img src="/get_pic/{{$single->pic_id}}" style="width:100%; max-width: 80px;max-height: 80px;"></td>
-                                            <td>{{$single->student_number}}</td>
-                                            <td>{{$single->name}}</td>
+                                            <td><img src="/get_pic/{{$single['pic_id']}}" style="width:100%; max-width: 80px;max-height: 80px;"></td>
+                                            <td>{{$single['student_number']}}</td>
+                                            <td>{{$single['name']}}</td>
                                             <td>
-                                                @if($single->sex == '1')
+                                                @if($single['sex'] == '1')
                                                     男
                                                 @else
                                                     女
                                                 @endif
                                             </td>
-                                            <td>{{ $single->grade }}</td>
-                                            <td>{{ $single->remark }}</td>
+                                            <td>{{ $single['grade'] }}</td>
+                                            <td>{{ $single['remark'] }}</td>
                                             <td>
-                                                <a href="#grade_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">打分</a>
-                                                <a href="/t_get_grade_log/{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">查看得分记录</a>
-                                                <a href="/t_student_grade_trend/{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">成绩走势</a>
-                                                <a href="#remark_{{ $single->student_id }}" class="btn btn-outline btn-success" data-toggle="modal">备注</a>
+                                                <a href="#grade_{{ $single['student_id'] }}" class="btn btn-outline btn-success" data-toggle="modal">打分</a>
+                                                <a href="/t_get_grade_log/{{ $single['student_id'] }}" class="btn btn-outline btn-success" data-toggle="modal">查看得分记录</a>
+                                                <a href="/t_student_grade_trend/{{ $single['student_id'] }}" class="btn btn-outline btn-success" data-toggle="modal">成绩走势</a>
+                                                <a href="#remark_{{ $single['student_id'] }}" class="btn btn-outline btn-success" data-toggle="modal">备注</a>
                                             </td>
 
-                                            <div id="grade_{{ $single->student_id }}" class="modal fade makeGrade" aria-hidden="true">
+                                            <div id="grade_{{ $single['student_id'] }}" class="modal fade makeGrade" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
@@ -74,7 +74,7 @@
                                                                     <div class="hr-line-dashed"></div>
                                                                     <div class="form-horizontal">
                                                                         <form role="form" class="form-horizontal" action="/t_make_grade" method="post">
-                                                                            <input type="hidden" name="student_id" value="{{$single->student_id }}">
+                                                                            <input type="hidden" name="student_id" value="{{$single['student_id'] }}">
                                                                             <div class="form-group">
                                                                                 <label class="col-sm-2 control-label">类型</label>
                                                                                 <div class="col-sm-10">
@@ -101,7 +101,7 @@
                                             </div>
 
 
-                                            <div id="remark_{{$single->student_id}}" class="modal fade makeRemark" aria-hidden="true">
+                                            <div id="remark_{{$single['student_id']}}" class="modal fade makeRemark" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
@@ -139,7 +139,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <?php echo $arr->render(); ?>
+<!--                                --><?php //echo $arr->render(); ?>
                             </div>
                         </div>
                     </div>

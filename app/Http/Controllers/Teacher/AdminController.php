@@ -16,6 +16,7 @@ use BaseClass\Teacher\ClassConfig;
 use BaseClass\Teacher\MajorConfig;
 use BaseClass\Teacher\Pic;
 use BaseClass\Teacher\Student;
+use BaseClass\Teacher\StudentGrade;
 use BaseClass\Teacher\Teacher;
 use BaseClass\Teacher\TeacherClass;
 use GirdPlugins\Base\BaseFunc;
@@ -130,7 +131,7 @@ class AdminController extends BaseController
      */
     public function searchTeacher(){
         session(["now_address"=>"/t_s_teacher"]);
-        $data['arr'] =  Teacher::getAll(1);
+        $data['arr'] =  Teacher::getAll(5);
         $data['classArr'] = ClassConfig::getAll(false);
         return view("Teacher.AdminView.teacherList", $data);
     }
@@ -187,12 +188,11 @@ class AdminController extends BaseController
         }
         //判断是否已经存在相同用户名
         $param['user_name'] =  $_POST['user_name'];
-        $result = Teacher::findOne($param);
-        if(false == empty($result)){
+        $result = Teacher::findAll($param);
+        if(count($result) > 1){
             $baseFunc->setRedirectMessage(false, "存在相同的用户名，请更换用户名", NULL);
             return redirect()->back();
         }
-
         $inputData['name'] = $_POST['name'];
         $inputData['id_number'] = $_POST['id_number'];
         $inputData['user_name'] = $_POST['user_name'];
@@ -259,6 +259,7 @@ class AdminController extends BaseController
         $teacher = new Teacher($teacher_id);
         $single['teacher_name'] = $teacher->info->name;
         $single['pic_id'] = $teacher->info->pic_id;
+        $single['teacher_id'] = $teacher_id;
         $data['teacher'] = $single;
         //专业，班级，课程
         foreach ($teacherClasses as $single){
@@ -313,7 +314,8 @@ class AdminController extends BaseController
      */
     public function searchStudent(){
         session(["now_address"=>"/t_s_student"]);
-        $data['arr'] = Student::getAll(null, 3);
+        $param['order'] = 4;
+        $data['arr'] = Student::getAll($param, 5);
         $data['classArr'] = ClassConfig::getAll(false);
         return view("Teacher.AdminView.studentList", $data);
     }
@@ -339,17 +341,21 @@ class AdminController extends BaseController
             $baseFunc->setRedirectMessage(false, "存在相同的学号", NULL);
             return redirect()->back();
         }
-
         $inputData['pic_id'] = $picId;
         $inputData['class_id'] = $_POST['class_id'];
         $inputData['name'] = $_POST['name'];
         $inputData['sex'] = $_POST['sex'];
         $return = Student::add($inputData);
-        if($return == true) {
-            $baseFunc->setRedirectMessage(true, "数据插入成功", NULL);
-        } else {
+        if($return == false) {
             $baseFunc->setRedirectMessage(false, "数据插入失败", NULL);
+            return redirect()->back();
         }
+        //分数初始化
+         $param['class_id'] = $inputData['class_id'];
+         $teacherClasses = TeacherClass::findAll($param);
+         foreach ($teacherClasses as $single){
+             StudentGrade::init($return->student_id, $single->id);
+         }
         return redirect()->back();
     }
 
@@ -374,16 +380,33 @@ class AdminController extends BaseController
             $baseFunc->setRedirectMessage(false, "存在相同的学号", NULL);
             return redirect()->back();
         }
-
         $inputData['class_id'] = $_POST['class_id'];
         $inputData['name'] = $_POST['name'];
         $inputData['sex'] = $_POST['sex'];
         $student = new Student($_POST['student_id']);
+        $oldStudentClassId = $student->info->class_id;
         $return = $student->update($inputData);
-        if($return == true) {
-            $baseFunc->setRedirectMessage(true, "数据修改成功", NULL);
-        } else {
+        if($return == false) {
             $baseFunc->setRedirectMessage(false, "数据修改失败", NULL);
+            return redirect()->back();
+        }
+        //课程分数初始化
+        if($oldStudentClassId != $inputData['class_id']){
+            //删掉以前的
+            unset($param);
+            $param['student_id'] = $_POST['student_id'];
+            $studentGrades = StudentGrade::findAll($param);
+            foreach ($studentGrades as $studentGrade){
+               $studentGradeObj = new StudentGrade($studentGrade->id);
+               $studentGradeObj->delete();
+            }
+            //增加现在的
+            unset($param);
+            $param['class_id'] = $inputData['class_id'];
+            $teacherClasses = TeacherClass::findAll($param);
+            foreach ($teacherClasses as $single){
+                StudentGrade::init($_POST['student_id'], $single->id);
+            }
         }
         return redirect()->back();
     }
@@ -413,13 +436,12 @@ class AdminController extends BaseController
         return redirect()->back();
     }
 
-
     /**
      * 班级
      */
     public function searchClass(){
         session(["now_address"=>"/t_s_class"]);
-        $data['arr'] = ClassConfig::getAll(1);
+        $data['arr'] = ClassConfig::getAll(true, 5);
         $data['majorArr'] = MajorConfig::getAll(false);
         return view("Teacher.AdminView.classList", $data);
     }
@@ -490,7 +512,7 @@ class AdminController extends BaseController
      */
     public function searchMajor(){
         session(["now_address"=>"/t_s_major"]);
-        $data['arr'] = MajorConfig::getAll(1);
+        $data['arr'] = MajorConfig::getAll(true, 5);
         return view("Teacher.AdminView.majorList", $data);
     }
 

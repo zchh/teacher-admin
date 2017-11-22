@@ -6,11 +6,14 @@
                 <h4 class="page-header">教师班级管理</h4>
                 <p>教师姓名：{{ $teacher['teacher_name'] }}</p>
                 <img src="/get_pic/{{ $teacher['pic_id'] }}" style="width:100%; max-width: 80px;max-height: 80px;">
+                <hr>
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-12">
                 <form  class="class=form-inline" role="form" method="post" action="">
                     <div class="form-group" >
+                        <a href="" class="btn btn-ms btn-success" role="button" data-toggle="modal" data-target="#bind"><span class="glyphicon glyphicon-plus"></span>绑定班级课程</a>
+
                         {{--<input name="keyWords"  type="text" value="" placeholder="请输入仓库名">--}}
                         {{--<button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">搜索</button>--}}
                         {{--<button type="submit"   class="btn btn-ms btn-primary" style="margin-left: 8px">显示全部</button>--}}
@@ -98,6 +101,54 @@
 
                 <!-- /.panel -->
             </div>
+
+
+
+
+
+            <div class="modal fade" id="bind" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">班级绑定</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <form class="form-horizontal" method="post" action="/t_bind_class" enctype="multipart/form-data"  onsubmit="return checkEdit(this)">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="teacher_id" value="{{ $teacher['teacher_id'] }}">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">班级</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="class_id">
+                                                @foreach($classArr as $class )
+                                                    <option value = "{{ $class->class_id  }}">{{ $class->class_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-3 control-label">课程</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="" placeholder="请输入" name="course_name" value="" required>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="submit" class="btn btn-primary" onclick="javascript:return confirm('确定要添加吗？')">提交</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
         </div>
         <!-- /.row -->
     </div>

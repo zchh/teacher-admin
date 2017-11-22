@@ -65,6 +65,9 @@ class Student
             if($param['order'] == '3'){
                $result = $result->orderBy('student_number','asc');
             }
+            if($param['order'] == '4'){
+                $result = $result->orderBy('student_id','desc');
+            }
         }
         return $result->paginate($paginateNumber);
     }
@@ -75,7 +78,7 @@ class Student
         if(false == $id){
             return null;
         }
-        return new Teacher($id);
+        return new Student($id);
     }
 
     public function update($arr){
