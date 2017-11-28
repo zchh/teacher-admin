@@ -132,12 +132,11 @@ class TeacherController extends BaseController
         if(false == empty($teacherClassArr)){
                 unset($param);
                 $param['class_id'] = $teacherClassArr[0]->class_id;
-                //$studentArr = Student::getAll($param, 3);
                 $teacherClass = TeacherClass::findOne($param);
-              //  $this->updateGrade($studentArr, $teacherClass->id);
-                $data['arr'] = Student::getAll($param, 3);
                 $students = Student::getAll($param, 3);
-                $data['arr'] = $this->translateStudents($students, $teacherClass->id);
+                $this->setTempGrade($students, $teacherClass->id);
+
+                $data['arr'] = Student::getAll($param, 3);
             }
         foreach ($teacherClassArr as $single){
             $elem['class_id'] = $single->class_id;
@@ -158,26 +157,23 @@ class TeacherController extends BaseController
     }
 
     /**
-     * 按班级查找学生
+     * 查找学生
      */
     public function getStudentByClass(){
-        $requestParam['class_id'] = (false == empty($_POST['class_id']))?$_POST['class_id']:null;
-        $requestParam['order'] = (false == empty($_POST['order']))?$_POST['order']:null;
-        $requestParam['keywords'] = (false == empty($_POST['keywords']))?$_POST['keywords']:null;
+        $requestParam['class_id'] = (false == empty($_REQUEST['class_id']))?$_REQUEST['class_id']:null;
+        $requestParam['order'] = (false == empty($_REQUEST['order']))?$_REQUEST['order']:null;
+        $requestParam['keywords'] = (false == empty($_REQUEST['keywords']))?$_REQUEST['keywords']:null;
         $param['teacher_id'] = session('teacher')['teacher_id'];
         $teacherClassArr = TeacherClass::getAll($param);
         $data['arr'] = $data['classArr'] =array();
-    //    $studentArr = Student::getAll($requestParam, 3);
         $param2['class_id'] = $requestParam['class_id'];
-        $param2['teacher_id'] = $requestParam['teacher_id'];
+        $param2['teacher_id'] = session('teacher')['teacher_id'];
         $teacherClass = TeacherClass::findOne($param2);
-    //    $this->updateGrade($studentArr, $teacherClass->id);
-        $data['arr'] = Student::getAll($requestParam, 3);
-
         $students = Student::getAll($requestParam, 3);
-        $studentGrade = StudentGrade::findOne($param);
-        
-        $data['arr'] = $this->translateStudents($students, $teacherClass->id);
+        $this->setTempGrade($students, $teacherClass->id);
+        $arr = Student::getAll($requestParam, 3);
+        $arr -> setPath('t_get_student');
+        $data['arr'] = $arr;
         foreach ($teacherClassArr as $single){
             $elem['class_id'] = $single->class_id;
             $class = new ClassConfig($elem);
@@ -193,28 +189,6 @@ class TeacherController extends BaseController
         return view("Teacher.TeacherView.adminStudent", $data);
     }
 
-    //组装student数据
-    private function translateStudents($studentObjArr, $teacherClassId){
-        $studentArr = array();
-        foreach ($studentObjArr as $single){
-            $student['student_id'] = $single->student_id;
-            $student['name'] = $single->name;
-            $student['student_number'] = $single->student_number;
-            $student['sex'] = $single->sex;
-            $student['pic_id'] = $single->pic_id;
-            $student['class_id'] = $single->class_id;
-            $param['teacher_class_id'] = $teacherClassId;
-            $param['student_id'] = $single->student_id;
-            $studentGrade = StudentGrade::findOne($param);
-            $student['grade'] = $studentGrade->grade;
-            $student['create_time'] = $single->create_time;
-            $student['remark'] = $single->remark;
-            array_push($studentArr, $student);
-        }
-        return $studentArr;
-
-    }
-
     //分数计算更新
     private function updateGrade($studentId, $teacherClassId, $grade){
              $param['student_id'] = $studentId;
@@ -226,10 +200,15 @@ class TeacherController extends BaseController
     }
 
     //存放临时分数
-    private function setTempGrade($studentId, $grade){
-        $student = new Student($studentId);
-        $arr['grade'] = $grade;
-        $student->update($arr);
+    private function setTempGrade($studentArr, $teacherClassId){
+        foreach ($studentArr as $student){
+            $student = new Student($student->student_id);
+            $param['student_id'] = $student->student_id;
+            $param['teacher_class_id'] = $teacherClassId;
+            $studentGrade = StudentGrade::findOne($param);
+            $arr['grade'] = $studentGrade->grade;
+            $student->update($arr);
+        }
     }
 
     /**

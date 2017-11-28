@@ -31,6 +31,12 @@ class StudentGrade
     static function findOne($param){
 
         $result = DB::table('t_student_grade');
+        if(false == empty($param['student_id'])){
+            $result = $result->where('student_id','=',$param['student_id']);
+        }
+        if(false == empty($param['teacher_class_id'])){
+            $result = $result->where('teacher_class_id','=',$param['teacher_class_id']);
+        }
         return $result->first();
     }
 

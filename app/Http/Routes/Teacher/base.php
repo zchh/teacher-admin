@@ -66,7 +66,7 @@ Route::group(['middleware' => ['TLoginTeacherCheck']],function() {
     Route::post("/t_teacher_reset_password", "Teacher\TeacherController@resetPassword");   //修改密码
 
     Route::get("/t_admin_student", "Teacher\TeacherController@adminStudent");                //管理学生
-    Route::post("/t_get_student", "Teacher\TeacherController@getStudentByClass");            //管理学生
+    Route::any("/t_get_student", "Teacher\TeacherController@getStudentByClass");            //管理学生
     Route::post("/t_make_student_remark", "Teacher\TeacherController@makeStudentRemark");    //备注学生信息
 
     Route::get("/t_teacher_s_class", "Teacher\TeacherController@getClass");                  //班级
