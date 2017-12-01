@@ -2,8 +2,10 @@
 
 use ErrorException;
 use Illuminate\Contracts\Foundation\Application;
+use League\Flysystem\Exception;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Debug\Exception\FatalErrorException;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class HandleExceptions {
 
