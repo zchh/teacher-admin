@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>为蓝出行企业账号管理平台</title>
+<title>教师便捷管理学生系统</title>
 @section("head")
 {{--<link href="{{ asset('teacher/imgs/favicon.ico') }}">--}}
 <link href="{{ asset('teacher/img/neusoft.jpg') }}">
@@ -62,19 +62,13 @@
                     </ul>
                     <div class="container">
                         <ul class="nav navbar-nav" id="color-change">
-                            {{--<li class="li1">--}}
-                                {{--<a aria-expanded="false" role="button" href=""> 首页</a>--}}
-                            {{--</li>--}}
+                            <li class="li1">
+                                <a aria-expanded="false" role="button" href="/t_get_student">学生管理</a>
+                            </li>
                             <li class="li2">
                                 <a aria-expanded="false" role="button" href="/t_s_grade_config">得/扣分类型配置</a>
                             </li>
-                            <li class="li2">
-                                <a aria-expanded="false" role="button" href="/t_admin_student">学生管理</a>
-                            </li>
-                            {{--<li class="li3">--}}
-                                {{--<a aria-expanded="false" role="button" href=""> 账户管理</a>--}}
-                            {{--</li>--}}
-                            <li class="li4">
+                            <li class="li3">
                                 <a aria-expanded="false" role="button" href="/t_teacher_reset"> 系统设置</a>
                             </li>
                         </ul>

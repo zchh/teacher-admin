@@ -66,14 +66,14 @@ class AdminController extends BaseController
      * 退出登录
      */
     public function adminLoginOut(BaseFunc $baseFunc){
-        Session::flush();
+        Session::forget('admin');;
         $baseFunc->setRedirectMessage(true, "退出登出成功", NULL, "/t_admin_login");
     }
 
     /**
      * 获取管理员信息
      */
-    public function getAdminInfo(BaseFunc $baseFunc){
+    public function getAdminInfo(){
         $adminInfo =  new Admin(session('admin')['admin_id']);
         $data['adminInfo'] = $adminInfo->info;
         return view("Teacher.AdminView.adminInfo", $data);

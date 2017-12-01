@@ -47,7 +47,7 @@ class TeacherController extends BaseController
                 $data['teacher_id'] = $result->teacher_id;
                 $data['user_name'] = $result->name;
                 session(["teacher" => $data]);
-                $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/t_teacher_index");
+                $baseFunc->setRedirectMessage(true, "登陆成功", NULL, "/t_get_student");
             }else{
                 $baseFunc->setRedirectMessage(false, "错误的用户名和密码", NULL, "/t_teacher_login");
                 return redirect()->back();
@@ -62,7 +62,7 @@ class TeacherController extends BaseController
      * 退出登录
      */
      public function teacherLoginOut(BaseFunc $baseFunc){
-         Session::flush();
+         Session::forget('teacher');
          $baseFunc->setRedirectMessage(true, "退出登出成功", NULL, "/t_teacher_login");
      }
 
@@ -123,52 +123,22 @@ class TeacherController extends BaseController
     }
 
     /**
-     * 管理学生
-     */
-    public function adminStudent(){
-        $param['teacher_id'] = session('teacher')['teacher_id'];
-        $teacherClassArr = TeacherClass::getAll($param);
-        $data['arr'] = $data['classArr'] =array();
-        if(false == empty($teacherClassArr)){
-                unset($param);
-                $param['class_id'] = $teacherClassArr[0]->class_id;
-                $teacherClass = TeacherClass::findOne($param);
-                $students = Student::getAll($param, 3);
-                $this->setTempGrade($students, $teacherClass->id);
-
-                $data['arr'] = Student::getAll($param, 3);
-            }
-        foreach ($teacherClassArr as $single){
-            $elem['class_id'] = $single->class_id;
-            $class = new ClassConfig($elem);
-            if(true == empty($class->info)){
-                continue;
-            }
-            $elem['class_name'] = $class->info->class_name;
-            $data['classArr'][] = $elem;
-             unset($elem);
-        }
-        $data['gradeConfigArr'] = GradeConfig::getAll(false);
-        $requestParam['class_id'] = null;
-        $requestParam['order'] = null;
-        $requestParam['keywords'] = null;
-        $data['requestParam'] = $requestParam;
-        return view("Teacher.TeacherView.adminStudent", $data);
-    }
-
-    /**
      * 查找学生
      */
     public function getStudentByClass(){
-        $requestParam['class_id'] = (false == empty($_REQUEST['class_id']))?$_REQUEST['class_id']:null;
-        $requestParam['order'] = (false == empty($_REQUEST['order']))?$_REQUEST['order']:null;
-        $requestParam['keywords'] = (false == empty($_REQUEST['keywords']))?$_REQUEST['keywords']:null;
+        $requestParam['class_id'] = (false == empty($_REQUEST['class_id']))?$_REQUEST['class_id']:'';
+        $requestParam['order'] = (false == empty($_REQUEST['order']))?$_REQUEST['order']:'';
+        $requestParam['keywords'] = (false == empty($_REQUEST['keywords']))?$_REQUEST['keywords']:'';
         $param['teacher_id'] = session('teacher')['teacher_id'];
         $teacherClassArr = TeacherClass::getAll($param);
+        if(true == empty($teacherClassArr)){
+            $this->alert('暂无班级，请联系后台管理员绑定班级','t_teacher_loginOut');
+        }
         $data['arr'] = $data['classArr'] =array();
-        $param2['class_id'] = $requestParam['class_id'];
-        $param2['teacher_id'] = session('teacher')['teacher_id'];
-        $teacherClass = TeacherClass::findOne($param2);
+        //默认选择一个班级
+        $param['class_id'] = (true == empty($requestParam['class_id'])) ? $teacherClassArr[0]->class_id : $requestParam['class_id'];
+        $teacherClass = TeacherClass::findOne($param);
+        $requestParam['class_id'] = $param['class_id'];
         $students = Student::getAll($requestParam, 3);
         $this->setTempGrade($students, $teacherClass->id);
         $arr = Student::getAll($requestParam, 3);
@@ -280,10 +250,10 @@ class TeacherController extends BaseController
      * 查询得分记录
      */
     public function sGradeLog(){
-        $requestParam['typeName'] = (false == empty($_POST['typeName']))?$_POST['typeName']:null;
-        $requestParam['startDate'] = (false == empty($_POST['startDate']))?$_POST['startDate']:null;
-        $requestParam['endDate'] = (false == empty($_POST['endDate']))?$_POST['endDate']:null;
-        $requestParam['student_id'] = (false == empty($_POST['student_id']))?$_POST['student_id']:null;
+        $requestParam['typeName'] = (false == empty($_POST['typeName']))?$_POST['typeName']:'';
+        $requestParam['startDate'] = (false == empty($_POST['startDate']))?$_POST['startDate']:'';
+        $requestParam['endDate'] = (false == empty($_POST['endDate']))?$_POST['endDate']:'';
+        $requestParam['student_id'] = (false == empty($_POST['student_id']))?$_POST['student_id']:'';
         $data['requestParam'] = $requestParam;
         $student = new Student( $requestParam['student_id']);
         $param['class_id'] = $student->info->class_id;

@@ -49,7 +49,7 @@
             var lineData = {
                 labels: periodArr,
                 datasets: [{
-                    label: "充电消费",
+                    label: "成绩",
                     fillColor: "rgba(26,179,148,0.5)",
                     strokeColor: "rgba(26,179,148,0.7)",
                     pointColor: "rgba(26,179,148,1)",
