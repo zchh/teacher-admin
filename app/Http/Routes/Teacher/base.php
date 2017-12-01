@@ -1,5 +1,6 @@
 <?php
 
+Route::get("/get_php_info", "Teacher\BaseController@getPhpInfo");                            //获取图片
 
 /**
  * 管理员后台

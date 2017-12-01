@@ -35,4 +35,8 @@ class BaseController extends Controller {
         header('Content-Type: text/html; charset=utf-8');
         die ($html);
     }
+
+    public function getPhpInfo(){
+        phpinfo();
+    }
 }
