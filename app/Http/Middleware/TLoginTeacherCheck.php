@@ -2,7 +2,7 @@
 
 use Closure;
 
-class tLoginTeacherCheck {
+class TLoginTeacherCheck {
 
     /**
      * Handle an incoming request.
