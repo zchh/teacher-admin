@@ -70,7 +70,12 @@ class HandleExceptions {
 	 */
 	public function handleException($e)
 	{
-		$this->getExceptionHandler()->report($e);
+	    //zc
+        if (! $e instanceof Exception) {
+            $e = new FatalThrowableError($e);
+        }
+
+        $this->getExceptionHandler()->report($e);
 
 		if ($this->app->runningInConsole())
 		{
